@@ -4,72 +4,115 @@
 
 dl表结构:
 autokey   自动增长
+
 userid    录入人
 username  录入人姓名
- 
-productno 工程单号  （唯一）
-     
-custno 客户编号
-    
-pono 订单编号
+inputdate  录入时间 字符
 
-itemno --客户料号
+modifyid       修改人
+modifyname     修改人姓名
+modifydate     修改时间 字符
 
-itemsname --产品名称
+confirmid	   审核人
+confirmname    审核人
+confirmdate	   审核时间  字符
 
-poqty     --订单数量   INT 整型
+delmark        删除标记
+status         审核状态
 
---helppmcmans        del ***
+capitalstatus  资产状态  正常  报废  出售
 
+capitalcode    资产代号
+capitalname    资产名称
 
-    
-helptimes      --求助次数
-    
-helplasttime   --最后求助时间 (一天只可以求助一次) 
+qty             数量   默认1个
+money           金额
 
-csexpectdate     --cs期望交期  字符
-    
-pmsreplydate     --pmc复期  字符
+typename        类型    房屋建筑  机器设备  运输设备  电子设备  其它
+unit            单位
 
-addpmcreplycomment --pmc 答复时填写备注
+deptno          保管部门
+deptname        保管部门名称
 
-addpmcreplydate     --pmc答复时间
-    
-addpmcman         --pmc答复人
-addpmcmanname     --pmc答复人姓名
-    
-comment           --备注 CS求助备注
+savesite        保管位置
+saveman         保管人 (姓名)
 
-overdate          --完成时间 
-isover            --是完成 布尔值
-
-helppmc1          -- 求助对象1  13925520750
-helppmc2          -- 求助对象2  13925520750
-
-helppmcname1      -- 求助对象1  名字
-helppmcname2      -- 求助对象2  名字
+comment           备注
 
 
- 
-dllog表结构:
-autokey      自动增长
-    
-logruntype   日志表数据类型  -- add添加记录  update修改记录  reply答复  againhelp 再次求助  over 完成
- 
-userid       录入人
-username     录入人姓名
 
-productno    工程单号  
 
-dates        cs期望交期/或者pmc的复期
-comment      当时的备注
+sale表结构:出售
+autokey   自动增长
+
+userid    录入人
+username  录入人姓名
+inputdate  录入时间 字符
+
+modifyid       修改人
+modifyname     修改人姓名
+modifydate     修改时间 字符
+
+confirmid	   审核人
+confirmname    审核人
+confirmdate	   审核时间  字符
+
+delmark        删除标记
+status         审核状态
+
+nos            单号
+
+
+scrap表结构: 报废
+autokey   自动增长
+
+userid    录入人
+username  录入人姓名
+inputdate  录入时间 字符
+
+modifyid       修改人
+modifyname     修改人姓名
+modifydate     修改时间 字符
+
+confirmid	   审核人
+confirmname    审核人
+confirmdate	   审核时间  字符
+
+delmark        删除标记
+status         审核状态
+
+nos            单号
+
+
+move表结构:转移
+autokey   自动增长
+
+userid    录入人
+username  录入人姓名
+inputdate  录入时间 字符
+
+modifyid       修改人
+modifyname     修改人姓名
+modifydate     修改时间 字符
+
+confirmid	   审核人
+confirmname    审核人
+confirmdate	   审核时间  字符
+
+delmark        删除标记
+status         审核状态
+
+nos            单号
+
+
+
 
 
 
 users表结构:
 autokey  自动增长
 userid   用户id (手机号)
-username 用户名 
+username 用户名
 pwd      密码
 
 
