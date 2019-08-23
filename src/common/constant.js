@@ -12,7 +12,7 @@ export const bmobapidatamax = 204800;
 
 
 export const MyVuePersistedName = {
-    LoginUserId : 'MyWXLoginUserId'
+    LoginUserId : 'MyCapitalLoginUserId'
 }
 
 export const CookieExpires = 7;

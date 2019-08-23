@@ -26,13 +26,13 @@ confirmdate	   审核时间  字符
 delmark        删除标记
 status         审核状态
 
-capitalstatus  资产状态  正常  报废  出售
+capitalstatus  资产状态   (正常  报废  出售)
 
 capitalcode    资产代号
 capitalname    资产名称
 
-qty             数量   默认1个
-money           金额
+qty             数量  数值类型  默认1个  暂时没有字段
+money           金额  数值类型
 
 typename        类型    房屋建筑  机器设备  运输设备  电子设备  其它
 unit            单位
