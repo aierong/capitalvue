@@ -1,6 +1,12 @@
 项目中各表结构:
 
 
+dept表结构:
+ids  自动增长
+deptname   部门名称
+deptno     部门代号
+
+
 
 dl表结构:
 autokey   自动增长
@@ -111,8 +117,5 @@ nos            单号
 
 users表结构:
 autokey  自动增长
-userid   用户id (手机号)
-username 用户名
-pwd      密码
 
 
