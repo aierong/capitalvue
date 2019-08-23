@@ -9,15 +9,16 @@ export const usertokenname = 'MyCapitalToken'
 //bmob  单次API返回数据大小进行限制  204800  bytes
 export const bmobapidatamax = 204800;
 
-
-
 export const MyVuePersistedName = {
     LoginUserId : 'MyCapitalLoginUserId'
 }
 
 export const CookieExpires = 7;
 
-//头像列表
+/**
+ * 头像列表
+ * @type {*[]}
+ */
 export const avatariconlist = [
 
     'touxiang4' ,
@@ -27,4 +28,15 @@ export const avatariconlist = [
 
 ];
 
+/**
+ * 资产类型
+ * @type {Array}
+ */
+export const CapitalType = [
+    "房屋建筑" ,
+    "机器设备" ,
+    "运输设备" ,
+    "电子设备" ,
+    "其它"
 
+];
