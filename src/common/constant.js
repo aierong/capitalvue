@@ -20,7 +20,8 @@ export const CookieExpires = 7;
  * @type {*[]}
  */
 export const avatariconlist = [
-
+    'touxiang6' ,
+    'touxiang5' ,
     'touxiang4' ,
     'touxiang3' ,
     'touxiang2' ,
