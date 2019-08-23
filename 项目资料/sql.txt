@@ -116,6 +116,14 @@ nos            单号
 
 
 users表结构:
-autokey  自动增长
+ids  自动增长
+mobile
+name
+avatar
+password
+email
+date
+
+
 
 
