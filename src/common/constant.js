@@ -4,9 +4,7 @@
  */
 
 //token名称
-// import createPersistedState from "vuex-persistedstate";
-
-export const usertokenname = 'MyWxNewToken'
+export const usertokenname = 'MyCapitalToken'
 
 //bmob  单次API返回数据大小进行限制  204800  bytes
 export const bmobapidatamax = 204800;
