@@ -58,7 +58,8 @@ Time: 14:42
                 </svg>
             </van-grid-item>
 
-            <van-grid-item text="查询">
+            <van-grid-item text="查询"
+                           @click="queryclick">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -113,9 +114,10 @@ Time: 14:42
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            queryclick () {
+                // 页面跳转
+                this.$router.push( "/querydata" )
+            } ,
 
         } ,
         //计算属性
