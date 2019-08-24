@@ -9,8 +9,10 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "dayjs": "^1.8.15",
+    "echarts": "^4.2.1",
     "hydrogen-js-sdk": "^1.7.0",
     "js-cookie": "^2.2.1",
+    "v-charts": "^1.19.0",
     "vant": "^2.1.5",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",

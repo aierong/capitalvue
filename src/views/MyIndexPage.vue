@@ -76,7 +76,11 @@ Time: 14:42
                 </svg>
             </van-grid-item>
         </van-grid>
-
+        <br>
+        <div>
+            <!--            <ve-line :data="chartData"></ve-line>-->
+            <ve-bar :data="chartData"></ve-bar>
+        </div>
         <mytabbar></mytabbar>
     </div>
 
@@ -104,7 +108,9 @@ Time: 14:42
         //数据模型
         data () {
             return {
-                msg : '' ,
+                /**
+                 * 轮播图的图片列表
+                 */
                 swipeimagelist : [
                     require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
                     require( `@/assets/capitalswipeimage/ji2.jpeg` ) ,
@@ -113,7 +119,20 @@ Time: 14:42
                     require( `@/assets/capitalswipeimage/car2.jpg` ) ,
 
                     require( `@/assets/capitalswipeimage/house1.jpg` ) ,
-                ]
+                ] ,
+                chartData : {
+                    columns : [ '数量' , '资产' , '出售' , '报废' ] ,
+                    rows : [
+                        {
+                            '数量' : '' ,
+                            '资产' : 1093 ,
+                            '出售' : 639 ,
+                            '报废' : 20
+                        } ,
+
+                    ]
+                } ,
+
             }
         } ,
         //方法
