@@ -79,7 +79,8 @@ Time: 14:42
         <br>
         <div>
             <!--            <ve-line :data="chartData"></ve-line>-->
-            <ve-bar :data="chartData"></ve-bar>
+            <ve-bar :data="chartData"
+                    :data-empty="chartEmptyData"></ve-bar>
         </div>
         <mytabbar></mytabbar>
     </div>
@@ -90,6 +91,10 @@ Time: 14:42
 <script>
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
+
+    import * as dlapi from '@/common/bmobapi/dl.js'
+
+    import * as globalconstant from '@/common/constant.js'
 
     import {
         mapState ,
@@ -121,17 +126,19 @@ Time: 14:42
                     require( `@/assets/capitalswipeimage/house1.jpg` ) ,
                 ] ,
                 chartData : {
-                    columns : [ '数量' , '资产' , '出售' , '报废' ] ,
+                    columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
                     rows : [
-                        {
-                            '数量' : '' ,
-                            '资产' : 1093 ,
-                            '出售' : 639 ,
-                            '报废' : 200
-                        } ,
+                        // {
+                        //     '数量' : '' ,
+                        //     '资产' : 1093 ,
+                        //     '正常' : 1000 ,
+                        //     '出售' : 90 ,
+                        //     '报废' : 3
+                        // } ,
 
                     ]
                 } ,
+                chartEmptyData : false
 
             }
         } ,
@@ -171,6 +178,32 @@ Time: 14:42
 
                 return;
             } ,
+            async getcapitalcounts () {
+                var result = await Promise.all( [
+                    dlapi.GetCapitalCounts( '' , globalconstant.normal ) ,
+                    dlapi.GetCapitalCounts( '' , globalconstant.sale ) ,
+                    dlapi.GetCapitalCounts( '' , globalconstant.scrap ) ,
+                ] )
+
+                if ( result != null && result.length >= 3 ) {
+                    // console.log( result )
+
+                    if ( result[ 0 ] <= 0 && result[ 1 ] <= 0 && result[ 2 ] <= 0 ) {
+                        this.chartEmptyData = true;
+                    }
+                    else {
+                        let obj = {
+                            '数量' : '' ,
+                            '资产' : result[ 0 ] + result[ 1 ] + result[ 2 ] ,
+                            '正常' : result[ 0 ] ,
+                            '出售' : result[ 1 ] ,
+                            '报废' : result[ 2 ]
+                        };
+
+                        this.chartEmptyData = false;
+                    }
+                }
+            }
         } ,
         //计算属性
         computed : {
@@ -182,7 +215,9 @@ Time: 14:42
         } ,
         //生命周期(mounted)
         mounted () {
+            // console.log( 'MyIndexPage mounted' )
 
+            this.getcapitalcounts();
         } ,
     }
 </script>

@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
  * 资产表
  * @type {string}
  */
-const tableName_users = 'dl';
+const tableName_dl = 'dl';
 
 /**
  * 是存在资产
@@ -20,7 +20,7 @@ const tableName_users = 'dl';
  */
 export function isexistscapital ( capitalcode ) {
     return new Promise( ( resolve , reject ) => {
-        const query = Bmob.Query( tableName_users );
+        const query = Bmob.Query( tableName_dl );
         query.equalTo( "capitalcode" , "==" , capitalcode );
 
         query.find().then( res => {
@@ -53,7 +53,7 @@ export function adddl ( dl ) {
 
     return new Promise( ( resolve , reject ) => {
 
-        const query = Bmob.Query( DlTable );
+        const query = Bmob.Query( tableName_dl );
         //这里 设置  列的数据
 
         query.set( "userid" , dl.userid )
@@ -105,7 +105,25 @@ export function adddl ( dl ) {
     } );
 }
 
+export function GetCapitalCounts ( userid , capitalstatus ) {
+    return new Promise( ( resolve , reject ) => {
 
+        const query = Bmob.Query( tableName_dl );
+
+        query.equalTo( "capitalstatus" , "==" , capitalstatus );
+
+        if ( userid != '' ) {
+            query.equalTo( "mobile" , "==" , userid );
+        }
+
+        query.count().then( res => {
+            //返回的是 数字
+            // console.log( res )
+            resolve( res );
+        } );
+
+    } );
+}
 
 //删除方法 待实现
 

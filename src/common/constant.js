@@ -13,6 +13,8 @@ export const MyVuePersistedName = {
     LoginUserId : 'MyCapitalLoginUserId'
 }
 
+
+
 /**
  * 登录帐号Cookie保存天数
  * @type {number}
@@ -46,3 +48,13 @@ export const CapitalType = [
     "其它"
 
 ];
+
+/**
+ * 资产状态
+ * @type {{normal: string, sale: string, scrap: string}}
+ */
+export const CapitalStatus = {
+    sale : '出售' ,
+    scrap : '报废' ,
+    normal : '正常'
+}
