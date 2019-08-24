@@ -19,7 +19,7 @@
             <van-field v-model="userinfo.mobile"
                        required
                        clearable
-                       label="手机"
+                       label="手机号码"
                        placeholder="请输入手机号码"/>
             <van-field v-model="userinfo.name"
                        required
