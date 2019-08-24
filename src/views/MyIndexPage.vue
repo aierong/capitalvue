@@ -9,7 +9,10 @@ Time: 14:42
 <template>
 
     <div>
-        MyIndexPage
+        <van-cell :title="useraddress"
+                  icon="location-o"/>
+
+        <br>
 
 
         <mytabbar></mytabbar>
@@ -19,6 +22,8 @@ Time: 14:42
 
 <!-- js脚本代码片段 -->
 <script>
+    import { mapState } from 'vuex'
+
     import mytabbar from "@/components/mytabbar.vue";
 
     export default {
@@ -43,10 +48,11 @@ Time: 14:42
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            ...mapState( {
+
+                useraddress : 'address' ,
+
+            } ) ,
         } ,
         //生命周期(mounted)
         mounted () {
