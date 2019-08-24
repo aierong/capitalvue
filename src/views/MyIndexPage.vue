@@ -12,8 +12,37 @@ Time: 14:42
         <van-cell :title="useraddress"
                   icon="location-o"/>
 
-        <br>
+        <!--        <br>-->
+        <van-swipe :autoplay="3000">
 
+            <van-swipe-item class="swipepic"
+                            :key="index"
+                            v-for="(it, index) in swipeimagelist">
+                <img :src="it"
+                     alt/>
+            </van-swipe-item>
+
+            <!--            <van-swipe-item>4</van-swipe-item>-->
+        </van-swipe>
+        <van-grid :column-num="3">
+            <van-grid-item icon="coupon-o"
+                           text="登记"/>
+            <van-grid-item icon="photo-o"
+                           text="转移"/>
+
+            <van-grid-item icon="photo-o"
+                           text="出售"/>
+
+            <van-grid-item icon="photo-o"
+                           text="报废"/>
+
+            <van-grid-item icon="photo-o"
+                           text="查询"/>
+
+            <van-grid-item icon="photo-o"
+                           text="退出"/>
+
+        </van-grid>
 
         <mytabbar></mytabbar>
     </div>
@@ -36,7 +65,16 @@ Time: 14:42
         //数据模型
         data () {
             return {
-                msg : ''
+                msg : '' ,
+                swipeimagelist : [
+                    require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
+                    require( `@/assets/capitalswipeimage/ji2.jpeg` ) ,
+
+                    require( `@/assets/capitalswipeimage/car1.jpeg` ) ,
+                    require( `@/assets/capitalswipeimage/car2.jpg` ) ,
+
+                    require( `@/assets/capitalswipeimage/house1.jpg` ) ,
+                ]
             }
         } ,
         //方法
