@@ -4,14 +4,12 @@
  定义一些公用方法
  */
 
-// function geticonallname ( val ) {
-//     if ( !val ) {
-//         return ''
-//     }
-//
-//     return '#icon-' + val;
-// }
+export function geticonallname ( val ) {
+    if ( !val ) {
+        return ''
+    }
 
-export {
-    // geticonallname
+    return '#icon-' + val;
 }
+
+
