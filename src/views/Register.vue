@@ -151,7 +151,7 @@
             } ,
             onClickRight () {
 
-                this.$toast( "说明一下" )
+                this.$toast( "这里可以注册一个新帐号" )
 
             } ,
             regClick () {
