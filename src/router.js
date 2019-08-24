@@ -46,6 +46,12 @@ const router = new Router( {
 
         } ,
         {
+            path : '/cz' ,
+            name : 'cz' ,
+            component : () => import('@/views/CZ.vue') ,
+
+        } ,
+        {
             path : '' ,
             redirect : '/myindexpage'
         } ,

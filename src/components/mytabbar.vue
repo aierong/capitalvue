@@ -12,29 +12,10 @@ Time: 22:44
     <van-tabbar v-model="active"
                 @change="onchange"
                 active-color="#07c160">
-        <!--        <van-tabbar-item>-->
-        <!--            <span>我的</span>-->
-        <!--            <i class="iconfont icon-chat myicon"-->
-        <!--               slot="icon"></i>-->
-        <!--        </van-tabbar-item>-->
-        <!--        <van-tabbar-item>-->
-        <!--            <span>通讯录</span>-->
-        <!--            <i class="iconfont icon-mn_tongxunlu myicon"-->
-        <!--               slot="icon"></i>-->
-        <!--        </van-tabbar-item>-->
-        <!--        <van-tabbar-item>-->
-        <!--            <span>发现</span>-->
-        <!--            <i class="iconfont icon-faxian myicon"-->
-        <!--               slot="icon"></i>-->
-        <!--        </van-tabbar-item>-->
-        <!--        <van-tabbar-item>-->
-        <!--            <span>我</span>-->
-        <!--            <i class="iconfont icon-me1 myicon"-->
-        <!--               slot="icon"></i>-->
-        <!--        </van-tabbar-item>-->
 
-        <van-tabbar-item icon="home-o">我的</van-tabbar-item>
 
+        <van-tabbar-item icon="home-o">资产</van-tabbar-item>
+        <van-tabbar-item icon="shrink">操作</van-tabbar-item>
         <van-tabbar-item icon="label-o">查询</van-tabbar-item>
         <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
 
@@ -70,13 +51,18 @@ Time: 22:44
 
                     return;
                 }
-                else if ( path == '/querydata' ) {
+                else if ( path == '/cz' ) {
                     this.active = 1;
 
                     return;
                 }
-                else if ( path == '/setupdata' ) {
+                else if ( path == '/querydata' ) {
                     this.active = 2;
+
+                    return;
+                }
+                else if ( path == '/setupdata' ) {
+                    this.active = 3;
 
                     return;
                 }
@@ -95,11 +81,15 @@ Time: 22:44
                     this.$router.push( "/myindexpage" )
                 }
                 else if ( active == 1 ) {
-                    this.SetRefreshContactsList( true );  //刷新列表
+
+                    this.$router.push( "/cz" );
+                }
+                else if ( active == 2 ) {
+                    // this.SetRefreshContactsList( true );  //刷新列表
 
                     this.$router.push( "/querydata" );
                 }
-                else if ( active == 2 ) {
+                else if ( active == 3 ) {
                     this.$router.push( "/setupdata" )
                 }
                 // else if ( active == 3 ) {
