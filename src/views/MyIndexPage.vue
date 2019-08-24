@@ -24,26 +24,55 @@ Time: 14:42
                      alt/>
             </van-swipe-item>
 
-            <!--            <van-swipe-item>4</van-swipe-item>-->
         </van-swipe>
         <van-grid :column-num="3">
-            <van-grid-item icon="coupon-o"
-                           text="登记"/>
-            <van-grid-item icon="photo-o"
-                           text="转移"/>
+            <van-grid-item text="登记">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-dengji"></use>
+                </svg>
+            </van-grid-item>
 
-            <van-grid-item icon="photo-o"
-                           text="出售"/>
+            <van-grid-item text="转移">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-zhuanyi1"></use>
+                </svg>
+            </van-grid-item>
 
-            <van-grid-item icon="photo-o"
-                           text="报废"/>
+            <van-grid-item text="出售">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-chushou"></use>
+                </svg>
+            </van-grid-item>
 
-            <van-grid-item icon="photo-o"
-                           text="查询"/>
+            <van-grid-item text="报废">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-yaopinbaofei"></use>
+                </svg>
+            </van-grid-item>
 
-            <van-grid-item icon="photo-o"
-                           text="退出"/>
+            <van-grid-item text="查询">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-chaxun-current"></use>
+                </svg>
+            </van-grid-item>
 
+            <van-grid-item text="退出">
+                <svg slot="icon"
+                     class="icon myicon"
+                     aria-hidden="true">
+                    <use xlink:href="#icon-tuichu"></use>
+                </svg>
+            </van-grid-item>
         </van-grid>
 
         <mytabbar></mytabbar>
@@ -53,6 +82,9 @@ Time: 14:42
 
 <!-- js脚本代码片段 -->
 <script>
+    // 引入阿里图标js
+    import "@/assets/ali/iconfont/iconfont.js"
+
     import { mapState } from 'vuex'
 
     import mytabbar from "@/components/mytabbar.vue";
