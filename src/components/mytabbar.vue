@@ -75,13 +75,13 @@ Time: 22:44
 
                     return;
                 }
-                else if ( path == '/discover' ) {
+                else if ( path == '/setupdata' ) {
                     this.active = 2;
 
                     return;
                 }
                 else {
-                    this.active = 3;
+                    this.active = 0;
 
                     return;
                 }
@@ -100,11 +100,11 @@ Time: 22:44
                     this.$router.push( "/querydata" );
                 }
                 else if ( active == 2 ) {
-                    this.$router.push( "/discover" )
+                    this.$router.push( "/setupdata" )
                 }
-                else if ( active == 3 ) {
-                    this.$router.push( "/me" )
-                }
+                // else if ( active == 3 ) {
+                //     this.$router.push( "/me" )
+                // }
             } ,
 
         } ,
