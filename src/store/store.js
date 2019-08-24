@@ -50,7 +50,7 @@ const vuexPersistedcookie = createPersistedState( {
 
 const vuexPersisted = createPersistedState( {
     //key是给持久化状态起个名字，默认:vuex
-    key : 'MyWxPersistedData' ,
+    key : 'MyCapitalPersistedData' ,
 
     storage : window.localStorage ,
 
