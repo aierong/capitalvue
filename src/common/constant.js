@@ -13,6 +13,10 @@ export const MyVuePersistedName = {
     LoginUserId : 'MyCapitalLoginUserId'
 }
 
+/**
+ * 登录帐号Cookie保存天数
+ * @type {number}
+ */
 export const CookieExpires = 7;
 
 /**
