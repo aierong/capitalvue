@@ -13,3 +13,8 @@
 
     }
 </script>
+
+
+<style src="./Home.css"
+       scoped>
+</style>
