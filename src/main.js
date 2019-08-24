@@ -21,11 +21,18 @@ import { Lazyload } from "vant";
 
 Vue.use( Lazyload );
 
-
 import VCharts from 'v-charts'
 
-Vue.use(VCharts)
+Vue.use( VCharts )
 
+//src/components/global.js
+import components from '@/components/global.js'
+//循环注册全局组件
+Object.keys( components ).forEach( ( key ) => {
+
+    //注册全局组件
+    Vue.component( `${ key }` , components[ key ] )
+} )
 
 Vue.config.productionTip = false
 

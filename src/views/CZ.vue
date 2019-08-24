@@ -17,15 +17,15 @@ Time: 0:23
 
 <!-- js脚本代码片段 -->
 <script>
-    import mytabbar from "@/components/mytabbar.vue";
+    // import mytabbar from "@/components/mytabbar.vue";
 
     export default {
         name : "CZ" ,
         //注册组件
-        components : {
-
-            mytabbar
-        } ,
+        // components : {
+        //
+        //     mytabbar
+        // } ,
         //数据模型
         data () {
             return {

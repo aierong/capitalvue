@@ -101,15 +101,15 @@ Time: 14:42
         mapMutations
     } from 'vuex'
 
-    import mytabbar from "@/components/mytabbar.vue";
+    // import mytabbar from "@/components/mytabbar.vue";
 
     export default {
         name : "MyIndexPage" ,
         //注册组件
-        components : {
-
-            mytabbar
-        } ,
+        // components : {
+        //
+        //     mytabbar
+        // } ,
         //数据模型
         data () {
             return {

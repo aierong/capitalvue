@@ -19,15 +19,15 @@ Time: 14:53
 
 <!-- js脚本代码片段 -->
 <script>
-    import mytabbar from "@/components/mytabbar.vue";
+    // import mytabbar from "@/components/mytabbar.vue";
 
     export default {
         name : "QueryData" ,
-        //注册组件
-        components : {
-
-            mytabbar
-        } ,
+        // //注册组件
+        // components : {
+        //
+        //     mytabbar
+        // } ,
         //数据模型
         data () {
             return {
