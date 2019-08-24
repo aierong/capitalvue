@@ -110,7 +110,7 @@
                         this.updateloginuser( token );
 
                         // 页面跳转
-                        this.$router.push( "/" )
+                        this.$router.push( "/myindexpage" )
 
                         return
                     }

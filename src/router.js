@@ -24,5 +24,22 @@ export default new Router( {
             component : () => import( '@/views/Register.vue')
         } ,
 
+        {
+            path : '/myindexpage' ,
+            name : 'myindexpage' ,
+            component : () => import('@/views/MyIndexPage.vue') ,
+
+        } ,
+        //
+        {
+            path : '/querydata' ,
+            name : 'querydata' ,
+            component : () => import('@/views/QueryData.vue') ,
+
+        } ,
+        {
+            path : '' ,
+            redirect : '/myindexpage'
+        } ,
     ]
 } )
