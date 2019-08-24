@@ -67,7 +67,8 @@ Time: 14:42
                 </svg>
             </van-grid-item>
 
-            <van-grid-item text="退出">
+            <van-grid-item text="退出"
+                           @click="exitclick">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -86,7 +87,10 @@ Time: 14:42
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
 
-    import { mapState } from 'vuex'
+    import {
+        mapState ,
+        mapMutations
+    } from 'vuex'
 
     import mytabbar from "@/components/mytabbar.vue";
 
@@ -114,11 +118,40 @@ Time: 14:42
         } ,
         //方法
         methods : {
+            ...mapMutations( [
+
+                'clearloginuser'
+
+            ] ) ,
+            //查询跳转
             queryclick () {
                 // 页面跳转
                 this.$router.push( "/querydata" )
             } ,
+            //退出
+            exitclick () {
+                this.$dialog.confirm( {
+                    message : '确定退出吗?'
+                } ).then( () => {
+                    // 点击确定按钮
 
+                    this.exitsystem();
+
+                } ).catch( () => {
+                    // 点击取消按钮
+
+                } );
+            } ,
+            exitsystem () {
+
+                //  清除一下
+                this.clearloginuser();
+
+                //页面转向 登录
+                this.$router.push( '/login' )
+
+                return;
+            } ,
         } ,
         //计算属性
         computed : {
