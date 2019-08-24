@@ -18,7 +18,9 @@ Time: 14:42
             <van-swipe-item class="swipepic"
                             :key="index"
                             v-for="(it, index) in swipeimagelist">
-                <img :src="it"
+                <!--                :src="it"-->
+                <!--配合 Lazyload 组件实现图片懒加载-->
+                <img v-lazy="it"
                      alt/>
             </van-swipe-item>
 

@@ -16,6 +16,11 @@ import 'vant/lib/index.css';
 
 Vue.use( Vant );
 
+//懒加载需要单独引入
+import { Lazyload } from "vant";
+
+Vue.use( Lazyload );
+
 Vue.config.productionTip = false
 
 new Vue( {
