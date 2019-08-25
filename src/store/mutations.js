@@ -14,19 +14,16 @@ export default {
         let userid = userobj.mobile;
         state.loginuserid = userid;
     } ,
-
     //修改头像
     [ types.updateloginuseravatar ] ( state , avatar ) {
         state.loginuser.avatar = avatar;
     } ,
-
     //清空
     [ types.clearloginuser ] ( state ) {
         state.loginuser = null;
 
         state.loginuserid = ''
     } ,
-
     //
     [ types.SetRefreshContactsList ] ( state , val ) {
 
@@ -49,5 +46,15 @@ export default {
         else {
             state.address = '';
         }
-    }
+    } ,
+    /**
+     * 设置部门数据
+     * @param state
+     * @param val
+     */
+    [ types.SetDeptData ] ( state , val ) {
+
+        state.deptdata = val;
+
+    } ,
 }
