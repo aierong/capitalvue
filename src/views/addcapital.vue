@@ -48,6 +48,17 @@ Time: 11:17
                        clearable
                        label="资产单位"
                        placeholder="请输入资产单位"/>
+            <van-field v-model="deptinfo"
+                       required
+                       clearable
+                       label="保管部门"
+                       placeholder="请选择部门">
+                <van-button slot="button"
+                            @click="opentypedlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
         </van-cell-group>
 
         <!--        选择类型的弹窗
@@ -79,6 +90,8 @@ Time: 11:17
                     capitalname : '' ,
                     money : 0 ,
                     unit : '个' ,
+                    deptno : '' ,
+                    deptname : '' ,
                     //先默认一个
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
@@ -120,10 +133,12 @@ Time: 11:17
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            deptinfo () {
+                if ( this.capitalmodel.deptno == '' || this.capitalmodel.deptname == '' ) {
+                    return '';
+                }
+                return `(${ this.capitalmodel.deptno })${ this.capitalmodel.deptname }`
+            }
         } ,
         //生命周期(mounted)
         mounted () {
