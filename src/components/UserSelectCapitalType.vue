@@ -11,7 +11,6 @@ Time: 12:27
     <div>
         <!--        show-cancel-button-->
         <van-dialog :before-close="beforeClose"
-
                     v-model="diaObj.isshowdialog">
             <van-radio-group v-model="diaObj.typename">
                 <van-cell-group>
