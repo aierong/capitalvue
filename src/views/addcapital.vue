@@ -99,7 +99,7 @@ Time: 11:17
 
                 this.capitalmodel.typename = val;
 
-                //不用自己关闭
+                //不用自己关闭dlg
                 // this.closetypedlg();
 
                 return;

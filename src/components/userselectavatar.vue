@@ -9,8 +9,8 @@
 <template>
 
     <div>
+        <!--        show-cancel-button-->
         <van-dialog :before-close="beforeClose"
-                    show-cancel-button
                     v-model="diaObj.showdialog">
 
             <van-cell title="请选择头像">
@@ -62,6 +62,7 @@
         } ,
         //方法
         methods : {
+            //关闭窗体事件
             beforeClose ( action , done ) {
                 if ( action === "confirm" ) {
 
@@ -71,8 +72,9 @@
                     done()
                 }
                 else {
-                    //关闭窗体事件
-                    this.$emit( "closewin" );
+                    //没有取消按钮,下面代码不会执行
+
+                    // this.$emit( "closewin" );
 
                     done()
                 }

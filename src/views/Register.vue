@@ -65,7 +65,6 @@
         <br><br><br>
         <!--头像选择弹窗组件-->
         <userselectavatar @selectavatar="selectavatar"
-                          @closewin="closewin"
 
                           :diaObj="diaObj"></userselectavatar>
     </div>
@@ -120,23 +119,23 @@
         //方法
         methods : {
             selectavatar ( _avatar ) {
-                this.diaObj = {
-                    showdialog : false ,
-                    avatar : _avatar
-                }
+                this.diaObj.avatar = _avatar;
 
                 this.userinfo.avatar = _avatar;
 
-                return;
-            } ,
-            closewin () {
-                this.diaObj = {
-                    showdialog : false ,
-                    avatar : this.userinfo.avatar
-                }
+                //不用自己关闭dlg
+                // this.closetypedlg();
 
                 return;
             } ,
+            // closewin () {
+            //     this.diaObj = {
+            //         showdialog : false ,
+            //         avatar : this.userinfo.avatar
+            //     }
+            //
+            //     return;
+            // } ,
             SetupAvatarClick () {
                 this.diaObj = {
                     showdialog : true ,
