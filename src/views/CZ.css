@@ -1,0 +1,12 @@
+/*引入阿里图标css*/
+@import "~@/assets/common/iconfont.css";
+
+
+.titleclass {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.cellspantitleclass {
+    margin-left: 10px;
+}

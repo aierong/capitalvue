@@ -9,7 +9,53 @@ Time: 0:23
 <template>
 
     <div>
-        CZ
+        <div class="titleclass">资产操作</div>
+        <br>
+
+        <van-cell>
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:20px;">
+                    <use xlink:href="#icon-dengji"></use>
+                </svg>
+
+                <span class="cellspantitleclass">资产登记</span>
+            </template>
+        </van-cell>
+        <van-cell>
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:20px;">
+                    <use xlink:href="#icon-zhuanyi1"></use>
+                </svg>
+
+                <span class="cellspantitleclass">资产转移</span>
+            </template>
+        </van-cell>
+        <van-cell>
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:20px;">
+                    <use xlink:href="#icon-chushou"></use>
+                </svg>
+
+                <span class="cellspantitleclass">资产出售</span>
+            </template>
+        </van-cell>
+        <van-cell>
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:20px;">
+                    <use xlink:href="#icon-yaopinbaofei"></use>
+                </svg>
+
+                <span class="cellspantitleclass">资产报废</span>
+            </template>
+        </van-cell>
         <mytabbar></mytabbar>
     </div>
 
@@ -18,6 +64,10 @@ Time: 0:23
 <!-- js脚本代码片段 -->
 <script>
     // import mytabbar from "@/components/mytabbar.vue";
+
+    // 引入阿里图标js
+    import "@/assets/ali/iconfont/iconfont.js"
+
 
     export default {
         name : "CZ" ,
