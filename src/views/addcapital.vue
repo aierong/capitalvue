@@ -9,7 +9,10 @@ Time: 11:17
 <template>
 
     <div>
-        addcapital
+        <van-nav-bar title="添加新资产"
+                     left-text="返回"
+                     left-arrow
+                     @click-left="onClickLeft"/>
     </div>
 
 </template>
@@ -26,9 +29,12 @@ Time: 11:17
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            onClickLeft () {
+                // 页面跳转
+                this.$router.push( "/cz" )
+
+                return;
+            } ,
 
         } ,
         //计算属性

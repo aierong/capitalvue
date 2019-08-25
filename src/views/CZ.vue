@@ -12,7 +12,7 @@ Time: 0:23
         <div class="titleclass">资产操作</div>
         <br>
 
-        <van-cell>
+        <van-cell @click="onAddClick">
             <template slot="title">
                 <svg class="icon"
                      aria-hidden="true"
@@ -124,6 +124,12 @@ Time: 0:23
         } ,
         //方法
         methods : {
+            onAddClick () {
+                // 页面跳转
+                this.$router.push( "/addcapital" )
+
+                return;
+            } ,
             async getcapitalcounts () {
                 let _mobile = this.loginusermobile;
 

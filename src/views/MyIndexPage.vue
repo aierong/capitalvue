@@ -26,7 +26,8 @@ Time: 14:42
 
         </van-swipe>
         <van-grid :column-num="3">
-            <van-grid-item text="登记">
+            <van-grid-item @click="addcapital"
+                           text="登记">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -149,6 +150,12 @@ Time: 14:42
                 'clearloginuser'
 
             ] ) ,
+            addcapital () {
+                // 页面跳转
+                this.$router.push( "/addcapital" )
+
+                return;
+            } ,
             //查询跳转
             queryclick () {
                 // 页面跳转
