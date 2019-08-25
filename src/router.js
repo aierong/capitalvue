@@ -51,6 +51,13 @@ const router = new Router( {
             component : () => import('@/views/CZ.vue') ,
 
         } ,
+
+        {
+            path : '/addcapital' ,
+            name : 'addcapital' ,
+            component : () => import('@/views/addcapital.vue') ,
+
+        } ,
         {
             path : '' ,
             redirect : '/myindexpage'

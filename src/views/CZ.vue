@@ -70,6 +70,11 @@ Time: 0:23
         <br>
         <br>
         <div class="titleclass">我的资产数据</div>
+        <div>
+
+            <ve-bar :data="chartData"
+                    :data-empty="chartEmptyData"></ve-bar>
+        </div>
         <mytabbar></mytabbar>
     </div>
 
@@ -82,8 +87,16 @@ Time: 0:23
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
 
+    import * as dlapi from '@/common/bmobapi/dl.js'
+
+    import * as globalconstant from '@/common/constant.js'
+
+    import { loginuserdatamix } from '@/mixin/loginuserdata.js'
+
     export default {
         name : "CZ" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [ loginuserdatamix ] ,
         //注册组件
         // components : {
         //
@@ -92,14 +105,53 @@ Time: 0:23
         //数据模型
         data () {
             return {
-                msg : ''
+                chartData : {
+                    columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
+                    rows : [
+                        // {
+                        //     '数量' : '' ,
+                        //     '资产' : 1093 ,
+                        //     '正常' : 1000 ,
+                        //     '出售' : 90 ,
+                        //     '报废' : 3
+                        // } ,
+
+                    ]
+                } ,
+                chartEmptyData : false
+
             }
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            async getcapitalcounts () {
+                let _mobile = this.loginusermobile;
+
+                var result = await Promise.all( [
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.normal ) ,
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.sale ) ,
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.scrap ) ,
+                ] )
+
+                if ( result != null && result.length >= 3 ) {
+                    // console.log( result )
+
+                    if ( result[ 0 ] <= 0 && result[ 1 ] <= 0 && result[ 2 ] <= 0 ) {
+                        this.chartEmptyData = true;
+                    }
+                    else {
+                        let obj = {
+                            '数量' : '' ,
+                            '资产' : result[ 0 ] + result[ 1 ] + result[ 2 ] ,
+                            '正常' : result[ 0 ] ,
+                            '出售' : result[ 1 ] ,
+                            '报废' : result[ 2 ]
+                        };
+
+                        this.chartEmptyData = false;
+                    }
+                }
+            } ,
 
         } ,
         //计算属性
@@ -111,7 +163,9 @@ Time: 0:23
         } ,
         //生命周期(mounted)
         mounted () {
+            // console.log( 'CZ mounted' )
 
+            this.getcapitalcounts();
         } ,
     }
 </script>
