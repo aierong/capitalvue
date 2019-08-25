@@ -50,7 +50,7 @@ Time: 12:27
                 if ( action === "confirm" ) {
 
                     // 选择确定事件 ,把选择好的类型传递回去
-                    this.$emit( "selectresult" , this.diaObj.typename );
+                    this.$emit( "typeselectresult" , this.diaObj.typename );
 
                     done()
                 }

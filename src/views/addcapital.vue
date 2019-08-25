@@ -47,7 +47,7 @@ Time: 11:17
 
         <!--        选择类型的弹窗
         -->
-        <UserSelectCapitalType @selectresult="selectresult"
+        <UserSelectCapitalType @typeselectresult="typeselectresult"
                                :diaObj="diaObj"></UserSelectCapitalType>
     </div>
 
@@ -92,8 +92,8 @@ Time: 11:17
 
                 return;
             } ,
-            selectresult ( val ) {
-                console.log( val )
+            typeselectresult ( val ) {
+                // console.log( val )
 
                 this.diaObj.typename = val;
 
@@ -104,14 +104,7 @@ Time: 11:17
 
                 return;
             } ,
-            // closetypedlg () {
-            //     // this.isshowdialog = false;
-            //
-            //     this.diaObj = {
-            //         isshowdialog : false ,
-            //         typename : this.capitalmodel.typename
-            //     }
-            // } ,
+
             opentypedlg () {
                 this.diaObj = {
                     isshowdialog : true ,
