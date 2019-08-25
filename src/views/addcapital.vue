@@ -38,7 +38,7 @@ Time: 11:17
                        label="资产类型"
                        placeholder="请选择资产类型">
                 <van-button slot="button"
-                            @click="selecttypedlg"
+                            @click="opentypedlg"
                             size="small"
                             type="primary">选择
                 </van-button>
@@ -46,9 +46,7 @@ Time: 11:17
         </van-cell-group>
 
         <!--        选择类型的弹窗
-        :IsShowDlg="isshowdialog"
-           @closewin="closewin"
-            ref='UserSelectCapitalType1'
+
         -->
         <UserSelectCapitalType @selectresult="selectresult"
                                :diaObj="diaObj"></UserSelectCapitalType>
@@ -107,11 +105,11 @@ Time: 11:17
                     this.capitalmodel.typename = val;
                 }
 
-                this.closedlg();
+                this.closetypedlg();
 
                 return;
             } ,
-            closedlg () {
+            closetypedlg () {
                 // this.isshowdialog = false;
 
                 this.diaObj = {
@@ -119,11 +117,7 @@ Time: 11:17
                     typename : this.capitalmodel.typename
                 }
             } ,
-            selecttypedlg () {
-                // this.isshowdialog = true;
-
-                // this.$refs.UserSelectCapitalType1.opendlg();
-
+            opentypedlg () {
                 this.diaObj = {
                     isshowdialog : true ,
                     typename : this.capitalmodel.typename
