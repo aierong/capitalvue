@@ -66,7 +66,7 @@
         <!--头像选择弹窗组件-->
         <userselectavatar @selectavatar="selectavatar"
                           @closewin="closewin"
-                          ref='userselectavatar1'
+
                           :diaObj="diaObj"></userselectavatar>
     </div>
 

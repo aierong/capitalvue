@@ -10,8 +10,9 @@ Time: 12:27
 
     <div>
         <van-dialog :before-close="beforeClose"
-                    v-model="isshow">
-            <van-radio-group v-model="userselectval">
+                    show-cancel-button
+                    v-model="diaObj.isshowdialog">
+            <van-radio-group v-model="diaObj.typename">
                 <van-cell-group>
                     <van-cell :key="_index"
                               v-for="(item,_index) in typelist"
@@ -34,16 +35,11 @@ Time: 12:27
     export default {
         name : "UserSelectCapitalType" ,
         props : {
-            selectval : String
-
+            diaObj : Object
         } ,
         //数据模型
         data () {
             return {
-                userselectval : this.selectval ,
-
-                isshow : false ,
-
                 typelist : globalconstant.CapitalType
             }
         } ,
@@ -53,20 +49,20 @@ Time: 12:27
                 if ( action === "confirm" ) {
 
                     // 选择确定事件 ,把选择好的类型传递回去
-                    this.$emit( "selecttype" , this.userselectval );
+                    this.$emit( "selectresult" , true , this.diaObj.typename );
 
-                    done()
+                    // done()
                 }
                 else {
                     //关闭窗体事件
-                    // this.$emit( "closewin" );
 
-                    done()
+                    //没有选择就是关闭
+                    this.$emit( "selectresult" , false , '' );
+
+                    // done()
                 }
             } ,
-            opendlg () {
-                this.isshow = true;
-            }
+
         } ,
         //计算属性
         computed : {

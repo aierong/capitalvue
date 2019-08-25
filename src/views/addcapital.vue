@@ -31,15 +31,7 @@ Time: 11:17
                        type="number"
                        label="资产金额"
                        placeholder="请输入资产金额"/>
-            <!--            <van-field v-model="capitalmodel.money"-->
-            <!--                       required-->
-            <!--                       label="资产类型">-->
-            <!--                <van-dropdown-menu slot="input">-->
 
-            <!--                    <van-dropdown-item v-model="capitalmodel.typename"-->
-            <!--                                       :options="menuoptiondata"/>-->
-            <!--                </van-dropdown-menu>-->
-            <!--            </van-field>-->
             <van-field v-model="capitalmodel.typename"
                        required
                        clearable
@@ -56,12 +48,10 @@ Time: 11:17
         <!--        选择类型的弹窗
         :IsShowDlg="isshowdialog"
            @closewin="closewin"
+            ref='UserSelectCapitalType1'
         -->
-        <UserSelectCapitalType @selecttype="selecttype"
-
-                               ref='UserSelectCapitalType1'
-
-                               :selectval="capitalmodel.typename"></UserSelectCapitalType>
+        <UserSelectCapitalType @selectresult="selectresult"
+                               :diaObj="diaObj"></UserSelectCapitalType>
     </div>
 
 </template>
@@ -89,9 +79,12 @@ Time: 11:17
                     //先默认一个
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
-                //是显示选择类型弹窗
-                isshowdialog : false ,
 
+                diaObj : {
+                    //是显示选择类型弹窗
+                    isshowdialog : false ,
+                    typename : globalconstant.CapitalType[ 0 ]
+                } ,
             }
         } ,
         //方法
@@ -102,21 +95,39 @@ Time: 11:17
 
                 return;
             } ,
-            selecttype ( val ) {
-                //this.closewin();
+            selectresult ( isselect , val ) {
+                console.log( isselect , val )
 
-                this.capitalmodel.typename = val;
+                if ( isselect ) {
+                    this.diaObj = {
+                        isshowdialog : false ,
+                        typename : val
+                    }
+
+                    this.capitalmodel.typename = val;
+                }
+
+                this.closedlg();
 
                 return;
             } ,
-            // closewin () {
-            //     //this.isshowdialog = false;
-            //
-            // } ,
-            selecttypedlg () {
-                //this.isshowdialog = true;
+            closedlg () {
+                // this.isshowdialog = false;
 
-                this.$refs.UserSelectCapitalType1.opendlg();
+                this.diaObj = {
+                    isshowdialog : false ,
+                    typename : this.capitalmodel.typename
+                }
+            } ,
+            selecttypedlg () {
+                // this.isshowdialog = true;
+
+                // this.$refs.UserSelectCapitalType1.opendlg();
+
+                this.diaObj = {
+                    isshowdialog : true ,
+                    typename : this.capitalmodel.typename
+                }
             } ,
         } ,
         //计算属性
@@ -129,17 +140,7 @@ Time: 11:17
         //生命周期(mounted)
         mounted () {
             console.log( 'addcapital mounted' )
-            //menuoptiondata
 
-            //globalconstant.CapitalType
-            // globalconstant.CapitalType.forEach( ( value , index , array ) => {
-            //     let obj = {
-            //         text : value ,
-            //         value : value
-            //     }
-            //
-            //     this.menuoptiondata.push( obj );
-            // } );
         } ,
     }
 </script>
