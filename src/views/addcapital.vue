@@ -64,7 +64,7 @@ Time: 11:17
         <!--        选择类型的弹窗
         -->
         <UserSelectCapitalType @typeselectresult="typeselectresult"
-                               :diaObj="diaObj"></UserSelectCapitalType>
+                               :diaObj="TypeDlgObj"></UserSelectCapitalType>
     </div>
 
 </template>
@@ -96,7 +96,7 @@ Time: 11:17
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
 
-                diaObj : {
+                TypeDlgObj : {
                     //是显示选择类型弹窗
                     isshowdialog : false ,
                     typename : globalconstant.CapitalType[ 0 ]
@@ -114,7 +114,7 @@ Time: 11:17
             typeselectresult ( val ) {
                 // console.log( val )
 
-                this.diaObj.typename = val;
+                this.TypeDlgObj.typename = val;
 
                 this.capitalmodel.typename = val;
 
@@ -125,7 +125,7 @@ Time: 11:17
             } ,
 
             opentypedlg () {
-                this.diaObj = {
+                this.TypeDlgObj = {
                     isshowdialog : true ,
                     typename : this.capitalmodel.typename
                 }
