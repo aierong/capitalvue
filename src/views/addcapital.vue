@@ -43,6 +43,11 @@ Time: 11:17
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="capitalmodel.unit"
+                       required
+                       clearable
+                       label="资产单位"
+                       placeholder="请输入资产单位"/>
         </van-cell-group>
 
         <!--        选择类型的弹窗
@@ -73,6 +78,7 @@ Time: 11:17
                     capitalcode : '' ,
                     capitalname : '' ,
                     money : 0 ,
+                    unit : '个' ,
                     //先默认一个
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
