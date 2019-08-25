@@ -56,6 +56,20 @@ Time: 0:23
                 <span class="cellspantitleclass">资产报废</span>
             </template>
         </van-cell>
+        <van-cell>
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:20px;">
+                    <use xlink:href="#icon-chaxun-current"></use>
+                </svg>
+
+                <span class="cellspantitleclass">资产查询</span>
+            </template>
+        </van-cell>
+        <br>
+        <br>
+        <div class="titleclass">我的资产数据</div>
         <mytabbar></mytabbar>
     </div>
 
@@ -67,7 +81,6 @@ Time: 0:23
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
-
 
     export default {
         name : "CZ" ,
