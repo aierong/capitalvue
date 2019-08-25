@@ -9,8 +9,9 @@ Time: 12:27
 <template>
 
     <div>
+        <!--        show-cancel-button-->
         <van-dialog :before-close="beforeClose"
-                    show-cancel-button
+
                     v-model="diaObj.isshowdialog">
             <van-radio-group v-model="diaObj.typename">
                 <van-cell-group>
@@ -45,21 +46,22 @@ Time: 12:27
         } ,
         //方法
         methods : {
+            //关闭窗体事件
             beforeClose ( action , done ) {
                 if ( action === "confirm" ) {
 
                     // 选择确定事件 ,把选择好的类型传递回去
-                    this.$emit( "selectresult" , true , this.diaObj.typename );
+                    this.$emit( "selectresult" , this.diaObj.typename );
 
-                    // done()
+                    done()
                 }
                 else {
-                    //关闭窗体事件
+                    //没有取消按钮,下面代码不会执行
 
                     //没有选择就是关闭
-                    this.$emit( "selectresult" , false , '' );
+                    //this.$emit( "selectresult" , false , '' );
 
-                    // done()
+                    done()
                 }
             } ,
 

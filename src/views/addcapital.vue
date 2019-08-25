@@ -46,7 +46,6 @@ Time: 11:17
         </van-cell-group>
 
         <!--        选择类型的弹窗
-
         -->
         <UserSelectCapitalType @selectresult="selectresult"
                                :diaObj="diaObj"></UserSelectCapitalType>
@@ -93,30 +92,26 @@ Time: 11:17
 
                 return;
             } ,
-            selectresult ( isselect , val ) {
-                console.log( isselect , val )
+            selectresult ( val ) {
+                console.log( val )
 
-                if ( isselect ) {
-                    this.diaObj = {
-                        isshowdialog : false ,
-                        typename : val
-                    }
+                this.diaObj.typename = val;
 
-                    this.capitalmodel.typename = val;
-                }
+                this.capitalmodel.typename = val;
 
-                this.closetypedlg();
+                //不用自己关闭
+                // this.closetypedlg();
 
                 return;
             } ,
-            closetypedlg () {
-                // this.isshowdialog = false;
-
-                this.diaObj = {
-                    isshowdialog : false ,
-                    typename : this.capitalmodel.typename
-                }
-            } ,
+            // closetypedlg () {
+            //     // this.isshowdialog = false;
+            //
+            //     this.diaObj = {
+            //         isshowdialog : false ,
+            //         typename : this.capitalmodel.typename
+            //     }
+            // } ,
             opentypedlg () {
                 this.diaObj = {
                     isshowdialog : true ,
