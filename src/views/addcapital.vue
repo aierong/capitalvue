@@ -200,8 +200,8 @@ Time: 11:17
              * @constructor
              */
             AddClick () {
-                if ( !this.userinfo.mobile ) {
-                    this.$toast( "请输入手机号码" )
+                if ( !this.userinfo.capitalcode ) {
+                    this.$toast( "请输入资产代号" )
 
                     return;
                 }
