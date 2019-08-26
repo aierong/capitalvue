@@ -15,3 +15,22 @@ export function getcname () {
 
     return cname;
 }
+
+/**
+ * 得资产代号
+ * @param 前缀
+ */
+export function getcapitalcode ( prefix ) {
+    return prefix + getrandomint( 5 );
+}
+
+/**
+ * 得随机整数
+ * @param 位数
+ * @returns {{valid, XHR, RE, _mocked, Random, toJSONSchema, Handler, setup, Util, heredoc}}
+ */
+export function getrandomint ( digit ) {
+    let num = Mock.mock( `@range(${ digit },${ digit })` );
+
+    return num;
+}

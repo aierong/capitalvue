@@ -104,6 +104,7 @@ Time: 11:17
     import { mixloginuserdata } from "@/mixin/loginuserdata.js"
 
     import * as RandomUtil from '@/common/util/RandomUtil.js'
+    import * as util from '@/common/util/util.js'
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
@@ -113,10 +114,22 @@ Time: 11:17
         mixins : [ mixloginuserdata ] ,
         //注册组件
         components : {
-
             UserSelectCapitalType ,
             UserSelectDept
+        } ,
+        watch : {
+            'capitalmodel.typename' : {
+                //监听资产类型,类型变化，重新生成资产代号
+                handler ( newName , oldName ) {
+                    console.log( 'capitalmodel.typename changed' );
 
+                    let _prefix = util.getprefix( newName );
+
+                    this.capitalmodel.capitalcode = RandomUtil.getcapitalcode( _prefix );
+                } ,
+                immediate : true ,
+
+            }
         } ,
         //数据模型
         data () {
@@ -151,6 +164,7 @@ Time: 11:17
         } ,
         //方法
         methods : {
+
             onClickLeft () {
                 // 页面跳转
                 this.$router.push( "/cz" )
@@ -292,6 +306,7 @@ Time: 11:17
             loginuserallname () {
                 return `(${ this.loginusermobile })${ this.loginusername }`
             } ,
+
         } ,
         //生命周期(mounted)
         mounted () {
