@@ -15,7 +15,7 @@ const tableName = 'move';
 
 /**
  * 是存在单号
- * @param nos
+ * @param 单号
  * @returns {Promise<unknown>}
  */
 export function isexistsnos ( nos ) {
@@ -44,8 +44,11 @@ export function isexistsnos ( nos ) {
     } );
 }
 
-
-
+/**
+ *
+ * @param move
+ * @returns {Promise<unknown>}
+ */
 export function addmove ( move ) {
 
     return new Promise( ( resolve , reject ) => {
