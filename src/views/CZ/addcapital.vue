@@ -103,7 +103,7 @@ Time: 11:17
     import UserSelectDept from '@/components/UserSelectDept.vue'
 
     // 导入
-    import { mixloginuserdata } from "@/mixin/loginuserdata.js"
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
 
     import * as RandomUtil from '@/common/util/RandomUtil.js'
     import * as util from '@/common/util/util.js'
@@ -112,13 +112,18 @@ Time: 11:17
 
     export default {
         name : "addcapital" ,
-        //导入混入对象 可以是多个,数组
-        mixins : [ mixloginuserdata ] ,
+        // //导入混入对象 可以是多个,数组
+        // mixins : [ mixloginuserdata ] ,
         //注册组件
         components : {
             UserSelectCapitalType ,
             UserSelectDept
         } ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
+            loginuserdatamix ,
+
+        ] ,
         watch : {
             'capitalmodel.typename' : {
                 //监听资产类型,类型变化，重新生成资产代号
