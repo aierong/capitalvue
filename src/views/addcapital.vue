@@ -50,7 +50,7 @@ Time: 11:17
             <van-field v-model="deptinfo"
                        required
                        label="保管部门"
-                       placeholder="请选择部门"
+                       placeholder="请选择保管部门"
                        readonly>
                 <van-button slot="button"
                             @click="opendeptdlg"
@@ -104,6 +104,8 @@ Time: 11:17
     import { mixloginuserdata } from "@/mixin/loginuserdata.js"
 
     import * as util from '@/common/util/util.js'
+
+    import * as  dlapi from '@/common/bmobapi/dl.js'
 
     export default {
         name : "addcapital" ,
@@ -202,12 +204,73 @@ Time: 11:17
              * @constructor
              */
             AddClick () {
-                if ( !this.userinfo.capitalcode ) {
+                if ( !this.capitalmodel.capitalcode ) {
                     this.$toast( "请输入资产代号" )
 
                     return;
                 }
 
+                if ( !this.capitalmodel.capitalname ) {
+                    this.$toast( "请输入资产名称" )
+
+                    return;
+                }
+
+                if ( !this.capitalmodel.typename ) {
+                    this.$toast( "请选择资产类型" )
+
+                    return;
+                }
+
+                if ( !this.capitalmodel.unit ) {
+                    this.$toast( "请输入资产单位" )
+
+                    return;
+                }
+
+                if ( !this.capitalmodel.deptno ) {
+                    this.$toast( "请选择保管部门" )
+
+                    return;
+                }
+
+                if ( !this.userinfo.savesite ) {
+                    this.$toast( "请输入保管位置" )
+
+                    return;
+                }
+
+                if ( !this.capitalmodel.saveman ) {
+                    this.$toast( "请输入保管人" )
+
+                    return;
+                }
+
+                ( async () => {
+                    let checkresult = await dlapi.isexistscapital( this.capitalmodel.capitalcode );
+
+                    if ( checkresult != null && checkresult.isexists ) {
+                        this.$toast( "资产代号重复" )
+
+                        return;
+                    }
+
+                    let newcapital = await dlapi.adddl( this.capitalmodel );
+
+                    if ( newcapital != null ) {
+                        //添加成功
+                        this.$toast.success( "成功" );
+
+                        return;
+                    }
+                    else {
+                        //失败
+                        this.$toast.fail( "失败" )
+
+                        return;
+                    }
+
+                } )();
             } ,
             initmodel () {
                 //给一些变量赋初始化值
