@@ -67,6 +67,13 @@ delmark        删除标记
 status         审核状态
 
 nos            单号
+capitalcode    资产代号
+capitalname    资产名称
+salename       出售人
+saledate       出售日期
+salemoney      出售金额
+saleto         购买对象(出售给谁)
+comment        备注
 
 
 scrap表结构: 报废

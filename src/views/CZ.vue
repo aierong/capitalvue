@@ -10,6 +10,9 @@ Time: 0:23
 
     <div>
         <div class="titleclass">资产操作</div>
+        <!--                <van-divider dashed  content-position="left" :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 6px' }">-->
+        <!--                    资产操作-->
+        <!--                </van-divider>-->
         <br>
 
         <van-cell @click="onAddClick">
@@ -67,9 +70,13 @@ Time: 0:23
                 <span class="cellspantitleclass">资产查询</span>
             </template>
         </van-cell>
-        <br>
-        <br>
-        <div class="titleclass">我的资产数据</div>
+        <!--        <br>-->
+        <!--        <br>-->
+        <!--        <div class="titleclass">我的资产数据</div>-->
+        <van-divider dashed
+                     :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 6px' }">
+            我的资产数据
+        </van-divider>
         <div>
             <ve-bar :data="chartData"
                     :data-empty="chartEmptyData"></ve-bar>
