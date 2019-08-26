@@ -193,7 +193,7 @@ Time: 14:42
                 ] )
 
                 if ( result != null && result.length >= 3 ) {
-                    // console.log( result )
+                    console.log( 'getcapitalcounts' , result )
 
                     if ( result[ 0 ] <= 0 && result[ 1 ] <= 0 && result[ 2 ] <= 0 ) {
                         this.chartEmptyData = true;
@@ -206,6 +206,8 @@ Time: 14:42
                             '出售' : result[ 1 ] ,
                             '报废' : result[ 2 ]
                         };
+
+                        this.chartData.rows.push( obj );
 
                         this.chartEmptyData = false;
                     }
