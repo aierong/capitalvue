@@ -17,7 +17,7 @@ const tableName = 'dept';
  * 得部门列表
  * @returns {*|Promise|Promise<unknown>}
  */
-function getdeptlist () {
+export function getdeptlist () {
     //部门代号排序
     const query = Bmob.Query( tableName );
     query.order( "deptno" );
