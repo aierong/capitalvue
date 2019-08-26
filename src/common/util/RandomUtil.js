@@ -22,7 +22,7 @@ export function getcname () {
  */
 export function getcapitalcode ( prefix ) {
     let num = getrandomint( 10000 , 99999 );
-    // console.log( 'i' , num )
+
     return prefix + num.toString();
 }
 
