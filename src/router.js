@@ -65,6 +65,12 @@ const router = new Router( {
 
         } ,
         {
+            path : '/salecapital' ,
+            name : 'salecapital' ,
+            component : () => import('@/views/CZ/salecapital.vue') ,
+
+        } ,
+        {
             path : '' ,
             redirect : '/myindexpage'
         } ,
