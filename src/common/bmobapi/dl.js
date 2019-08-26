@@ -11,7 +11,7 @@ import dayjs from 'dayjs'
  * 资产表
  * @type {string}
  */
-const tableName_dl = 'dl';
+const tableName = 'dl';
 
 /**
  * 是存在资产
@@ -20,7 +20,7 @@ const tableName_dl = 'dl';
  */
 export function isexistscapital ( capitalcode ) {
     return new Promise( ( resolve , reject ) => {
-        const query = Bmob.Query( tableName_dl );
+        const query = Bmob.Query( tableName );
         query.equalTo( "capitalcode" , "==" , capitalcode );
 
         query.find().then( res => {
@@ -53,7 +53,7 @@ export function adddl ( dl ) {
 
     return new Promise( ( resolve , reject ) => {
 
-        const query = Bmob.Query( tableName_dl );
+        const query = Bmob.Query( tableName );
         //这里 设置  列的数据
 
         query.set( "userid" , dl.userid )
@@ -109,7 +109,7 @@ export function adddl ( dl ) {
 export function GetCapitalCounts ( userid , capitalstatus ) {
     return new Promise( ( resolve , reject ) => {
 
-        const query = Bmob.Query( tableName_dl );
+        const query = Bmob.Query( tableName );
 
         query.equalTo( "capitalstatus" , "==" , capitalstatus );
 
