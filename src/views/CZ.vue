@@ -132,11 +132,11 @@ Time: 0:23
             } ,
             async getcapitalcounts () {
                 let _mobile = this.loginusermobile;
-
+                // console.log(_mobile)
                 var result = await Promise.all( [
-                    dlapi.GetCapitalCounts( _mobile , globalconstant.normal ) ,
-                    dlapi.GetCapitalCounts( _mobile , globalconstant.sale ) ,
-                    dlapi.GetCapitalCounts( _mobile , globalconstant.scrap ) ,
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.CapitalStatus.normal ) ,
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.CapitalStatus.sale ) ,
+                    dlapi.GetCapitalCounts( _mobile , globalconstant.CapitalStatus.scrap ) ,
                 ] )
 
                 if ( result != null && result.length >= 3 ) {
@@ -153,6 +153,8 @@ Time: 0:23
                             '出售' : result[ 1 ] ,
                             '报废' : result[ 2 ]
                         };
+
+                        this.chartData.rows.push( obj );
 
                         this.chartEmptyData = false;
                     }

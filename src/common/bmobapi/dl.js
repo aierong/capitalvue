@@ -123,7 +123,7 @@ export function GetCapitalCounts ( userid , capitalstatus ) {
         query.equalTo( "capitalstatus" , "==" , capitalstatus );
 
         if ( userid ) {
-            query.equalTo( "mobile" , "==" , userid );
+            query.equalTo( "userid" , "==" , userid );
         }
 
         query.count().then( res => {
