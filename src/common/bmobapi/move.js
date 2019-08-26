@@ -7,14 +7,17 @@
 
 import dayjs from 'dayjs'
 
-
 /**
  * 资产表
  * @type {string}
  */
 const tableName = 'move';
 
-
+/**
+ * 是存在单号
+ * @param nos
+ * @returns {Promise<unknown>}
+ */
 export function isexistsnos ( nos ) {
     return new Promise( ( resolve , reject ) => {
         const query = Bmob.Query( tableName );
@@ -43,8 +46,71 @@ export function isexistsnos ( nos ) {
 
 
 
+export function addmove ( move ) {
+
+    return new Promise( ( resolve , reject ) => {
+
+        const query = Bmob.Query( tableName );
+        //这里 设置  列的数据
+
+        query.set( "userid" , move.userid )
+        query.set( "username" , move.username )
+        //自动取最新时间，保存进去
+        query.set( "inputdate" , move.inputdate )
+
+        query.set( "modifyid" , "" )
+        query.set( "modifyname" , "" )
+        query.set( "modifydate" , "" )
+
+        query.set( "confirmid" , "" )
+        query.set( "confirmname" , "" )
+        query.set( "confirmdate" , "" )
+
+        query.set( "delmark" , "N" )
+        query.set( "status" , "N" )
+
+        query.set( "nos" , move.nos )
+
+        query.set( "capitalcode" , move.capitalcode )
+        query.set( "capitalname" , move.capitalname )
+        query.set( "olddeptno" , move.olddeptno )
+        query.set( "olddeptname" , move.olddeptname )
+
+        query.set( "newdeptno" , move.newdeptno )
+        query.set( "newdeptname" , move.newdeptname )
+
+        query.set( "oldsavesite" , move.oldsavesite )
+        query.set( "newsavesite" , move.newsavesite )
+
+        query.set( "oldsaveman" , move.oldsaveman )
+        query.set( "newsaveman" , move.newsaveman )
+
+        query.set( "comment" , move.comment )
+
+        query.save().then( res => {
+            //console.log( res )
+
+            resolve( res );
+            //返回创建时间和id
+            // {
+            //     createdAt: "YYYY-mm-dd HH:ii:ss",
+            //         objectId: "objectId"
+            // }
+        } ).catch( err => {
+            //console.log( err )
+
+            resolve( null );
+        } )
+    } );
+}
+
+
+
+
+
+
+
+
 // export function check ( model ) {
 //      //这个方法，不要了，用其他替代
 // }
-
-

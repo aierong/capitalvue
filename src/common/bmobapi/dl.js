@@ -106,6 +106,13 @@ export function adddl ( dl ) {
     } );
 }
 
+/**
+ * 得资产的数量
+ * @param userid
+ * @param capitalstatus
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
 export function GetCapitalCounts ( userid , capitalstatus ) {
     return new Promise( ( resolve , reject ) => {
 
@@ -125,6 +132,22 @@ export function GetCapitalCounts ( userid , capitalstatus ) {
 
     } );
 }
+
+/**
+ * 由资产代码得资产数据
+ * @param capitalcode
+ * @returns {*|Promise|Promise<unknown>}
+ * @constructor
+ */
+export function GetCapitalByCapitalCode ( capitalcode ) {
+    //手机号
+    const query = Bmob.Query( tableName );
+    query.equalTo( "capitalcode" , "==" , capitalcode );
+
+    return query.find();
+
+}
+
 
 //删除方法 待实现
 
