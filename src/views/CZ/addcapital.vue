@@ -257,7 +257,7 @@ Time: 11:17
                     return;
                 }
 
-                if ( !this.userinfo.savesite ) {
+                if ( !this.capitalmodel.savesite ) {
                     this.$toast( "请输入保管位置" )
 
                     return;
