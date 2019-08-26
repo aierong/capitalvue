@@ -97,9 +97,7 @@ Time: 17:55
         //计算属性
         computed : {
             ...mapState( {
-
-                deptdata : 'deptdata' ,
-
+                deptdata : 'deptdata'
             } ) ,
             /**
              * 得部门名称
