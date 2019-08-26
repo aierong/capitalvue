@@ -54,7 +54,7 @@ Time: 11:17
                        label="保管部门"
                        placeholder="请选择部门">
                 <van-button slot="button"
-                            @click="opentypedlg"
+                            @click="opendeptdlg"
                             size="small"
                             type="primary">选择
                 </van-button>
@@ -65,6 +65,9 @@ Time: 11:17
         -->
         <UserSelectCapitalType @typeselectresult="typeselectresult"
                                :diaObj="TypeDlgObj"></UserSelectCapitalType>
+
+        <UserSelectDept :diaObj="DeptDlgObj"
+                        @deptselectresult="deptselectresult"></UserSelectDept>
     </div>
 
 </template>
@@ -73,13 +76,15 @@ Time: 11:17
 <script>
     import * as globalconstant from '@/common/constant.js'
     import UserSelectCapitalType from '@/components/UserSelectCapitalType.vue'
+    import UserSelectDept from '@/components/UserSelectDept.vue'
 
     export default {
         name : "addcapital" ,
         //注册组件
         components : {
 
-            UserSelectCapitalType
+            UserSelectCapitalType ,
+            UserSelectDept
 
         } ,
         //数据模型
@@ -100,6 +105,11 @@ Time: 11:17
                     //是显示选择类型弹窗
                     isshowdialog : false ,
                     typename : globalconstant.CapitalType[ 0 ]
+                } ,
+                DeptDlgObj : {
+                    //是显示选择类型弹窗
+                    isshowdialog : false ,
+                    deptno : ''
                 } ,
             }
         } ,
@@ -123,13 +133,36 @@ Time: 11:17
 
                 return;
             } ,
-
+            //打开 类型选择弹窗
             opentypedlg () {
+
                 this.TypeDlgObj = {
                     isshowdialog : true ,
                     typename : this.capitalmodel.typename
                 }
             } ,
+            /**
+             * 打开部门选择弹窗
+             */
+            opendeptdlg () {
+                this.DeptDlgObj = {
+                    isshowdialog : true ,
+                    deptno : this.capitalmodel.deptno
+                }
+            } ,
+            deptselectresult ( deptno , deptname ) {
+                // console.log( val )
+
+                this.DeptDlgObj.deptno = deptno;
+
+                this.capitalmodel.deptno = deptno;
+                this.capitalmodel.deptname = deptname;
+
+                //不用自己关闭dlg
+                // this.closetypedlg();
+
+                return;
+            },
         } ,
         //计算属性
         computed : {

@@ -78,7 +78,7 @@ Time: 17:55
                 if ( action === "confirm" ) {
 
                     // 选择确定事件 ,把选择好的部门代号和部门名称传递回去
-                    this.$emit( "deptselectresult" , this.diaObj.typename );
+                    this.$emit( "deptselectresult" , this.diaObj.deptno , '' );
 
                     done()
                 }
