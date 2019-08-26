@@ -15,5 +15,3 @@ export function getcname () {
 
     return cname;
 }
-
-
