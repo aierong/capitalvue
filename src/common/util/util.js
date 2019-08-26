@@ -4,6 +4,13 @@
  定义一些公用方法
  */
 
+import Mock from "mockjs";
+
+/**
+ *
+ * @param val
+ * @returns {string}
+ */
 export function geticonallname ( val ) {
     if ( !val ) {
         return ''
@@ -12,4 +19,12 @@ export function geticonallname ( val ) {
     return '#icon-' + val;
 }
 
+/**
+ * 得随机中文名字
+ */
+export function getcname () {
+    let cname = Mock.mock( "@cname()" );
+
+    return cname;
+}
 
