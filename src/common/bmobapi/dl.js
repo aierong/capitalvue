@@ -58,7 +58,8 @@ export function adddl ( dl ) {
 
         query.set( "userid" , dl.userid )
         query.set( "username" , dl.username )
-        query.set( "inputdate" , dayjs().format( 'YYYY-MM-DD HH:mm:ss' ) )
+        //自动取最新时间，保存进去
+        query.set( "inputdate" , dl.inputdate )
 
         query.set( "modifyid" , "" )
         query.set( "modifyname" , "" )

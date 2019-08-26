@@ -96,6 +96,8 @@ Time: 11:17
 
 <!-- js脚本代码片段 -->
 <script>
+    import dayjs from 'dayjs'
+
     import * as globalconstant from '@/common/constant.js'
     import UserSelectCapitalType from '@/components/UserSelectCapitalType.vue'
     import UserSelectDept from '@/components/UserSelectDept.vue'
@@ -146,6 +148,8 @@ Time: 11:17
                     comment : '' ,
                     userid : '' ,
                     username : '' ,
+                    inputdate : '' ,
+
                     //先默认一个
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
@@ -259,6 +263,9 @@ Time: 11:17
 
                     return;
                 }
+
+                //把插入时间补上
+                this.capitalmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
 
                 ( async () => {
                     let checkresult = await dlapi.isexistscapital( this.capitalmodel.capitalcode );
