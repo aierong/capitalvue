@@ -112,8 +112,7 @@ Time: 11:17
 
     export default {
         name : "addcapital" ,
-        // //导入混入对象 可以是多个,数组
-        // mixins : [ mixloginuserdata ] ,
+
         //注册组件
         components : {
             UserSelectCapitalType ,
@@ -121,6 +120,7 @@ Time: 11:17
         } ,
         //导入混入对象 可以是多个,数组
         mixins : [
+
             loginuserdatamix ,
 
         ] ,
