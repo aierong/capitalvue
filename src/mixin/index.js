@@ -4,8 +4,6 @@
  */
 import * as util from '@/common/util/util.js'
 
-// import * as globalconstant from '@/common/constant.js'
-
 export const mix = {
     filters : {
         //得图标全名

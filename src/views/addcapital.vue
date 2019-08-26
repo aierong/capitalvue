@@ -103,6 +103,8 @@ Time: 11:17
     // 导入
     import { mixloginuserdata } from "@/mixin/loginuserdata.js"
 
+    import * as util from '@/common/util/util.js'
+
     export default {
         name : "addcapital" ,
         //导入混入对象 可以是多个,数组
@@ -207,6 +209,14 @@ Time: 11:17
                 }
 
             } ,
+            initmodel () {
+                //给一些变量赋初始化值
+                //登录用户
+                this.capitalmodel.userid = this.loginusermobile;
+                this.capitalmodel.username = this.loginusername;
+
+                this.capital.saveman = util.getcname();
+            } ,
         } ,
         //计算属性
         computed : {
@@ -224,9 +234,7 @@ Time: 11:17
         mounted () {
             console.log( 'addcapital mounted' )
 
-            //登录用户
-            this.capitalmodel.userid = this.loginusermobile;
-            this.capitalmodel.username = this.loginusername;
+            this.initmodel();
         } ,
     }
 </script>
