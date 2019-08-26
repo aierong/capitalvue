@@ -8,7 +8,7 @@
 import dayjs from 'dayjs'
 
 /**
- * 资产表
+ * 资产转移表
  * @type {string}
  */
 const tableName = 'move';

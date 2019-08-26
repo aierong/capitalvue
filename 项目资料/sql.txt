@@ -72,7 +72,7 @@ capitalname    资产名称
 salename       出售人
 saledate       出售日期
 salemoney      出售金额
-saleto         购买对象(出售给谁)
+saleto         销售对象(出售给谁)
 comment        备注
 
 
