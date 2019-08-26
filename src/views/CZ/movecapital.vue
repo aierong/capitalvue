@@ -9,7 +9,7 @@ Time: 16:56
 <template>
 
     <div>
-
+        movecapital
     </div>
 
 </template>
@@ -46,6 +46,6 @@ Time: 16:56
 </script>
 
 <!-- 样式代码片段  scoped -->
-<style>
-
+<style src="./movecapital.css"
+       scoped>
 </style>

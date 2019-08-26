@@ -59,6 +59,12 @@ const router = new Router( {
 
         } ,
         {
+            path : '/movecapital' ,
+            name : 'movecapital' ,
+            component : () => import('@/views/CZ/movecapital.vue') ,
+
+        } ,
+        {
             path : '' ,
             redirect : '/myindexpage'
         } ,
