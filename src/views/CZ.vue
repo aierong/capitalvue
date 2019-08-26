@@ -71,7 +71,6 @@ Time: 0:23
         <br>
         <div class="titleclass">我的资产数据</div>
         <div>
-
             <ve-bar :data="chartData"
                     :data-empty="chartEmptyData"></ve-bar>
         </div>
@@ -82,7 +81,7 @@ Time: 0:23
 
 <!-- js脚本代码片段 -->
 <script>
-    // import mytabbar from "@/components/mytabbar.vue";
+
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
@@ -97,11 +96,7 @@ Time: 0:23
         name : "CZ" ,
         //导入混入对象 可以是多个,数组
         mixins : [ loginuserdatamix ] ,
-        //注册组件
-        // components : {
-        //
-        //     mytabbar
-        // } ,
+
         //数据模型
         data () {
             return {

@@ -79,7 +79,7 @@ Time: 14:42
         </van-grid>
         <br>
         <div>
-            <!--            <ve-line :data="chartData"></ve-line>-->
+
             <ve-bar :data="chartData"
                     :data-empty="chartEmptyData"></ve-bar>
         </div>
@@ -102,15 +102,9 @@ Time: 14:42
         mapMutations
     } from 'vuex'
 
-    // import mytabbar from "@/components/mytabbar.vue";
-
     export default {
         name : "MyIndexPage" ,
-        //注册组件
-        // components : {
-        //
-        //     mytabbar
-        // } ,
+
         //数据模型
         data () {
             return {
@@ -186,8 +180,7 @@ Time: 14:42
                 return;
             } ,
             async getcapitalcounts () {
-                // console.log( 'async getcapitalcounts' , globalconstant.normal )
-                // console.log( 'async getcapitalcounts' , globalconstant )
+
 
                 var result = await Promise.all( [
                     dlapi.GetCapitalCounts( '' , globalconstant.CapitalStatus.normal ) ,
@@ -196,7 +189,7 @@ Time: 14:42
                 ] )
 
                 if ( result != null && result.length >= 3 ) {
-                    console.log( 'getcapitalcounts' , result )
+                    // console.log( 'getcapitalcounts' , result )
 
                     if ( result[ 0 ] <= 0 && result[ 1 ] <= 0 && result[ 2 ] <= 0 ) {
                         this.chartEmptyData = true;

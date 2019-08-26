@@ -18,15 +18,10 @@ Time: 14:57
 
 <!-- js脚本代码片段 -->
 <script>
-    // import mytabbar from "@/components/mytabbar.vue";
 
     export default {
         name : "SetupData" ,
-        // //注册组件
-        // components : {
-        //
-        //     mytabbar
-        // } ,
+
         //数据模型
         data () {
             return {
