@@ -128,7 +128,7 @@ Time: 11:17
             'capitalmodel.typename' : {
                 //监听资产类型,类型变化，重新生成资产代号
                 handler ( newName , oldName ) {
-                    console.log( 'capitalmodel.typename changed' );
+                    // console.log( 'capitalmodel.typename changed' );
 
                     let _prefix = util.getprefix( newName );
 
