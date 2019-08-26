@@ -17,3 +17,4 @@ export function geticonallname ( val ) {
     return '#icon-' + val;
 }
 
+
