@@ -25,13 +25,14 @@ import VCharts from 'v-charts'
 
 Vue.use( VCharts )
 
-//src/components/global.js
-import components from '@/components/global.js'
+// //注册全局组件
+import components from '@/components/globalcomponents.js'
 //循环注册全局组件
 Object.keys( components ).forEach( ( key ) => {
 
     //注册全局组件
     Vue.component( `${ key }` , components[ key ] )
+
 } )
 
 Vue.config.productionTip = false
