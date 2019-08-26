@@ -21,7 +21,9 @@ export function getcname () {
  * @param 前缀
  */
 export function getcapitalcode ( prefix ) {
-    return prefix + getrandomint( 5 );
+    let num = getrandomint( 10000 , 99999 );
+    // console.log( 'i' , num )
+    return prefix + num.toString();
 }
 
 /**
@@ -29,8 +31,8 @@ export function getcapitalcode ( prefix ) {
  * @param 位数
  * @returns {{valid, XHR, RE, _mocked, Random, toJSONSchema, Handler, setup, Util, heredoc}}
  */
-export function getrandomint ( digit ) {
-    let num = Mock.mock( `@range(${ digit },${ digit })` );
+export function getrandomint ( start , end ) {
+    let num = Mock.mock( `@integer(${ start },${ end })` );
 
     return num;
 }
