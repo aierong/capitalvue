@@ -46,16 +46,12 @@ Time: 17:55
         data () {
             return {
                 //部门列表
-                deptdatalist : null
+                deptdatalist : []
             }
         } ,
         //方法
         methods : {
-            ...mapMutations( [
-
-                'SetDeptData'
-
-            ] ) ,
+            ...mapMutations( [ 'SetDeptData' ] ) ,
             async getdeptdatalist () {
                 if ( this.deptdata != null ) {
                     this.deptdatalist = this.deptdata;
@@ -65,7 +61,7 @@ Time: 17:55
                 else {
                     var result = await deptapi.getdeptlist();
 
-                    console.log( 'deptlist' , result );
+                    // console.log( 'deptlist' , result );
 
                     this.SetDeptData( result );
 
@@ -121,7 +117,7 @@ Time: 17:55
         } ,
         //生命周期(mounted)
         mounted () {
-            console.log( 'UserSelectDept mounted' )
+            // console.log( 'UserSelectDept mounted' )
 
             this.getdeptdatalist();
         } ,
