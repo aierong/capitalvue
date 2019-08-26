@@ -21,7 +21,7 @@ export function getcname () {
  * @param 前缀
  */
 export function getcapitalcode ( prefix ) {
-    let num = getrandomint( 10000 , 99999 );
+    let num = getrandomint( 1000000 , 9999999 );
 
     return prefix + num.toString();
 }

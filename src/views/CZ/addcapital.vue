@@ -323,9 +323,11 @@ Time: 11:17
                     username : '' ,
                     inputdate : '' ,
 
-                    //先默认一个
-                    typename : globalconstant.CapitalType[ 0 ]
+                    //先默认一个空，等下后面再赋值,就可以自动计算代号
+                    typename : ''
                 }
+
+                this.capitalmodel.typename = globalconstant.CapitalType[ 0 ];
 
             } ,
         } ,
