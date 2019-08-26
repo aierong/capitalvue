@@ -10,7 +10,8 @@ import mytabbar from '@/components/mytabbar.vue'
 
 // 导出
 export default {
-    mytabbar ,
+
+    mytabbar
 
 }
 
