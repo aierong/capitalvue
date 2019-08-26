@@ -103,7 +103,7 @@ Time: 11:17
     // 导入
     import { mixloginuserdata } from "@/mixin/loginuserdata.js"
 
-    import * as util from '@/common/util/util.js'
+    import * as RandomUtil from '@/common/util/RandomUtil.js'
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
@@ -278,7 +278,7 @@ Time: 11:17
                 this.capitalmodel.userid = this.loginusermobile;
                 this.capitalmodel.username = this.loginusername;
 
-                this.capital.saveman = util.getcname();
+                this.capital.saveman = RandomUtil.getcname();
             } ,
         } ,
         //计算属性
