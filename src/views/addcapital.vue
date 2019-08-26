@@ -31,12 +31,11 @@ Time: 11:17
                        type="number"
                        label="资产金额"
                        placeholder="请输入资产金额"/>
-
             <van-field v-model="capitalmodel.typename"
-                       required
-                       clearable
+                       require
                        label="资产类型"
-                       placeholder="请选择资产类型">
+                       placeholder="请选择资产类型"
+                       readonly>
                 <van-button slot="button"
                             @click="opentypedlg"
                             size="small"
@@ -50,17 +49,40 @@ Time: 11:17
                        placeholder="请输入资产单位"/>
             <van-field v-model="deptinfo"
                        required
-                       clearable
                        label="保管部门"
-                       placeholder="请选择部门">
+                       placeholder="请选择部门"
+                       readonly>
                 <van-button slot="button"
                             @click="opendeptdlg"
                             size="small"
                             type="primary">选择
                 </van-button>
             </van-field>
-        </van-cell-group>
+            <van-field v-model="capitalmodel.savesite"
+                       required
+                       clearable
+                       label="保管位置"
+                       placeholder="请输入保管位置"/>
+            <van-field v-model="capitalmodel.saveman"
+                       required
+                       clearable
+                       label="保管人"
+                       placeholder="请输入保管人"/>
 
+            <van-field v-model="capitalmodel.comment"
+                       clearable
+                       label="备注"
+                       placeholder="请输入备注"/>
+            <van-field v-model="loginuserallname"
+                       label="添加人"
+                       placeholder="请输入添加人"
+                       readonly/>
+        </van-cell-group>
+        <br><br>
+        <van-button size="large"
+                    @click="AddClick"
+                    type="primary">保 存
+        </van-button>
         <!--        选择类型的弹窗
         -->
         <UserSelectCapitalType @typeselectresult="typeselectresult"
@@ -78,8 +100,13 @@ Time: 11:17
     import UserSelectCapitalType from '@/components/UserSelectCapitalType.vue'
     import UserSelectDept from '@/components/UserSelectDept.vue'
 
+    // 导入
+    import { mixloginuserdata } from "@/mixin/loginuserdata.js"
+
     export default {
         name : "addcapital" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [ mixloginuserdata ] ,
         //注册组件
         components : {
 
@@ -97,6 +124,11 @@ Time: 11:17
                     unit : '个' ,
                     deptno : '' ,
                     deptname : '' ,
+                    savesite : '' ,
+                    saveman : '' ,
+                    comment : '' ,
+                    userid : '' ,
+                    username : '' ,
                     //先默认一个
                     typename : globalconstant.CapitalType[ 0 ]
                 } ,
@@ -162,7 +194,19 @@ Time: 11:17
                 // this.closetypedlg();
 
                 return;
-            },
+            } ,
+            /**
+             * 保存
+             * @constructor
+             */
+            AddClick () {
+                if ( !this.userinfo.mobile ) {
+                    this.$toast( "请输入手机号码" )
+
+                    return;
+                }
+
+            } ,
         } ,
         //计算属性
         computed : {
@@ -171,12 +215,18 @@ Time: 11:17
                     return '';
                 }
                 return `(${ this.capitalmodel.deptno })${ this.capitalmodel.deptname }`
-            }
+            } ,
+            loginuserallname () {
+                return `(${ this.loginusermobile })${ this.loginusername }`
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {
             console.log( 'addcapital mounted' )
 
+            //登录用户
+            this.capitalmodel.userid = this.loginusermobile;
+            this.capitalmodel.username = this.loginusername;
         } ,
     }
 </script>
