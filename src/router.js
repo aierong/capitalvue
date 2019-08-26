@@ -55,7 +55,7 @@ const router = new Router( {
         {
             path : '/addcapital' ,
             name : 'addcapital' ,
-            component : () => import('@/views/addcapital.vue') ,
+            component : () => import('@/views/CZ/addcapital.vue') ,
 
         } ,
         {
