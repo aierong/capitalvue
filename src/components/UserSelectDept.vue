@@ -21,12 +21,14 @@ Time: 17:55
         mapMutations
     } from 'vuex'
 
+    import * as deptapi from '@/common/bmobapi/dept.js'
+
     export default {
         name : "UserSelectDept" ,
         //数据模型
         data () {
             return {
-                msg : ''
+                deptdatalist : null
             }
         } ,
         //方法
@@ -36,7 +38,24 @@ Time: 17:55
                 'SetDeptData'
 
             ] ) ,
+            async getdeptdatalist () {
+                if ( this.deptdata != null ) {
+                    this.deptdatalist = this.deptdata;
 
+                    return;
+                }
+                else {
+                    var result = await deptapi.getdeptlist();
+
+                    console.log( 'deptlist' , result );
+
+                    this.SetDeptData( result );
+
+                    this.deptdatalist = result;
+
+                    return;
+                }
+            } ,
         } ,
         //计算属性
         computed : {
@@ -49,6 +68,8 @@ Time: 17:55
         //生命周期(mounted)
         mounted () {
             console.log( 'UserSelectDept mounted' )
+
+            this.getdeptdatalist();
         } ,
     }
 </script>
