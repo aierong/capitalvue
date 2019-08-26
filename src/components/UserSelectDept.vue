@@ -16,6 +16,11 @@ Time: 17:55
 
 <!-- js脚本代码片段 -->
 <script>
+    import {
+        mapState ,
+        mapMutations
+    } from 'vuex'
+
     export default {
         name : "UserSelectDept" ,
         //数据模型
@@ -26,21 +31,24 @@ Time: 17:55
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            ...mapMutations( [
+
+                'SetDeptData'
+
+            ] ) ,
 
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            ...mapState( {
+
+                deptdata : 'deptdata' ,
+
+            } ) ,
         } ,
         //生命周期(mounted)
         mounted () {
-
+            console.log( 'UserSelectDept mounted' )
         } ,
     }
 </script>
