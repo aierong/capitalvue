@@ -18,7 +18,7 @@ const tableName = 'move';
 export function isexistsnos ( nos ) {
     return new Promise( ( resolve , reject ) => {
         const query = Bmob.Query( tableName );
-        query.equalTo( "capitalcode" , "==" , capitalcode );
+        query.equalTo( "nos" , "==" , nos );
 
         query.find().then( res => {
             //返回的是数组,没有找到就是空数组
@@ -40,5 +40,11 @@ export function isexistsnos ( nos ) {
         } );
     } );
 }
+
+
+
+// export function check ( model ) {
+//      //这个方法，不要了，用其他替代
+// }
 
 
