@@ -45,6 +45,7 @@ Time: 17:55
         //数据模型
         data () {
             return {
+                //部门列表
                 deptdatalist : null
             }
         } ,
@@ -78,7 +79,7 @@ Time: 17:55
                 if ( action === "confirm" ) {
 
                     // 选择确定事件 ,把选择好的部门代号和部门名称传递回去
-                    this.$emit( "deptselectresult" , this.diaObj.deptno , '' );
+                    this.$emit( "deptselectresult" , this.diaObj.deptno , this.getdeptname );
 
                     done()
                 }
@@ -100,6 +101,25 @@ Time: 17:55
                 deptdata : 'deptdata' ,
 
             } ) ,
+            /**
+             * 得部门名称
+             * @returns {string}
+             */
+            getdeptname () {
+                if ( this.deptdatalist != null && this.deptdatalist.length > 0 ) {
+                    if ( this.diaObj.deptno ) {
+                        let result = this.deptdatalist.find( ( element , index , array ) => {
+                            return element.deptno == this.diaObj.deptno;
+                        } );
+
+                        if ( result != null && result != undefined ) {
+                            return result.deptname;
+                        }
+                    }
+                }
+
+                return "";
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {
