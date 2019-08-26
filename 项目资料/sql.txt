@@ -109,7 +109,20 @@ delmark        删除标记
 status         审核状态
 
 nos            单号
+capitalcode    资产代号
+capitalname    资产名称
+olddeptno          保管部门
+olddeptname        保管部门名称
+newdeptno          保管部门
+newdeptname        保管部门名称
 
+oldsavesite        保管位置
+newsavesite        保管位置
+
+oldsaveman         保管人 (姓名)
+newsaveman         保管人 (姓名)
+
+comment           备注
 
 
 
