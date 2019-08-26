@@ -25,7 +25,7 @@ Time: 11:17
                        clearable
                        label="资产名称"
                        placeholder="请输入资产名称"/>
-            <van-field v-model="capitalmodel.money"
+            <van-field v-model.number="capitalmodel.money"
                        required
                        clearable
                        type="number"
