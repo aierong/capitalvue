@@ -306,7 +306,7 @@ Time: 11:17
                 this.capitalmodel.userid = this.loginusermobile;
                 this.capitalmodel.username = this.loginusername;
 
-                this.capital.saveman = RandomUtil.getcname();
+                this.capitalmodel.saveman = RandomUtil.getcname();
             } ,
             initcapitalmodel () {
                 this.capitalmodel = {
