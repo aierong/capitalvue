@@ -293,7 +293,7 @@ Time: 11:17
 
                 } )();
             } ,
-            initmodel () {
+            initcapitalmodel () {
                 //给一些变量赋初始化值
                 //登录用户
                 this.capitalmodel.userid = this.loginusermobile;
@@ -319,7 +319,7 @@ Time: 11:17
         mounted () {
             console.log( 'addcapital mounted' )
 
-            this.initmodel();
+            this.initcapitalmodel();
         } ,
     }
 </script>
