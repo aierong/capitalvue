@@ -9,7 +9,21 @@ Time: 17:55
 <template>
 
     <div>
-        UserSelectDept
+        <!--        show-cancel-button-->
+        <van-dialog :before-close="beforeClose"
+                    v-model="diaObj.isshowdialog">
+            <van-radio-group v-model="diaObj.deptno">
+                <van-cell-group>
+                    <van-cell :key="_index"
+                              v-for="(item,_index) in deptdatalist"
+                              :title="`(${ item.deptno })${ item.deptname }`">
+                        <van-radio slot="right-icon"
+                                   :name="item.deptno"/>
+                    </van-cell>
+
+                </van-cell-group>
+            </van-radio-group>
+        </van-dialog>
     </div>
 
 </template>
@@ -25,6 +39,9 @@ Time: 17:55
 
     export default {
         name : "UserSelectDept" ,
+        props : {
+            diaObj : Object
+        } ,
         //数据模型
         data () {
             return {
@@ -56,6 +73,25 @@ Time: 17:55
                     return;
                 }
             } ,
+            //关闭窗体事件
+            beforeClose ( action , done ) {
+                if ( action === "confirm" ) {
+
+                    // 选择确定事件 ,把选择好的部门代号和部门名称传递回去
+                    this.$emit( "deptselectresult" , this.diaObj.typename );
+
+                    done()
+                }
+                else {
+                    //没有取消按钮,下面代码不会执行
+
+                    //没有选择就是关闭
+                    //this.$emit( "selectresult" , false , '' );
+
+                    done()
+                }
+            } ,
+
         } ,
         //计算属性
         computed : {
