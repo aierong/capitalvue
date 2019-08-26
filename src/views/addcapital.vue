@@ -281,6 +281,8 @@ Time: 11:17
                     if ( newcapital != null ) {
                         //添加成功
                         this.$toast.success( "成功" );
+                        //重新初始化一下
+                        this.initcapitalmodel();
 
                         return;
                     }
@@ -293,13 +295,33 @@ Time: 11:17
 
                 } )();
             } ,
-            initcapitalmodel () {
+            setupcapitalmodel () {
                 //给一些变量赋初始化值
                 //登录用户
                 this.capitalmodel.userid = this.loginusermobile;
                 this.capitalmodel.username = this.loginusername;
 
                 this.capital.saveman = RandomUtil.getcname();
+            } ,
+            initcapitalmodel () {
+                this.capitalmodel = {
+                    capitalcode : '' ,
+                    capitalname : '' ,
+                    money : 0 ,
+                    unit : '个' ,
+                    deptno : '' ,
+                    deptname : '' ,
+                    savesite : '' ,
+                    saveman : '' ,
+                    comment : '' ,
+                    userid : '' ,
+                    username : '' ,
+                    inputdate : '' ,
+
+                    //先默认一个
+                    typename : globalconstant.CapitalType[ 0 ]
+                }
+
             } ,
         } ,
         //计算属性
@@ -319,7 +341,7 @@ Time: 11:17
         mounted () {
             console.log( 'addcapital mounted' )
 
-            this.initcapitalmodel();
+            this.setupcapitalmodel();
         } ,
     }
 </script>
