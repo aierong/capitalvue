@@ -186,10 +186,13 @@ Time: 14:42
                 return;
             } ,
             async getcapitalcounts () {
+                // console.log( 'async getcapitalcounts' , globalconstant.normal )
+                // console.log( 'async getcapitalcounts' , globalconstant )
+
                 var result = await Promise.all( [
-                    dlapi.GetCapitalCounts( '' , globalconstant.normal ) ,
-                    dlapi.GetCapitalCounts( '' , globalconstant.sale ) ,
-                    dlapi.GetCapitalCounts( '' , globalconstant.scrap ) ,
+                    dlapi.GetCapitalCounts( '' , globalconstant.CapitalStatus.normal ) ,
+                    dlapi.GetCapitalCounts( '' , globalconstant.CapitalStatus.sale ) ,
+                    dlapi.GetCapitalCounts( '' , globalconstant.CapitalStatus.scrap ) ,
                 ] )
 
                 if ( result != null && result.length >= 3 ) {

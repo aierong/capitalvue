@@ -58,3 +58,5 @@ export const CapitalStatus = {
     scrap : '报废' ,
     normal : '正常'
 }
+
+

@@ -118,15 +118,18 @@ export function GetCapitalCounts ( userid , capitalstatus ) {
 
         const query = Bmob.Query( tableName );
 
+        // console.log( 'capitalstatus' , capitalstatus )
+
         query.equalTo( "capitalstatus" , "==" , capitalstatus );
 
-        if ( userid != '' ) {
+        if ( userid ) {
             query.equalTo( "mobile" , "==" , userid );
         }
 
         query.count().then( res => {
             //返回的是 数字
-            // console.log( res )
+            // console.log( 'GetCapitalCounts' , res )
+
             resolve( res );
         } );
 
@@ -147,7 +150,6 @@ export function GetCapitalByCapitalCode ( capitalcode ) {
     return query.find();
 
 }
-
 
 //删除方法 待实现
 
