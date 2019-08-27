@@ -9,7 +9,8 @@ Time: 14:53
 <template>
 
     <div>
-        <van-action-sheet v-model="diaObj.isshow"
+        <van-action-sheet style="height: 50%"
+                          v-model="diaObj.isshow"
                           title="选择正常状态资产">
             <!--            show-action-->
             <van-search placeholder="请输入搜索关键词"
@@ -25,24 +26,30 @@ Time: 14:53
                     </van-dropdown-menu>
                 </div>
             </van-search>
-            <!--            <van-cell-group>-->
-            <van-list :finished="downrefresh.finished"
-                      :offset="10"
-                      @load="onDownRefreshLoad"
-                      finished-text="我是有底线的"
-                      loading-text="客官莫急,正搞数据中..."
-                      v-model="downrefresh.loading">
-                <van-cell :key="_index"
-                          v-for="(item,_index) in capitallist"
-                          :title="`(${ item.capitalcode })${ item.capitalname }`">
-                    <template slot="right-icon">
-                        <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
-                                  color="red"
-                                  size="20px"
-                                  name="certificate"/>
-                    </template>
-                </van-cell>
-            </van-list>
+            <!--     :immediate-check="false"  :offset="40"      -->
+            <van-cell-group>
+                <van-list :finished="downrefresh.finished"
+
+                          @load="onDownRefreshLoad"
+                          finished-text="我是有底线的"
+                          loading-text="客官莫急,正搞数据中..."
+                          :immediate-check="false"
+                          v-model="downrefresh.loading">
+                    <van-cell :key="_index"
+                              v-for="(item,_index) in capitallist"
+                              :title="`(${ item.capitalcode })${ item.capitalname }`">
+                        <template slot="right-icon">
+                            <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
+                                      color="red"
+                                      size="20px"
+                                      name="certificate"/>
+                        </template>
+                    </van-cell>
+                </van-list>
+            </van-cell-group>
+            <!--            <br>-->
+            <!--            <br>-->
+            <!--            <br><br><br>-->
             <!--            </van-cell-group>-->
             <!--            <p>内容</p>-->
             <!--            <p>内容</p>-->
@@ -54,6 +61,8 @@ Time: 14:53
             <!--            <p>内容</p>-->
             <!--            <p>内容</p>-->
         </van-action-sheet>
+        <br>
+        <br><br>
     </div>
 
 </template>
@@ -123,7 +132,7 @@ Time: 14:53
                 return;
             } ,
             async initlist () {
-                let initcount = 5;
+                let initcount = 6;
 
                 let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' );
 
@@ -139,10 +148,32 @@ Time: 14:53
 
             //下拉刷新
             onDownRefreshLoad () {
+                console.log( 'onDownRefreshLoad' )
+
                 let counts = 2;
 
                 dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' ).then( ( res ) => {
                     console.log( 'onPullRefreshRefresh' , res )
+
+                    if ( res != null && res.length > 0 ) {
+                        //把列表增加数据
+
+                        //数据加入到数组尾部
+                        this.capitallist.push( ...res )
+
+                        if ( res.length < counts ) {
+                            //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
+                            this.downrefresh.finished = true
+                        }
+                    }
+                    else {
+                        this.downrefresh.finished = true
+                    }
+
+                    setInterval( () => {
+                        this.downrefresh.loading = false
+                    } , 1000 )
+                    //this.downrefresh.loading = false
                 } );
             } ,
         } ,
