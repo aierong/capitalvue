@@ -23,7 +23,13 @@ Time: 8:12
                        required
                        readonly
                        label="资产代号"
-                       placeholder="请选择资产代号"/>
+                       placeholder="请选择资产代号">
+                <van-button slot="button"
+                            @click="opencapitaldlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
         </van-cell-group>
     </div>
 
@@ -89,6 +95,9 @@ Time: 8:12
                 this.scrapmodel.scrapname = RandomUtil.getcname();
 
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+            } ,
+            opencapitaldlg () {
+
             } ,
         } ,
         //计算属性
