@@ -51,7 +51,7 @@ export function getrandomno ( prefix ) {
     let ymd = dayjs().format( 'YYYYMMDD' );
 
     //return nos + num.toString();
-    return `${ prefix }-${ ymd }-${ num }`
+    return `${ prefix }${ ymd }${ num }`
 }
 
 
