@@ -31,11 +31,28 @@ Time: 8:12
 
 <!-- js脚本代码片段 -->
 <script>
+    // 导入
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+    import * as RandomUtil from '@/common/util/RandomUtil.js'
+
     export default {
         name : "scrapcapital" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
+
+            loginuserdatamix ,
+
+        ] ,
         //数据模型
         data () {
             return {
+                /**
+                 * 单据的前缀
+                 */
+                prefix : 'BF' ,
+                /**
+                 * 模型
+                 */
                 scrapmodel : {
                     nos : '' ,
                     capitalcode : '' ,
@@ -63,7 +80,16 @@ Time: 8:12
 
                 return;
             } ,
+            setupscrapmodel () {
+                //给一些变量赋初始化值
+                //登录用户
+                this.scrapmodel.userid = this.loginusermobile;
+                this.scrapmodel.username = this.loginusername;
 
+                this.scrapmodel.scrapname = RandomUtil.getcname();
+
+                this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+            } ,
         } ,
         //计算属性
         computed : {
@@ -74,7 +100,9 @@ Time: 8:12
         } ,
         //生命周期(mounted)
         mounted () {
+            console.log( 'scrapcapital mounted' )
 
+            this.setupscrapmodel();
         } ,
     }
 </script>
