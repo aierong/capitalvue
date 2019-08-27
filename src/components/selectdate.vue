@@ -11,10 +11,14 @@ Time: 16:35
     <div>
         <van-popup position="bottom"
                    v-model="diaObj.isshow">
+            <!--       cancel-button-text=""
+            :item-height="66"
+            -->
             <van-datetime-picker :formatter="formatterdatestring"
                                  @cancel="oncancel"
                                  @confirm="onconfirm"
                                  type="date"
+                                 title="请选择日期"
                                  v-model="currentDate"/>
         </van-popup>
     </div>
@@ -34,7 +38,7 @@ Time: 16:35
             'diaObj.date' : {
                 //监听资产类型,类型变化，重新生成资产代号
                 handler ( newName , oldName ) {
-                    console.log( 'diaObj.date changed' );
+                    // console.log( 'diaObj.date changed' );
 
                     this.currentDate = newName ? dayjs( newName ).toDate() : new Date();
                 } ,
@@ -69,12 +73,15 @@ Time: 16:35
             oncancel () {
                 //传递空，就是没有选择
                 this.$emit( "dateresult" , '' );
+
+                return;
             } ,
             onconfirm ( val ) {
                 // console.log( val )
 
                 this.$emit( "dateresult" , dayjs( val ).format( 'YYYY-MM-DD' ) );
 
+                return;
             } ,
         } ,
         //计算属性
