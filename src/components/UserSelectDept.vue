@@ -15,8 +15,11 @@ Time: 17:55
             <van-radio-group v-model="diaObj.deptno">
                 <van-cell-group>
                     <van-cell :key="_index"
-                              v-for="(item,_index) in deptdatalist"
-                              :title="`(${ item.deptno })${ item.deptname }`">
+                              v-for="(item,_index) in deptdatalist">
+                        <span slot="title">
+                            <span style="color:green;">{{ `(${ item.deptno })` }}</span>
+                            <span>{{ `${ item.deptname }` }}</span>
+                        </span>
                         <van-radio slot="right-icon"
                                    :name="item.deptno"/>
                     </van-cell>
