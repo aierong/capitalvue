@@ -6,6 +6,7 @@
  */
 
 import Mock from "mockjs";
+import dayjs from 'dayjs'
 
 /**
  * 得随机中文名字
@@ -44,11 +45,13 @@ export function getrandomint ( start , end ) {
  */
 export function getrandomno ( prefix ) {
     //前缀+年月日
-    let nos = prefix + dayjs().format( 'YYYYMMDD' );
+    // let nos = prefix + dayjs().format( 'YYYYMMDD' );
 
     let num = getrandomint( 10000 , 99999 );
+    let ymd = dayjs().format( 'YYYYMMDD' );
 
-    return nos + num.toString();
+    //return nos + num.toString();
+    return `${ prefix }-${ ymd }-${ num }`
 }
 
 
