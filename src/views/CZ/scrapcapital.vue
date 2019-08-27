@@ -30,6 +30,11 @@ Time: 8:12
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="scrapmodel.scrapname"
+                       required
+                       clearable
+                       label="报废人"
+                       placeholder="请输入报废人"/>
         </van-cell-group>
 
         <selectcapital @selectcapital="selectcapital"
@@ -110,6 +115,8 @@ Time: 8:12
                 this.scrapmodel.scrapname = RandomUtil.getcname();
 
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.scrapmodel.scrapname = RandomUtil.getcname();
             } ,
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
