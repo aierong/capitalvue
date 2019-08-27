@@ -6,6 +6,7 @@
  */
 
 import dayjs from 'dayjs'
+import * as globalconstant from '@/common/constant.js'
 
 /**
  * 资产表
@@ -149,6 +150,25 @@ export function GetCapitalByCapitalCode ( capitalcode ) {
 
     return query.find();
 
+}
+
+export function getnormalcapitallistidbyminid ( minid , counts , typename ) {
+    const query = Bmob.Query( tableName );
+
+    query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
+
+    if ( typename ) {
+        query.equalTo( "typename" , "==" , typename );
+    }
+
+    if ( minid > 0 ) {
+        query.equalTo( "autokey" , "<" , minid );
+    }
+
+    query.order( "-autokey" );
+    query.limit( counts );
+
+    return query.find();
 }
 
 //删除方法 待实现
