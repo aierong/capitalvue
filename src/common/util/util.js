@@ -4,6 +4,8 @@
  定义一些公用方法
  */
 
+import * as globalconstant from '@/common/constant.js'
+
 /**
  *
  * @param val
@@ -49,6 +51,50 @@ export function getprefix ( typename ) {
     }
 
     return "";
+}
+
+
+
+/**
+ * 是出售
+ * @param val
+ * @returns {boolean}
+ * @constructor
+ */
+export function IsSale ( val ) {
+    if ( val != null && val == globalconstant.CapitalStatus.sale ) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * 是报废
+ * @param val
+ * @returns {boolean}
+ * @constructor
+ */
+export function IsScrap ( val ) {
+    if ( val != null && val == globalconstant.CapitalStatus.scrap ) {
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * 是正常
+ * @param val
+ * @returns {boolean}
+ * @constructor
+ */
+export function IsNormal ( val ) {
+    if ( val != null && val == globalconstant.CapitalStatus.normal ) {
+        return true;
+    }
+
+    return false;
 }
 
 
