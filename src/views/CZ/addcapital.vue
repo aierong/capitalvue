@@ -309,6 +309,8 @@ Time: 11:17
                 this.capitalmodel.saveman = RandomUtil.getcname();
             } ,
             initcapitalmodel () {
+                let _typename = globalconstant.CapitalType[ 0 ];
+
                 this.capitalmodel = {
                     capitalcode : '' ,
                     capitalname : '' ,
@@ -323,11 +325,10 @@ Time: 11:17
                     username : '' ,
                     inputdate : '' ,
 
-                    //先默认一个空，等下后面再赋值,就可以自动计算代号
-                    typename : ''
+                    typename : _typename
                 }
-
-                this.capitalmodel.typename = globalconstant.CapitalType[ 0 ];
+                let _prefix = util.getprefix( _typename );
+                this.capitalmodel.capitalcode = RandomUtil.getcapitalcode( _prefix );
 
             } ,
         } ,
