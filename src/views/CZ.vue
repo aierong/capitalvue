@@ -88,7 +88,12 @@ Time: 0:23
 
 <!-- js脚本代码片段 -->
 <script>
+    //懒加载需要单独引入
+    import Vue from 'vue';
 
+    import VCharts from 'v-charts'
+
+    Vue.use( VCharts )
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
