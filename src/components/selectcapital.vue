@@ -25,7 +25,13 @@ Time: 14:53
                     </van-dropdown-menu>
                 </div>
             </van-search>
-            <van-cell-group>
+            <!--            <van-cell-group>-->
+            <van-list :finished="downrefresh.finished"
+                      :offset="10"
+                      @load="onDownRefreshLoad"
+                      finished-text="我是有底线的"
+                      loading-text="客官莫急,正搞数据中..."
+                      v-model="downrefresh.loading">
                 <van-cell :key="_index"
                           v-for="(item,_index) in capitallist"
                           :title="`(${ item.capitalcode })${ item.capitalname }`">
@@ -36,7 +42,8 @@ Time: 14:53
                                   name="certificate"/>
                     </template>
                 </van-cell>
-            </van-cell-group>
+            </van-list>
+            <!--            </van-cell-group>-->
             <!--            <p>内容</p>-->
             <!--            <p>内容</p>-->
             <!--            <p>内容</p>-->
@@ -85,6 +92,11 @@ Time: 14:53
                     //     value : 2
                     // }
                 ] ,
+                //下拉刷新使用的参数
+                downrefresh : {
+                    loading : false ,
+                    finished : false
+                } ,
             }
         } ,
         //方法
@@ -111,7 +123,9 @@ Time: 14:53
                 return;
             } ,
             async initlist () {
-                let list = await dlapi.getnormalcapitallistidbyminid( 0 , 5 , '' );
+                let initcount = 5;
+
+                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' );
 
                 // console.log( list );
 
@@ -122,6 +136,15 @@ Time: 14:53
                     this.capitallist = [];
                 }
             } ,
+
+            //下拉刷新
+            onDownRefreshLoad () {
+                let counts = 2;
+
+                dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' ).then( ( res ) => {
+                    console.log( 'onPullRefreshRefresh' , res )
+                } );
+            } ,
         } ,
         //计算属性
         computed : {
@@ -131,7 +154,7 @@ Time: 14:53
              */
             minautokey () {
                 if ( this.listcounts > 0 ) {
-                    let obj = _.maxBy( this.capitallist , ( val ) => {
+                    let obj = _.minBy( this.capitallist , ( val ) => {
                         return val.autokey;
                     } )
 
@@ -145,8 +168,8 @@ Time: 14:53
              * @returns {number|*}
              */
             listcounts () {
-                if ( this.capitallist != null && this.pyqlist.length > 0 ) {
-                    return this.pyqlist.length;
+                if ( this.capitallist != null && this.capitallist.length > 0 ) {
+                    return this.capitallist.length;
                 }
 
                 return 0;
