@@ -71,6 +71,12 @@ const router = new Router( {
 
         } ,
         {
+            path : '/scrapcapital' ,
+            name : 'scrapcapital' ,
+            component : () => import('@/views/CZ/scrapcapital.vue') ,
+
+        } ,
+        {
             path : '' ,
             redirect : '/myindexpage'
         } ,
