@@ -36,3 +36,19 @@ export function getrandomint ( start , end ) {
 
     return num;
 }
+
+/**
+ * 得随机单号
+ * @param prefix
+ * @returns {string}
+ */
+export function getrandomno ( prefix ) {
+    //前缀+年月日
+    let nos = prefix + dayjs().format( 'YYYYMMDD' );
+
+    let num = getrandomint( 10000 , 99999 );
+
+    return nos + num.toString();
+}
+
+
