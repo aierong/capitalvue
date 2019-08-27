@@ -16,14 +16,14 @@ import 'vant/lib/index.css';
 
 Vue.use( Vant );
 
+//不用全局加载了,在具体页面加载
 //懒加载需要单独引入
-import { Lazyload } from "vant";
+// import { Lazyload } from "vant";
+// Vue.use( Lazyload );
 
-Vue.use( Lazyload );
-
-import VCharts from 'v-charts'
-
-Vue.use( VCharts )
+//不用全局加载了,在具体页面加载
+// import VCharts from 'v-charts'
+// Vue.use( VCharts )
 
 // //注册全局组件
 import components from '@/components/globalcomponents.js'
