@@ -51,7 +51,8 @@ Time: 14:42
                 </svg>
             </van-grid-item>
 
-            <van-grid-item text="报废">
+            <van-grid-item @click="scrapcapital"
+                           text="报废">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -150,6 +151,12 @@ Time: 14:42
 
                 return;
             } ,
+            scrapcapital () {
+                // 页面跳转
+                this.$router.push( "/scrapcapital" )
+
+                return;
+            } ,
             //查询跳转
             queryclick () {
                 // 页面跳转
@@ -180,7 +187,6 @@ Time: 14:42
                 return;
             } ,
             async getcapitalcounts () {
-
 
                 var result = await Promise.all( [
                     dlapi.GetCapitalCounts( '' , globalconstant.CapitalStatus.normal ) ,
