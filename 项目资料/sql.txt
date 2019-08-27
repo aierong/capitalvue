@@ -101,6 +101,13 @@ delmark        删除标记
 status         审核状态
 
 nos            单号
+capitalcode    资产代号
+capitalname    资产名称
+scrapname       报废人
+scrapdate       报废日期
+scrapmoney      报废金额
+scrapreason     报废原因
+comment         备注
 
 /********************************************************************************/
 
