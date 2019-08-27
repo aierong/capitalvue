@@ -48,7 +48,7 @@ Time: 0:23
                 <span class="cellspantitleclass">资产出售</span>
             </template>
         </van-cell>
-        <van-cell>
+        <van-cell @click="onScrapClick">
             <template slot="title">
                 <svg class="icon"
                      aria-hidden="true"
@@ -129,6 +129,12 @@ Time: 0:23
             onAddClick () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
+
+                return;
+            } ,
+            onScrapClick () {
+                // 页面跳转
+                this.$router.push( "/scrapcapital" )
 
                 return;
             } ,
