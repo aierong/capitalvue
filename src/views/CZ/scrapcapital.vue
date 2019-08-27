@@ -19,11 +19,11 @@ Time: 8:12
                        required
                        readonly
                        label="报废单"/>
-            <van-field v-model="scrapmodel.capitalcode"
+            <van-field v-model="capitalallname"
                        required
                        readonly
-                       label="资产代号"
-                       placeholder="请选择资产代号">
+                       label="资产"
+                       placeholder="请选择资产">
                 <van-button slot="button"
                             @click="opencapitaldlg"
                             size="small"
@@ -31,6 +31,9 @@ Time: 8:12
                 </van-button>
             </van-field>
         </van-cell-group>
+
+        <selectcapital @selectcapital="selectcapital"
+                       :diaObj="CapitalDlgObj"></selectcapital>
     </div>
 
 </template>
@@ -41,8 +44,15 @@ Time: 8:12
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
     import * as RandomUtil from '@/common/util/RandomUtil.js'
 
+    import selectcapital from '@/components/selectcapital.vue'
+
     export default {
         name : "scrapcapital" ,
+        //注册组件
+        components : {
+
+            selectcapital
+        } ,
         //导入混入对象 可以是多个,数组
         mixins : [
 
@@ -76,6 +86,11 @@ Time: 8:12
                     inputdate : '' ,
 
                 } ,
+                CapitalDlgObj : {
+                    //是显示选择资产弹窗
+                    isshow : false ,
+
+                } ,
             }
         } ,
         //方法
@@ -97,15 +112,25 @@ Time: 8:12
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
             } ,
             opencapitaldlg () {
+                this.CapitalDlgObj.isshow = true;
+            } ,
+            selectcapital ( capitalcode , capitalname ) {
+                this.scrapmodel.capitalcode = capitalcode;
+                this.scrapmodel.capitalname = capitalname;
+
+                this.CapitalDlgObj.isshow = false;
 
             } ,
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            capitalallname () {
+                if ( !this.scrapmodel.capitalcode || !this.scrapmodel.capitalname ) {
+                    return '';
+                }
+
+                return `(${ this.scrapmodel.capitalcode })${ this.scrapmodel.capitalname }`
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {

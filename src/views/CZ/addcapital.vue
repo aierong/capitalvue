@@ -334,7 +334,7 @@ Time: 11:17
         //计算属性
         computed : {
             deptinfo () {
-                if ( this.capitalmodel.deptno == '' || this.capitalmodel.deptname == '' ) {
+                if ( !this.capitalmodel.deptno || !this.capitalmodel.deptname ) {
                     return '';
                 }
                 return `(${ this.capitalmodel.deptno })${ this.capitalmodel.deptname }`
