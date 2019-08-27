@@ -9,7 +9,9 @@ Time: 16:35
 <template>
 
     <div>
-        selectdate
+        <van-popup position="bottom"
+                   v-model="diaObj.isshow">内容
+        </van-popup>
     </div>
 
 </template>
@@ -18,6 +20,9 @@ Time: 16:35
 <script>
     export default {
         name : "selectdate" ,
+        props : {
+            diaObj : Object
+        } ,
         //数据模型
         data () {
             return {

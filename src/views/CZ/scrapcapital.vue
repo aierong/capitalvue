@@ -35,10 +35,22 @@ Time: 8:12
                        clearable
                        label="报废人"
                        placeholder="请输入报废人"/>
+            <van-field v-model="scrapmodel.scrapdate"
+                       required
+                       readonly
+                       label="报废日期"
+                       placeholder="请选择报废日期">
+                <van-button slot="button"
+                            @click="opendateldlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
         </van-cell-group>
 
         <selectcapital @selectcapital="selectcapital"
                        :diaObj="CapitalDlgObj"></selectcapital>
+        <selectdate :diaObj="DateDlgObj"></selectdate>
     </div>
 
 </template>
@@ -50,13 +62,16 @@ Time: 8:12
     import * as RandomUtil from '@/common/util/RandomUtil.js'
 
     import selectcapital from '@/components/selectcapital.vue'
+    import selectdate from '@/components/selectdate.vue'
 
     export default {
         name : "scrapcapital" ,
         //注册组件
         components : {
 
-            selectcapital
+            selectcapital ,
+            selectdate
+
         } ,
         //导入混入对象 可以是多个,数组
         mixins : [
@@ -96,6 +111,11 @@ Time: 8:12
                     isshow : false ,
 
                 } ,
+                DateDlgObj : {
+                    //是显示选择日期弹窗
+                    isshow : false ,
+
+                } ,
             }
         } ,
         //方法
@@ -127,6 +147,9 @@ Time: 8:12
 
                 this.CapitalDlgObj.isshow = false;
 
+            } ,
+            opendateldlg () {
+                this.DateDlgObj.isshow = true;
             } ,
         } ,
         //计算属性
