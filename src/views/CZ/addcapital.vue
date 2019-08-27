@@ -271,6 +271,8 @@ Time: 11:17
 
                 //把插入时间补上
                 this.capitalmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                this.capitalmodel.userid = this.loginusermobile;
+                this.capitalmodel.username = this.loginusername;
 
                 ( async () => {
                     let checkresult = await dlapi.isexistscapital( this.capitalmodel.capitalcode );
@@ -319,10 +321,13 @@ Time: 11:17
                     deptno : '' ,
                     deptname : '' ,
                     savesite : '' ,
-                    saveman : '' ,
+                    saveman : RandomUtil.getcname() ,
                     comment : '' ,
-                    userid : '' ,
-                    username : '' ,
+
+                    //这2个属性不要清空
+                    // userid : '' ,
+                    // username : '' ,
+
                     inputdate : '' ,
 
                     typename : _typename
