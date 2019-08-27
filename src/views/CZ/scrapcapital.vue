@@ -50,13 +50,16 @@ Time: 8:12
 
         <selectcapital @selectcapital="selectcapital"
                        :diaObj="CapitalDlgObj"></selectcapital>
-        <selectdate :diaObj="DateDlgObj"></selectdate>
+        <selectdate @dateresult="dateresult"
+                    :diaObj="DateDlgObj"></selectdate>
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+    import dayjs from 'dayjs'
+
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
     import * as RandomUtil from '@/common/util/RandomUtil.js'
@@ -96,7 +99,8 @@ Time: 8:12
 
                     scrapmoney : 0 ,
                     scrapname : '' ,
-                    scrapdate : '' ,
+                    //默认今天
+                    scrapdate : dayjs().format( 'YYYY-MM-DD' ) ,
                     scrapreason : '' ,
 
                     comment : '' ,
@@ -114,7 +118,8 @@ Time: 8:12
                 DateDlgObj : {
                     //是显示选择日期弹窗
                     isshow : false ,
-
+                    //先默认一个 ，后面会重新赋值
+                    date : dayjs().format( 'YYYY-MM-DD' )
                 } ,
             }
         } ,
@@ -150,6 +155,19 @@ Time: 8:12
             } ,
             opendateldlg () {
                 this.DateDlgObj.isshow = true;
+                this.DateDlgObj.date = this.scrapmodel.scrapdate;
+            } ,
+            dateresult ( date ) {
+                if ( date ) {
+
+                    this.scrapmodel.scrapdate = date;
+
+                }
+
+                this.DateDlgObj.isshow = false;
+                //这里置为空，可以激发
+                this.DateDlgObj.date = '';
+
             } ,
         } ,
         //计算属性

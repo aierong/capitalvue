@@ -10,7 +10,12 @@ Time: 16:35
 
     <div>
         <van-popup position="bottom"
-                   v-model="diaObj.isshow">内容
+                   v-model="diaObj.isshow">
+            <van-datetime-picker :formatter="formatterdatestring"
+                                 @cancel="oncancel"
+                                 @confirm="onconfirm"
+                                 type="date"
+                                 v-model="currentDate"/>
         </van-popup>
     </div>
 
@@ -18,23 +23,59 @@ Time: 16:35
 
 <!-- js脚本代码片段 -->
 <script>
+    import dayjs from 'dayjs'
+
     export default {
         name : "selectdate" ,
         props : {
             diaObj : Object
         } ,
+        watch : {
+            'diaObj.date' : {
+                //监听资产类型,类型变化，重新生成资产代号
+                handler ( newName , oldName ) {
+                    console.log( 'diaObj.date changed' );
+
+                    this.currentDate = newName ? dayjs( newName ).toDate() : new Date();
+                } ,
+                immediate : true ,
+
+            }
+        } ,
         //数据模型
         data () {
             return {
-                msg : ''
+                currentDate : this.diaObj.date ? dayjs( this.diaObj.date ).toDate() : new Date()
             }
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            formatterdatestring ( type , value ) {
+                // console.log(type)
+                // console.log(value)
 
+                if ( type === "year" ) {
+                    return `${ value }年`
+                }
+                else if ( type === "month" ) {
+                    return `${ value }月`
+                }
+                else if ( type == "day" ) {
+                    return `${ value }号`
+                }
+
+                return value
+            } ,
+            oncancel () {
+                //传递空，就是没有选择
+                this.$emit( "dateresult" , '' );
+            } ,
+            onconfirm ( val ) {
+                // console.log( val )
+
+                this.$emit( "dateresult" , dayjs( val ).format( 'YYYY-MM-DD' ) );
+
+            } ,
         } ,
         //计算属性
         computed : {
