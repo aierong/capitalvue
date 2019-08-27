@@ -20,7 +20,7 @@ export function geticonallname ( val ) {
 }
 
 /**
- *
+ * 得资产编号的前缀
  * @param typename
  * @returns {string}
  */
@@ -52,8 +52,6 @@ export function getprefix ( typename ) {
 
     return "";
 }
-
-
 
 /**
  * 是出售
