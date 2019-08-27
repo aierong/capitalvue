@@ -9,7 +9,22 @@ Time: 8:12
 <template>
 
     <div>
-        scrapcapital
+        <van-nav-bar title="登记报废资产"
+                     left-text="返回"
+                     left-arrow
+                     @click-left="onClickLeft"/>
+        <br>
+        <van-cell-group>
+            <van-field v-model="scrapmodel.nos"
+                       required
+                       readonly
+                       label="报废单"/>
+            <van-field v-model="scrapmodel.capitalcode"
+                       required
+                       readonly
+                       label="资产代号"
+                       placeholder="请选择资产代号"/>
+        </van-cell-group>
     </div>
 
 </template>
@@ -21,14 +36,33 @@ Time: 8:12
         //数据模型
         data () {
             return {
-                msg : ''
+                scrapmodel : {
+                    nos : '' ,
+                    capitalcode : '' ,
+                    capitalname : '' ,
+
+                    scrapmoney : 0 ,
+                    scrapname : '' ,
+                    scrapdate : '' ,
+                    scrapreason : '' ,
+
+                    comment : '' ,
+
+                    userid : '' ,
+                    username : '' ,
+                    inputdate : '' ,
+
+                } ,
             }
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            onClickLeft () {
+                // 页面跳转
+                this.$router.push( "/cz" )
+
+                return;
+            } ,
 
         } ,
         //计算属性
