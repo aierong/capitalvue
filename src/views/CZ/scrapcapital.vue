@@ -232,6 +232,14 @@ Time: 8:12
                 this.scrapmodel.username = this.loginusername;
 
                 ( async () => {
+                    let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
+
+                    if ( isexistsnos != null && isexistsnos.isexists ) {
+                        this.$toast( "报废单号重复" )
+
+                        return;
+                    }
+
                     let _capitals = await dlapi.GetCapitalByCapitalCode( this.scrapmodel.capitalcode );
 
                     if ( _capitals != null && _capitals.length > 0 ) {
