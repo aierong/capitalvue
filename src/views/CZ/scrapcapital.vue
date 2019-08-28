@@ -97,6 +97,7 @@ Time: 8:12
     import * as util from '@/common/util/util.js'
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
+    import * as scrapapi from '@/common/bmobapi/scrap.js'
 
     export default {
         name : "scrapcapital" ,
@@ -238,8 +239,13 @@ Time: 8:12
                         let _capital = _capitals[ 0 ];
 
                         //检查一下资产的状态
-                        let IsScrap =util.IsScrap();
+                        let IsNormal = util.IsNormal( _capital.capitalstatus );
 
+                        if ( !IsNormal ) {
+                            this.$toast( "资产不是正常状态" )
+
+                            return;
+                        }
                     }
                     else {
                         this.$toast( "资产不存在" )
@@ -247,13 +253,13 @@ Time: 8:12
                         return;
                     }
 
-                    let newcapital = await dlapi.adddl( this.capitalmodel );
+                    let newno = await scrapapi.addscrap( this.scrapmodel );
 
-                    if ( newcapital != null ) {
+                    if ( newno != null ) {
                         //添加成功
                         this.$toast.success( "成功" );
                         //重新初始化一下
-                        this.initcapitalmodel();
+                        // this.initcapitalmodel();
 
                         return;
                     }
