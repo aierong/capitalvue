@@ -259,7 +259,7 @@ Time: 8:12
                         //添加成功
                         this.$toast.success( "成功" );
                         //重新初始化一下
-                        // this.initcapitalmodel();
+                        this.initmodel();
 
                         return;
                     }
@@ -271,6 +271,34 @@ Time: 8:12
                     }
 
                 } )();
+
+            } ,
+            initmodel () {
+
+                this.scrapmodel = {
+                    nos : '' ,
+                    capitalcode : '' ,
+                    capitalname : '' ,
+
+                    scrapmoney : 0 ,
+                    scrapname : '' ,
+                    //默认今天
+                    scrapdate : dayjs().format( 'YYYY-MM-DD' ) ,
+                    scrapreason : '' ,
+
+                    comment : '' ,
+
+                    //这3个属性不必清空
+                    // userid : '' ,
+                    // username : '' ,
+                    // inputdate : '' ,
+                }
+
+                this.scrapmodel.scrapname = RandomUtil.getcname();
+
+                this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.scrapmodel.scrapname = RandomUtil.getcname();
 
             } ,
         } ,
@@ -289,7 +317,7 @@ Time: 8:12
         } ,
         //生命周期(mounted)
         mounted () {
-            console.log( 'scrapcapital mounted' )
+            // console.log( 'scrapcapital mounted' )
 
             this.setupscrapmodel();
         } ,
