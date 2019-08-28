@@ -87,7 +87,8 @@ Time: 11:17
         -->
         <UserSelectCapitalType @typeselectresult="typeselectresult"
                                :diaObj="TypeDlgObj"></UserSelectCapitalType>
-
+        <!--        选择部门的弹窗
+        -->
         <UserSelectDept :diaObj="DeptDlgObj"
                         @deptselectresult="deptselectresult"></UserSelectDept>
     </div>

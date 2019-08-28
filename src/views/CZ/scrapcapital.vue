@@ -52,10 +52,31 @@ Time: 8:12
                        type="number"
                        label="报废金额"
                        placeholder="请输入报废金额"/>
+            <van-field v-model="scrapmodel.scrapreason"
+                       clearable
+                       label="报废原因"
+                       placeholder="请输入报废原因"/>
+            <van-field v-model="scrapmodel.comment"
+                       clearable
+                       label="备注"
+                       placeholder="请输入备注"/>
+            <van-field v-model="loginuserallname"
+                       label="添加人"
+                       placeholder="请输入添加人"
+                       readonly/>
         </van-cell-group>
+        <br><br>
+        <van-button size="large"
+                    @click="AddClick"
+                    type="primary">保 存
+        </van-button>
 
+        <!--        选择资产的弹窗
+-->
         <selectcapital @selectcapital="selectcapital"
                        :diaObj="CapitalDlgObj"></selectcapital>
+        <!--        选择日期的弹窗
+-->
         <selectdate @dateresult="dateresult"
                     :diaObj="DateDlgObj"></selectdate>
     </div>
@@ -175,6 +196,9 @@ Time: 8:12
                 this.DateDlgObj.date = '';
 
             } ,
+            AddClick () {
+
+            } ,
         } ,
         //计算属性
         computed : {
@@ -184,6 +208,9 @@ Time: 8:12
                 }
 
                 return `(${ this.scrapmodel.capitalcode })${ this.scrapmodel.capitalname }`
+            } ,
+            loginuserallname () {
+                return `(${ this.loginusermobile })${ this.loginusername }`
             } ,
         } ,
         //生命周期(mounted)
