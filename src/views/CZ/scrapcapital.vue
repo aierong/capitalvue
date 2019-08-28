@@ -46,6 +46,12 @@ Time: 8:12
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model.number="scrapmodel.scrapmoney"
+                       required
+                       clearable
+                       type="number"
+                       label="报废金额"
+                       placeholder="请输入报废金额"/>
         </van-cell-group>
 
         <selectcapital @selectcapital="selectcapital"
