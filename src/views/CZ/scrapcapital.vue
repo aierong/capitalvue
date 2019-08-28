@@ -94,6 +94,10 @@ Time: 8:12
     import selectcapital from '@/components/selectcapital.vue'
     import selectdate from '@/components/selectdate.vue'
 
+    import * as util from '@/common/util/util.js'
+
+    import * as  dlapi from '@/common/bmobapi/dl.js'
+
     export default {
         name : "scrapcapital" ,
         //注册组件
@@ -215,19 +219,52 @@ Time: 8:12
                     return;
                 }
 
-
-
-
-
-
-
-
-
-                if ( !this.capitalmodel.capitalname ) {
-                    this.$toast( "请输入资产名称" )
+                if ( !this.scrapmodel.scrapdate ) {
+                    this.$toast( "请选择报废日期" )
 
                     return;
                 }
+
+                //把插入时间补上
+                this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                this.scrapmodel.userid = this.loginusermobile;
+                this.scrapmodel.username = this.loginusername;
+
+                ( async () => {
+                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.scrapmodel.capitalcode );
+
+                    if ( _capitals != null && _capitals.length > 0 ) {
+                        //多条记录，取第一条
+                        let _capital = _capitals[ 0 ];
+
+                        //检查一下资产的状态
+                        let IsScrap =util.IsScrap();
+
+                    }
+                    else {
+                        this.$toast( "资产不存在" )
+
+                        return;
+                    }
+
+                    let newcapital = await dlapi.adddl( this.capitalmodel );
+
+                    if ( newcapital != null ) {
+                        //添加成功
+                        this.$toast.success( "成功" );
+                        //重新初始化一下
+                        this.initcapitalmodel();
+
+                        return;
+                    }
+                    else {
+                        //失败
+                        this.$toast.fail( "失败" )
+
+                        return;
+                    }
+
+                } )();
 
             } ,
         } ,

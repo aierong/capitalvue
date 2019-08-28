@@ -59,8 +59,8 @@ export function getprefix ( typename ) {
  * @returns {boolean}
  * @constructor
  */
-export function IsSale ( val ) {
-    if ( val != null && val == globalconstant.CapitalStatus.sale ) {
+export function IsSale ( _CapitalStatus ) {
+    if ( _CapitalStatus != null && _CapitalStatus == globalconstant.CapitalStatus.sale ) {
         return true;
     }
 
@@ -73,8 +73,8 @@ export function IsSale ( val ) {
  * @returns {boolean}
  * @constructor
  */
-export function IsScrap ( val ) {
-    if ( val != null && val == globalconstant.CapitalStatus.scrap ) {
+export function IsScrap ( _CapitalStatus ) {
+    if ( _CapitalStatus != null && _CapitalStatus == globalconstant.CapitalStatus.scrap ) {
         return true;
     }
 
@@ -87,8 +87,8 @@ export function IsScrap ( val ) {
  * @returns {boolean}
  * @constructor
  */
-export function IsNormal ( val ) {
-    if ( val != null && val == globalconstant.CapitalStatus.normal ) {
+export function IsNormal ( _CapitalStatus ) {
+    if ( _CapitalStatus != null && _CapitalStatus == globalconstant.CapitalStatus.normal ) {
         return true;
     }
 
