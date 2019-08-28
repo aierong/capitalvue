@@ -47,3 +47,64 @@ export function isexistsnos ( nos ) {
 }
 
 
+
+/**
+ *
+ * @param move
+ * @returns {Promise<unknown>}
+ */
+export function addsale ( sale ) {
+
+    return new Promise( ( resolve , reject ) => {
+
+        const query = Bmob.Query( tableName );
+        //这里 设置  列的数据
+
+        query.set( "userid" , sale.userid )
+        query.set( "username" , sale.username )
+        //自动取最新时间，保存进去
+        query.set( "inputdate" , sale.inputdate )
+
+        query.set( "modifyid" , "" )
+        query.set( "modifyname" , "" )
+        query.set( "modifydate" , "" )
+
+        query.set( "confirmid" , "" )
+        query.set( "confirmname" , "" )
+        query.set( "confirmdate" , "" )
+
+        query.set( "delmark" , "N" )
+        query.set( "status" , "N" )
+
+        query.set( "nos" , sale.nos )
+
+        query.set( "capitalcode" , sale.capitalcode )
+        query.set( "capitalname" , sale.capitalname )
+
+        query.set( "salename" , sale.salename )
+        query.set( "saledate" , sale.saledate )
+
+        query.set( "salemoney" , sale.salemoney )
+
+        query.set( "saleto" , sale.saleto )
+
+        query.set( "comment" , sale.comment )
+
+        query.save().then( res => {
+            //console.log( res )
+
+            resolve( res );
+            //返回创建时间和id
+            // {
+            //     createdAt: "YYYY-mm-dd HH:ii:ss",
+            //         objectId: "objectId"
+            // }
+        } ).catch( err => {
+            //console.log( err )
+
+            resolve( null );
+        } )
+    } );
+}
+
+
