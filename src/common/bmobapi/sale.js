@@ -15,3 +15,35 @@ import dayjs from 'dayjs'
 const tableName = 'sale';
 
 
+/**
+ * 是存在单号
+ * @param 单号
+ * @returns {Promise<unknown>}
+ */
+export function isexistsnos ( nos ) {
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+        query.equalTo( "nos" , "==" , nos );
+
+        query.find().then( res => {
+            //返回的是数组,没有找到就是空数组
+            //console.log( res )
+
+            if ( res != null && res.length > 0 ) {
+                resolve( {
+                    //是存在
+                    isexists : true ,
+                    data : res[ 0 ]
+                } );
+            }
+            else {
+                resolve( {
+                    isexists : false ,
+                    data : null
+                } );
+            }
+        } );
+    } );
+}
+
+
