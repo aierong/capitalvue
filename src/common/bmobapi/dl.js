@@ -152,7 +152,7 @@ export function GetCapitalByCapitalCode ( capitalcode ) {
 
 }
 
-export function getnormalcapitallistidbyminid ( minid , counts , typename ) {
+export function getnormalcapitallistidbyminid ( minid , loadcounts , typename , userid ) {
     const query = Bmob.Query( tableName );
 
     query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
@@ -165,8 +165,15 @@ export function getnormalcapitallistidbyminid ( minid , counts , typename ) {
         query.equalTo( "autokey" , "<" , minid );
     }
 
+    //该用户填写的
+    if ( userid ) {
+        query.equalTo( "userid" , "==" , userid );
+    }
+
+    if ( loadcounts > 0 ) {
+        query.limit( loadcounts );
+    }
     query.order( "-autokey" );
-    query.limit( counts );
 
     return query.find();
 }
