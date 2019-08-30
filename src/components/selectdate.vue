@@ -11,9 +11,7 @@ Time: 16:35
     <div>
         <van-popup position="bottom"
                    v-model="diaObj.isshow">
-            <!--       cancel-button-text=""
-            :item-height="66"
-            -->
+
             <van-datetime-picker :formatter="formatterdatestring"
                                  @cancel="oncancel"
                                  @confirm="onconfirm"
@@ -49,7 +47,9 @@ Time: 16:35
         //数据模型
         data () {
             return {
+
                 currentDate : this.diaObj.date ? dayjs( this.diaObj.date ).toDate() : new Date()
+
             }
         } ,
         //方法
@@ -65,7 +65,7 @@ Time: 16:35
                     return `${ value }月`
                 }
                 else if ( type == "day" ) {
-                    return `${ value }号`
+                    return `${ value }日`
                 }
 
                 return value
