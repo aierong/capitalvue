@@ -42,19 +42,25 @@ Time: 14:53
                 </van-cell>
 
             </van-cell-group>
-            <!--            <br>-->
-            <!--            <br>-->
-            <!--            <br><br><br>-->
-            <!--            </van-cell-group>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
-            <!--            <p>内容</p>-->
+            <br>
+            <br>
+            <van-divider v-if="!loadobj.isover">
+                <template slot="default">
+                    <van-button :loading="loadobj.isloading"
+                                @click="loaddata"
+                                size="small"
+                                icon="replay"
+                                color="#7232dd"
+                                plain
+                                round
+                                loading-type="spinner"
+                                loading-text="加载中...">点我加载更多
+                    </van-button>
+                </template>
+            </van-divider>
+            <van-divider dashed
+                         v-else>我是有底线的
+            </van-divider>
         </van-action-sheet>
         <br>
         <br><br>
@@ -94,6 +100,7 @@ Time: 14:53
                 //资产类型
                 optionitemCapitalType : [] ,
                 MyItemVal : '' ,
+                //全部和我的
                 optionitemMy : [
                     {
                         text : '全部' ,
@@ -104,6 +111,11 @@ Time: 14:53
                         value : this.loginusermobile
                     }
                 ] ,
+
+                loadobj : {
+                    isover : false ,
+                    isloading : false
+                } ,
 
             }
         } ,
@@ -131,9 +143,9 @@ Time: 14:53
                 return;
             } ,
             async initlist () {
-                let initcount = 6;
+                let initcount = 10;
 
-                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' );
+                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' , '' );
 
                 // console.log( list );
 
@@ -144,10 +156,13 @@ Time: 14:53
                     this.capitallist = [];
                 }
 
+
                 // dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' )
 
             } ,
+            loaddata () {
 
+            } ,
         } ,
         //计算属性
         computed : {
