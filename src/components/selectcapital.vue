@@ -9,7 +9,7 @@ Time: 14:53
 <template>
 
     <div>
-        <van-action-sheet style="height: 50%"
+        <van-action-sheet style="height: 78%"
                           v-model="diaObj.isshow"
                           title="选择正常状态资产">
             <van-dropdown-menu>
@@ -23,9 +23,14 @@ Time: 14:53
 
 
             <van-search placeholder="请输入搜索关键词"
-                        v-model="searchval">
+                        v-model="searchval"
+                        show-action
+                        shape="round"
+                        @search="onSearch">
 
-
+                <div slot="action"
+                     @click="onSearch">搜索
+                </div>
             </van-search>
             <!--     :immediate-check="false"  :offset="40"      -->
             <van-cell-group>
@@ -59,7 +64,7 @@ Time: 14:53
                 </template>
             </van-divider>
             <van-divider dashed
-                         v-else>我是有底线的
+                         v-if="loadobj.isshowdivider">我是有底线的
             </van-divider>
         </van-action-sheet>
         <br>
@@ -114,6 +119,7 @@ Time: 14:53
 
                 loadobj : {
                     isover : false ,
+                    isshowdivider : false ,
                     isloading : false
                 } ,
 
@@ -143,24 +149,74 @@ Time: 14:53
                 return;
             } ,
             async initlist () {
-                let initcount = 10;
+                let initcount = 4;
 
                 let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' , '' );
 
                 // console.log( list );
-
+                let lens = 0;
                 if ( list != null && list.length > 0 ) {
+                    lens = list.length;
+
                     this.capitallist = list;
                 }
                 else {
+                    lens = 0;
+
                     this.capitallist = [];
                 }
 
-
+                if ( lens < initcount ) {
+                    this.loadobj.isover = true;
+                    this.loadobj.isshowdivider = false;
+                }
+                else {
+                    this.loadobj.isover = false;
+                    this.loadobj.isshowdivider = false;
+                }
                 // dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' )
 
             } ,
-            loaddata () {
+            async loaddata () {
+                let counts = 2;
+
+                this.loadobj.isloading = true;
+
+                let list = await dlapi.getnormalcapitallistidbyminid( this.minautokey ,
+                    counts ,
+                    this.CapitalTypeItemVal ,
+                    this.MyItemVal );
+
+                // setTimeout(()=>{ })
+                setTimeout( () => {
+
+                    this.loadobj.isloading = false;
+
+                    // console.log( list );
+                    let lens = 0;
+
+                    if ( list != null && list.length > 0 ) {
+                        lens = list.length;
+
+                        this.capitallist.push( ...list )
+                    }
+                    else {
+                        lens = 0;
+
+                    }
+
+                    if ( lens < counts ) {
+                        this.loadobj.isover = true;
+                        this.loadobj.isshowdivider = true;
+                    }
+                    else {
+                        this.loadobj.isover = false;
+                        this.loadobj.isshowdivider = false;
+                    }
+                } , 2000 );
+
+            } ,
+            onSearch () {
 
             } ,
         } ,
