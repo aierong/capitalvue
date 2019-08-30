@@ -12,40 +12,35 @@ Time: 14:53
         <van-action-sheet style="height: 50%"
                           v-model="diaObj.isshow"
                           title="选择正常状态资产">
-            <!--            show-action-->
+            <van-dropdown-menu>
+                <!--            value	当前选中项对应的 value -->
+                <!--            options	选项数组	Array	 -->
+                <van-dropdown-item v-model="CapitalTypeItemVal"
+                                   :options="optionitemCapitalType"/>
+                <van-dropdown-item v-model="MyItemVal"
+                                   :options="optionitemMy"/>
+            </van-dropdown-menu>
+
+
             <van-search placeholder="请输入搜索关键词"
                         v-model="searchval">
-                <!--                <div slot="action">搜索1</div>-->
-                <div slot="label">
-                    <van-dropdown-menu>
-                        <!--            value	当前选中项对应的 value -->
-                        <!--            options	选项数组	Array	 -->
-                        <van-dropdown-item v-model="itemval"
-                                           :options="optionitem"/>
 
-                    </van-dropdown-menu>
-                </div>
+
             </van-search>
             <!--     :immediate-check="false"  :offset="40"      -->
             <van-cell-group>
-                <van-list :finished="downrefresh.finished"
 
-                          @load="onDownRefreshLoad"
-                          finished-text="我是有底线的"
-                          loading-text="客官莫急,正搞数据中..."
-                          :immediate-check="false"
-                          v-model="downrefresh.loading">
-                    <van-cell :key="_index"
-                              v-for="(item,_index) in capitallist"
-                              :title="`(${ item.capitalcode })${ item.capitalname }`">
-                        <template slot="right-icon">
-                            <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
-                                      color="red"
-                                      size="20px"
-                                      name="certificate"/>
-                        </template>
-                    </van-cell>
-                </van-list>
+                <van-cell :key="_index"
+                          v-for="(item,_index) in capitallist"
+                          :title="`(${ item.capitalcode })${ item.capitalname }`">
+                    <template slot="right-icon">
+                        <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
+                                  color="red"
+                                  size="20px"
+                                  name="certificate"/>
+                    </template>
+                </van-cell>
+
             </van-cell-group>
             <!--            <br>-->
             <!--            <br>-->
@@ -75,37 +70,41 @@ Time: 14:53
     import * as globalconstant from '@/common/constant.js'
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
+    // 导入
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+
     export default {
         name : "selectcapital" ,
         props : {
             diaObj : Object
         } ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
+
+            loginuserdatamix ,
+
+        ] ,
         //数据模型
         data () {
             return {
                 capitallist : [] ,
                 searchval : '' ,
 
-                itemval : '' ,
-                optionitem : [
-                    // {
-                    //     text : '全部商品' ,
-                    //     value : 0
-                    // } ,
-                    // {
-                    //     text : '新款商品' ,
-                    //     value : 1
-                    // } ,
-                    // {
-                    //     text : '活动商品' ,
-                    //     value : 2
-                    // }
+                CapitalTypeItemVal : '' ,
+                //资产类型
+                optionitemCapitalType : [] ,
+                MyItemVal : '' ,
+                optionitemMy : [
+                    {
+                        text : '全部' ,
+                        value : ''
+                    } ,
+                    {
+                        text : '我登记的' ,
+                        value : this.loginusermobile
+                    }
                 ] ,
-                //下拉刷新使用的参数
-                downrefresh : {
-                    loading : false ,
-                    finished : false
-                } ,
+
             }
         } ,
         //方法
@@ -113,13 +112,13 @@ Time: 14:53
             createoptionitem () {
                 //let list = globalconstant.CapitalType;
 
-                this.optionitem.push( {
+                this.optionitemCapitalType.push( {
                     text : '全部' ,
                     value : ''
                 } )
 
                 globalconstant.CapitalType.forEach( ( val , index , array ) => {
-                    this.optionitem.push( {
+                    this.optionitemCapitalType.push( {
                         text : val ,
                         value : val
                     } )
@@ -144,38 +143,11 @@ Time: 14:53
                 else {
                     this.capitallist = [];
                 }
+
+                // dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' )
+
             } ,
 
-            //下拉刷新
-            onDownRefreshLoad () {
-                console.log( 'onDownRefreshLoad' )
-
-                let counts = 2;
-
-                dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' ).then( ( res ) => {
-                    console.log( 'onPullRefreshRefresh' , res )
-
-                    if ( res != null && res.length > 0 ) {
-                        //把列表增加数据
-
-                        //数据加入到数组尾部
-                        this.capitallist.push( ...res )
-
-                        if ( res.length < counts ) {
-                            //返回的记录数量小于请求要加载的数量,说明是最后一批数据了
-                            this.downrefresh.finished = true
-                        }
-                    }
-                    else {
-                        this.downrefresh.finished = true
-                    }
-
-                    setInterval( () => {
-                        this.downrefresh.loading = false
-                    } , 1000 )
-                    //this.downrefresh.loading = false
-                } );
-            } ,
         } ,
         //计算属性
         computed : {
