@@ -153,7 +153,9 @@ Time: 14:53
             async initlist () {
                 let initcount = 4;
 
-                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , this.CapitalTypeItemVal ,
+                let list = await dlapi.getnormalcapitallistidbyminid( 0 ,
+                    initcount ,
+                    this.CapitalTypeItemVal ,
                     this.MyItemVal );
 
                 // console.log( list );
@@ -177,7 +179,6 @@ Time: 14:53
                     this.loadobj.isover = false;
                     this.loadobj.isshowdivider = false;
                 }
-                // dlapi.getnormalcapitallistidbyminid( this.minautokey , counts , '' )
 
             } ,
             async loaddata () {
@@ -190,7 +191,7 @@ Time: 14:53
                     this.CapitalTypeItemVal ,
                     this.MyItemVal );
 
-                // setTimeout(()=>{ })
+
                 setTimeout( () => {
 
                     this.loadobj.isloading = false;
