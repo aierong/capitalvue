@@ -106,16 +106,7 @@ Time: 14:53
                 optionitemCapitalType : [] ,
                 MyItemVal : '' ,
                 //全部和我的
-                optionitemMy : [
-                    {
-                        text : '全部' ,
-                        value : ''
-                    } ,
-                    {
-                        text : '我登记的' ,
-                        value : this.loginusermobile
-                    }
-                ] ,
+                optionitemMy : [] ,
 
                 loadobj : {
                     isover : false ,
@@ -141,6 +132,17 @@ Time: 14:53
                         value : val
                     } )
                 } )
+
+                this.optionitemMy = [
+                    {
+                        text : '全部' ,
+                        value : ''
+                    } ,
+                    {
+                        text : '我登记的' ,
+                        value : this.loginusermobile
+                    }
+                ]
             } ,
             itemclick ( capitalcode , capitalname ) {
                 // 选择确定事件 ,把选择好的头像传递回去
@@ -151,7 +153,8 @@ Time: 14:53
             async initlist () {
                 let initcount = 4;
 
-                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , '' , '' );
+                let list = await dlapi.getnormalcapitallistidbyminid( 0 , initcount , this.CapitalTypeItemVal ,
+                    this.MyItemVal );
 
                 // console.log( list );
                 let lens = 0;
@@ -217,7 +220,7 @@ Time: 14:53
 
             } ,
             onSearch () {
-
+                this.initlist();
             } ,
         } ,
         //计算属性
