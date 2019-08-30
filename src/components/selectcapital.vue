@@ -37,7 +37,7 @@ Time: 14:53
 
                 <van-cell :key="_index"
                           v-for="(item,_index) in capitallist"
-                          :title="`(${ item.capitalcode })${ item.capitalname }`">
+                          :title="`(${ item.capitalcode })${ item.capitalname }   [${ item.typename }]`">
                     <template slot="right-icon">
                         <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
                                   color="red"
