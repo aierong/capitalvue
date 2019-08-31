@@ -40,6 +40,14 @@ Time: 14:57
                        target="_blank">github</a></span>
             </template>
         </van-cell>
+        <van-cell is-link
+                  @click="exitClick">
+            <template slot="title">
+                <van-icon name="share"
+                          style="font-size:15px;"/>
+                <span class="cellspantitleclass">退出</span>
+            </template>
+        </van-cell>
         <br>
         <!--头像选择弹窗组件-->
         <userselectavatar @selectavatar="selectavatar"
@@ -91,9 +99,33 @@ Time: 14:57
         methods : {
             ...mapMutations( [
 
-                'updateloginuseravatar'
+                'updateloginuseravatar' , 'clearloginuser'
 
             ] ) ,
+
+            exitClick () {
+                this.$dialog.confirm( {
+                    message : '确定退出吗?'
+                } ).then( () => {
+                    // 点击确定按钮
+
+                    this.exitsystem();
+
+                } ).catch( () => {
+                    // 点击取消按钮
+
+                } );
+            } ,
+            exitsystem () {
+
+                //  清除一下
+                this.clearloginuser();
+
+                //页面转向 登录
+                this.$router.push( '/login' )
+
+                return;
+            } ,
             updatepwdClick () {
 
             } ,

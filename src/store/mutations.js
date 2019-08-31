@@ -18,13 +18,12 @@ export default {
     [ types.updateloginuseravatar ] ( state , avatar ) {
         state.loginuser.avatar = avatar;
     } ,
-    //清空
+    //清空登录信息
     [ types.clearloginuser ] ( state ) {
         state.loginuser = null;
 
         state.loginuserid = ''
     } ,
-    //
     [ types.SetRefreshContactsList ] ( state , val ) {
 
         state.IsRefreshContactsList = val;
