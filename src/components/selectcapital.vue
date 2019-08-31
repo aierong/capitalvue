@@ -32,12 +32,11 @@ Time: 14:53
                      @click="onSearch">搜索
                 </div>
             </van-search>
-            <!--     :immediate-check="false"  :offset="40"      -->
+
             <van-cell-group>
-                <!--                :title="`(${ item.capitalcode })${ item.capitalname }   [${ item.typename }]`"-->
+
                 <van-cell :key="_index"
-                          v-for="(item,_index) in capitallist"
-                >
+                          v-for="(item,_index) in capitallist">
                     <template slot="right-icon">
                         <van-icon @click="itemclick(item)"
                                   color="red"
@@ -46,9 +45,14 @@ Time: 14:53
                     </template>
                     <template slot="title">
 
-                        <span class="mytitle"
-                              v-if="ismy(item.userid)">{{ item.capitalcode  | formattitle(item.capitalname,item.typename) }}</span>
-                        <span v-else>{{ item.capitalcode  | formattitle(item.capitalname,item.typename) }}</span>
+                        <span class="mycell"
+                              v-if="ismy(item.userid)">{{ item | formattitle }}</span>
+                        <span v-else>{{ item  | formattitle }}</span>
+                    </template>
+                    <template slot="label">
+                        <span class="mycell"
+                              v-if="ismy(item.userid)">{{ item | formatlabel }}</span>
+                        <span v-else>{{ item  | formatlabel }}</span>
                     </template>
                 </van-cell>
 
@@ -104,11 +108,14 @@ Time: 14:53
         //过滤器
         filters : {
             //
-            formattitle : ( capitalcode , capitalname , typename ) => {
+            formattitle : ( item ) => {
 
-                return `(${ capitalcode })${ capitalname }   [${ typename }]`
+                return `${ item.capitalname }(${ item.capitalcode })`
             } ,
+            formatlabel : ( item ) => {
 
+                return `类型:${ item.typename } 保管人:${ item.saveman } `
+            } ,
         } ,
         //数据模型
         data () {
