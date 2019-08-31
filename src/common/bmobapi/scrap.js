@@ -84,12 +84,12 @@ export function addscrap ( scrap , capitalobjectId ) {
         query.set( "capitalcode" , scrap.capitalcode )
         query.set( "capitalname" , scrap.capitalname )
 
-        query.set( "scrapname" , scrap.newdeptno )
-        query.set( "scrapdate" , scrap.newdeptname )
+        query.set( "scrapname" , scrap.scrapname )
+        query.set( "scrapdate" , scrap.scrapdate )
 
-        query.set( "scrapmoney" , scrap.oldsavesite )
+        query.set( "scrapmoney" , scrap.scrapmoney )
 
-        query.set( "scrapreason" , scrap.oldsaveman )
+        query.set( "scrapreason" , scrap.scrapreason )
 
         query.set( "comment" , scrap.comment )
 
