@@ -49,6 +49,11 @@ Time: 16:56
                        required
                        readonly
                        label="原位置"/>
+            <van-field v-model="movemodel.newsavesite"
+                       required
+                       clearable
+                       label="现位置"
+                       placeholder="请输入现位置"/>
         </van-cell-group>
 
 
