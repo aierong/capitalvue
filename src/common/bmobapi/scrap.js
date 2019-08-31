@@ -114,13 +114,10 @@ export function addscrap ( scrap , capitalobjectId ) {
                     resolve( null );
                 } )
             }
+            else {
+                resolve( null );
+            }
 
-            // resolve( res );
-            //返回创建时间和id
-            // {
-            //     createdAt: "YYYY-mm-dd HH:ii:ss",
-            //         objectId: "objectId"
-            // }
         } ).catch( err => {
             //console.log( err )
 

@@ -6,10 +6,18 @@
  */
 
 import dayjs from 'dayjs'
+import { CapitalStatus } from '@/common/constant.js'
+
+
 /**
  * 资产出售表
  */
 import { SaleTable as tableName } from '@/common/constant.js';
+
+/**
+ * 资产表
+ */
+import { DlTable as tableNamedl } from '@/common/constant.js';
 
 /**
  * 是存在单号
@@ -47,7 +55,7 @@ export function isexistsnos ( nos ) {
  * @param move
  * @returns {Promise<unknown>}
  */
-export function addsale ( sale ) {
+export function addsale ( sale , capitalobjectId ) {
 
     return new Promise( ( resolve , reject ) => {
 
