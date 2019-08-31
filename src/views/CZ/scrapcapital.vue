@@ -171,8 +171,6 @@ Time: 8:12
                 this.scrapmodel.userid = this.loginusermobile;
                 this.scrapmodel.username = this.loginusername;
 
-                // this.scrapmodel.scrapname = RandomUtil.getcname();
-
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
 
                 this.scrapmodel.scrapname = RandomUtil.getcname();
@@ -305,8 +303,6 @@ Time: 8:12
                     // username : '' ,
                     // inputdate : '' ,
                 }
-
-                // this.scrapmodel.scrapname = RandomUtil.getcname();
 
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
 
