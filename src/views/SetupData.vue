@@ -9,7 +9,20 @@ Time: 14:57
 <template>
 
     <div>
-        SetupData
+<!--        <br>-->
+        <!--这里整个头像-->
+        <van-cell size="large"
+                  @click="SetupAvatarClick">
+            <template slot="title">
+                <svg class="icon"
+                     aria-hidden="true"
+                     style="font-size:58px;">
+                    <use v-bind:xlink:href="loginuseravatar | iconallname"></use>
+                </svg>
+                <span class="cellspantitleclass">{{ loginusername +'('  + loginusermobile + ')' }}</span>
+
+            </template>
+        </van-cell>
 
         <mytabbar></mytabbar>
     </div>
@@ -18,10 +31,22 @@ Time: 14:57
 
 <!-- js脚本代码片段 -->
 <script>
+    // 引入阿里图标js
+    import "@/assets/ali/iconfont/iconfont.js"
+
+    // 导入
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+    //导入
+    import { mix } from "@/mixin/index.js"
 
     export default {
         name : "SetupData" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
 
+            loginuserdatamix , mix
+
+        ] ,
         //数据模型
         data () {
             return {
@@ -30,9 +55,9 @@ Time: 14:57
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            SetupAvatarClick () {
+                //代码搞这里
+            } ,
 
         } ,
         //计算属性
