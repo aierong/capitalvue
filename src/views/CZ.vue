@@ -73,8 +73,8 @@ Time: 0:23
         <!--        <br>-->
         <!--        <br>-->
         <!--        <div class="titleclass">我的资产数据</div>-->
-        <van-divider dashed
-                     :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 6px' }">
+        <van-divider class="mydivider"
+                     dashed>
             我的资产数据
         </van-divider>
         <div>
@@ -114,16 +114,7 @@ Time: 0:23
             return {
                 chartData : {
                     columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
-                    rows : [
-                        // {
-                        //     '数量' : '' ,
-                        //     '资产' : 1093 ,
-                        //     '正常' : 1000 ,
-                        //     '出售' : 90 ,
-                        //     '报废' : 3
-                        // } ,
-
-                    ]
+                    rows : []
                 } ,
                 chartEmptyData : false
 

@@ -10,3 +10,10 @@
 .cellspantitleclass {
     margin-left: 10px;
 }
+
+
+.mydivider {
+    color: #1989fa;
+    border-color: #1989fa;
+    padding: 0 6px;
+}

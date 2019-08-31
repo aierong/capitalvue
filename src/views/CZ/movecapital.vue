@@ -9,7 +9,11 @@ Time: 16:56
 <template>
 
     <div>
-        movecapital
+        <van-nav-bar title="登记转移资产"
+                     left-text="返回"
+                     left-arrow
+                     @click-left="onClickLeft"/>
+        <br>
     </div>
 
 </template>
@@ -26,9 +30,12 @@ Time: 16:56
         } ,
         //方法
         methods : {
-            //methodsname() {
-            //代码搞这里
-            //},
+            onClickLeft () {
+                // 页面跳转
+                this.$router.push( "/cz" )
+
+                return;
+            } ,
 
         } ,
         //计算属性
