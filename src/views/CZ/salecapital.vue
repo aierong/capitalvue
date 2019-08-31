@@ -273,7 +273,7 @@ Time: 22:00
                         return;
                     }
 
-                    let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
+                    let newno = await saleapi.addsale( this.salemodel , this.UserSelectCapitalObjectId );
 
                     if ( newno != null ) {
                         //添加成功
@@ -291,6 +291,32 @@ Time: 22:00
                     }
 
                 } )();
+
+            } ,
+            initmodel () {
+
+                this.salemodel = {
+                    nos : '' ,
+                    capitalcode : '' ,
+                    capitalname : '' ,
+
+                    salemoney : 0 ,
+                    salename : '' ,
+                    //默认今天
+                    saledate : dayjs().format( 'YYYY-MM-DD' ) ,
+                    saleto : '' ,
+
+                    comment : '' ,
+
+                    //这3个属性不必清空
+                    // userid : '' ,
+                    // username : '' ,
+                    // inputdate : '' ,
+                }
+
+                this.salemodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.salemodel.salename = RandomUtil.getcname();
 
             } ,
         } ,
