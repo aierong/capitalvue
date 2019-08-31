@@ -23,7 +23,9 @@ Time: 14:57
 
             </template>
         </van-cell>
-
+        <!--头像选择弹窗组件-->
+        <userselectavatar @selectavatar="selectavatar"
+                          :diaObj="diaObj"></userselectavatar>
         <mytabbar></mytabbar>
     </div>
 
@@ -38,6 +40,12 @@ Time: 14:57
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
     //导入
     import { mix } from "@/mixin/index.js"
+    //导入组件
+    import userselectavatar from '@/components/userselectavatar.vue'
+
+    import * as usersapi from '@/common/bmobapi/users.js'
+
+    import { mapMutations } from 'vuex'
 
     export default {
         name : "SetupData" ,
@@ -48,18 +56,73 @@ Time: 14:57
             mix
 
         ] ,
+        //注册组件
+        components : {
+            userselectavatar
+        } ,
         //数据模型
         data () {
             return {
-                msg : ''
+                diaObj : {
+                    showdialog : false ,
+                    avatar : ''
+                } ,
             }
         } ,
         //方法
         methods : {
-            SetupAvatarClick () {
-                //代码搞这里
-            } ,
+            ...mapMutations( [
 
+                'updateloginuseravatar'
+
+            ] ) ,
+            SetupAvatarClick () {
+                this.diaObj = {
+                    showdialog : true ,
+                    avatar : this.loginuseravatar
+                }
+
+                return;
+            } ,
+            selectavatar ( _avatar ) {
+                this.diaObj = {
+
+                    avatar : _avatar
+                }
+
+                if ( _avatar == this.loginuseravatar ) {
+                    //头像没有变化
+
+                    return;
+                }
+
+                let user = this.loginuserdata;
+
+                ;( async () => {
+                    // console.log( newuser.id )
+
+                    let result = await usersapi.updateUserAvatar( user.objectId , _avatar );
+
+                    // console.log( result )
+
+                    if ( result != null ) {
+
+                        //重新设置一下
+                        // this.$store.commit( vuextypes.updateloginuseravatar , _avatar );
+                        this.updateloginuseravatar( _avatar );
+
+                        return;
+                    }
+                    else {
+                        this.$toast( "修改失败" )
+
+                        return;
+                    }
+
+                } )();
+
+                return;
+            } ,
         } ,
         //计算属性
         computed : {
