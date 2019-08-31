@@ -34,15 +34,21 @@ Time: 14:53
             </van-search>
             <!--     :immediate-check="false"  :offset="40"      -->
             <van-cell-group>
-
+                <!--                :title="`(${ item.capitalcode })${ item.capitalname }   [${ item.typename }]`"-->
                 <van-cell :key="_index"
                           v-for="(item,_index) in capitallist"
-                          :title="`(${ item.capitalcode })${ item.capitalname }   [${ item.typename }]`">
+                >
                     <template slot="right-icon">
                         <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
                                   color="red"
                                   size="20px"
                                   name="certificate"/>
+                    </template>
+                    <template slot="title">
+
+                        <span class="mytitle"
+                              v-if="ismy(item.userid)">{{ item.capitalcode  | formattitle(item.capitalname,item.typename) }}</span>
+                        <span v-else>{{ item.capitalcode  | formattitle(item.capitalname,item.typename) }}</span>
                     </template>
                 </van-cell>
 
@@ -95,6 +101,15 @@ Time: 14:53
             loginuserdatamix ,
 
         ] ,
+        //过滤器
+        filters : {
+            //
+            formattitle : ( capitalcode , capitalname , typename ) => {
+
+                return `(${ capitalcode })${ capitalname }   [${ typename }]`
+            } ,
+
+        } ,
         //数据模型
         data () {
             return {
@@ -118,6 +133,13 @@ Time: 14:53
         } ,
         //方法
         methods : {
+            ismy ( userid ) {
+                if ( userid ) {
+                    return userid == this.loginusermobile;
+                }
+                return false;
+            } ,
+
             createoptionitem () {
                 //let list = globalconstant.CapitalType;
 
