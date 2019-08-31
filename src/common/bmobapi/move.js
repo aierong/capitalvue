@@ -9,9 +9,8 @@ import dayjs from 'dayjs'
 
 /**
  * 资产转移表
- * @type {string}
  */
-const tableName = 'move';
+import { MoveTable as tableName } from '@/common/constant.js';
 
 /**
  * 是存在单号
@@ -108,12 +107,3 @@ export function addmove ( move ) {
 }
 
 
-
-
-
-
-
-
-// export function check ( model ) {
-//      //这个方法，不要了，用其他替代
-// }

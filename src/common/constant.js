@@ -70,6 +70,12 @@ export const DlTable = "dl";
 export const ScrapTable = "scrap";
 
 /**
+ * 资产转移表
+ * @type {string}
+ */
+export const MoveTable = "move";
+
+/**
  * 部门表
  * @type {string}
  */
