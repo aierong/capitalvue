@@ -35,7 +35,8 @@ Time: 14:42
                 </svg>
             </van-grid-item>
 
-            <van-grid-item text="转移">
+            <van-grid-item @click="movecapital"
+                           text="转移">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -159,6 +160,12 @@ Time: 14:42
             addcapital () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
+
+                return;
+            } ,
+            movecapital () {
+                // 页面跳转
+                this.$router.push( "/movecapital" )
 
                 return;
             } ,
