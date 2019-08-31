@@ -45,6 +45,10 @@ Time: 16:56
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="movemodel.oldsavesite"
+                       required
+                       readonly
+                       label="原位置"/>
         </van-cell-group>
 
 
@@ -178,6 +182,12 @@ Time: 16:56
                 this.movemodel.olddeptname = item.deptname;
                 this.movemodel.newdeptno = item.deptno;
                 this.movemodel.newdeptname = item.deptname;
+
+                //把位置信息写上
+                this.movemodel.oldsavesite = item.savesite;
+                this.movemodel.newsavesite = item.savesite;
+
+
 
                 this.CapitalDlgObj.isshow = false;
 
