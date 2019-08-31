@@ -4,7 +4,8 @@
  */
 import {
     mapState ,
-    mapGetters
+    mapGetters ,
+    mapMutations
 } from 'vuex'
 
 export const loginuserdatamix = {
@@ -26,7 +27,24 @@ export const loginuserdatamix = {
             loginuseravatar : 'useravatar'
         } ) ,
     } ,
+    //方法
+    methods : {
+        ...mapMutations( [
 
+            'clearloginuser'
+
+        ] ) ,
+        exitsystem () {
+
+            //  清除一下
+            this.clearloginuser();
+
+            //页面转向 登录
+            this.$router.push( '/login' )
+
+            return;
+        } ,
+    } ,
 }
 
 

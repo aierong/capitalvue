@@ -99,7 +99,7 @@ Time: 14:57
         methods : {
             ...mapMutations( [
 
-                'updateloginuseravatar' , 'clearloginuser'
+                'updateloginuseravatar'
 
             ] ) ,
 
@@ -116,16 +116,7 @@ Time: 14:57
 
                 } );
             } ,
-            exitsystem () {
 
-                //  清除一下
-                this.clearloginuser();
-
-                //页面转向 登录
-                this.$router.push( '/login' )
-
-                return;
-            } ,
             updatepwdClick () {
 
             } ,

@@ -110,14 +110,21 @@ Time: 14:42
 
     import * as globalconstant from '@/common/constant.js'
 
+    // 导入
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+
     import {
-        mapState ,
-        mapMutations
+        mapState
     } from 'vuex'
 
     export default {
         name : "MyIndexPage" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
 
+            loginuserdatamix ,
+
+        ] ,
         //数据模型
         data () {
             return {
@@ -135,16 +142,7 @@ Time: 14:42
                 ] ,
                 chartData : {
                     columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
-                    rows : [
-                        // {
-                        //     '数量' : '' ,
-                        //     '资产' : 1093 ,
-                        //     '正常' : 1000 ,
-                        //     '出售' : 90 ,
-                        //     '报废' : 3
-                        // } ,
-
-                    ]
+                    rows : []
                 } ,
                 chartEmptyData : false
 
@@ -152,11 +150,7 @@ Time: 14:42
         } ,
         //方法
         methods : {
-            ...mapMutations( [
 
-                'clearloginuser'
-
-            ] ) ,
             addcapital () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
@@ -200,16 +194,7 @@ Time: 14:42
 
                 } );
             } ,
-            exitsystem () {
 
-                //  清除一下
-                this.clearloginuser();
-
-                //页面转向 登录
-                this.$router.push( '/login' )
-
-                return;
-            } ,
             async getcapitalcounts () {
 
                 var result = await Promise.all( [
