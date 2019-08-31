@@ -12,13 +12,10 @@ import dayjs from 'dayjs'
  */
 import { ScrapTable as tableName } from '@/common/constant.js';
 
-import { DlTable as tableNamedl } from '@/common/constant.js';
-
 /**
  * 资产表
- * @type {string}
  */
-const tableName_dl = 'dl';
+import { DlTable as tableNamedl } from '@/common/constant.js';
 
 /**
  * 是存在单号

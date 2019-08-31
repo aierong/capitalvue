@@ -4,14 +4,12 @@
  Time: 18:00
  功能: js脚本
  */
+//这个表数据是手工先添加进去的
 
 /**
  * 部门表
- * @type {string}
  */
-const tableName = 'dept';
-
-//这个表数据是手工先添加进去的
+import { DeptTable as tableName } from '@/common/constant.js';
 
 /**
  * 得部门列表

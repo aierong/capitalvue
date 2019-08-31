@@ -68,3 +68,11 @@ export const DlTable = "dl";
  * @type {string}
  */
 export const ScrapTable = "scrap";
+
+/**
+ * 部门表
+ * @type {string}
+ */
+export const DeptTable = "dept";
+
+
