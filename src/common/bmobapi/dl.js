@@ -10,9 +10,9 @@ import * as globalconstant from '@/common/constant.js'
 
 /**
  * 资产表
- * @type {string}
  */
-const tableName = 'dl';
+import { DlTable as tableName } from '@/common/constant.js';
+
 
 /**
  * 是存在资产

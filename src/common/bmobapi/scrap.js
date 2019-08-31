@@ -9,10 +9,16 @@ import dayjs from 'dayjs'
 
 /**
  * 资产报废表
+ */
+import { ScrapTable as tableName } from '@/common/constant.js';
+
+import { DlTable as tableNamedl } from '@/common/constant.js';
+
+/**
+ * 资产表
  * @type {string}
  */
-const tableName = 'scrap';
-
+const tableName_dl = 'dl';
 
 /**
  * 是存在单号
@@ -45,14 +51,12 @@ export function isexistsnos ( nos ) {
     } );
 }
 
-
-
 /**
  *
  * @param move
  * @returns {Promise<unknown>}
  */
-export function addscrap ( scrap ) {
+export function addscrap ( scrap , capitalobjectId ) {
 
     return new Promise( ( resolve , reject ) => {
 

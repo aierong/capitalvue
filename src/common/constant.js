@@ -57,4 +57,14 @@ export const CapitalStatus = {
     normal : '正常'
 }
 
+/**
+ * 数据表
+ * @type {string}
+ */
+export const DlTable = "dl";
 
+/**
+ * 报废表
+ * @type {string}
+ */
+export const ScrapTable = "scrap";
