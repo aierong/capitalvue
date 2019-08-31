@@ -298,22 +298,31 @@ Time: 16:56
                     return;
                 }
 
-                if ( !this.scrapmodel.scrapname ) {
-                    this.$toast( "请输入报废人" )
+                if ( !this.movemodel.movename ) {
+                    this.$toast( "请输入转移人" )
 
                     return;
                 }
 
-                if ( !this.scrapmodel.scrapdate ) {
-                    this.$toast( "请选择报废日期" )
+                if ( !this.movemodel.movedate ) {
+                    this.$toast( "请选择转移日期" )
+
+                    return;
+                }
+
+                if ( this.olddeptinfo == this.newdeptinfo
+                    && this.movemodel.oldsaveman == this.movemodel.newsaveman
+                    && this.movemodel.oldsavesite == this.movemodel.newsavesite
+                ) {
+                    this.$toast( "信息没有变化,不用转移" )
 
                     return;
                 }
 
                 //把插入时间补上
-                this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.scrapmodel.userid = this.loginusermobile;
-                this.scrapmodel.username = this.loginusername;
+                this.movemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                this.movemodel.userid = this.loginusermobile;
+                this.movemodel.username = this.loginusername;
 
                 ( async () => {
                     let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
