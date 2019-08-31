@@ -7,9 +7,8 @@ import dayjs from 'dayjs'
 
 /**
  * 用户表
- * @type {string}
  */
-const tableName_users = 'users';
+import { UserTable as tableName_users } from '@/common/constant.js';
 
 /**
  * 是存在手机号码

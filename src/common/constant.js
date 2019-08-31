@@ -76,9 +76,19 @@ export const ScrapTable = "scrap";
 export const MoveTable = "move";
 
 /**
+ * 资产出售表
+ * @type {string}
+ */
+export const SaleTable = "sale";
+
+/**
  * 部门表
  * @type {string}
  */
 export const DeptTable = "dept";
 
-
+/**
+ * 用户表
+ * @type {string}
+ */
+export const UserTable = "users";
