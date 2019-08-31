@@ -53,6 +53,19 @@ Time: 22:00
                        type="number"
                        label="出售金额"
                        placeholder="请输入出售金额"/>
+            <van-field v-model="salemodel.saleto"
+                       clearable
+                       label="出售对象"
+                       required
+                       placeholder="请输入出售对象"/>
+            <van-field v-model="salemodel.comment"
+                       clearable
+                       label="备注"
+                       placeholder="请输入备注"/>
+            <van-field v-model="loginuserallname"
+                       label="添加人"
+                       placeholder="请输入添加人"
+                       readonly/>
         </van-cell-group>
 
 
