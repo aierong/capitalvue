@@ -43,7 +43,8 @@ Time: 14:42
                 </svg>
             </van-grid-item>
 
-            <van-grid-item text="出售">
+            <van-grid-item @click="salecapital"
+                           text="出售">
                 <svg slot="icon"
                      class="icon myicon"
                      aria-hidden="true">
@@ -100,8 +101,6 @@ Time: 14:42
     import VCharts from 'v-charts'
 
     Vue.use( VCharts )
-
-
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
@@ -160,6 +159,12 @@ Time: 14:42
             addcapital () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
+
+                return;
+            } ,
+            salecapital () {
+                // 页面跳转
+                this.$router.push( "/salecapital" )
 
                 return;
             } ,
