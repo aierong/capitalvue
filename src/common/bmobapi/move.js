@@ -6,11 +6,18 @@
  */
 
 import dayjs from 'dayjs'
+import { CapitalStatus } from '@/common/constant.js'
 
 /**
  * 资产转移表
  */
 import { MoveTable as tableName } from '@/common/constant.js';
+
+/**
+ * 资产表
+ */
+import { DlTable as tableNamedl } from '@/common/constant.js';
+
 
 /**
  * 是存在单号
@@ -48,7 +55,7 @@ export function isexistsnos ( nos ) {
  * @param move
  * @returns {Promise<unknown>}
  */
-export function addmove ( move ) {
+export function addmove ( move , capitalobjectId ) {
 
     return new Promise( ( resolve , reject ) => {
 
@@ -87,6 +94,7 @@ export function addmove ( move ) {
         query.set( "oldsaveman" , move.oldsaveman )
         query.set( "newsaveman" , move.newsaveman )
 
+        query.set( "movedate" , move.movedate )
         query.set( "comment" , move.comment )
 
         query.save().then( res => {
