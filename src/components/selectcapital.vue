@@ -39,7 +39,7 @@ Time: 14:53
                           v-for="(item,_index) in capitallist"
                 >
                     <template slot="right-icon">
-                        <van-icon @click="itemclick(item.capitalcode,item.capitalname)"
+                        <van-icon @click="itemclick(item)"
                                   color="red"
                                   size="20px"
                                   name="certificate"/>
@@ -166,9 +166,10 @@ Time: 14:53
                     }
                 ]
             } ,
-            itemclick ( capitalcode , capitalname ) {
+            itemclick ( item ) {
                 // 选择确定事件 ,把选择好的头像传递回去
-                this.$emit( "selectcapital" , capitalcode , capitalname );
+                this.$emit( "selectcapital" ,
+                            item.capitalcode , item.capitalname , item.objectId );
 
                 return;
             } ,
