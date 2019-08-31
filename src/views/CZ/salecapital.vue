@@ -31,6 +31,11 @@ Time: 22:00
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="salemodel.salename"
+                       required
+                       clearable
+                       label="出售人"
+                       placeholder="请输入出售人"/>
         </van-cell-group>
 
 
