@@ -8,7 +8,6 @@
 import dayjs from 'dayjs'
 import { CapitalStatus } from '@/common/constant.js'
 
-
 /**
  * 资产出售表
  */
@@ -94,13 +93,28 @@ export function addsale ( sale , capitalobjectId ) {
 
         query.save().then( res => {
             //console.log( res )
+            if ( res != null ) {
+                const querydl = Bmob.Query( tableNamedl );
 
-            resolve( res );
-            //返回创建时间和id
-            // {
-            //     createdAt: "YYYY-mm-dd HH:ii:ss",
-            //         objectId: "objectId"
-            // }
+                querydl.set( 'id' , capitalobjectId ) //需要修改的objectId
+                querydl.set( 'capitalstatus' , CapitalStatus.sale )
+
+                querydl.save().then( re => {
+                    // 修改成功 返回 {updatedAt: "2019-04-17 17:39:44"}
+                    // 如果id错误,返回 {code: 101, error: "object not found for a08b661111."}
+                    // console.log( re )
+
+                    resolve( res );
+                } ).catch( err => {
+                    // console.log( err )
+
+                    resolve( null );
+                } )
+            }
+            else {
+                resolve( null );
+            }
+
         } ).catch( err => {
             //console.log( err )
 
