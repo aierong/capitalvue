@@ -9,7 +9,7 @@ Time: 14:57
 <template>
 
     <div>
-<!--        <br>-->
+        <!--        <br>-->
         <!--这里整个头像-->
         <van-cell size="large"
                   @click="SetupAvatarClick">
@@ -44,7 +44,8 @@ Time: 14:57
         //导入混入对象 可以是多个,数组
         mixins : [
 
-            loginuserdatamix , mix
+            loginuserdatamix ,
+            mix
 
         ] ,
         //数据模型

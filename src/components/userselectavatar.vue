@@ -52,7 +52,9 @@
             diaObj : Object
         } ,
         //导入混入对象 可以是多个,数组
-        mixins : [ mix ] ,
+        mixins : [
+            mix
+        ] ,
         //数据模型
         data () {
             return {

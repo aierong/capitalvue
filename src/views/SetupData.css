@@ -1,2 +1,6 @@
 /*引入阿里图标css*/
 @import "~@/assets/common/iconfont.css";
+
+.cellspantitleclass {
+    margin-left: 10px;
+}
