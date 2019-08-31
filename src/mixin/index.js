@@ -11,7 +11,6 @@ export const mix = {
             return util.geticonallname( val );
         } ,
     } ,
-
 }
 
 

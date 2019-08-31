@@ -34,6 +34,9 @@ export const loginuserdatamix = {
             'clearloginuser'
 
         ] ) ,
+        /**
+         * 退出系统
+         */
         exitsystem () {
 
             //  清除一下
