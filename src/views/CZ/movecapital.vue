@@ -325,15 +325,15 @@ Time: 16:56
                 this.movemodel.username = this.loginusername;
 
                 ( async () => {
-                    let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
+                    let isexistsnos = await moveapi.isexistsnos( this.movemodel.nos );
 
                     if ( isexistsnos != null && isexistsnos.isexists ) {
-                        this.$toast( "报废单号重复" )
+                        this.$toast( "转移单号重复" )
 
                         return;
                     }
 
-                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.scrapmodel.capitalcode );
+                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.movemodel.capitalcode );
 
                     if ( _capitals != null && _capitals.length > 0 ) {
                         //多条记录，取第一条
@@ -354,7 +354,7 @@ Time: 16:56
                         return;
                     }
 
-                    let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
+                    let newno = await moveapi.addmove( this.movemodel , this.UserSelectCapitalObjectId );
 
                     if ( newno != null ) {
                         //添加成功
@@ -376,17 +376,26 @@ Time: 16:56
             } ,
             initmodel () {
 
-                this.scrapmodel = {
+                this.movemodel = {
                     nos : '' ,
                     capitalcode : '' ,
                     capitalname : '' ,
 
-                    scrapmoney : 0 ,
-                    scrapname : '' ,
-                    //默认今天
-                    scrapdate : dayjs().format( 'YYYY-MM-DD' ) ,
-                    scrapreason : '' ,
+                    olddeptno : '' ,
+                    olddeptname : '' ,
 
+                    newdeptno : '' ,
+                    newdeptname : '' ,
+
+                    oldsavesite : '' ,
+                    newsavesite : '' ,
+
+                    oldsaveman : '' ,
+                    newsaveman : '' ,
+
+                    //默认今天
+                    movedate : dayjs().format( 'YYYY-MM-DD' ) ,
+                    movename : '' ,
                     comment : '' ,
 
                     //这3个属性不必清空
@@ -395,9 +404,9 @@ Time: 16:56
                     // inputdate : '' ,
                 }
 
-                this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+                this.movemodel.nos = RandomUtil.getrandomno( this.prefix );
 
-                this.scrapmodel.scrapname = RandomUtil.getcname();
+                this.movemodel.movename = RandomUtil.getcname();
 
             } ,
         } ,
