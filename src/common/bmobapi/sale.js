@@ -124,3 +124,6 @@ export function addsale ( sale , capitalobjectId ) {
 }
 
 
+
+
+
