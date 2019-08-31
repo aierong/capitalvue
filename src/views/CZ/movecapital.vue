@@ -54,6 +54,26 @@ Time: 16:56
                        clearable
                        label="现位置"
                        placeholder="请输入现位置"/>
+            <van-field v-model="movemodel.oldsaveman"
+                       required
+                       readonly
+                       label="原保管人"/>
+            <van-field v-model="movemodel.newsaveman"
+                       required
+                       clearable
+                       label="现保管人"
+                       placeholder="请输入现保管人"/>
+            <van-field v-model="movemodel.movedate"
+                       required
+                       readonly
+                       label="转移日期"
+                       placeholder="请选择转移日期">
+                <van-button slot="button"
+                            @click="opendateldlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
         </van-cell-group>
 
 
@@ -192,7 +212,9 @@ Time: 16:56
                 this.movemodel.oldsavesite = item.savesite;
                 this.movemodel.newsavesite = item.savesite;
 
-
+                //把保管人信息写上
+                this.movemodel.oldsaveman = item.saveman;
+                this.movemodel.newsaveman = item.saveman;
 
                 this.CapitalDlgObj.isshow = false;
 
