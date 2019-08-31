@@ -96,7 +96,7 @@ Time: 8:12
 
     import * as util from '@/common/util/util.js'
 
-    import * as  dlapi from '@/common/bmobapi/dl.js'
+    import * as dlapi from '@/common/bmobapi/dl.js'
     import * as scrapapi from '@/common/bmobapi/scrap.js'
 
     export default {

@@ -98,8 +98,8 @@ Time: 22:00
 
     import * as util from '@/common/util/util.js'
 
-    import * as  dlapi from '@/common/bmobapi/dl.js'
-    import * as sale from '@/common/bmobapi/sale.js'
+    import * as dlapi from '@/common/bmobapi/dl.js'
+    import * as saleapi from '@/common/bmobapi/sale.js'
 
     export default {
         name : "salecapital" ,
@@ -232,21 +232,27 @@ Time: 22:00
                     return;
                 }
 
+                if ( !this.salemodel.saleto ) {
+                    this.$toast( "请输入出售对象" )
+
+                    return;
+                }
+
                 //把插入时间补上
-                this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.scrapmodel.userid = this.loginusermobile;
-                this.scrapmodel.username = this.loginusername;
+                this.salemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                this.salemodel.userid = this.loginusermobile;
+                this.salemodel.username = this.loginusername;
 
                 ( async () => {
-                    let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
+                    let isexistsnos = await saleapi.isexistsnos( this.salemodel.nos );
 
                     if ( isexistsnos != null && isexistsnos.isexists ) {
-                        this.$toast( "报废单号重复" )
+                        this.$toast( "出售单号重复" )
 
                         return;
                     }
 
-                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.scrapmodel.capitalcode );
+                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.salemodel.capitalcode );
 
                     if ( _capitals != null && _capitals.length > 0 ) {
                         //多条记录，取第一条
