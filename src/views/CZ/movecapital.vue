@@ -74,7 +74,20 @@ Time: 16:56
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="movemodel.comment"
+                       clearable
+                       label="备注"
+                       placeholder="请输入备注"/>
+            <van-field v-model="loginuserallname"
+                       label="添加人"
+                       placeholder="请输入添加人"
+                       readonly/>
         </van-cell-group>
+        <br><br>
+        <van-button size="large"
+                    @click="AddClick"
+                    type="primary">保 存
+        </van-button>
 
 
         <!--        选择资产的弹窗
@@ -256,6 +269,112 @@ Time: 16:56
                 // this.closetypedlg();
 
                 return;
+            } ,
+            AddClick () {
+                if ( !this.movemodel.nos ) {
+                    this.$toast( "报废单号为空" )
+
+                    return;
+                }
+
+                if ( !this.scrapmodel.capitalcode ) {
+                    this.$toast( "请选择资产" )
+
+                    return;
+                }
+
+                if ( !this.scrapmodel.scrapname ) {
+                    this.$toast( "请输入报废人" )
+
+                    return;
+                }
+
+                if ( !this.scrapmodel.scrapdate ) {
+                    this.$toast( "请选择报废日期" )
+
+                    return;
+                }
+
+                //把插入时间补上
+                this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                this.scrapmodel.userid = this.loginusermobile;
+                this.scrapmodel.username = this.loginusername;
+
+                ( async () => {
+                    let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
+
+                    if ( isexistsnos != null && isexistsnos.isexists ) {
+                        this.$toast( "报废单号重复" )
+
+                        return;
+                    }
+
+                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.scrapmodel.capitalcode );
+
+                    if ( _capitals != null && _capitals.length > 0 ) {
+                        //多条记录，取第一条
+                        let _capital = _capitals[ 0 ];
+
+                        //检查一下资产的状态
+                        let IsNormal = util.IsNormal( _capital.capitalstatus );
+
+                        if ( !IsNormal ) {
+                            this.$toast( "资产不是正常状态" )
+
+                            return;
+                        }
+                    }
+                    else {
+                        this.$toast( "资产不存在" )
+
+                        return;
+                    }
+
+                    let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
+
+                    if ( newno != null ) {
+                        //添加成功
+                        this.$toast.success( "成功" );
+                        //重新初始化一下
+                        this.initmodel();
+
+                        return;
+                    }
+                    else {
+                        //失败
+                        this.$toast.fail( "失败" )
+
+                        return;
+                    }
+
+                } )();
+
+            } ,
+            initmodel () {
+
+                this.scrapmodel = {
+                    nos : '' ,
+                    capitalcode : '' ,
+                    capitalname : '' ,
+
+                    scrapmoney : 0 ,
+                    scrapname : '' ,
+                    //默认今天
+                    scrapdate : dayjs().format( 'YYYY-MM-DD' ) ,
+                    scrapreason : '' ,
+
+                    comment : '' ,
+
+                    //这3个属性不必清空
+                    // userid : '' ,
+                    // username : '' ,
+                    // inputdate : '' ,
+                }
+
+                this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.scrapmodel.scrapname = RandomUtil.getcname();
+
             } ,
         } ,
         //计算属性
