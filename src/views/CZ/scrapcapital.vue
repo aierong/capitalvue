@@ -306,7 +306,7 @@ Time: 8:12
                     // inputdate : '' ,
                 }
 
-                this.scrapmodel.scrapname = RandomUtil.getcname();
+                // this.scrapmodel.scrapname = RandomUtil.getcname();
 
                 this.scrapmodel.nos = RandomUtil.getrandomno( this.prefix );
 
