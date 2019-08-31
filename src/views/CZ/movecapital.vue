@@ -30,6 +30,21 @@ Time: 16:56
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="olddeptinfo"
+                       required
+                       readonly
+                       label="原部门"/>
+            <van-field v-model="newdeptinfo"
+                       required
+                       readonly
+                       label="现部门"
+                       placeholder="请选择部门">
+                <van-button slot="button"
+                            @click="opendeptdlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
         </van-cell-group>
 
 
@@ -41,6 +56,12 @@ Time: 16:56
 -->
         <selectdate @dateresult="dateresult"
                     :diaObj="DateDlgObj"></selectdate>
+
+        <!--        选择部门的弹窗
+        -->
+        <UserSelectDept :diaObj="DeptDlgObj"
+                        @deptselectresult="deptselectresult"></UserSelectDept>
+
     </div>
 
 </template>
@@ -55,6 +76,7 @@ Time: 16:56
 
     import selectcapital from '@/components/selectcapital.vue'
     import selectdate from '@/components/selectdate.vue'
+    import UserSelectDept from '@/components/UserSelectDept.vue'
 
     import * as util from '@/common/util/util.js'
 
@@ -67,7 +89,8 @@ Time: 16:56
         components : {
 
             selectcapital ,
-            selectdate
+            selectdate ,
+            UserSelectDept
 
         } ,
         //导入混入对象 可以是多个,数组
@@ -126,6 +149,11 @@ Time: 16:56
                     //先默认一个 ，后面会重新赋值
                     date : dayjs().format( 'YYYY-MM-DD' )
                 } ,
+                DeptDlgObj : {
+                    //是显示选择类型弹窗
+                    isshowdialog : false ,
+                    deptno : ''
+                } ,
             }
         } ,
         //方法
@@ -144,6 +172,12 @@ Time: 16:56
                 this.movemodel.capitalname = item.capitalname;
                 //记录id，后面保存要用
                 this.UserSelectCapitalObjectId = item.objectId;
+
+                //把部门信息写上
+                this.movemodel.olddeptno = item.deptno;
+                this.movemodel.olddeptname = item.deptname;
+                this.movemodel.newdeptno = item.deptno;
+                this.movemodel.newdeptname = item.deptname;
 
                 this.CapitalDlgObj.isshow = false;
 
@@ -164,6 +198,28 @@ Time: 16:56
                 this.DateDlgObj.date = '';
 
             } ,
+            /**
+             * 打开部门选择弹窗
+             */
+            opendeptdlg () {
+                this.DeptDlgObj = {
+                    isshowdialog : true ,
+                    deptno : this.movemodel.newdeptno
+                }
+            } ,
+            deptselectresult ( deptno , deptname ) {
+                // console.log( val )
+
+                this.DeptDlgObj.deptno = deptno;
+
+                this.movemodel.newdeptno = deptno;
+                this.movemodel.newdeptname = deptname;
+
+                //不用自己关闭dlg
+                // this.closetypedlg();
+
+                return;
+            } ,
         } ,
         //计算属性
         computed : {
@@ -176,6 +232,26 @@ Time: 16:56
             } ,
             loginuserallname () {
                 return `(${ this.loginusermobile })${ this.loginusername }`
+            } ,
+            /**
+             * 原部门信息
+             * @returns {string}
+             */
+            olddeptinfo () {
+                if ( !this.movemodel.olddeptno || !this.movemodel.olddeptname ) {
+                    return '';
+                }
+                return `(${ this.movemodel.olddeptno })${ this.movemodel.olddeptname }`
+            } ,
+            /**
+             * 新部门信息
+             * @returns {string}
+             */
+            newdeptinfo () {
+                if ( !this.movemodel.newdeptno || !this.movemodel.newdeptname ) {
+                    return '';
+                }
+                return `(${ this.movemodel.newdeptno })${ this.movemodel.newdeptname }`
             } ,
         } ,
         //生命周期(mounted)
