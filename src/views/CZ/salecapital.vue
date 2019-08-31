@@ -36,6 +36,23 @@ Time: 22:00
                        clearable
                        label="出售人"
                        placeholder="请输入出售人"/>
+            <van-field v-model="salemodel.saledate"
+                       required
+                       readonly
+                       label="出售日期"
+                       placeholder="请选择出售日期">
+                <van-button slot="button"
+                            @click="opendateldlg"
+                            size="small"
+                            type="primary">选择
+                </van-button>
+            </van-field>
+            <van-field v-model.number="salemodel.salemoney"
+                       required
+                       clearable
+                       type="number"
+                       label="出售金额"
+                       placeholder="请输入出售金额"/>
         </van-cell-group>
 
 
