@@ -182,11 +182,11 @@ Time: 22:00
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
             } ,
-            selectcapital ( capitalcode , capitalname , CapitalObjectId ) {
-                this.salemodel.capitalcode = capitalcode;
-                this.salemodel.capitalname = capitalname;
+            selectcapital ( item ) {
+                this.salemodel.capitalcode = item.capitalcode;
+                this.salemodel.capitalname = item.capitalname;
                 //记录id，后面保存要用
-                this.UserSelectCapitalObjectId = CapitalObjectId;
+                this.UserSelectCapitalObjectId = item.objectId;
 
                 this.CapitalDlgObj.isshow = false;
 

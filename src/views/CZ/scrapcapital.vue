@@ -178,11 +178,11 @@ Time: 8:12
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
             } ,
-            selectcapital ( capitalcode , capitalname , CapitalObjectId ) {
-                this.scrapmodel.capitalcode = capitalcode;
-                this.scrapmodel.capitalname = capitalname;
+            selectcapital ( item ) {
+                this.scrapmodel.capitalcode = item.capitalcode;
+                this.scrapmodel.capitalname = item.capitalname;
                 //记录id，后面保存要用
-                this.UserSelectCapitalObjectId = CapitalObjectId;
+                this.UserSelectCapitalObjectId = item.objectId;
 
                 this.CapitalDlgObj.isshow = false;
 

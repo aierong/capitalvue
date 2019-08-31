@@ -167,9 +167,10 @@ Time: 14:53
                 ]
             } ,
             itemclick ( item ) {
-                // 选择确定事件 ,把选择好的头像传递回去
+                // 选择确定事件 ,把选择好的资产传递回去
                 this.$emit( "selectcapital" ,
-                            item.capitalcode , item.capitalname , item.objectId );
+                    // item.capitalcode , item.capitalname , item.objectId
+                    item );
 
                 return;
             } ,
