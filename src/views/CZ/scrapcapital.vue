@@ -265,7 +265,7 @@ Time: 8:12
                         return;
                     }
 
-                    let newno = await scrapapi.addscrap( this.scrapmodel );
+                    let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
 
                     if ( newno != null ) {
                         //添加成功
