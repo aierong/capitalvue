@@ -95,6 +95,8 @@ export function addmove ( move , capitalobjectId ) {
         query.set( "newsaveman" , move.newsaveman )
 
         query.set( "movedate" , move.movedate )
+
+        query.set( "movename" , move.movename )
         query.set( "comment" , move.comment )
 
         query.save().then( res => {

@@ -74,6 +74,11 @@ Time: 16:56
                             type="primary">选择
                 </van-button>
             </van-field>
+            <van-field v-model="movemodel.movename"
+                       required
+                       clearable
+                       label="转移人"
+                       placeholder="请输入转移人"/>
             <van-field v-model="movemodel.comment"
                        clearable
                        label="备注"
@@ -172,7 +177,7 @@ Time: 16:56
 
                     //默认今天
                     movedate : dayjs().format( 'YYYY-MM-DD' ) ,
-
+                    movename : '' ,
                     comment : '' ,
 
                     userid : '' ,
@@ -205,6 +210,16 @@ Time: 16:56
                 this.$router.push( "/cz" )
 
                 return;
+            } ,
+            setupscrapmodel () {
+                //给一些变量赋初始化值
+                //登录用户
+                this.movemodel.userid = this.loginusermobile;
+                this.movemodel.username = this.loginusername;
+
+                this.movemodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.movemodel.movename = RandomUtil.getcname();
             } ,
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
@@ -272,12 +287,12 @@ Time: 16:56
             } ,
             AddClick () {
                 if ( !this.movemodel.nos ) {
-                    this.$toast( "报废单号为空" )
+                    this.$toast( "转移单号为空" )
 
                     return;
                 }
 
-                if ( !this.scrapmodel.capitalcode ) {
+                if ( !this.movemodel.capitalcode ) {
                     this.$toast( "请选择资产" )
 
                     return;
@@ -412,7 +427,9 @@ Time: 16:56
         } ,
         //生命周期(mounted)
         mounted () {
+            // console.log( 'movecapital mounted' )
 
+            this.setupscrapmodel();
         } ,
     }
 </script>
