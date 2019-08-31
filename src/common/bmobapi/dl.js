@@ -153,33 +153,51 @@ export function GetCapitalByCapitalCode ( capitalcode ) {
 }
 
 export function getnormalcapitallistidbyminid ( minid , loadcounts , typename , userid , searchkey ) {
-    const query = Bmob.Query( tableName );
 
-    query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
 
-    if ( typename ) {
-        query.equalTo( "typename" , "==" , typename );
-    }
+        query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
 
-    if ( minid > 0 ) {
-        query.equalTo( "autokey" , "<" , minid );
-    }
+        if ( typename ) {
+            query.equalTo( "typename" , "==" , typename );
+        }
 
-    //该用户填写的
-    if ( userid ) {
-        query.equalTo( "userid" , "==" , userid );
-    }
+        if ( minid > 0 ) {
+            query.equalTo( "autokey" , "<" , minid );
+        }
 
-    if ( searchkey ) {
+        //该用户填写的
+        if ( userid ) {
+            query.equalTo( "userid" , "==" , userid );
+        }
 
-    }
+        if ( loadcounts > 0 ) {
+            query.limit( loadcounts );
+        }
+        query.order( "-autokey" );
 
-    if ( loadcounts > 0 ) {
-        query.limit( loadcounts );
-    }
-    query.order( "-autokey" );
+        query.find().then( ( res ) => {
+            // console.log( 'res' , res )
 
-    return query.find();
+            if ( searchkey ) {
+                let result = res.filter( ( value , index , array ) => {
+                    return ( value.capitalcode != null
+                        && value.capitalcode.toUpperCase().includes( searchkey.toUpperCase() ) )
+                        || ( value.capitalname != null
+                            && value.capitalname.toUpperCase().includes( searchkey.toUpperCase() ) );
+
+                } )
+
+                resolve( result );
+            }
+            else {
+                resolve( res );
+            }
+        } )
+    } );
+
+    // return query.find();
 }
 
 //删除方法 待实现

@@ -156,7 +156,8 @@ Time: 14:53
                 let list = await dlapi.getnormalcapitallistidbyminid( 0 ,
                     initcount ,
                     this.CapitalTypeItemVal ,
-                    this.MyItemVal );
+                    this.MyItemVal ,
+                    this.searchval );
 
                 // console.log( list );
                 let lens = 0;
@@ -189,8 +190,8 @@ Time: 14:53
                 let list = await dlapi.getnormalcapitallistidbyminid( this.minautokey ,
                     counts ,
                     this.CapitalTypeItemVal ,
-                    this.MyItemVal );
-
+                    this.MyItemVal ,
+                    this.searchval );
 
                 setTimeout( () => {
 
