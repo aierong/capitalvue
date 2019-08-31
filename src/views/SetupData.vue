@@ -23,6 +23,24 @@ Time: 14:57
 
             </template>
         </van-cell>
+        <van-cell is-link
+                  @click="updatepwdClick">
+            <template slot="title">
+                <van-icon name="setting-o"
+                          style="font-size:15px;"/>
+                <span class="cellspantitleclass">修改密码</span>
+            </template>
+        </van-cell>
+        <van-cell>
+            <template slot="title">
+                <van-icon name="fire-o"
+                          style="font-size:15px;"/>
+                <span class="cellspantitleclass">
+                    <a href="https://github.com/aierong/capitalvue"
+                       target="_blank">github</a></span>
+            </template>
+        </van-cell>
+        <br>
         <!--头像选择弹窗组件-->
         <userselectavatar @selectavatar="selectavatar"
                           :diaObj="diaObj"></userselectavatar>
@@ -76,6 +94,9 @@ Time: 14:57
                 'updateloginuseravatar'
 
             ] ) ,
+            updatepwdClick () {
+
+            } ,
             SetupAvatarClick () {
                 this.diaObj = {
                     showdialog : true ,
