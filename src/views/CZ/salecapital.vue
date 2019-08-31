@@ -128,6 +128,18 @@ Time: 22:00
 
                 return;
             } ,
+            setupscrapmodel () {
+                //给一些变量赋初始化值
+                //登录用户
+                this.salemodel.userid = this.loginusermobile;
+                this.salemodel.username = this.loginusername;
+
+                // this.salemodel.scrapname = RandomUtil.getcname();
+
+                this.salemodel.nos = RandomUtil.getrandomno( this.prefix );
+
+                this.salemodel.salename = RandomUtil.getcname();
+            } ,
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
             } ,
@@ -172,7 +184,9 @@ Time: 22:00
         } ,
         //生命周期(mounted)
         mounted () {
+            // console.log( 'salecapital mounted' )
 
+            this.setupscrapmodel();
         } ,
     }
 </script>
