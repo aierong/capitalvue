@@ -7,6 +7,8 @@
 
 import dayjs from 'dayjs'
 
+import { CapitalStatus } from '@/common/constant.js'
+
 /**
  * 资产报废表
  */
@@ -50,7 +52,8 @@ export function isexistsnos ( nos ) {
 
 /**
  *
- * @param move
+ * @param 报废对象
+ * @param 资产id
  * @returns {Promise<unknown>}
  */
 export function addscrap ( scrap , capitalobjectId ) {
@@ -93,7 +96,26 @@ export function addscrap ( scrap , capitalobjectId ) {
         query.save().then( res => {
             //console.log( res )
 
-            resolve( res );
+            if ( res != null ) {
+                const querydl = Bmob.Query( tableNamedl );
+
+                querydl.set( 'id' , capitalobjectId ) //需要修改的objectId
+                querydl.set( 'capitalstatus' , CapitalStatus.scrap )
+
+                querydl.save().then( re => {
+                    // 修改成功 返回 {updatedAt: "2019-04-17 17:39:44"}
+                    // 如果id错误,返回 {code: 101, error: "object not found for a08b661111."}
+                    // console.log( re )
+
+                    resolve( res );
+                } ).catch( err => {
+                    // console.log( err )
+
+                    resolve( null );
+                } )
+            }
+
+            // resolve( res );
             //返回创建时间和id
             // {
             //     createdAt: "YYYY-mm-dd HH:ii:ss",
@@ -106,9 +128,5 @@ export function addscrap ( scrap , capitalobjectId ) {
         } )
     } );
 }
-
-
-
-
 
 
