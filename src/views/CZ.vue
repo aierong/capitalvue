@@ -26,7 +26,7 @@ Time: 0:23
                 <span class="cellspantitleclass">资产登记</span>
             </template>
         </van-cell>
-        <van-cell>
+        <van-cell @click="onMoveClick">
             <template slot="title">
                 <svg class="icon"
                      aria-hidden="true"
@@ -70,9 +70,7 @@ Time: 0:23
                 <span class="cellspantitleclass">资产查询</span>
             </template>
         </van-cell>
-        <!--        <br>-->
-        <!--        <br>-->
-        <!--        <div class="titleclass">我的资产数据</div>-->
+
         <van-divider class="mydivider"
                      dashed>
             我的资产数据
@@ -88,7 +86,7 @@ Time: 0:23
 
 <!-- js脚本代码片段 -->
 <script>
-    //懒加载需要单独引入
+
     import Vue from 'vue';
 
     import VCharts from 'v-charts'
@@ -125,6 +123,12 @@ Time: 0:23
             onAddClick () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
+
+                return;
+            } ,
+            onMoveClick () {
+                // 页面跳转
+                this.$router.push( "/movecapital" )
 
                 return;
             } ,
