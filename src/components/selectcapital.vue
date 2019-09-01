@@ -149,20 +149,8 @@ Time: 14:53
             } ,
 
             createoptionitem () {
-                //let list = globalconstant.CapitalType;
 
-                // this.optionitemCapitalType.push( {
-                //     text : '全部' ,
-                //     value : ''
-                // } )
-                //
-                // globalconstant.CapitalType.forEach( ( val , index , array ) => {
-                //     this.optionitemCapitalType.push( {
-                //         text : val ,
-                //         value : val
-                //     } )
-                // } )
-                this.optionitemCapitalType = util.GetCapitalTypeList( false );
+                this.optionitemCapitalType = util.GetCapitalTypeList( true );
 
                 this.optionitemMy = [
                     {
