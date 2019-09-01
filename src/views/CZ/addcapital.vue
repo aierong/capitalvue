@@ -13,7 +13,7 @@ Time: 11:17
                      left-text="返回"
                      left-arrow
                      @click-left="onClickLeft"/>
-        <br>
+<!--        <br>-->
         <van-cell-group>
             <van-field v-model="capitalmodel.capitalcode"
                        required
@@ -81,7 +81,13 @@ Time: 11:17
         <br><br>
         <van-button size="large"
                     @click="AddClick"
-                    type="primary">保 存
+                    type="primary"
+                    color="#7232dd"
+                    plain
+                    round
+                    loading-type="spinner"
+                    loading-text="保存中..."
+                    :loading="buttonobj.isloading">保 存
         </van-button>
         <!--        选择类型的弹窗
         -->
@@ -142,6 +148,9 @@ Time: 11:17
         //数据模型
         data () {
             return {
+                buttonobj : {
+                    isloading : false
+                } ,
                 capitalmodel : {
                     capitalcode : '' ,
                     capitalname : '' ,
@@ -284,9 +293,17 @@ Time: 11:17
                         return;
                     }
 
-                    let newcapital = await dlapi.adddl( this.capitalmodel );
+                    this.buttonobj.isloading = true;
 
-                    if ( newcapital != null ) {
+                    // let newcapital = await dlapi.adddl( this.capitalmodel );
+                    let arr = await Promise.all( [
+                        util.runlongtims( 2000 ) ,
+                        dlapi.adddl( this.capitalmodel )
+                    ] );
+
+                    this.buttonobj.isloading = false;
+
+                    if ( arr != null && arr.length >= 2 ) {
                         //添加成功
                         this.$toast.success( "成功" );
                         //重新初始化一下

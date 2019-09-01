@@ -96,3 +96,21 @@ export function IsNormal ( _CapitalStatus ) {
 }
 
 
+
+/**
+ * 长时间等待
+ * @param 等待时间（毫秒）
+ * @returns {Promise<any>}
+ */
+export function runlongtims ( times ) {
+
+    return new Promise( ( resolve , reject ) => {
+
+        setTimeout( () => {
+            resolve( "" );
+        } , times );
+
+    } )
+
+}
+
