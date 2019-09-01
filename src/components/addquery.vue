@@ -52,12 +52,34 @@ Time: 12:19
                 </template>
             </van-cell>
         </van-cell-group>
+        <br>
+        <br>
+        <van-divider v-if="!loadobj.isover">
+            <template slot="default">
+                <van-button :loading="loadobj.isloading"
+                            @click="loaddata"
+                            size="small"
+                            icon="replay"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="加载中...">点我加载更多
+                </van-button>
+            </template>
+        </van-divider>
+        <van-divider dashed
+                     v-if="loadobj.isshowdivider">我是有底线的
+        </van-divider>
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+    //引入 lodash
+    import * as _ from "lodash"
+
     import * as globalconstant from '@/common/constant.js'
     import * as util from '@/common/util/util.js'
     import * as  dlapi from '@/common/bmobapi/dl.js'
@@ -126,6 +148,46 @@ Time: 12:19
                 ]
             } ,
             onSearch () {
+                this.initlist();
+            } ,
+            async loaddata () {
+                let counts = 5;
+
+                this.loadobj.isloading = true;
+
+                let list = await dlapi.getaddquerylistbyminid( this.minautokey ,
+                    counts ,
+                    this.CapitalTypeItemVal ,
+                    this.MyItemVal ,
+                    this.CapitalStatusVal ,
+                    this.searchval );
+
+                setTimeout( () => {
+
+                    this.loadobj.isloading = false;
+
+                    // console.log( list );
+                    let lens = 0;
+
+                    if ( list != null && list.length > 0 ) {
+                        lens = list.length;
+
+                        this.capitallist.push( ...list )
+                    }
+                    else {
+                        lens = 0;
+
+                    }
+
+                    if ( lens < counts ) {
+                        this.loadobj.isover = true;
+                        this.loadobj.isshowdivider = true;
+                    }
+                    else {
+                        this.loadobj.isover = false;
+                        this.loadobj.isshowdivider = false;
+                    }
+                } , 2000 );
 
             } ,
             itemclick ( item ) {
@@ -167,10 +229,32 @@ Time: 12:19
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            /**
+             * 得列表中最小的autokey
+             * @returns {number|*}
+             */
+            minautokey () {
+                if ( this.listcounts > 0 ) {
+                    let obj = _.minBy( this.capitallist , ( val ) => {
+                        return val.autokey;
+                    } )
+
+                    return obj.autokey;
+                }
+
+                return 0;
+            } ,
+            /**
+             * 列表中记录数量
+             * @returns {number|*}
+             */
+            listcounts () {
+                if ( this.capitallist != null && this.capitallist.length > 0 ) {
+                    return this.capitallist.length;
+                }
+
+                return 0;
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {
