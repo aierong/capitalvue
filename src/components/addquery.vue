@@ -19,6 +19,16 @@ Time: 12:19
             <van-dropdown-item v-model="CapitalStatusVal"
                                :options="optionitemCapitalStatus"/>
         </van-dropdown-menu>
+        <van-search placeholder="请输入搜索关键词"
+                    v-model="searchval"
+                    show-action
+                    shape="round"
+                    @search="onSearch">
+
+            <div slot="action"
+                 @click="onSearch">搜索
+            </div>
+        </van-search>
     </div>
 
 </template>
@@ -41,6 +51,8 @@ Time: 12:19
 
                 CapitalStatusVal : '' ,
                 optionitemCapitalStatus : [] ,
+
+                searchval : '' ,
             }
         } ,
         //方法
@@ -62,7 +74,9 @@ Time: 12:19
                     }
                 ]
             } ,
+            onSearch () {
 
+            } ,
         } ,
         //计算属性
         computed : {
