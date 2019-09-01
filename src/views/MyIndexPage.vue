@@ -135,10 +135,15 @@ Time: 14:42
                     require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
                     require( `@/assets/capitalswipeimage/ji2.jpeg` ) ,
 
-                    require( `@/assets/capitalswipeimage/car1.jpeg` ) ,
-                    require( `@/assets/capitalswipeimage/car2.jpg` ) ,
+                    require( `@/assets/capitalswipeimage/car4.jpg` ) ,
+                    require( `@/assets/capitalswipeimage/car6.jpg` ) ,
 
-                    require( `@/assets/capitalswipeimage/house1.jpg` ) ,
+                    require( `@/assets/capitalswipeimage/dianzi.jpg` ) ,
+
+                    require( `@/assets/capitalswipeimage/fangwu1.jpg` ) ,
+
+                    require( `@/assets/capitalswipeimage/chart.jpg` ) ,
+                    require( `@/assets/capitalswipeimage/capital.jpg` ) ,
                 ] ,
                 chartData : {
                     columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
