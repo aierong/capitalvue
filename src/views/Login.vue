@@ -12,8 +12,7 @@
                      title="用户登录"
                      @click-right="onClickRight"/>
         <br>
-        <br>
-        <br><br><br>
+
         <van-cell-group>
             <van-field v-model="userinfo.mobile"
                        required

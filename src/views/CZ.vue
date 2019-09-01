@@ -10,9 +10,7 @@ Time: 0:23
 
     <div>
         <div class="titleclass">资产操作</div>
-        <!--                <van-divider dashed  content-position="left" :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 6px' }">-->
-        <!--                    资产操作-->
-        <!--                </van-divider>-->
+
         <br>
 
         <van-cell @click="onAddClick">

@@ -123,19 +123,9 @@
 
                 this.userinfo.avatar = _avatar;
 
-                //不用自己关闭dlg
-                // this.closetypedlg();
-
                 return;
             } ,
-            // closewin () {
-            //     this.diaObj = {
-            //         showdialog : false ,
-            //         avatar : this.userinfo.avatar
-            //     }
-            //
-            //     return;
-            // } ,
+
             SetupAvatarClick () {
                 this.diaObj = {
                     showdialog : true ,

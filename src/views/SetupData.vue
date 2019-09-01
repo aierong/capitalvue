@@ -9,7 +9,7 @@ Time: 14:57
 <template>
 
     <div>
-        <!--        <br>-->
+
         <!--这里整个头像-->
         <van-cell size="large"
                   @click="SetupAvatarClick">
