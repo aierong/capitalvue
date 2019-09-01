@@ -138,4 +138,32 @@ export function GetCapitalTypeList ( isincludeall ) {
     return arr;
 }
 
+export function GetCapitalStatus ( isincludeall ) {
+    let arr = [];
+
+    if ( isincludeall ) {
+        arr.push( {
+            text : '全部' ,
+            value : ''
+        } )
+    }
+
+    arr.push( {
+        text : '正常' ,
+        value : '正常'
+    } )
+
+    arr.push( {
+        text : '出售' ,
+        value : '出售'
+    } )
+
+    arr.push( {
+        text : '报废' ,
+        value : '报废'
+    } )
+
+    return arr;
+}
+
 

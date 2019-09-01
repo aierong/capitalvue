@@ -16,6 +16,8 @@ Time: 12:19
                                :options="optionitemCapitalType"/>
             <van-dropdown-item v-model="MyItemVal"
                                :options="optionitemMy"/>
+            <van-dropdown-item v-model="CapitalStatusVal"
+                               :options="optionitemCapitalStatus"/>
         </van-dropdown-menu>
     </div>
 
@@ -36,6 +38,9 @@ Time: 12:19
                 MyItemVal : '' ,
                 //全部和我的
                 optionitemMy : [] ,
+
+                CapitalStatusVal : '' ,
+                optionitemCapitalStatus : [] ,
             }
         } ,
         //方法
@@ -43,6 +48,8 @@ Time: 12:19
             createoptionitem () {
 
                 this.optionitemCapitalType = util.GetCapitalTypeList( true );
+
+                this.optionitemCapitalStatus = util.GetCapitalStatus( true );
 
                 this.optionitemMy = [
                     {
