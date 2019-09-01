@@ -121,6 +121,7 @@ Time: 14:53
         //数据模型
         data () {
             return {
+                //资产列表
                 capitallist : [] ,
                 searchval : '' ,
 
