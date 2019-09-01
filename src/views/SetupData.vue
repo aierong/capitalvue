@@ -49,6 +49,20 @@ Time: 14:57
             </template>
         </van-cell>
         <br>
+        <van-dialog :before-close="beforeClose"
+                    show-cancel-button
+                    v-model="showdialog">
+            <van-field clearable
+                       label="密码"
+                       type="password"
+                       placeholder="请输入密码"
+                       v-model="userinfo.password"/>
+            <van-field clearable
+                       label="再次密码"
+                       placeholder="请输入密码"
+                       type="password"
+                       v-model="userinfo.password2"/>
+        </van-dialog>
         <!--头像选择弹窗组件-->
         <userselectavatar @selectavatar="selectavatar"
                           :diaObj="diaObj"></userselectavatar>
@@ -93,6 +107,13 @@ Time: 14:57
                     showdialog : false ,
                     avatar : ''
                 } ,
+                showdialog : false ,
+                userinfo : {
+
+                    password : '' ,
+                    password2 : ''
+
+                } ,
             }
         } ,
         //方法
@@ -116,9 +137,70 @@ Time: 14:57
 
                 } );
             } ,
+            beforeClose ( action , done ) {
+                //点击确定按钮:action=confirm  点击取消按钮:action=cancel
 
+                if ( action === "confirm" ) {
+
+                    if ( !this.userinfo.password ) {
+                        this.$toast( "请输入密码" )
+                        done( false )
+
+                        return;
+                    }
+
+                    if ( !this.userinfo.password2 ) {
+                        this.$toast( "请再次输入密码" )
+                        done( false )
+
+                        return;
+                    }
+
+                    if ( this.userinfo.password != this.userinfo.password2 ) {
+
+                        this.$toast( "两次密码不一致" )
+                        done( false )
+
+                        return;
+                    }
+
+                    // console.log( this.loginuserdata )
+
+                    let user = this.loginuserdata;
+
+                    ;( async () => {
+                        // console.log( newuser.id )
+
+                        let result = await usersapi.updateUserPwd( user.objectId , this.userinfo.password );
+
+                        // console.log( result )
+
+                        if ( result != null ) {
+                            this.$toast.success( "修改成功,请重新登录!" );
+
+                            done()
+
+                            this.exitsystem();
+
+                            return;
+                        }
+                        else {
+                            this.$toast( "修改失败" )
+
+                            done()
+
+                            return;
+                        }
+
+                    } )();
+
+                }
+                else {
+                    done()
+                }
+            } ,
             updatepwdClick () {
-
+                this.showdialog = true;
             } ,
             SetupAvatarClick () {
                 this.diaObj = {
