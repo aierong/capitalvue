@@ -13,7 +13,6 @@ import * as globalconstant from '@/common/constant.js'
  */
 import { DlTable as tableName } from '@/common/constant.js';
 
-
 /**
  * 是存在资产
  * @param capitalcode
@@ -197,29 +196,28 @@ export function getnormalcapitallistbyminid ( minid , loadcounts , typename , us
         } )
     } );
 
-    // return query.find();
 }
 
-
-
-export function getaddquerylistbyminid ( minid , loadcounts , typename , userid , searchkey ) {
+export function getaddquerylistbyminid ( minid , loadcounts , typename , userid , CapitalStatus , searchkey ) {
 
     return new Promise( ( resolve , reject ) => {
         const query = Bmob.Query( tableName );
 
-        query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
+        if ( CapitalStatus ) {
+            query.equalTo( "capitalstatus" , "==" , CapitalStatus );
+        }
 
         if ( typename ) {
             query.equalTo( "typename" , "==" , typename );
         }
 
-        if ( minid > 0 ) {
-            query.equalTo( "autokey" , "<" , minid );
-        }
-
         //该用户填写的
         if ( userid ) {
             query.equalTo( "userid" , "==" , userid );
+        }
+
+        if ( minid > 0 ) {
+            query.equalTo( "autokey" , "<" , minid );
         }
 
         if ( loadcounts > 0 ) {
@@ -247,7 +245,6 @@ export function getaddquerylistbyminid ( minid , loadcounts , typename , userid 
         } )
     } );
 
-    // return query.find();
 }
 
 //删除方法 待实现

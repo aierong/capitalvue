@@ -29,19 +29,58 @@ Time: 12:19
                  @click="onSearch">搜索
             </div>
         </van-search>
+
+        <van-cell-group>
+            <van-cell :key="_index"
+                      v-for="(item,_index) in capitallist">
+                <template slot="right-icon">
+                    <van-icon @click="itemclick(item)"
+
+                              size="20px"
+                              name="search"/>
+                </template>
+                <template slot="title">
+                    <span>{{ item  | formattitle }}</span>
+                </template>
+                <template slot="label">
+                    <span>{{ item  | formatlabel }}</span>
+                </template>
+                <template slot="default">
+                    <span class="mycell"
+                          v-if="!IsNormal(item.capitalstatus)">{{ item.capitalstatus }}</span>
+                    <span v-else>{{ item.capitalstatus }}</span>
+                </template>
+            </van-cell>
+        </van-cell-group>
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
+    import * as globalconstant from '@/common/constant.js'
     import * as util from '@/common/util/util.js'
+    import * as  dlapi from '@/common/bmobapi/dl.js'
 
     export default {
         name : "addquery" ,
+        //过滤器
+        filters : {
+            //
+            formattitle : ( item ) => {
+
+                return `${ item.capitalname }(${ item.capitalcode })`
+            } ,
+            formatlabel : ( item ) => {
+
+                return `类型:${ item.typename } 保管人:${ item.saveman }`
+            } ,
+        } ,
         //数据模型
         data () {
             return {
+                //资产列表
+                capitallist : [] ,
                 CapitalTypeItemVal : '' ,
                 //资产类型
                 optionitemCapitalType : [] ,
@@ -53,10 +92,22 @@ Time: 12:19
                 optionitemCapitalStatus : [] ,
 
                 searchval : '' ,
+
+                loadobj : {
+                    isover : false ,
+                    isshowdivider : false ,
+                    isloading : false
+                } ,
             }
         } ,
         //方法
         methods : {
+            IsNormal ( capitalstatus ) {
+                if ( capitalstatus ) {
+                    return capitalstatus == globalconstant.CapitalStatus.normal;
+                }
+                return false;
+            } ,
             createoptionitem () {
 
                 this.optionitemCapitalType = util.GetCapitalTypeList( true );
@@ -77,6 +128,42 @@ Time: 12:19
             onSearch () {
 
             } ,
+            itemclick ( item ) {
+
+            } ,
+            async initlist () {
+                let initcount = 10;
+
+                let list = await dlapi.getaddquerylistbyminid( 0 ,
+                    initcount ,
+                    this.CapitalTypeItemVal ,
+                    this.MyItemVal ,
+                    this.CapitalStatusVal ,
+                    this.searchval );
+
+                // console.log( list );
+                let lens = 0;
+                if ( list != null && list.length > 0 ) {
+                    lens = list.length;
+
+                    this.capitallist = list;
+                }
+                else {
+                    lens = 0;
+
+                    this.capitallist = [];
+                }
+
+                if ( lens < initcount ) {
+                    this.loadobj.isover = true;
+                    this.loadobj.isshowdivider = false;
+                }
+                else {
+                    this.loadobj.isover = false;
+                    this.loadobj.isshowdivider = false;
+                }
+
+            } ,
         } ,
         //计算属性
         computed : {
@@ -88,6 +175,8 @@ Time: 12:19
         //生命周期(mounted)
         mounted () {
             this.createoptionitem();
+
+            this.initlist();
         } ,
     }
 </script>
