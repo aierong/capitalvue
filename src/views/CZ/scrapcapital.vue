@@ -14,7 +14,7 @@ Time: 8:12
                      left-text="返回"
                      left-arrow
                      @click-left="onClickLeft"/>
-        <br>
+
         <van-cell-group>
             <van-field v-model="scrapmodel.nos"
                        required
@@ -66,10 +66,16 @@ Time: 8:12
                        placeholder="请输入添加人"
                        readonly/>
         </van-cell-group>
-        <br><br>
+        <br>
         <van-button size="large"
                     @click="AddClick"
-                    type="primary">保 存
+                    type="primary"
+                    color="#7232dd"
+                    plain
+                    round
+                    loading-type="spinner"
+                    loading-text="保存中..."
+                    :loading="buttonobj.isloading">保 存
         </van-button>
 
         <!--        选择资产的弹窗
@@ -124,6 +130,9 @@ Time: 8:12
                 prefix : 'BF' ,
                 //用户选择资产的objectId
                 UserSelectCapitalObjectId : '' ,
+                buttonobj : {
+                    isloading : false
+                } ,
                 /**
                  * 模型
                  */
@@ -264,9 +273,17 @@ Time: 8:12
                         return;
                     }
 
-                    let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
+                    this.buttonobj.isloading = true;
 
-                    if ( newno != null ) {
+                    // let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
+                    let arr = await Promise.all( [
+                        util.runlongtims( 2000 ) ,
+                        scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId )
+                    ] );
+
+                    this.buttonobj.isloading = false;
+
+                    if ( arr != null && arr.length >= 2 ) {
                         //添加成功
                         this.$toast.success( "成功" );
                         //重新初始化一下
