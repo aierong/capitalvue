@@ -90,6 +90,7 @@ Time: 14:53
 
     import * as globalconstant from '@/common/constant.js'
     import * as  dlapi from '@/common/bmobapi/dl.js'
+    import * as util from '@/common/util/util.js'
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
@@ -150,17 +151,18 @@ Time: 14:53
             createoptionitem () {
                 //let list = globalconstant.CapitalType;
 
-                this.optionitemCapitalType.push( {
-                    text : '全部' ,
-                    value : ''
-                } )
-
-                globalconstant.CapitalType.forEach( ( val , index , array ) => {
-                    this.optionitemCapitalType.push( {
-                        text : val ,
-                        value : val
-                    } )
-                } )
+                // this.optionitemCapitalType.push( {
+                //     text : '全部' ,
+                //     value : ''
+                // } )
+                //
+                // globalconstant.CapitalType.forEach( ( val , index , array ) => {
+                //     this.optionitemCapitalType.push( {
+                //         text : val ,
+                //         value : val
+                //     } )
+                // } )
+                this.optionitemCapitalType = util.GetCapitalTypeList( false );
 
                 this.optionitemMy = [
                     {

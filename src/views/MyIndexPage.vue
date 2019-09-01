@@ -133,7 +133,7 @@ Time: 14:42
                  */
                 swipeimagelist : [
                     require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
-                    require( `@/assets/capitalswipeimage/ji2.jpeg` ) ,
+
 
                     require( `@/assets/capitalswipeimage/car4.jpg` ) ,
                     require( `@/assets/capitalswipeimage/car6.jpg` ) ,

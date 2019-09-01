@@ -20,6 +20,23 @@ export function geticonallname ( val ) {
 }
 
 /**
+ * 长时间等待
+ * @param 等待时间（毫秒）
+ * @returns {Promise<any>}
+ */
+export function runlongtims ( times ) {
+
+    return new Promise( ( resolve , reject ) => {
+
+        setTimeout( () => {
+            resolve( "" );
+        } , times );
+
+    } )
+
+}
+
+/**
  * 得资产编号的前缀
  * @param typename
  * @returns {string}
@@ -95,22 +112,30 @@ export function IsNormal ( _CapitalStatus ) {
     return false;
 }
 
-
-
 /**
- * 长时间等待
- * @param 等待时间（毫秒）
- * @returns {Promise<any>}
+ * 资产类型列表
+ * @param isincludeall
+ * @returns {Array}
+ * @constructor
  */
-export function runlongtims ( times ) {
+export function GetCapitalTypeList ( isincludeall ) {
+    let arr = [];
 
-    return new Promise( ( resolve , reject ) => {
+    if ( isincludeall ) {
+        arr.push( {
+            text : '全部' ,
+            value : ''
+        } )
+    }
 
-        setTimeout( () => {
-            resolve( "" );
-        } , times );
-
+    globalconstant.CapitalType.forEach( ( val , index , array ) => {
+        arr.push( {
+            text : val ,
+            value : val
+        } )
     } )
 
+    return arr;
 }
+
 
