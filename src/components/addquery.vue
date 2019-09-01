@@ -71,6 +71,8 @@ Time: 12:19
         <van-divider dashed
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
+
+        <capitaldetaildata></capitaldetaildata>
     </div>
 
 </template>

@@ -18,6 +18,9 @@ Time: 18:09
 <script>
     export default {
         name : "capitaldetaildata" ,
+        props : {
+            diaObj : Object
+        } ,
         //数据模型
         data () {
             return {
