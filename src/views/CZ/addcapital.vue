@@ -9,94 +9,102 @@ Time: 11:17
 <template>
 
     <div>
-        <van-nav-bar title="添加新资产"
+        <van-nav-bar title="资产"
                      left-text="返回"
                      left-arrow
                      @click-left="onClickLeft"/>
-<!--        <br>-->
-        <van-cell-group>
-            <van-field v-model="capitalmodel.capitalcode"
-                       required
-                       clearable
-                       label="资产代号"
-                       placeholder="请输入资产代号"/>
-            <van-field v-model="capitalmodel.capitalname"
-                       required
-                       clearable
-                       label="资产名称"
-                       placeholder="请输入资产名称"/>
-            <van-field v-model.number="capitalmodel.money"
-                       required
-                       clearable
-                       type="number"
-                       label="资产金额"
-                       placeholder="请输入资产金额"/>
-            <van-field v-model="capitalmodel.typename"
-                       require
-                       label="资产类型"
-                       placeholder="请选择资产类型"
-                       readonly>
-                <van-button slot="button"
-                            @click="opentypedlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model="capitalmodel.unit"
-                       required
-                       clearable
-                       label="资产单位"
-                       placeholder="请输入资产单位"/>
-            <van-field v-model="deptinfo"
-                       required
-                       label="保管部门"
-                       placeholder="请选择保管部门"
-                       readonly>
-                <van-button slot="button"
-                            @click="opendeptdlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model="capitalmodel.savesite"
-                       required
-                       clearable
-                       label="保管位置"
-                       placeholder="请输入保管位置"/>
-            <van-field v-model="capitalmodel.saveman"
-                       required
-                       clearable
-                       label="保管人"
-                       placeholder="请输入保管人"/>
+        <van-tabs v-model="tabactive">
+            <van-tab title="登记">
+                <van-cell-group>
+                    <van-field v-model="capitalmodel.capitalcode"
+                               required
+                               clearable
+                               label="资产代号"
+                               placeholder="请输入资产代号"/>
+                    <van-field v-model="capitalmodel.capitalname"
+                               required
+                               clearable
+                               label="资产名称"
+                               placeholder="请输入资产名称"/>
+                    <van-field v-model.number="capitalmodel.money"
+                               required
+                               clearable
+                               type="number"
+                               label="资产金额"
+                               placeholder="请输入资产金额"/>
+                    <van-field v-model="capitalmodel.typename"
+                               require
+                               label="资产类型"
+                               placeholder="请选择资产类型"
+                               readonly>
+                        <van-button slot="button"
+                                    @click="opentypedlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="capitalmodel.unit"
+                               required
+                               clearable
+                               label="资产单位"
+                               placeholder="请输入资产单位"/>
+                    <van-field v-model="deptinfo"
+                               required
+                               label="保管部门"
+                               placeholder="请选择保管部门"
+                               readonly>
+                        <van-button slot="button"
+                                    @click="opendeptdlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="capitalmodel.savesite"
+                               required
+                               clearable
+                               label="保管位置"
+                               placeholder="请输入保管位置"/>
+                    <van-field v-model="capitalmodel.saveman"
+                               required
+                               clearable
+                               label="保管人"
+                               placeholder="请输入保管人"/>
 
-            <van-field v-model="capitalmodel.comment"
-                       clearable
-                       label="备注"
-                       placeholder="请输入备注"/>
-            <van-field v-model="loginuserallname"
-                       label="添加人"
-                       placeholder="请输入添加人"
-                       readonly/>
-        </van-cell-group>
-        <br><br>
-        <van-button size="large"
-                    @click="AddClick"
-                    type="primary"
-                    color="#7232dd"
-                    plain
-                    round
-                    loading-type="spinner"
-                    loading-text="保存中..."
-                    :loading="buttonobj.isloading">保 存
-        </van-button>
-        <!--        选择类型的弹窗
-        -->
-        <UserSelectCapitalType @typeselectresult="typeselectresult"
-                               :diaObj="TypeDlgObj"></UserSelectCapitalType>
-        <!--        选择部门的弹窗
-        -->
-        <UserSelectDept :diaObj="DeptDlgObj"
-                        @deptselectresult="deptselectresult"></UserSelectDept>
+                    <van-field v-model="capitalmodel.comment"
+                               clearable
+                               label="备注"
+                               placeholder="请输入备注"/>
+                    <van-field v-model="loginuserallname"
+                               label="添加人"
+                               placeholder="请输入添加人"
+                               readonly/>
+                </van-cell-group>
+                <br>
+                <van-button size="large"
+                            @click="AddClick"
+                            type="primary"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="保存中..."
+                            :loading="buttonobj.isloading">保 存
+                </van-button>
+                <!--        选择类型的弹窗
+                -->
+                <UserSelectCapitalType @typeselectresult="typeselectresult"
+                                       :diaObj="TypeDlgObj"></UserSelectCapitalType>
+                <!--        选择部门的弹窗
+                -->
+                <UserSelectDept :diaObj="DeptDlgObj"
+                                @deptselectresult="deptselectresult"></UserSelectDept>
+            </van-tab>
+            <van-tab title="查询">
+                <addquery></addquery>
+            </van-tab>
+
+        </van-tabs>
+
     </div>
 
 </template>
@@ -108,6 +116,7 @@ Time: 11:17
     import * as globalconstant from '@/common/constant.js'
     import UserSelectCapitalType from '@/components/UserSelectCapitalType.vue'
     import UserSelectDept from '@/components/UserSelectDept.vue'
+    import addquery from '@/components/addquery.vue'
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
@@ -123,7 +132,8 @@ Time: 11:17
         //注册组件
         components : {
             UserSelectCapitalType ,
-            UserSelectDept
+            UserSelectDept ,
+            addquery
         } ,
         //导入混入对象 可以是多个,数组
         mixins : [
@@ -148,6 +158,7 @@ Time: 11:17
         //数据模型
         data () {
             return {
+                tabactive : 0 ,
                 buttonobj : {
                     isloading : false
                 } ,
