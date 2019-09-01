@@ -342,11 +342,10 @@ Time: 16:56
                         return;
                     }
 
-                    let _capitals = await dlapi.GetCapitalByCapitalCode( this.movemodel.capitalcode );
 
-                    if ( _capitals != null && _capitals.length > 0 ) {
-                        //多条记录，取第一条
-                        let _capital = _capitals[ 0 ];
+                    let _capital = await dlapi.GetCapitalByCapitalCode( this.movemodel.capitalcode );
+
+                    if ( _capital != null ) {
 
                         //检查一下资产的状态
                         let IsNormal = util.IsNormal( _capital.capitalstatus );

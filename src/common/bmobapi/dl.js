@@ -143,11 +143,20 @@ export function GetCapitalCounts ( userid , capitalstatus ) {
  * @constructor
  */
 export function GetCapitalByCapitalCode ( capitalcode ) {
-    //手机号
-    const query = Bmob.Query( tableName );
-    query.equalTo( "capitalcode" , "==" , capitalcode );
 
-    return query.find();
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+        query.equalTo( "capitalcode" , "==" , capitalcode );
+
+        query.find().then( ( res ) => {
+            if ( res != null && res.length > 0 ) {
+                resolve( res[ 0 ] );
+            }
+            else {
+                resolve( null );
+            }
+        } );
+    } );
 
 }
 
