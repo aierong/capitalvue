@@ -84,6 +84,8 @@ Time: 12:19
     import * as util from '@/common/util/util.js'
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
+    import capitaldetaildata from '@/components/capitaldetaildata.vue'
+
     export default {
         name : "addquery" ,
         //过滤器
