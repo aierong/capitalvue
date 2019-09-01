@@ -174,7 +174,7 @@ Time: 14:53
             async initlist () {
                 let initcount = 4;
 
-                let list = await dlapi.getnormalcapitallistidbyminid( 0 ,
+                let list = await dlapi.getnormalcapitallistbyminid( 0 ,
                     initcount ,
                     this.CapitalTypeItemVal ,
                     this.MyItemVal ,
@@ -208,7 +208,7 @@ Time: 14:53
 
                 this.loadobj.isloading = true;
 
-                let list = await dlapi.getnormalcapitallistidbyminid( this.minautokey ,
+                let list = await dlapi.getnormalcapitallistbyminid( this.minautokey ,
                     counts ,
                     this.CapitalTypeItemVal ,
                     this.MyItemVal ,

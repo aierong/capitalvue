@@ -152,7 +152,57 @@ export function GetCapitalByCapitalCode ( capitalcode ) {
 
 }
 
-export function getnormalcapitallistidbyminid ( minid , loadcounts , typename , userid , searchkey ) {
+export function getnormalcapitallistbyminid ( minid , loadcounts , typename , userid , searchkey ) {
+
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+
+        query.equalTo( "capitalstatus" , "==" , globalconstant.CapitalStatus.normal );
+
+        if ( typename ) {
+            query.equalTo( "typename" , "==" , typename );
+        }
+
+        if ( minid > 0 ) {
+            query.equalTo( "autokey" , "<" , minid );
+        }
+
+        //该用户填写的
+        if ( userid ) {
+            query.equalTo( "userid" , "==" , userid );
+        }
+
+        if ( loadcounts > 0 ) {
+            query.limit( loadcounts );
+        }
+        query.order( "-autokey" );
+
+        query.find().then( ( res ) => {
+            // console.log( 'res' , res )
+
+            if ( searchkey ) {
+                let result = res.filter( ( value , index , array ) => {
+                    return ( value.capitalcode != null
+                        && value.capitalcode.toUpperCase().includes( searchkey.toUpperCase() ) )
+                        || ( value.capitalname != null
+                            && value.capitalname.toUpperCase().includes( searchkey.toUpperCase() ) );
+
+                } )
+
+                resolve( result );
+            }
+            else {
+                resolve( res );
+            }
+        } )
+    } );
+
+    // return query.find();
+}
+
+
+
+export function getaddquerylistbyminid ( minid , loadcounts , typename , userid , searchkey ) {
 
     return new Promise( ( resolve , reject ) => {
         const query = Bmob.Query( tableName );
