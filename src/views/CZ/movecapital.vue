@@ -342,7 +342,6 @@ Time: 16:56
                         return;
                     }
 
-
                     let _capital = await dlapi.GetCapitalByCapitalCode( this.movemodel.capitalcode );
 
                     if ( _capital != null ) {
