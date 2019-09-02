@@ -53,11 +53,9 @@ Time: 18:09
     import * as globalconstant from '@/common/constant.js'
 
     export default {
-        name : "capitaldetaildata" ,
+        name : "detaildata" ,
         props : {
-
             diaObj : Object ,
-
         } ,
         //注册组件
         components : {
@@ -84,6 +82,7 @@ Time: 18:09
             userselectnos ( nos , _type ) {
                 //切换tab
                 this.tabactive = 1;
+
                 this.selectnos = nos;
 
                 this.notype = _type;
@@ -119,5 +118,5 @@ Time: 18:09
 
 <!-- 样式代码片段  scoped -->
 <style scoped
-       src="./capitaldetaildata.css">
+       src="./detaildata.css">
 </style>

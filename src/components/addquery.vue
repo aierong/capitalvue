@@ -75,7 +75,7 @@ Time: 12:19
         <van-action-sheet style="height: 78%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <capitaldetaildata :diaObj="DlgObj"></capitaldetaildata>
+            <detaildata :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
     </div>
 
@@ -90,7 +90,7 @@ Time: 12:19
     import * as util from '@/common/util/util.js'
     import * as dlapi from '@/common/bmobapi/dl.js'
 
-    import capitaldetaildata from '@/components/detail/capitaldetaildata.vue'
+    import detaildata from '@/components/detail/detaildata.vue'
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
@@ -106,7 +106,7 @@ Time: 12:19
         //注册组件
         components : {
 
-            capitaldetaildata ,
+            detaildata ,
 
         } ,
         //过滤器
