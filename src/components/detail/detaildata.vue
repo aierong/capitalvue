@@ -80,6 +80,8 @@ Time: 18:09
         //方法
         methods : {
             userselectnos ( nos , _type ) {
+                // console.log( 'userselectnos' , nos , _type )
+
                 //切换tab
                 this.tabactive = 1;
 

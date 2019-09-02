@@ -7,15 +7,54 @@ Time: 9:18
 
 <!-- html代码片段 -->
 <template>
-
     <div>
-        <van-row>
-            <van-col span="12">{{ '单号:' + modeldata.nos }}</van-col>
-            <van-col span="12">{{ '录入:' + modeldata.inputdate + modeldata.username }}</van-col>
-            <!--            <van-col span="8">span: 8</van-col>-->
-        </van-row>
-    </div>
+        <div v-if="modeldata!=null">
+            <van-divider class="mydivider"
+                         content-position="left"
+                         dashed>转移单({{ modeldata.nos }})详细信息
+            </van-divider>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ '单号:' + modeldata.nos }}</van-col>
+                    <!--                    <van-col span="12">{{ '日期:' + modeldata.movedate }}</van-col>-->
 
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ '资产:' + modeldata.capitalcode +'(' +modeldata.capitalname +')' }}</van-col>
+                    <!--                <van-col span="24">{{  '日期:' +  }}</van-col>-->
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+
+                    <van-col span="12">{{ '日期:' + modeldata.movedate }}</van-col>
+                    <van-col span="12">{{ '转移人:' + modeldata.movename }}</van-col>
+                </van-row>
+            </van-cell>
+
+            <van-cell>
+                <van-row>
+                    <van-col span="12">{{ '原部门:' + modeldata.olddeptname }}</van-col>
+                    <van-col span="12">{{ '现部门:' + modeldata.newdeptname }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="12">{{ '原位置:' + modeldata.oldsavesite }}</van-col>
+                    <van-col span="12">{{ '现位置:' + modeldata.newsavesite }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="12">{{ '原保管人:' + modeldata.oldsaveman }}</van-col>
+                    <van-col span="12">{{ '现保管人:' + modeldata.newsaveman }}</van-col>
+                </van-row>
+            </van-cell>
+
+        </div>
+    </div>
 </template>
 
 <!-- js脚本代码片段 -->
