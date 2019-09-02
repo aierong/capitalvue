@@ -72,10 +72,12 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <van-action-sheet style="height: 86%"
+        <van-action-sheet ref='c1'
+                          style="height: 86%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <detaildata :diaObj="DlgObj"></detaildata>
+            <detaildata ref='c2'
+                        :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
     </div>
 
@@ -149,7 +151,7 @@ Time: 12:19
 
                     capitalcode : '' ,
                     nos : '' ,
-                    displaymode : ''
+                    notype : ''
                 } ,
 
                 diaObj : {
@@ -169,8 +171,25 @@ Time: 12:19
                 // console.log( item )
                 // this.$toast.success( "成功" );
 
+                // console.log( 'this.$refs.c1' , this.$refs.c1 )
+                // console.log( 'c1 er' , this.$refs.c1.$children )
+                // console.log( 'er' , this.$children )
+                // this.$refs.c1.$children[ 0 ].initmodel();
+
+                //
+                this.$bus.$emit( "initdetaildata" , 'qq' );
+
+                this.DlgObj = {
+
+                    capitalcode : '' ,
+                    nos : '' ,
+                    notype : ''
+                };
+
                 this.DlgObj.capitalcode = item.capitalcode;
                 this.diaObj.isshow = true;
+
+                console.log( 'DlgObj' , this.DlgObj )
             } ,
             createoptionitem () {
 
@@ -345,6 +364,9 @@ Time: 12:19
         } ,
         //生命周期(mounted)
         mounted () {
+            console.log('addquery mounted')
+            this.$bus.$emit( "initdetaildata" , 'init' );
+
             this.createoptionitem();
 
             this.initlist();
