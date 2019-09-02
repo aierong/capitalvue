@@ -36,6 +36,10 @@ Time: 18:09
     import capitaldata from '@/components/detail/capitaldata.vue'
     import nosstep from '@/components/detail/nosstep.vue'
 
+    import movedetaildata from '@/components/detail/movedetaildata.vue'
+    import saledetaildata from '@/components/detail/saledetaildata.vue'
+    import scrapdetaildata from '@/components/detail/scrapdetaildata.vue'
+
     export default {
         name : "capitaldetaildata" ,
         props : {
