@@ -364,7 +364,7 @@ Time: 12:19
         } ,
         //生命周期(mounted)
         mounted () {
-            console.log('addquery mounted')
+            // console.log('addquery mounted')
             this.$bus.$emit( "initdetaildata" , 'init' );
 
             this.createoptionitem();
