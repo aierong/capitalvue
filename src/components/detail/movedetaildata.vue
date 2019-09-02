@@ -9,8 +9,11 @@ Time: 9:18
 <template>
 
     <div>
-        转移单
-        {{ nos }}
+        <van-row>
+            <van-col span="12">{{ '单号:' + modeldata.nos }}</van-col>
+            <van-col span="12">{{ '录入:' + modeldata.inputdate + modeldata.username }}</van-col>
+            <!--            <van-col span="8">span: 8</van-col>-->
+        </van-row>
     </div>
 
 </template>
@@ -31,7 +34,7 @@ Time: 9:18
                 handler ( newName , oldName ) {
                     // console.log( 'capitaldata changed' , newName );
 
-                    this.getmodel()
+                    this.getmodel( newName )
                 } ,
                 immediate : true ,
 
@@ -45,9 +48,9 @@ Time: 9:18
         } ,
         //方法
         methods : {
-            getmodel () {
-                if ( this.nos ) {
-                    moveapi.GetNosData( this.nos ).then( ( res ) => {
+            getmodel ( _nos ) {
+                if ( _nos ) {
+                    moveapi.GetNosData( _nos ).then( ( res ) => {
                         if ( res != null ) {
                             this.modeldata = res;
                         }
