@@ -41,7 +41,7 @@ Time: 18:09
 
 </template>
 
-<!-- js脚本代码片段 -->
+<!-- js脚本代码片段  capitaldetaildata -->
 <script>
     import capitaldata from '@/components/detail/capitaldata.vue'
     import nosstep from '@/components/detail/nosstep.vue'
