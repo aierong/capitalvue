@@ -1,7 +1,7 @@
 <!--
 作者:chenghao
 Date: 2019/9/2
-Time: 9:18
+Time: 9:20
 功能:
 -->
 
@@ -9,17 +9,15 @@ Time: 9:18
 <template>
 
     <div>
-        movedetaildata
+        scrapdetaildata
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    //api move GetNosData
-
     export default {
-        name : "movedetaildata" ,
+        name : "scrapdetaildata" ,
         //数据模型
         data () {
             return {
@@ -48,6 +46,6 @@ Time: 9:18
 </script>
 
 <!-- 样式代码片段  scoped -->
-<style src="./movedetaildata.css"
+<style src="./scrapdetaildata.css"
        scoped>
 </style>
