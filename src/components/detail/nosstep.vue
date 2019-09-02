@@ -16,7 +16,7 @@ Time: 9:53
                    :active="steplistcounts-1">
             <van-step :key="_index"
                       v-for="(item,_index) in steplist">
-                <h3>【{{ item.action }}】{{ item.nos }}</h3>
+                <h3 @click="noquery(item)">【{{ item.action }}】{{ item.nos }}</h3>
                 <p @click="noquery(item)">{{ item.date }}{{ item.man }}</p>
             </van-step>
         </van-steps>

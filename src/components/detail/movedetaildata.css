@@ -1,5 +1,6 @@
 .mydivider {
     color: blue;
-    /*borderColor: '#1989fa';*/
+    
+    font-weight: bold;
 
 }

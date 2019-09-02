@@ -148,6 +148,8 @@ Time: 12:19
                 DlgObj : {
 
                     capitalcode : '' ,
+                    nos : '' ,
+                    displaymode : ''
                 } ,
 
                 diaObj : {
