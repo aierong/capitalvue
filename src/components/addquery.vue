@@ -72,7 +72,7 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <capitaldetaildata @capitalcode="componentcapitalcode"></capitaldetaildata>
+        <capitaldetaildata :capitalcode="componentcapitalcode"></capitaldetaildata>
     </div>
 
 </template>
