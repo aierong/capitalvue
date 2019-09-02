@@ -19,8 +19,6 @@ Time: 9:53
                 <h3>【{{ item.action }}】{{ item.nos }}</h3>
                 <p>{{ item.date }}{{ item.man }}</p>
             </van-step>
-
-
         </van-steps>
     </div>
 
@@ -61,13 +59,17 @@ Time: 9:53
         //方法
         methods : {
             getsteplist () {
+                //先清空一把
+                this.steplist = [];
+
                 if ( this.capitalcode ) {
                     Promise.all( [
 
                         dlapi.GetCapitalByCapitalCode( this.capitalcode ) ,
                         moveapi.GetNosList( this.capitalcode ) ,
                         scrapapi.GetNosList( this.capitalcode ) ,
-                        saleapi.GetNosList( this.capitalcode ) ,
+                        saleapi.GetNosList( this.capitalcode )
+
                     ] ).then( ( res ) => {
                         if ( res != null && res.length >= 4 ) {
                             //先搞登记的信息
@@ -138,9 +140,6 @@ Time: 9:53
                             this.steplist = [];
                         }
                     } );
-                }
-                else {
-                    this.steplist = [];
                 }
 
             } ,
