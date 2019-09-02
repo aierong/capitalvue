@@ -10,14 +10,14 @@ Time: 9:18
 
     <div>
         转移单
-
+        {{ nos }}
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    //api move GetNosData
+
     import * as moveapi from '@/common/bmobapi/move.js'
 
     export default {
