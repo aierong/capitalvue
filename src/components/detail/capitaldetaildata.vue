@@ -22,7 +22,9 @@ Time: 18:09
                 <nosstep :capitalcode="capitalcode"></nosstep>
             </van-tab>
             <van-tab title="单据信息">
-
+                <movedetaildata></movedetaildata>
+                <saledetaildata></saledetaildata>
+                <scrapdetaildata></scrapdetaildata>
             </van-tab>
         </van-tabs>
 

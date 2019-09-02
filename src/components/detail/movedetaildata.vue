@@ -10,6 +10,7 @@ Time: 9:18
 
     <div>
         转移单
+
     </div>
 
 </template>
@@ -20,6 +21,9 @@ Time: 9:18
 
     export default {
         name : "movedetaildata" ,
+        props : {
+            nos : String
+        } ,
         //数据模型
         data () {
             return {

@@ -21,6 +21,9 @@ Time: 9:20
 
     export default {
         name : "scrapdetaildata" ,
+        props : {
+            nos : String
+        } ,
         //数据模型
         data () {
             return {
