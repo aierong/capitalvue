@@ -36,7 +36,7 @@ Time: 12:19
                 <template slot="right-icon">
                     <van-icon @click="itemdelclick(item,_index)"
                               size="20px"
-                              name="search"/>
+                              name="cross"/>
                 </template>
                 <template slot="title">
                     <span>{{ item  | formattitle }}</span>
