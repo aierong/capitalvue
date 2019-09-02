@@ -154,7 +154,9 @@ Time: 12:19
             } ,
             gotodetaildata ( item ) {
                 // console.log( item )
-                this.$toast.success( "成功" );
+                // this.$toast.success( "成功" );
+
+                this.componentcapitalcode = item.capitalcode;
             } ,
             createoptionitem () {
 
