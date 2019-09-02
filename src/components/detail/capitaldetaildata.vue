@@ -10,6 +10,7 @@ Time: 18:09
 
     <div>
         capitaldetaildata
+        capitaldata
     </div>
 
 </template>

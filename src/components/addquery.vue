@@ -145,7 +145,7 @@ Time: 12:19
                 return false;
             } ,
             gotodetaildata ( item ) {
-                console.log( item )
+                // console.log( item )
                 this.$toast.success( "成功" );
             } ,
             createoptionitem () {
