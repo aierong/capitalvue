@@ -9,14 +9,17 @@ Time: 18:09
 <template>
 
     <div>
+        <!--        type="card"-->
         <van-tabs v-model="tabactive">
-            <van-tab title="登记">
-                <van-divider content-position="left"
+            <van-tab title="资产信息">
+                <van-divider class="mydivider"
+                             content-position="left"
                              dashed>资产详情
                 </van-divider>
                 <capitaldata :code="diaObj.capitalcode"></capitaldata>
                 <!--                <br>-->
-                <van-divider content-position="left"
+                <van-divider class="mydivider"
+                             content-position="left"
                              dashed>时光轴(点击可看单据详情)
                 </van-divider>
                 <nosstep @userselectnos="userselectnos"
@@ -47,6 +50,8 @@ Time: 18:09
     import saledetaildata from '@/components/detail/saledetaildata.vue'
     import scrapdetaildata from '@/components/detail/scrapdetaildata.vue'
 
+    import * as globalconstant from '@/common/constant.js'
+
     export default {
         name : "capitaldetaildata" ,
         props : {
@@ -58,7 +63,10 @@ Time: 18:09
         components : {
 
             capitaldata ,
-            nosstep
+            nosstep ,
+            movedetaildata ,
+            saledetaildata ,
+            scrapdetaildata
 
         } ,
         //数据模型
@@ -84,19 +92,19 @@ Time: 18:09
         //计算属性
         computed : {
             ismove () {
-                if ( this.notype == 'move' ) {
+                if ( this.notype == globalconstant.notype.move ) {
                     return true;
                 }
                 return false;
             } ,
             issale () {
-                if ( this.notype == 'sale' ) {
+                if ( this.notype == globalconstant.notype.sale ) {
                     return true;
                 }
                 return false;
             } ,
             isscrap () {
-                if ( this.notype == 'scrap' ) {
+                if ( this.notype == globalconstant.notype.scrap ) {
                     return true;
                 }
                 return false;

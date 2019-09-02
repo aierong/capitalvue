@@ -61,11 +61,11 @@ export const CapitalStatus = {
 //  * 单据类型
 //  * @type {{sale: string, scrap: string, move: string}}
 //  */
-// export const notype = {
-//     sale : '出售单' ,
-//     scrap : '报废单' ,
-//     move : '转移单'
-// }
+export const notype = {
+    sale : 'sale' ,
+    scrap : 'scrap' ,
+    move : 'move'
+}
 
 /**
  * 数据表

@@ -32,6 +32,8 @@ Time: 9:53
     import * as scrapapi from '@/common/bmobapi/scrap.js'
     import * as saleapi from '@/common/bmobapi/sale.js'
 
+    import * as globalconstant from '@/common/constant.js'
+
     export default {
         name : "nosstep" ,
         props : {
@@ -63,12 +65,6 @@ Time: 9:53
                     return;
                 }
 
-                // let _type = {
-                //     issale : false ,
-                //     ismove : false ,
-                //     isscrap : false
-                // };
-
                 this.$emit( "userselectnos" , item.nos , item.type );
 
                 return;
@@ -97,6 +93,7 @@ Time: 9:53
                                     nos : this.capitalcode ,
                                     date : _data.inputdate ,
                                     man : _data.username ,
+                                    //类型为空
                                     type : ''
                                 };
 
@@ -114,7 +111,7 @@ Time: 9:53
                                         nos : value.nos ,
                                         date : value.inputdate ,
                                         man : value.username ,
-                                        type : 'move'
+                                        type : globalconstant.notype.move
                                     };
 
                                     this.steplist.push( obj );
@@ -132,7 +129,7 @@ Time: 9:53
                                     nos : _data.nos ,
                                     date : _data.inputdate ,
                                     man : _data.username ,
-                                    type : 'scrap'
+                                    type : globalconstant.notype.scrap
                                 };
 
                                 this.steplist.push( obj );
@@ -148,7 +145,7 @@ Time: 9:53
                                     nos : _data.nos ,
                                     date : _data.inputdate ,
                                     man : _data.username ,
-                                    type : 'sale'
+                                    type : globalconstant.notype.sale
                                 };
 
                                 this.steplist.push( obj );
