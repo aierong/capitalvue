@@ -99,7 +99,7 @@ Time: 11:17
                 <UserSelectDept :diaObj="DeptDlgObj"
                                 @deptselectresult="deptselectresult"></UserSelectDept>
             </van-tab>
-            <van-tab title="查询">
+            <van-tab title="我登记的">
                 <addquery></addquery>
             </van-tab>
 

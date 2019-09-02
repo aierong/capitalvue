@@ -14,8 +14,8 @@ Time: 12:19
             <!--            options	选项数组	Array	 -->
             <van-dropdown-item v-model="CapitalTypeItemVal"
                                :options="optionitemCapitalType"/>
-            <van-dropdown-item v-model="MyItemVal"
-                               :options="optionitemMy"/>
+            <!--            <van-dropdown-item v-model="MyItemVal"-->
+            <!--                               :options="optionitemMy"/>-->
             <van-dropdown-item v-model="CapitalStatusVal"
                                :options="optionitemCapitalStatus"/>
         </van-dropdown-menu>
@@ -46,9 +46,9 @@ Time: 12:19
                     <span>{{ item  | formatlabel }}</span>
                 </template>
                 <template slot="default">
-                    <span class="mycell"
-                          v-if="!IsNormal(item.capitalstatus)">{{ item.capitalstatus }}</span>
-                    <span v-else>{{ item.capitalstatus }}</span>
+
+                    <span v-bind:class="{ mycell: !IsNormal(item.capitalstatus) }">{{ item.capitalstatus }}</span>
+
                 </template>
             </van-cell>
         </van-cell-group>
@@ -72,7 +72,7 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <capitaldetaildata></capitaldetaildata>
+        <capitaldetaildata capitalcode="a1"></capitaldetaildata>
     </div>
 
 </template>
@@ -107,12 +107,13 @@ Time: 12:19
             return {
                 //资产列表
                 capitallist : [] ,
-                CapitalTypeItemVal : '' ,
                 //资产类型
+                CapitalTypeItemVal : '' ,
                 optionitemCapitalType : [] ,
-                MyItemVal : '' ,
+
                 //全部和我的
-                optionitemMy : [] ,
+                // MyItemVal : '' ,
+                // optionitemMy : [] ,
 
                 CapitalStatusVal : '' ,
                 optionitemCapitalStatus : [] ,
@@ -140,16 +141,16 @@ Time: 12:19
 
                 this.optionitemCapitalStatus = util.GetCapitalStatus( true );
 
-                this.optionitemMy = [
-                    {
-                        text : '全部' ,
-                        value : ''
-                    } ,
-                    {
-                        text : '我登记的' ,
-                        value : this.loginusermobile
-                    }
-                ]
+                // this.optionitemMy = [
+                //     {
+                //         text : '全部' ,
+                //         value : ''
+                //     } ,
+                //     {
+                //         text : '我登记的' ,
+                //         value : this.loginusermobile
+                //     }
+                // ]
             } ,
             onSearch () {
                 this.initlist();
@@ -162,7 +163,7 @@ Time: 12:19
                 let list = await dlapi.getaddquerylistbyminid( this.minautokey ,
                     counts ,
                     this.CapitalTypeItemVal ,
-                    this.MyItemVal ,
+                    this.loginusermobile ,
                     this.CapitalStatusVal ,
                     this.searchval );
 
@@ -203,7 +204,7 @@ Time: 12:19
                 let list = await dlapi.getaddquerylistbyminid( 0 ,
                     initcount ,
                     this.CapitalTypeItemVal ,
-                    this.MyItemVal ,
+                    this.loginusermobile ,
                     this.CapitalStatusVal ,
                     this.searchval );
 

@@ -50,9 +50,7 @@ Time: 14:53
                     </template>
                     <template slot="label">
                         <span v-bind:class="{ mycell: ismy(item.userid) }">{{ item | formatlabel }}</span>
-                        <!--                        <span class="mycell"-->
-                        <!--                              v-if="ismy(item.userid)">{{ item | formatlabel }}</span>-->
-                        <!--                        <span v-else>{{ item  | formatlabel }}</span>-->
+
                     </template>
                 </van-cell>
 
