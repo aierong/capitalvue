@@ -11,15 +11,15 @@ Time: 9:18
         <div v-if="modeldata!=null">
             <van-divider class="mydivider"
                          content-position="left"
-                         dashed>转移单({{ modeldata.nos }})详细信息
+                         dashed> {{ `转移单(${modeldata.nos})详细信息` }}
             </van-divider>
-            <van-cell>
-                <van-row>
-                    <van-col span="24">{{ '单号:' + modeldata.nos }}</van-col>
-                    <!--                    <van-col span="12">{{ '日期:' + modeldata.movedate }}</van-col>-->
+            <!--            <van-cell>-->
+            <!--                <van-row>-->
+            <!--                    <van-col span="24">{{ '单号:' + modeldata.nos }}</van-col>-->
+            <!--                    &lt;!&ndash;                    <van-col span="12">{{ '日期:' + modeldata.movedate }}</van-col>&ndash;&gt;-->
 
-                </van-row>
-            </van-cell>
+            <!--                </van-row>-->
+            <!--            </van-cell>-->
             <van-cell>
                 <van-row>
                     <van-col span="24">{{ '资产:' + modeldata.capitalcode +'(' +modeldata.capitalname +')' }}</van-col>
@@ -50,6 +50,18 @@ Time: 9:18
                 <van-row>
                     <van-col span="12">{{ '原保管人:' + modeldata.oldsaveman }}</van-col>
                     <van-col span="12">{{ '现保管人:' + modeldata.newsaveman }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ `备注:${modeldata.comment}` }}</van-col>
+
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ `录入:${modeldata.username}(${modeldata.inputdate})` }}</van-col>
+
                 </van-row>
             </van-cell>
 
