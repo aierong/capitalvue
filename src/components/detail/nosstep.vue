@@ -9,7 +9,30 @@ Time: 9:53
 <template>
 
     <div>
-        nosstep
+        <!--
+       可以通过设置direction属性来改变步骤条的显示方式
+       -->
+        <van-steps direction="vertical"
+                   :active="steplistcounts-1">
+            <van-step :key="_index"
+                      v-for="(item,_index) in steplist">
+                <h3>【{{ item.action }}】{{ item.nos }}</h3>
+                <p>{{ item.date }}{{ item.man }}</p>
+            </van-step>
+
+            <!--            <van-step>-->
+            <!--                <h3>【城市】物流状态1</h3>-->
+            <!--                <p>2016-07-12 12:40</p>-->
+            <!--            </van-step>-->
+            <!--            <van-step>-->
+            <!--                <h3>【城市】物流状态2</h3>-->
+            <!--                <p>2016-07-11 10:00</p>-->
+            <!--            </van-step>-->
+            <!--            <van-step>-->
+            <!--                <h3>快件已发货</h3>-->
+            <!--                <p>2016-07-10 09:30</p>-->
+            <!--            </van-step>-->
+        </van-steps>
     </div>
 
 </template>
@@ -27,6 +50,18 @@ Time: 9:53
         name : "nosstep" ,
         props : {
             capitalcode : String
+        } ,
+        watch : {
+            capitalcode : {
+                //监听 资产编号变化，重新生成列表
+                handler ( newName , oldName ) {
+                    // console.log( 'diaObj.date changed' );
+
+                    this.getsteplist()
+                } ,
+                immediate : true ,
+
+            }
         } ,
         //数据模型
         data () {
@@ -124,10 +159,13 @@ Time: 9:53
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            steplistcounts () {
+                if ( this.steplist != null ) {
+                    return this.steplist.length;
+                }
+
+                return 0;
+            }
         } ,
         //生命周期(mounted)
         mounted () {
