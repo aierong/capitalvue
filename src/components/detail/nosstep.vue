@@ -63,7 +63,7 @@ Time: 9:53
 
                             //再搞转移单
                             if ( res[ 1 ] != null && res[ 1 ].length > 0 ) {
-                                let _datas = res[ 1 ];   //是数组
+                                let _datas = res[ 1 ];   //是数组  转移单有多个
 
                                 _datas.forEach( ( value , index , array ) => {
                                     let obj = {
@@ -86,6 +86,21 @@ Time: 9:53
                                 let obj = {
                                     isno : true ,
                                     action : '报废单' ,
+                                    nos : _data.nos ,
+                                    date : _data.inputdate ,
+                                    man : _data.username
+                                };
+
+                                this.steplist.push( obj );
+                            }
+
+                            //再搞出售单
+                            if ( res[ 3 ] != null && res[ 3 ].length > 0 ) {
+                                let _data = res[ 3 ][ 0 ];   //是数组，只有1个出售单，所以取第一个
+
+                                let obj = {
+                                    isno : true ,
+                                    action : '出售单' ,
                                     nos : _data.nos ,
                                     date : _data.inputdate ,
                                     man : _data.username
