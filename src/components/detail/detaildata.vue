@@ -9,7 +9,7 @@ Time: 18:09
 <template>
 
     <div>
-        <!--        type="card"-->
+        
         <van-tabs v-model="tabactive">
             <van-tab title="资产信息">
                 <van-divider class="mydivider"
@@ -17,7 +17,7 @@ Time: 18:09
                              dashed>{{ `${diaObj.capitalcode}资产详情` }}
                 </van-divider>
                 <capitaldata :code="diaObj.capitalcode"></capitaldata>
-                <!--                <br>-->
+
                 <van-divider class="mydivider"
                              content-position="left"
                              dashed>时光轴(点击可看单据详情)
