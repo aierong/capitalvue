@@ -34,7 +34,7 @@ Time: 12:19
             <van-cell :key="_index"
                       v-for="(item,_index) in capitallist">
                 <template slot="right-icon">
-                    <van-icon @click="itemclick(item)"
+                    <van-icon @click="itemdelclick(item)"
 
                               size="20px"
                               name="search"/>
@@ -72,7 +72,7 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <capitaldetaildata capitalcode="a1"></capitaldetaildata>
+        <!--        <capitaldetaildata capitalcode="a1"></capitaldetaildata>-->
     </div>
 
 </template>
@@ -84,12 +84,21 @@ Time: 12:19
 
     import * as globalconstant from '@/common/constant.js'
     import * as util from '@/common/util/util.js'
-    import * as  dlapi from '@/common/bmobapi/dl.js'
+    import * as dlapi from '@/common/bmobapi/dl.js'
 
     import capitaldetaildata from '@/components/detail/capitaldetaildata.vue'
 
+    // 导入
+    import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+
     export default {
         name : "addquery" ,
+        //导入混入对象 可以是多个,数组
+        mixins : [
+
+            loginuserdatamix ,
+
+        ] ,
         //过滤器
         filters : {
             //
@@ -201,8 +210,36 @@ Time: 12:19
                 } , 2000 );
 
             } ,
-            itemclick ( item ) {
+            itemdelclick ( item ) {
+                //做一个提示
+                let _capitalcode = item.capitalcode;
 
+                this.$dialog.confirm( {
+                    message : `确定删除${ _capitalcode }吗?`
+                } ).then( () => {
+                    // 点击确定按钮
+                    //做一个检查
+
+                    ( async () => {
+                        let checkresult = await dlapi.DeleteCheck( _capitalcode , this.loginusermobile );
+
+                        if ( checkresult != null && !checkresult.isok ) {
+                            this.$toast( checkresult.msg )
+
+                            return;
+                        }
+                        else {
+                            // 开始删除了
+
+
+                        }
+
+                    } )();
+
+                } ).catch( () => {
+                    // 点击取消按钮
+
+                } );
             } ,
             async initlist () {
                 let initcount = 10;
