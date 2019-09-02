@@ -9,60 +9,34 @@ Time: 18:09
 <template>
 
     <div>
-        capitaldetaildata
-        capitaldata
+        <capitaldata @capitalcode="capitalcode"></capitaldata>
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    // api  dl  GetCapitalByCapitalCode
-    import * as dlapi from '@/common/bmobapi/dl.js'
+    import capitaldata from '@/components/detail/capitaldata.vue'
 
     export default {
         name : "capitaldetaildata" ,
         props : {
             capitalcode : String
         } ,
-        watch : {
-            capitalcode : {
-                //监听 资产编号变化，重新生成模型
-                handler ( newName , oldName ) {
-                    // console.log( 'diaObj.date changed' );
+        //注册组件
+        components : {
 
-                    this.getcapitalmodel()
-                } ,
-                immediate : true ,
+            capitaldata ,
 
-            }
         } ,
         //数据模型
         data () {
             return {
-                capitalmodel : null
+                msg : ''
             }
         } ,
         //方法
-        methods : {
-            getcapitalmodel () {
-                if ( this.capitalcode ) {
-                    dlapi.GetCapitalByCapitalCode( this.capitalcode ).then( ( res ) => {
-                        if ( res != null ) {
-                            this.capitalmodel = res;
-                        }
-                        else {
-                            this.capitalmodel = null;
-                        }
-                    } );
-
-                }
-                else {
-                    this.capitalmodel = null;
-                }
-            } ,
-
-        } ,
+        methods : {} ,
         //计算属性
         computed : {
             //name() {

@@ -72,7 +72,7 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <!--        <capitaldetaildata capitalcode="a1"></capitaldetaildata>-->
+        <capitaldetaildata @capitalcode="componentcapitalcode"></capitaldetaildata>
     </div>
 
 </template>
@@ -99,6 +99,12 @@ Time: 12:19
             loginuserdatamix ,
 
         ] ,
+        //注册组件
+        components : {
+
+            capitaldetaildata ,
+
+        } ,
         //过滤器
         filters : {
             //
@@ -134,6 +140,8 @@ Time: 12:19
                     isshowdivider : false ,
                     isloading : false
                 } ,
+
+                componentcapitalcode : ''
             }
         } ,
         //方法
