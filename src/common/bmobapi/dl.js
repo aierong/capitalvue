@@ -276,28 +276,20 @@ export function DeleteCheck ( capitalcode , userid ) {
 
             MoveGetNosList( capitalcode ) ,
         ] ).then( ( ress ) => {
-            // console.log( 'ress' , ress )
 
             if ( ress != null && ress.length >= 2 ) {
                 let res = ress[ 0 ];
 
-                // console.log( 'res' , res )
-
                 if ( res != null && res.length > 0 ) {
                     let _data = res[ 0 ];
 
-                    // console.log( '_data' , _data )
                     let _userid = _data.userid;
-
-                    // console.log( 'user' , _userid , userid )
 
                     if ( _userid && userid && _userid == userid ) {
                         let _capitalstatus = _data.capitalstatus;
 
                         if ( _capitalstatus && _capitalstatus == globalconstant.CapitalStatus.normal ) {
                             let movedata = ress[ 1 ];
-
-                            // console.log( 'movedata' , movedata )
 
                             if ( movedata != null && movedata.length > 0 ) {
                                 resolve( {
@@ -344,44 +336,32 @@ export function DeleteCheck ( capitalcode , userid ) {
             }
         } )
 
-        // /MoveGetNosList
-        // query.find().then( ( res ) => {
-        //     if ( res != null && res.length > 0 ) {
-        //         let _data = res[ 0 ];
-        //
-        //         let _userid = _data.userid;
-        //
-        //         if ( _userid && userid && _userid.toLowerCase() == userid.toLowerCase() ) {
-        //             let _capitalstatus = _data.capitalstatus;
-        //
-        //             if ( _capitalstatus && _capitalstatus == globalconstant.CapitalStatus.normal ) {
-        //
-        //             }
-        //             else {
-        //                 resolve( {
-        //                     isok : false ,
-        //                     msg : '只可删除正常状态资产'
-        //                 } );
-        //             }
-        //         }
-        //         else {
-        //             resolve( {
-        //                 isok : false ,
-        //                 msg : '只可删除自己登记资产'
-        //             } );
-        //         }
-        //
-        //         // resolve( res[ 0 ] );
-        //     }
-        //     else {
-        //         resolve( {
-        //             isok : false ,
-        //             msg : '资产编号错误'
-        //         } );
-        //     }
-        // } );
     } );
 
 }
 
-//删除方法 待实现
+/**
+ * 删除方法
+ * @param capitalcode
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+export function DeleteCapital ( capitalobjectId ) {
+
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+
+        //按id删除
+        query.destroy( capitalobjectId ).then( res => {
+            // 成功删除  返回 {msg: "ok"}
+            //id 错误或者不存在  返回 {code: 101, error: "object not found for a08b661111."}
+            resolve( res )
+        } ).catch( err => {
+            resolve( null );
+        } )
+
+    } );
+
+}
+
+

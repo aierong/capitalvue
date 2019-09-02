@@ -34,8 +34,7 @@ Time: 12:19
             <van-cell :key="_index"
                       v-for="(item,_index) in capitallist">
                 <template slot="right-icon">
-                    <van-icon @click="itemdelclick(item)"
-
+                    <van-icon @click="itemdelclick(item,_index)"
                               size="20px"
                               name="search"/>
                 </template>
@@ -210,7 +209,7 @@ Time: 12:19
                 } , 2000 );
 
             } ,
-            itemdelclick ( item ) {
+            itemdelclick ( item , _index ) {
                 //做一个提示
                 let _capitalcode = item.capitalcode;
 
@@ -228,10 +227,21 @@ Time: 12:19
 
                             return;
                         }
+
+                        let result = await dlapi.DeleteCapital( item.objectId );
+
+                        if ( result != null ) {
+                            //成功
+                            this.$toast.success( "成功" );
+
+                            //把记录删除
+                            this.$delete( this.capitallist , _index )
+                        }
                         else {
-                            // 开始删除了
+                            //失败
+                            this.$toast.fail( "失败" )
 
-
+                            return;
                         }
 
                     } )();
