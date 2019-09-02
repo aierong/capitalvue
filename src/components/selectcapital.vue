@@ -44,11 +44,9 @@ Time: 14:53
                                   name="certificate"/>
                     </template>
                     <template slot="title">
-                        <!--                        v-bind:class="{ active: isActive }"-->
+
                         <span v-bind:class="{ mycell: ismy(item.userid) }">{{ item | formattitle }}</span>
-                        <!--                        <span class="mycell"-->
-                        <!--                              v-if="ismy(item.userid)">{{ item | formattitle }}</span>-->
-                        <!--                        <span v-else>{{ item  | formattitle }}</span>-->
+
                     </template>
                     <template slot="label">
                         <span v-bind:class="{ mycell: ismy(item.userid) }">{{ item | formatlabel }}</span>
