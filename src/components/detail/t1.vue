@@ -1,7 +1,7 @@
 <!--
 作者:chenghao
-Date: 2019/9/1
-Time: 18:09
+Date: 2019/9/2
+Time: 16:38
 功能:
 -->
 
@@ -9,26 +9,17 @@ Time: 18:09
 <template>
 
     <div>
-        <capitaldata :code="capitalcode"></capitaldata>
-
+        {{ capitalcode }}
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    import capitaldata from '@/components/detail/capitaldata.vue'
-
     export default {
-        name : "capitaldetaildata" ,
+        name : "t1" ,
         props : {
             capitalcode : String
-        } ,
-        //注册组件
-        components : {
-
-            capitaldata ,
-
         } ,
         //数据模型
         data () {
@@ -37,7 +28,12 @@ Time: 18:09
             }
         } ,
         //方法
-        methods : {} ,
+        methods : {
+            //methodsname() {
+            //代码搞这里
+            //},
+
+        } ,
         //计算属性
         computed : {
             //name() {
@@ -53,6 +49,6 @@ Time: 18:09
 </script>
 
 <!-- 样式代码片段  scoped -->
-<style scoped
-       src="./capitaldetaildata.css">
+<style>
+
 </style>

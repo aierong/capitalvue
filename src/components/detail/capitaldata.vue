@@ -9,7 +9,7 @@ Time: 16:15
 <template>
 
     <div>
-        capitaldata
+        cdata{{ code }}
     </div>
 
 </template>
@@ -22,19 +22,19 @@ Time: 16:15
     export default {
         name : "capitaldata" ,
         props : {
-            capitalcode : String
+            code : String
         } ,
         watch : {
             capitalcode : {
                 //监听 资产编号变化，重新生成模型
                 handler ( newName , oldName ) {
-                    // console.log( 'diaObj.date changed' );
+                    console.log( 'capitaldata changed' , newName );
 
                     this.getcapitalmodel()
                 } ,
                 immediate : true ,
 
-            }
+            } ,
         } ,
         //数据模型
         data () {
@@ -45,8 +45,8 @@ Time: 16:15
         //方法
         methods : {
             getcapitalmodel () {
-                if ( this.capitalcode ) {
-                    dlapi.GetCapitalByCapitalCode( this.capitalcode ).then( ( res ) => {
+                if ( this.code ) {
+                    dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
                         if ( res != null ) {
                             this.capitalmodel = res;
                         }
