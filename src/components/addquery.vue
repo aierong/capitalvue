@@ -115,7 +115,7 @@ Time: 12:19
                 // MyItemVal : '' ,
                 // optionitemMy : [] ,
 
-                CapitalStatusVal : '' ,
+                CapitalStatusVal : '正常' ,
                 optionitemCapitalStatus : [] ,
 
                 searchval : '' ,
@@ -139,7 +139,13 @@ Time: 12:19
 
                 this.optionitemCapitalType = util.GetCapitalTypeList( true );
 
-                this.optionitemCapitalStatus = util.GetCapitalStatus( true );
+                // this.optionitemCapitalStatus = util.GetCapitalStatus( true );
+                this.optionitemCapitalStatus = [
+                    {
+                        text : '正常' ,
+                        value : '正常'
+                    }
+                ]
 
                 // this.optionitemMy = [
                 //     {
