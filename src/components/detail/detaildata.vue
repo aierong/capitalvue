@@ -14,7 +14,7 @@ Time: 18:09
             <van-tab title="资产信息">
                 <van-divider class="mydivider"
                              content-position="left"
-                             dashed>资产详情
+                             dashed>{{ `${diaObj.capitalcode}资产详情` }}
                 </van-divider>
                 <capitaldata :code="diaObj.capitalcode"></capitaldata>
                 <!--                <br>-->
