@@ -16,6 +16,9 @@ Time: 9:53
 
 <!-- js脚本代码片段 -->
 <script>
+    //api  dl  GetCapitalByCapitalCode
+    //
+
     export default {
         name : "nosstep" ,
         //数据模型

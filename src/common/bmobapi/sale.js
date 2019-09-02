@@ -149,3 +149,29 @@ export function GetNosData ( nos ) {
 }
 
 
+
+/**
+ * 得单据列表信息
+ * @param capitalcode
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+export function GetNosList ( capitalcode ) {
+
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+        query.equalTo( "capitalcode" , "==" , capitalcode );
+        query.order( "autokey" ); //排序一下
+
+        query.find().then( ( res ) => {
+            if ( res != null ) {
+                //返回是数组  应该是1个
+                resolve( res );
+            }
+            else {
+                resolve( null );
+            }
+        } );
+    } );
+
+}

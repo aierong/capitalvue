@@ -18,7 +18,6 @@ import { MoveTable as tableName } from '@/common/constant.js';
  */
 import { DlTable as tableNamedl } from '@/common/constant.js';
 
-
 /**
  * 是存在单号
  * @param 单号
@@ -148,6 +147,32 @@ export function GetNosData ( nos ) {
         query.find().then( ( res ) => {
             if ( res != null && res.length > 0 ) {
                 resolve( res[ 0 ] );
+            }
+            else {
+                resolve( null );
+            }
+        } );
+    } );
+
+}
+
+/**
+ * 得单据列表信息
+ * @param capitalcode
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+export function GetNosList ( capitalcode ) {
+
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+        query.equalTo( "capitalcode" , "==" , capitalcode );
+        query.order( "autokey" ); //排序一下
+
+        query.find().then( ( res ) => {
+            if ( res != null ) {
+                //返回是数组  多个
+                resolve( res );
             }
             else {
                 resolve( null );
