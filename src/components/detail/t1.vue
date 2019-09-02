@@ -18,6 +18,7 @@ Time: 16:38
 <script>
     export default {
         name : "t1" ,
+
         props : {
             capitalcode : String
         } ,
