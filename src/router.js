@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
+
+import store from '@/store/store.js'
 
 import * as constant from '@/common/constant.js'
 import * as Cookies from 'js-cookie'
@@ -101,11 +102,15 @@ router.beforeEach( ( to , from , next ) => {
         // console.log( 'data' , data )
         //let isLogin = data ? true : false;
         let isLogin = false;
-        // console.log( 'isLogin' , isLogin )
 
         if ( data && data.loginuserid ) {
-            isLogin = true;
+            //有可能没有loginuser 判断一下
+            if ( store.state.loginuser != null ) {
+                isLogin = true;
+            }
         }
+
+        // console.log( 'beforeEach' , data , data.loginuserid , isLogin , store.state , store.state.loginuser )
 
         //没有登录，就转向登录页
         isLogin ? next() : next( '/login' );
