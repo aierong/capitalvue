@@ -16,6 +16,9 @@ Time: 9:20
 
 <!-- js脚本代码片段 -->
 <script>
+
+    //api scrap GetNosData
+
     export default {
         name : "scrapdetaildata" ,
         //数据模型

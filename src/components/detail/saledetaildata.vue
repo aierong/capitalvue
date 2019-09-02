@@ -16,6 +16,8 @@ Time: 9:18
 
 <!-- js脚本代码片段 -->
 <script>
+    //api sale GetNosData
+
     export default {
         name : "saledetaildata" ,
         //数据模型

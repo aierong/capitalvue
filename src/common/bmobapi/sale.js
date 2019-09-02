@@ -124,6 +124,28 @@ export function addsale ( sale , capitalobjectId ) {
 }
 
 
+/**
+ * 得单据信息
+ * @param nos
+ * @returns {Promise<unknown>}
+ * @constructor
+ */
+export function GetNosData ( nos ) {
 
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+        query.equalTo( "nos" , "==" , nos );
+
+        query.find().then( ( res ) => {
+            if ( res != null && res.length > 0 ) {
+                resolve( res[ 0 ] );
+            }
+            else {
+                resolve( null );
+            }
+        } );
+    } );
+
+}
 
 
