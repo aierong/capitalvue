@@ -39,7 +39,8 @@ Time: 12:19
                               name="cross"/>
                 </template>
                 <template slot="title">
-                    <span>{{ item  | formattitle }}</span>
+                    <span @click="gotodetaildata(item)"
+                          class="mycelltitle">{{ item  | formattitle }}</span>
                 </template>
                 <template slot="label">
                     <span>{{ item  | formatlabel }}</span>
@@ -142,6 +143,10 @@ Time: 12:19
                     return capitalstatus == globalconstant.CapitalStatus.normal;
                 }
                 return false;
+            } ,
+            gotodetaildata ( item ) {
+                console.log( item )
+                this.$toast.success( "成功" );
             } ,
             createoptionitem () {
 
