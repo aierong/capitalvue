@@ -85,7 +85,7 @@ Time: 9:18
                 handler ( newName , oldName ) {
                     // console.log( 'capitaldata changed' , newName );
 
-                    this.getmodel( newName )
+                    this.getmodel()
                 } ,
                 immediate : true ,
 
@@ -99,9 +99,9 @@ Time: 9:18
         } ,
         //方法
         methods : {
-            getmodel ( _nos ) {
-                if ( _nos ) {
-                    moveapi.GetNosData( _nos ).then( ( res ) => {
+            getmodel () {
+                if ( this.nos ) {
+                    moveapi.GetNosData( this.nos ).then( ( res ) => {
                         if ( res != null ) {
                             this.modeldata = res;
                         }

@@ -39,7 +39,7 @@ Time: 16:15
         //数据模型
         data () {
             return {
-                capitalmodel : null
+                modeldata : null
             }
         } ,
         //方法
@@ -49,16 +49,16 @@ Time: 16:15
                 if ( this.code ) {
                     dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
                         if ( res != null ) {
-                            this.capitalmodel = res;
+                            this.modeldata = res;
                         }
                         else {
-                            this.capitalmodel = null;
+                            this.modeldata = null;
                         }
                     } );
 
                 }
                 else {
-                    this.capitalmodel = null;
+                    this.modeldata = null;
                 }
 
             } ,
