@@ -7,16 +7,55 @@ Time: 16:15
 
 <!-- html代码片段 -->
 <template>
-
     <div>
-        cdata{{ code }}
-    </div>
+        <div v-if="modeldata!=null">
+            <van-cell>
+                <van-row>
+                    <van-col span="12">{{ '资产:' + modeldata.capitalname  }}</van-col>
+                    <van-col span="12">{{ '保管人:' + modeldata.saveman  }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
 
+                    <van-col span="12">{{ '资产类型:' + modeldata.typename }}</van-col>
+                    <van-col span="12">{{ '金额:' + modeldata.money }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+
+                    <van-col span="12">{{ '单位:' + modeldata.unit }}</van-col>
+                    <van-col span="12">{{ '保管部门:' + modeldata.deptname }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+
+                    <van-col span="24">{{ '保管位置:' + modeldata.savesite }}</van-col>
+
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+
+                    <van-col span="24">{{ `备注:${modeldata.comment}` }}</van-col>
+
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ `录入:${modeldata.username}(${modeldata.inputdate})` }}</van-col>
+
+                </van-row>
+            </van-cell>
+        </div>
+    </div>
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    // api  dl  GetCapitalByCapitalCode
+
     import * as dlapi from '@/common/bmobapi/dl.js'
 
     export default {

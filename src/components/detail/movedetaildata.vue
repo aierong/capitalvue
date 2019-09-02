@@ -13,13 +13,7 @@ Time: 9:18
                          content-position="left"
                          dashed> {{ `转移单(${modeldata.nos})详细信息` }}
             </van-divider>
-            <!--            <van-cell>-->
-            <!--                <van-row>-->
-            <!--                    <van-col span="24">{{ '单号:' + modeldata.nos }}</van-col>-->
-            <!--                    &lt;!&ndash;                    <van-col span="12">{{ '日期:' + modeldata.movedate }}</van-col>&ndash;&gt;-->
 
-            <!--                </van-row>-->
-            <!--            </van-cell>-->
             <van-cell>
                 <van-row>
                     <van-col span="24">{{ '资产:' + modeldata.capitalcode +'(' +modeldata.capitalname +')' }}</van-col>
