@@ -28,7 +28,7 @@ Time: 16:15
             capitalcode : {
                 //监听 资产编号变化，重新生成模型
                 handler ( newName , oldName ) {
-                    console.log( 'capitaldata changed' , newName );
+                    // console.log( 'capitaldata changed' , newName );
 
                     this.getcapitalmodel()
                 } ,

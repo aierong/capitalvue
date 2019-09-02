@@ -9,7 +9,17 @@ Time: 18:09
 <template>
 
     <div>
-        <capitaldata :code="capitalcode"></capitaldata>
+        <van-tabs v-model="tabactive">
+            <van-tab title="登记">
+
+                <capitaldata :code="capitalcode"></capitaldata>
+                <nosstep :capitalcode="capitalcode"></nosstep>
+            </van-tab>
+            <van-tab title="单据信息">
+
+            </van-tab>
+        </van-tabs>
+
 
     </div>
 
@@ -18,6 +28,7 @@ Time: 18:09
 <!-- js脚本代码片段 -->
 <script>
     import capitaldata from '@/components/detail/capitaldata.vue'
+    import nosstep from '@/components/detail/nosstep.vue'
 
     export default {
         name : "capitaldetaildata" ,
@@ -28,12 +39,13 @@ Time: 18:09
         components : {
 
             capitaldata ,
+            nosstep
 
         } ,
         //数据模型
         data () {
             return {
-                msg : ''
+                tabactive : 0
             }
         } ,
         //方法

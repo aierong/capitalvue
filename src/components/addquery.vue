@@ -72,7 +72,11 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <capitaldetaildata :capitalcode="componentcapitalcode"></capitaldetaildata>
+        <van-action-sheet style="height: 78%"
+                          v-model="diaObj.isshow"
+                          title="资产信息">
+            <capitaldetaildata :capitalcode="componentcapitalcode"></capitaldetaildata>
+        </van-action-sheet>
     </div>
 
 </template>
@@ -141,7 +145,10 @@ Time: 12:19
                     isloading : false
                 } ,
 
-                componentcapitalcode : ''
+                componentcapitalcode : '' ,
+                diaObj : {
+                    isshow : false
+                }
             }
         } ,
         //方法
@@ -157,6 +164,7 @@ Time: 12:19
                 // this.$toast.success( "成功" );
 
                 this.componentcapitalcode = item.capitalcode;
+                this.diaObj.isshow = true;
             } ,
             createoptionitem () {
 
