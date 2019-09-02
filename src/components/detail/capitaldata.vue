@@ -45,6 +45,7 @@ Time: 16:15
         //方法
         methods : {
             getcapitalmodel () {
+
                 if ( this.code ) {
                     dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
                         if ( res != null ) {
@@ -59,6 +60,7 @@ Time: 16:15
                 else {
                     this.capitalmodel = null;
                 }
+
             } ,
 
         } ,
