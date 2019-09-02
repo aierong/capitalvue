@@ -17,7 +17,7 @@ Time: 9:53
             <van-step :key="_index"
                       v-for="(item,_index) in steplist">
                 <h3>【{{ item.action }}】{{ item.nos }}</h3>
-                <p>{{ item.date }}{{ item.man }}</p>
+                <p @click="noquery(item)">{{ item.date }}{{ item.man }}</p>
             </van-step>
         </van-steps>
     </div>
@@ -57,6 +57,22 @@ Time: 9:53
         } ,
         //方法
         methods : {
+            noquery ( item ) {
+                if ( !item.isno ) {
+                    //点击登记，不反应
+                    return;
+                }
+
+                // let _type = {
+                //     issale : false ,
+                //     ismove : false ,
+                //     isscrap : false
+                // };
+
+                this.$emit( "userselectnos" , item.nos , item.type );
+
+                return;
+            } ,
             getsteplist () {
                 //先清空一把
                 this.steplist = [];
@@ -80,7 +96,8 @@ Time: 9:53
                                     action : '登记' ,
                                     nos : this.capitalcode ,
                                     date : _data.inputdate ,
-                                    man : _data.username
+                                    man : _data.username ,
+                                    type : ''
                                 };
 
                                 this.steplist.push( obj );
@@ -96,7 +113,8 @@ Time: 9:53
                                         action : '转移单' ,
                                         nos : value.nos ,
                                         date : value.inputdate ,
-                                        man : value.username
+                                        man : value.username ,
+                                        type : 'move'
                                     };
 
                                     this.steplist.push( obj );
@@ -113,7 +131,8 @@ Time: 9:53
                                     action : '报废单' ,
                                     nos : _data.nos ,
                                     date : _data.inputdate ,
-                                    man : _data.username
+                                    man : _data.username ,
+                                    type : 'scrap'
                                 };
 
                                 this.steplist.push( obj );
@@ -128,7 +147,8 @@ Time: 9:53
                                     action : '出售单' ,
                                     nos : _data.nos ,
                                     date : _data.inputdate ,
-                                    man : _data.username
+                                    man : _data.username ,
+                                    type : 'sale'
                                 };
 
                                 this.steplist.push( obj );

@@ -14,17 +14,22 @@ Time: 18:09
                 <van-divider content-position="left"
                              dashed>资产详情
                 </van-divider>
-                <capitaldata :code="capitalcode"></capitaldata>
+                <capitaldata :code="diaObj.capitalcode"></capitaldata>
                 <!--                <br>-->
                 <van-divider content-position="left"
                              dashed>时光轴(点击可看单据详情)
                 </van-divider>
-                <nosstep :capitalcode="capitalcode"></nosstep>
+                <nosstep @userselectnos="userselectnos"
+                         :capitalcode="diaObj.capitalcode"></nosstep>
             </van-tab>
             <van-tab title="单据信息">
-                <movedetaildata></movedetaildata>
-                <saledetaildata></saledetaildata>
-                <scrapdetaildata></scrapdetaildata>
+                <!--                做一个判断，显示谁-->
+                <movedetaildata v-if="ismove"
+                                :nos="selectnos"></movedetaildata>
+                <saledetaildata v-if="issale"
+                                :nos="selectnos"></saledetaildata>
+                <scrapdetaildata v-if="isscrap"
+                                 :nos="selectnos"></scrapdetaildata>
             </van-tab>
         </van-tabs>
 
@@ -45,7 +50,9 @@ Time: 18:09
     export default {
         name : "capitaldetaildata" ,
         props : {
-            capitalcode : String
+
+            diaObj : Object ,
+
         } ,
         //注册组件
         components : {
@@ -57,17 +64,43 @@ Time: 18:09
         //数据模型
         data () {
             return {
-                tabactive : 0
+                tabactive : 0 ,
+
+                selectnos : '' ,
+
+                notype : ''
             }
         } ,
         //方法
-        methods : {} ,
+        methods : {
+            userselectnos ( nos , _type ) {
+                //切换tab
+                this.tabactive = 1;
+                this.selectnos = nos;
+
+                this.notype = _type;
+            } ,
+        } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            ismove () {
+                if ( this.notype == 'move' ) {
+                    return true;
+                }
+                return false;
+            } ,
+            issale () {
+                if ( this.notype == 'sale' ) {
+                    return true;
+                }
+                return false;
+            } ,
+            isscrap () {
+                if ( this.notype == 'scrap' ) {
+                    return true;
+                }
+                return false;
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {

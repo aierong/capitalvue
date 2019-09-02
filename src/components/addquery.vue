@@ -75,7 +75,7 @@ Time: 12:19
         <van-action-sheet style="height: 78%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <capitaldetaildata :capitalcode="componentcapitalcode"></capitaldetaildata>
+            <capitaldetaildata :diaObj="DlgObj"></capitaldetaildata>
         </van-action-sheet>
     </div>
 
@@ -145,7 +145,11 @@ Time: 12:19
                     isloading : false
                 } ,
 
-                componentcapitalcode : '' ,
+                DlgObj : {
+
+                    capitalcode : '' ,
+                } ,
+
                 diaObj : {
                     isshow : false
                 }
@@ -163,7 +167,7 @@ Time: 12:19
                 // console.log( item )
                 // this.$toast.success( "成功" );
 
-                this.componentcapitalcode = item.capitalcode;
+                this.DlgObj.capitalcode = item.capitalcode;
                 this.diaObj.isshow = true;
             } ,
             createoptionitem () {

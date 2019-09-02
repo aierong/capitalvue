@@ -57,6 +57,16 @@ export const CapitalStatus = {
     normal : '正常'
 }
 
+// /**
+//  * 单据类型
+//  * @type {{sale: string, scrap: string, move: string}}
+//  */
+// export const notype = {
+//     sale : '出售单' ,
+//     scrap : '报废单' ,
+//     move : '转移单'
+// }
+
 /**
  * 数据表
  * @type {string}
