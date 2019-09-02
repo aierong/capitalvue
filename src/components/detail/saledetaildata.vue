@@ -1,7 +1,7 @@
 <!--
 作者:chenghao
-Date: 2019/9/1
-Time: 18:09
+Date: 2019/9/2
+Time: 9:18
 功能:
 -->
 
@@ -9,21 +9,15 @@ Time: 18:09
 <template>
 
     <div>
-        capitaldetaildata
+        saledetaildata
     </div>
 
 </template>
 
 <!-- js脚本代码片段 -->
 <script>
-    // api  dl  GetCapitalByCapitalCode
-
     export default {
-        name : "capitaldetaildata" ,
-        props : {
-            capitalcode : String
-        } ,
-
+        name : "saledetaildata" ,
         //数据模型
         data () {
             return {
@@ -53,5 +47,5 @@ Time: 18:09
 
 <!-- 样式代码片段  scoped -->
 <style scoped
-       src="./capitaldetaildata.css">
+       src="./saledetaildata.css">
 </style>
