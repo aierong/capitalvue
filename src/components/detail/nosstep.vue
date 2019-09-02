@@ -27,7 +27,6 @@ Time: 9:53
 <!-- js脚本代码片段 -->
 <script>
 
-
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as moveapi from '@/common/bmobapi/move.js'
     import * as scrapapi from '@/common/bmobapi/scrap.js'

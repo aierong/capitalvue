@@ -9,7 +9,7 @@ Time: 9:18
 <template>
 
     <div>
-        saledetaildata
+        出售单
     </div>
 
 </template>

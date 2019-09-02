@@ -11,8 +11,14 @@ Time: 18:09
     <div>
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
-
+                <van-divider content-position="left"
+                             dashed>资产详情
+                </van-divider>
                 <capitaldata :code="capitalcode"></capitaldata>
+                <!--                <br>-->
+                <van-divider content-position="left"
+                             dashed>时光轴(点击可看单据详情)
+                </van-divider>
                 <nosstep :capitalcode="capitalcode"></nosstep>
             </van-tab>
             <van-tab title="单据信息">

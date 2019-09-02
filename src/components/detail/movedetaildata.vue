@@ -9,7 +9,7 @@ Time: 9:18
 <template>
 
     <div>
-        movedetaildata
+        转移单
     </div>
 
 </template>

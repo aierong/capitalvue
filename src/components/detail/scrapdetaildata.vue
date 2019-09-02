@@ -9,7 +9,7 @@ Time: 9:20
 <template>
 
     <div>
-        scrapdetaildata
+        报废单
     </div>
 
 </template>
