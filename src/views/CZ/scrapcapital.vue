@@ -14,78 +14,87 @@ Time: 8:12
                      left-text="返回"
                      left-arrow
                      @click-left="onClickLeft"/>
-
-        <van-cell-group>
-            <van-field v-model="scrapmodel.nos"
-                       required
-                       readonly
-                       label="报废单号"/>
-            <van-field v-model="capitalallname"
-                       required
-                       readonly
-                       label="资产"
-                       placeholder="请选择资产">
-                <van-button slot="button"
-                            @click="opencapitaldlg"
-                            size="small"
-                            type="primary">选择
+        <van-tabs v-model="tabactive">
+            <van-tab title="登记">
+                <van-cell-group>
+                    <van-field v-model="scrapmodel.nos"
+                               required
+                               readonly
+                               label="报废单号"/>
+                    <van-field v-model="capitalallname"
+                               required
+                               readonly
+                               label="资产"
+                               placeholder="请选择资产">
+                        <van-button slot="button"
+                                    @click="opencapitaldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="scrapmodel.scrapname"
+                               required
+                               clearable
+                               label="报废人"
+                               placeholder="请输入报废人"/>
+                    <van-field v-model="scrapmodel.scrapdate"
+                               required
+                               readonly
+                               label="报废日期"
+                               placeholder="请选择报废日期">
+                        <van-button slot="button"
+                                    @click="opendateldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model.number="scrapmodel.scrapmoney"
+                               required
+                               clearable
+                               type="number"
+                               label="报废金额"
+                               placeholder="请输入报废金额"/>
+                    <van-field v-model="scrapmodel.scrapreason"
+                               clearable
+                               label="报废原因"
+                               placeholder="请输入报废原因"/>
+                    <van-field v-model="scrapmodel.comment"
+                               clearable
+                               label="备注"
+                               placeholder="请输入备注"/>
+                    <van-field v-model="loginuserallname"
+                               label="添加人"
+                               placeholder="请输入添加人"
+                               readonly/>
+                </van-cell-group>
+                <br>
+                <van-button size="large"
+                            @click="AddClick"
+                            type="primary"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="保存中..."
+                            :loading="buttonobj.isloading">保 存
                 </van-button>
-            </van-field>
-            <van-field v-model="scrapmodel.scrapname"
-                       required
-                       clearable
-                       label="报废人"
-                       placeholder="请输入报废人"/>
-            <van-field v-model="scrapmodel.scrapdate"
-                       required
-                       readonly
-                       label="报废日期"
-                       placeholder="请选择报废日期">
-                <van-button slot="button"
-                            @click="opendateldlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model.number="scrapmodel.scrapmoney"
-                       required
-                       clearable
-                       type="number"
-                       label="报废金额"
-                       placeholder="请输入报废金额"/>
-            <van-field v-model="scrapmodel.scrapreason"
-                       clearable
-                       label="报废原因"
-                       placeholder="请输入报废原因"/>
-            <van-field v-model="scrapmodel.comment"
-                       clearable
-                       label="备注"
-                       placeholder="请输入备注"/>
-            <van-field v-model="loginuserallname"
-                       label="添加人"
-                       placeholder="请输入添加人"
-                       readonly/>
-        </van-cell-group>
-        <br>
-        <van-button size="large"
-                    @click="AddClick"
-                    type="primary"
-                    color="#7232dd"
-                    plain
-                    round
-                    loading-type="spinner"
-                    loading-text="保存中..."
-                    :loading="buttonobj.isloading">保 存
-        </van-button>
 
-        <!--        选择资产的弹窗
--->
-        <selectcapital @selectcapital="selectcapital"
-                       :diaObj="CapitalDlgObj"></selectcapital>
-        <!--        选择日期的弹窗
--->
-        <selectdate @dateresult="dateresult"
-                    :diaObj="DateDlgObj"></selectdate>
+                <!--        选择资产的弹窗
+        -->
+                <selectcapital @selectcapital="selectcapital"
+                               :diaObj="CapitalDlgObj"></selectcapital>
+                <!--        选择日期的弹窗
+        -->
+                <selectdate @dateresult="dateresult"
+                            :diaObj="DateDlgObj"></selectdate>
+
+            </van-tab>
+            <van-tab title="查询">
+                <addscrapquery></addscrapquery>
+            </van-tab>
+        </van-tabs>
+
+
     </div>
 
 </template>
@@ -100,6 +109,7 @@ Time: 8:12
 
     import selectcapital from '@/components/selectcapital.vue'
     import selectdate from '@/components/selectdate.vue'
+    import addscrapquery from '@/components/addscrapquery.vue'
 
     import * as util from '@/common/util/util.js'
 
@@ -112,7 +122,8 @@ Time: 8:12
         components : {
 
             selectcapital ,
-            selectdate
+            selectdate ,
+            addscrapquery
 
         } ,
         //导入混入对象 可以是多个,数组
@@ -124,6 +135,7 @@ Time: 8:12
         //数据模型
         data () {
             return {
+                tabactive : 0 ,
                 /**
                  * 单据的前缀
                  */
