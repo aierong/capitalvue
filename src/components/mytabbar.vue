@@ -12,13 +12,10 @@ Time: 22:44
     <van-tabbar v-model="active"
                 @change="onchange"
                 active-color="#07c160">
-
-
         <van-tabbar-item icon="home-o">资产</van-tabbar-item>
         <van-tabbar-item icon="shrink">操作</van-tabbar-item>
         <van-tabbar-item icon="label-o">查询</van-tabbar-item>
         <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
-
     </van-tabbar>
 </template>
 
@@ -33,6 +30,7 @@ Time: 22:44
             return {
 
                 active : 0 ,
+
             }
         } ,
         //方法
@@ -43,8 +41,8 @@ Time: 22:44
 
             ] ) ,
             setupactive ( path ) {
-                console.log( 'mytabbar setupactive' )
-                console.log( path )
+                // console.log( 'mytabbar setupactive' )
+                // console.log( path )
 
                 if ( path == "/myindexpage" ) {
                     this.active = 0;
@@ -74,7 +72,7 @@ Time: 22:44
             } ,
             onchange ( active ) {
                 // active: 当前选中标签
-                console.log( 'mytabbar onchange' , active )
+                // console.log( 'mytabbar onchange' , active )
 
                 if ( active == 0 ) {
                     // 页面跳转
@@ -117,7 +115,7 @@ Time: 22:44
             this.setupactive( _path );
         } ,
         activated () {
-            console.log( 'mytabbar activated' )
+            // console.log( 'mytabbar activated' )
 
             let _path = this.$route.path;
 

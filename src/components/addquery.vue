@@ -185,13 +185,6 @@ Time: 12:19
 
                 this.diaObj.isshow = true;
 
-                // this.DlgObj = {
-                //
-                //     capitalcode : '' ,
-                //     nos : '' ,
-                //     notype : ''
-                // };
-
                 this.DlgObj.capitalcode = item.capitalcode;
                 //this.DlgObj.nos = '';
                 this.DlgObj.tabindex = 0;

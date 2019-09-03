@@ -11,8 +11,8 @@ Time: 16:15
         <div v-if="modeldata!=null">
             <van-cell>
                 <van-row>
-                    <van-col span="12">{{ '资产:' + modeldata.capitalname  }}</van-col>
-                    <van-col span="12">{{ '保管人:' + modeldata.saveman  }}</van-col>
+                    <van-col span="12">{{ '资产:' + modeldata.capitalname }}</van-col>
+                    <van-col span="12">{{ '保管人:' + modeldata.saveman }}</van-col>
                 </van-row>
             </van-cell>
             <van-cell>
@@ -46,7 +46,6 @@ Time: 16:15
             <van-cell>
                 <van-row>
                     <van-col span="24">{{ `录入:${modeldata.username}(${modeldata.inputdate})` }}</van-col>
-
                 </van-row>
             </van-cell>
         </div>

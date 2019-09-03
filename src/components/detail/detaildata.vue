@@ -84,7 +84,7 @@ Time: 18:09
             // } ,
             diaObj : {
                 handler ( newName , oldName ) {
-                    console.log( 'detaildata diaObj watch handler' , newName , oldName );
+                    // console.log( 'detaildata diaObj watch handler' , newName , oldName );
 
                     this.notype = newName.notype;
                     this.tabactive = newName.tabindex;
@@ -159,7 +159,7 @@ Time: 18:09
         } ,
         //生命周期(mounted)
         mounted () {
-            console.log( 'detaildata mounted' )
+            // console.log( 'detaildata mounted' )
 
             // //接收监听
             // this.$bus.$on( "initdetaildata" , ( val ) => {

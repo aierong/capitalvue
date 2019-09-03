@@ -65,6 +65,7 @@ Time: 9:53
                     return;
                 }
 
+                //点击某个单据
                 this.$emit( "userselectnos" , item.nos , item.type );
 
                 return;
