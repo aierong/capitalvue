@@ -87,6 +87,8 @@ Time: 9:35
 
 <!-- js脚本代码片段 -->
 <script>
+    import dayjs from 'dayjs'
+
     //引入 lodash
     import * as _ from "lodash"
 
@@ -147,7 +149,9 @@ Time: 9:35
 
                     capitalcode : '' ,
                     nos : '' ,
-                    notype : ''
+                    notype : globalconstant.notype.move ,
+                    tabindex : 0 ,
+                    tempdata : ''
                 } ,
 
                 diaObj : {
@@ -259,17 +263,15 @@ Time: 9:35
 
                 this.diaObj.isshow = true;
 
-                this.DlgObj = {
-
-                    capitalcode : '' ,
-                    nos : '' ,
-                    notype : ''
-                };
-
                 this.DlgObj.capitalcode = item.capitalcode;
                 this.DlgObj.nos = item.nos;
+                this.DlgObj.tabindex = 1;
+                //this.DlgObj.tempdata = util.GetGuid();
+                //dayjs().valueOf() Unix 时间戳 (毫秒)
+                //每次给tempdata赋值（唯一）,这样可以激活组件的watch
+                this.DlgObj.tempdata = dayjs().valueOf().toString();
 
-                // console.log( 'DlgObj' , this.DlgObj )
+                console.log( 'DlgObj' , this.DlgObj )
             } ,
         } ,
         //计算属性

@@ -85,6 +85,8 @@ Time: 12:19
 
 <!-- js脚本代码片段 -->
 <script>
+    import dayjs from 'dayjs'
+
     //引入 lodash
     import * as _ from "lodash"
 
@@ -151,7 +153,9 @@ Time: 12:19
 
                     capitalcode : '' ,
                     nos : '' ,
-                    notype : ''
+                    notype : '' ,
+                    tabindex : 0 ,
+                    tempdata : ''
                 } ,
 
                 diaObj : {
@@ -177,21 +181,25 @@ Time: 12:19
                 // this.$refs.c1.$children[ 0 ].initmodel();
 
                 //
-                this.$bus.$emit( "initdetaildata" , 'qq' );
+                // this.$bus.$emit( "initdetaildata" , 'qq' );
 
                 this.diaObj.isshow = true;
 
-                this.DlgObj = {
-
-                    capitalcode : '' ,
-                    nos : '' ,
-                    notype : ''
-                };
+                // this.DlgObj = {
+                //
+                //     capitalcode : '' ,
+                //     nos : '' ,
+                //     notype : ''
+                // };
 
                 this.DlgObj.capitalcode = item.capitalcode;
+                //this.DlgObj.nos = '';
+                this.DlgObj.tabindex = 0;
+                //dayjs().valueOf() Unix 时间戳 (毫秒)
+                //每次给tempdata赋值（唯一）,这样可以激活组件的watch
+                this.DlgObj.tempdata = dayjs().valueOf().toString();
 
-
-                // console.log( 'DlgObj' , this.DlgObj )
+                console.log( 'DlgObj' , this.DlgObj )
             } ,
             createoptionitem () {
 
@@ -367,7 +375,7 @@ Time: 12:19
         //生命周期(mounted)
         mounted () {
             // console.log('addquery mounted')
-            this.$bus.$emit( "initdetaildata" , 'init' );
+            // this.$bus.$emit( "initdetaildata" , 'init' );
 
             this.createoptionitem();
 

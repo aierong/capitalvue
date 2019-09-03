@@ -36,10 +36,10 @@ Object.keys( components ).forEach( ( key ) => {
 
 } )
 
-//注册 一个 新的总线
-let vue = new Vue();
-//挂靠在原型链上
-Vue.prototype.$bus = vue;
+// //注册 一个 新的总线
+// let vue = new Vue();
+// //挂靠在原型链上
+// Vue.prototype.$bus = vue;
 
 Vue.config.productionTip = false
 

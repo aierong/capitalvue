@@ -58,29 +58,41 @@ Time: 18:09
             diaObj : Object ,
         } ,
         watch : {
-            'diaObj.nos' : {
-                //监听 资产编号变化，重新生成列表
+            // 'diaObj.nos' : {
+            //     //监听 资产编号变化，重新生成列表
+            //     handler ( newName , oldName ) {
+            //         // console.log( 'detaildata. diaObj.nos changed' );
+            //
+            //         if ( !newName ) {
+            //             this.tabactive = 0;
+            //         }
+            //
+            //         this.selectnos = newName;
+            //     } ,
+            //     immediate : true ,
+            //
+            // } ,
+            // 'diaObj.notype' : {
+            //     //监听 资产编号变化，重新生成列表
+            //     handler ( newName , oldName ) {
+            //         // console.log( 'detaildata. diaObj.notype changed' );
+            //
+            //         this.notype = newName;
+            //     } ,
+            //     immediate : true ,
+            //
+            // } ,
+            diaObj : {
                 handler ( newName , oldName ) {
-                    // console.log( 'detaildata. diaObj.nos changed' );
+                    console.log( 'detaildata diaObj watch handler' , newName , oldName );
 
-                    if ( !newName ) {
-                        this.tabactive = 0;
-                    }
-
-                    this.selectnos = newName;
+                    this.notype = newName.notype;
+                    this.tabactive = newName.tabindex;
+                    this.selectnos = newName.nos;
                 } ,
                 immediate : true ,
-
-            } ,
-            'diaObj.notype' : {
-                //监听 资产编号变化，重新生成列表
-                handler ( newName , oldName ) {
-                    // console.log( 'detaildata. diaObj.notype changed' );
-
-                    this.notype = newName;
-                } ,
-                immediate : true ,
-
+                //深度
+                deep : true
             } ,
         } ,
         //注册组件
@@ -149,13 +161,13 @@ Time: 18:09
         mounted () {
             console.log( 'detaildata mounted' )
 
-            //接收监听
-            this.$bus.$on( "initdetaildata" , ( val ) => {
-                // console.log( val );
-
-                this.initmodel();
-                // this.message = val.c;
-            } )
+            // //接收监听
+            // this.$bus.$on( "initdetaildata" , ( val ) => {
+            //     // console.log( val );
+            //
+            //     this.initmodel();
+            //     // this.message = val.c;
+            // } )
         } ,
     }
 </script>
