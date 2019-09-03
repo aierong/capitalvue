@@ -63,7 +63,7 @@ Time: 16:15
             code : String
         } ,
         watch : {
-            capitalcode : {
+            code : {
                 //监听 资产编号变化，重新生成模型
                 handler ( newName , oldName ) {
                     // console.log( 'capitaldata changed' , newName );
@@ -120,3 +120,5 @@ Time: 16:15
 <style src="./capitaldata.css"
        scoped>
 </style>
+
+
