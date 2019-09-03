@@ -126,8 +126,6 @@ export function addscrap ( scrap , capitalobjectId ) {
     } );
 }
 
-
-
 /**
  * 得单据信息
  * @param nos
@@ -152,8 +150,6 @@ export function GetNosData ( nos ) {
 
 }
 
-
-
 /**
  * 得单据列表信息
  * @param capitalcode
@@ -176,6 +172,48 @@ export function GetNosList ( capitalcode ) {
                 resolve( null );
             }
         } );
+    } );
+
+}
+
+
+export function getaddscrapquerylistbyminid ( minid , loadcounts , userid , searchkey ) {
+
+    return new Promise( ( resolve , reject ) => {
+        const query = Bmob.Query( tableName );
+
+        //该用户填写的
+        if ( userid ) {
+            query.equalTo( "userid" , "==" , userid );
+        }
+
+        if ( minid > 0 ) {
+            query.equalTo( "autokey" , "<" , minid );
+        }
+
+        if ( loadcounts > 0 ) {
+            query.limit( loadcounts );
+        }
+        query.order( "-autokey" );
+
+        query.find().then( ( res ) => {
+            // console.log( 'res' , res )
+
+            if ( searchkey ) {
+                let result = res.filter( ( value , index , array ) => {
+                    return ( value.capitalcode != null
+                        && value.capitalcode.toUpperCase().includes( searchkey.toUpperCase() ) )
+                        || ( value.capitalname != null
+                            && value.capitalname.toUpperCase().includes( searchkey.toUpperCase() ) );
+
+                } )
+
+                resolve( result );
+            }
+            else {
+                resolve( res );
+            }
+        } )
     } );
 
 }

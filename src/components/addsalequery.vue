@@ -44,12 +44,12 @@ Time: 11:45
                 <template slot="label">
                     <span>{{ item  | formatlabel }}</span>
                     <br>
-                    <span>{{ item.scrapdate }}</span>
+                    <span>{{ item.saledate }}</span>
                 </template>
                 <template slot="default">
 
                     <!--                    <span v-bind:class="{ mycell: !IsNormal(item.capitalstatus) }">{{ item.capitalstatus }}</span>-->
-                    <span>{{ item.scrapname }}</span>
+                    <span>{{ item.salename }}</span>
                 </template>
             </van-cell>
         </van-cell-group>
@@ -72,12 +72,10 @@ Time: 11:45
         <van-divider dashed
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
-        <van-action-sheet ref='c1'
-                          style="height: 86%"
+        <van-action-sheet style="height: 86%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <detaildata ref='c2'
-                        :diaObj="DlgObj"></detaildata>
+            <detaildata :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
     </div>
 
