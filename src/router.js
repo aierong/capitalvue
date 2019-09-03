@@ -103,11 +103,11 @@ router.beforeEach( ( to , from , next ) => {
         //let isLogin = data ? true : false;
         let isLogin = false;
 
-        if ( data && data.loginuserid ) {
+        if ( data && data.loginuserid && store.state.loginuser != null ) {
             //有可能没有loginuser 判断一下
-            if ( store.state.loginuser != null ) {
-                isLogin = true;
-            }
+
+            isLogin = true;
+
         }
 
         // console.log( 'beforeEach' , data , data.loginuserid , isLogin , store.state , store.state.loginuser )
