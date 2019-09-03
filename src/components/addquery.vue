@@ -72,12 +72,10 @@ Time: 12:19
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <van-action-sheet ref='c1'
-                          style="height: 86%"
+        <van-action-sheet style="height: 86%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <detaildata ref='c2'
-                        :diaObj="DlgObj"></detaildata>
+            <detaildata :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
     </div>
 

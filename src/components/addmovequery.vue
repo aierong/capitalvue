@@ -74,12 +74,10 @@ Time: 9:35
                      v-if="loadobj.isshowdivider">我是有底线的
         </van-divider>
 
-        <van-action-sheet ref='c1'
-                          style="height: 86%"
+        <van-action-sheet style="height: 86%"
                           v-model="diaObj.isshow"
                           title="资产信息">
-            <detaildata ref='c2'
-                        :diaObj="DlgObj"></detaildata>
+            <detaildata :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
     </div>
 
@@ -271,7 +269,7 @@ Time: 9:35
                 //每次给tempdata赋值（唯一）,这样可以激活组件的watch
                 this.DlgObj.tempdata = dayjs().valueOf().toString();
 
-                console.log( 'DlgObj' , this.DlgObj )
+                // console.log( 'DlgObj' , this.DlgObj )
             } ,
         } ,
         //计算属性

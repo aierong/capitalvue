@@ -30,6 +30,55 @@ Time: 11:45
                  @click="onSearch">搜索
             </div>
         </van-search>
+        <van-cell-group>
+            <van-cell :key="_index"
+                      v-for="(item,_index) in capitallist">
+                <template slot="right-icon">
+                    <van-icon @click="gotodetaildata(item)"
+                              size="20px"
+                              name="search"/>
+                </template>
+                <template slot="title">
+                    <span>{{ item  | formattitle }}</span>
+                </template>
+                <template slot="label">
+                    <span>{{ item  | formatlabel }}</span>
+                    <br>
+                    <span>{{ item.scrapdate }}</span>
+                </template>
+                <template slot="default">
+
+                    <!--                    <span v-bind:class="{ mycell: !IsNormal(item.capitalstatus) }">{{ item.capitalstatus }}</span>-->
+                    <span>{{ item.scrapname }}</span>
+                </template>
+            </van-cell>
+        </van-cell-group>
+        <br>
+        <br>
+        <van-divider v-if="!loadobj.isover">
+            <template slot="default">
+                <van-button :loading="loadobj.isloading"
+                            @click="loaddata"
+                            size="small"
+                            icon="replay"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="加载中...">点我加载更多
+                </van-button>
+            </template>
+        </van-divider>
+        <van-divider dashed
+                     v-if="loadobj.isshowdivider">我是有底线的
+        </van-divider>
+        <van-action-sheet ref='c1'
+                          style="height: 86%"
+                          v-model="diaObj.isshow"
+                          title="资产信息">
+            <detaildata ref='c2'
+                        :diaObj="DlgObj"></detaildata>
+        </van-action-sheet>
     </div>
 
 </template>
@@ -140,7 +189,7 @@ Time: 11:45
 
                 this.loadobj.isloading = true;
 
-                let list = await saleapi.getaddmovequerylistbyminid( this.minautokey ,
+                let list = await saleapi.getaddsalequerylistbyminid( this.minautokey ,
                     counts ,
 
                     this.MyItemVal ,
@@ -177,7 +226,7 @@ Time: 11:45
             async initlist () {
                 let initcount = 10;
 
-                let list = await moveapi.getaddmovequerylistbyminid( 0 ,
+                let list = await saleapi.getaddsalequerylistbyminid( 0 ,
                     initcount ,
 
                     this.MyItemVal ,
@@ -207,17 +256,55 @@ Time: 11:45
                 }
 
             } ,
+            gotodetaildata ( item ) {
+
+                this.diaObj.isshow = true;
+
+                this.DlgObj.capitalcode = item.capitalcode;
+                this.DlgObj.nos = item.nos;
+                this.DlgObj.tabindex = 1;
+                //this.DlgObj.tempdata = util.GetGuid();
+                //dayjs().valueOf() Unix 时间戳 (毫秒)
+                //每次给tempdata赋值（唯一）,这样可以激活组件的watch
+                this.DlgObj.tempdata = dayjs().valueOf().toString();
+
+                // console.log( 'DlgObj' , this.DlgObj )
+            } ,
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            /**
+             * 得列表中最小的autokey
+             * @returns {number|*}
+             */
+            minautokey () {
+                if ( this.listcounts > 0 ) {
+                    let obj = _.minBy( this.capitallist , ( val ) => {
+                        return val.autokey;
+                    } )
+
+                    return obj.autokey;
+                }
+
+                return 0;
+            } ,
+            /**
+             * 列表中记录数量
+             * @returns {number|*}
+             */
+            listcounts () {
+                if ( this.capitallist != null && this.capitallist.length > 0 ) {
+                    return this.capitallist.length;
+                }
+
+                return 0;
+            } ,
         } ,
         //生命周期(mounted)
         mounted () {
+            this.createoptionitem();
 
+            this.initlist();
         } ,
     }
 </script>
