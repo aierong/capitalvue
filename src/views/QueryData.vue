@@ -52,7 +52,33 @@ Time: 14:53
                 </template>
             </van-cell>
         </van-cell-group>
+        <br>
+        <br>
+        <van-divider v-if="!loadobj.isover">
+            <template slot="default">
+                <van-button :loading="loadobj.isloading"
+                            @click="loaddata"
+                            size="small"
+                            icon="replay"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="加载中...">点我加载更多
+                </van-button>
+            </template>
+        </van-divider>
+        <van-divider dashed
+                     v-if="loadobj.isshowdivider">我是有底线的
+        </van-divider>
 
+        <van-action-sheet style="height: 86%"
+                          v-model="diaObj.isshow"
+                          title="资产信息">
+            <detaildata :diaObj="DlgObj"></detaildata>
+        </van-action-sheet>
+
+        <!--        tab-->
         <mytabbar></mytabbar>
     </div>
 
