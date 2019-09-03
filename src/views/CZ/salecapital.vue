@@ -13,83 +13,86 @@ Time: 22:00
                      left-text="返回"
                      left-arrow
                      @click-left="onClickLeft"/>
-
-        <van-cell-group>
-            <van-field v-model="salemodel.nos"
-                       required
-                       readonly
-                       label="出售单号"/>
-            <van-field v-model="capitalallname"
-                       required
-                       readonly
-                       label="资产"
-                       placeholder="请选择资产">
-                <van-button slot="button"
-                            @click="opencapitaldlg"
-                            size="small"
-                            type="primary">选择
+        <van-tabs v-model="tabactive">
+            <van-tab title="登记">
+                <van-cell-group>
+                    <van-field v-model="salemodel.nos"
+                               required
+                               readonly
+                               label="出售单号"/>
+                    <van-field v-model="capitalallname"
+                               required
+                               readonly
+                               label="资产"
+                               placeholder="请选择资产">
+                        <van-button slot="button"
+                                    @click="opencapitaldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="salemodel.salename"
+                               required
+                               clearable
+                               label="出售人"
+                               placeholder="请输入出售人"/>
+                    <van-field v-model="salemodel.saledate"
+                               required
+                               readonly
+                               label="出售日期"
+                               placeholder="请选择出售日期">
+                        <van-button slot="button"
+                                    @click="opendateldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model.number="salemodel.salemoney"
+                               required
+                               clearable
+                               type="number"
+                               label="出售金额"
+                               placeholder="请输入出售金额"/>
+                    <van-field v-model="salemodel.saleto"
+                               clearable
+                               label="出售对象"
+                               required
+                               placeholder="请输入出售对象"/>
+                    <van-field v-model="salemodel.comment"
+                               clearable
+                               label="备注"
+                               placeholder="请输入备注"/>
+                    <van-field v-model="loginuserallname"
+                               label="添加人"
+                               placeholder="请输入添加人"
+                               readonly/>
+                </van-cell-group>
+                <br>
+                <van-button size="large"
+                            @click="AddClick"
+                            type="primary"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="保存中..."
+                            :loading="buttonobj.isloading">保 存
                 </van-button>
-            </van-field>
-            <van-field v-model="salemodel.salename"
-                       required
-                       clearable
-                       label="出售人"
-                       placeholder="请输入出售人"/>
-            <van-field v-model="salemodel.saledate"
-                       required
-                       readonly
-                       label="出售日期"
-                       placeholder="请选择出售日期">
-                <van-button slot="button"
-                            @click="opendateldlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model.number="salemodel.salemoney"
-                       required
-                       clearable
-                       type="number"
-                       label="出售金额"
-                       placeholder="请输入出售金额"/>
-            <van-field v-model="salemodel.saleto"
-                       clearable
-                       label="出售对象"
-                       required
-                       placeholder="请输入出售对象"/>
-            <van-field v-model="salemodel.comment"
-                       clearable
-                       label="备注"
-                       placeholder="请输入备注"/>
-            <van-field v-model="loginuserallname"
-                       label="添加人"
-                       placeholder="请输入添加人"
-                       readonly/>
-        </van-cell-group>
-        <br>
-        <van-button size="large"
-                    @click="AddClick"
-                    type="primary"
-                    color="#7232dd"
-                    plain
-                    round
-                    loading-type="spinner"
-                    loading-text="保存中..."
-                    :loading="buttonobj.isloading">保 存
-        </van-button>
 
-        <!--        选择资产的弹窗
--->
-        <selectcapital @selectcapital="selectcapital"
-                       :diaObj="CapitalDlgObj"></selectcapital>
-        <!--        选择日期的弹窗
--->
-        <selectdate @dateresult="dateresult"
-                    :diaObj="DateDlgObj"></selectdate>
+                <!--        选择资产的弹窗
+        -->
+                <selectcapital @selectcapital="selectcapital"
+                               :diaObj="CapitalDlgObj"></selectcapital>
+                <!--        选择日期的弹窗
+        -->
+                <selectdate @dateresult="dateresult"
+                            :diaObj="DateDlgObj"></selectdate>
+            </van-tab>
+            <van-tab title="查询">
+                <addsalequery></addsalequery>
+            </van-tab>
+        </van-tabs>
 
-
-
-        <addsalequery></addsalequery>
     </div>
 
 </template>
@@ -130,6 +133,7 @@ Time: 22:00
         //数据模型
         data () {
             return {
+                tabactive : 0 ,
                 /**
                  * 单据的前缀
                  */
