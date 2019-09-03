@@ -7,11 +7,45 @@ Time: 9:18
 
 <!-- html代码片段 -->
 <template>
-
     <div>
-        出售单
-    </div>
+        <div v-if="modeldata!=null">
+            <van-divider class="mydivider"
+                         content-position="left"
+                         dashed> {{ `出售单(${modeldata.nos})详细信息` }}
+            </van-divider>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ '资产:' + modeldata.capitalcode +'(' +modeldata.capitalname +')' }}</van-col>
+                    <!--                <van-col span="24">{{  '日期:' +  }}</van-col>-->
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
 
+                    <van-col span="12">{{ '日期:' + modeldata.saledate }}</van-col>
+                    <van-col span="12">{{ '出售人:' + modeldata.salename }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="12">{{ '出售金额:' + modeldata.salemoney }}</van-col>
+                    <van-col span="12">{{ '销售对象:' + modeldata.saleto }}</van-col>
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ `备注:${modeldata.comment}` }}</van-col>
+
+                </van-row>
+            </van-cell>
+            <van-cell>
+                <van-row>
+                    <van-col span="24">{{ `录入:${modeldata.username}(${modeldata.inputdate})` }}</van-col>
+
+                </van-row>
+            </van-cell>
+        </div>
+    </div>
 </template>
 
 <!-- js脚本代码片段 -->
