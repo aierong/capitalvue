@@ -1,6 +1,5 @@
 项目中各表结构:
 
-
 dept表结构:
 ids  自动增长
 deptname   部门名称
