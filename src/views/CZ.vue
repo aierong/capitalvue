@@ -57,7 +57,7 @@ Time: 0:23
                 <span class="cellspantitleclass">资产报废</span>
             </template>
         </van-cell>
-        <van-cell>
+        <van-cell @click="onQueryClick">
             <template slot="title">
                 <svg class="icon"
                      aria-hidden="true"
@@ -118,6 +118,12 @@ Time: 0:23
         } ,
         //方法
         methods : {
+            onQueryClick () {
+                // 页面跳转
+                this.$router.push( "/querydata" )
+
+                return;
+            } ,
             onAddClick () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )

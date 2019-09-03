@@ -134,7 +134,6 @@ Time: 14:42
                 swipeimagelist : [
                     require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
 
-
                     require( `@/assets/capitalswipeimage/car4.jpg` ) ,
                     require( `@/assets/capitalswipeimage/car6.jpg` ) ,
 
@@ -155,7 +154,6 @@ Time: 14:42
         } ,
         //方法
         methods : {
-
             addcapital () {
                 // 页面跳转
                 this.$router.push( "/addcapital" )
@@ -184,6 +182,8 @@ Time: 14:42
             queryclick () {
                 // 页面跳转
                 this.$router.push( "/querydata" )
+
+                return;
             } ,
             //退出
             exitclick () {
