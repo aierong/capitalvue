@@ -179,6 +179,8 @@ Time: 12:19
                 //
                 this.$bus.$emit( "initdetaildata" , 'qq' );
 
+                this.diaObj.isshow = true;
+
                 this.DlgObj = {
 
                     capitalcode : '' ,
@@ -187,9 +189,9 @@ Time: 12:19
                 };
 
                 this.DlgObj.capitalcode = item.capitalcode;
-                this.diaObj.isshow = true;
 
-                console.log( 'DlgObj' , this.DlgObj )
+
+                // console.log( 'DlgObj' , this.DlgObj )
             } ,
             createoptionitem () {
 
