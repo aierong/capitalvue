@@ -223,7 +223,7 @@ Time: 14:53
                 let list = await dlapi.querybyminid( this.minautokey ,
                     counts ,
                     this.CapitalTypeItemVal ,
-                    this.loginusermobile ,
+                    this.MyItemVal ,
                     this.CapitalStatusVal ,
                     this.searchval );
 
@@ -261,7 +261,7 @@ Time: 14:53
                 let list = await dlapi.querybyminid( 0 ,
                     initcount ,
                     this.CapitalTypeItemVal ,
-                    this.loginusermobile ,
+                    this.MyItemVal ,
                     this.CapitalStatusVal ,
                     this.searchval );
 
