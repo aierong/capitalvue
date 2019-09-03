@@ -113,7 +113,7 @@ Time: 14:53
                 MyItemVal : '' ,
                 optionitemMy : [] ,
 
-                CapitalStatusVal : '正常' ,
+                CapitalStatusVal : '' ,
                 optionitemCapitalStatus : [] ,
 
                 searchval : '' ,
