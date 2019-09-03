@@ -12,9 +12,7 @@ Time: 22:44
         style="z-index: 1999;position: fixed;"
         :fixed="fixed"
         -->
-        <van-tabbar
-
-                    v-model="active"
+        <van-tabbar v-model="active"
                     @change="onchange"
                     active-color="#07c160">
             <van-tabbar-item icon="home-o">资产</van-tabbar-item>
