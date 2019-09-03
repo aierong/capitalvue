@@ -190,7 +190,7 @@ Time: 12:19
                 //每次给tempdata赋值（唯一）,这样可以激活组件的watch
                 this.DlgObj.tempdata = dayjs().valueOf().toString();
 
-                console.log( 'DlgObj' , this.DlgObj )
+                // console.log( 'DlgObj' , this.DlgObj )
             } ,
             createoptionitem () {
 

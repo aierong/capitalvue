@@ -146,6 +146,29 @@ Time: 14:53
                 }
                 return false;
             } ,
+            gotodetaildata ( item ) {
+                // console.log( item )
+                // this.$toast.success( "成功" );
+
+                // console.log( 'this.$refs.c1' , this.$refs.c1 )
+                // console.log( 'c1 er' , this.$refs.c1.$children )
+                // console.log( 'er' , this.$children )
+                // this.$refs.c1.$children[ 0 ].initmodel();
+
+                //
+                // this.$bus.$emit( "initdetaildata" , 'qq' );
+
+                this.diaObj.isshow = true;
+
+                this.DlgObj.capitalcode = item.capitalcode;
+                //this.DlgObj.nos = '';
+                this.DlgObj.tabindex = 0;
+                //dayjs().valueOf() Unix 时间戳 (毫秒)
+                //每次给tempdata赋值（唯一）,这样可以激活组件的watch
+                this.DlgObj.tempdata = dayjs().valueOf().toString();
+
+                // console.log( 'DlgObj' , this.DlgObj )
+            } ,
             createoptionitem () {
 
                 this.optionitemCapitalType = util.GetCapitalTypeList( true );
