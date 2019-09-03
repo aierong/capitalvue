@@ -86,6 +86,10 @@ Time: 22:00
 -->
         <selectdate @dateresult="dateresult"
                     :diaObj="DateDlgObj"></selectdate>
+
+
+
+        <addsalequery></addsalequery>
     </div>
 
 </template>
@@ -100,6 +104,7 @@ Time: 22:00
 
     import selectcapital from '@/components/selectcapital.vue'
     import selectdate from '@/components/selectdate.vue'
+    import addsalequery from '@/components/addsalequery.vue'
 
     import * as util from '@/common/util/util.js'
 
@@ -112,7 +117,8 @@ Time: 22:00
         components : {
 
             selectcapital ,
-            selectdate
+            selectdate ,
+            addsalequery
 
         } ,
         //导入混入对象 可以是多个,数组
