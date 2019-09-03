@@ -178,7 +178,7 @@ export function GetNosList ( capitalcode ) {
 
 
 
-export function getaddmovequerylistbyminid ( minid , loadcounts , userid , searchkey ) {
+export function getaddsalequerylistbyminid ( minid , loadcounts , userid , searchkey ) {
 
     return new Promise( ( resolve , reject ) => {
         const query = Bmob.Query( tableName );
