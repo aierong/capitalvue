@@ -5,8 +5,6 @@
 
 export default {
 
-    //getters实际就是一个计算属性
-
     //得头像
     useravatar : ( state ) => {
         if ( state.loginuser != null ) {

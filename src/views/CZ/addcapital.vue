@@ -202,7 +202,6 @@ Time: 11:17
                 return;
             } ,
             typeselectresult ( val ) {
-                // console.log( val )
 
                 this.TypeDlgObj.typename = val;
 

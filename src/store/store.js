@@ -105,6 +105,6 @@ export default new Vuex.Store( {
     plugins : [
         vuexPersisted ,
         vuexPersistedcookie ,
-        vuexPersistedsession
+        vuexPersistedsession ,
     ] ,
 } )
