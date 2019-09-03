@@ -14,106 +14,113 @@ Time: 16:56
                      left-arrow
                      @click-left="onClickLeft"/>
         <!--        <br>-->
-        <van-cell-group>
-            <van-field v-model="movemodel.nos"
-                       required
-                       readonly
-                       label="转移单号"/>
-            <van-field v-model="capitalallname"
-                       required
-                       readonly
-                       label="资产"
-                       placeholder="请选择资产">
-                <van-button slot="button"
-                            @click="opencapitaldlg"
-                            size="small"
-                            type="primary">选择
+        <van-tabs v-model="tabactive">
+            <van-tab title="登记">
+                <van-cell-group>
+                    <van-field v-model="movemodel.nos"
+                               required
+                               readonly
+                               label="转移单号"/>
+                    <van-field v-model="capitalallname"
+                               required
+                               readonly
+                               label="资产"
+                               placeholder="请选择资产">
+                        <van-button slot="button"
+                                    @click="opencapitaldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="olddeptinfo"
+                               required
+                               readonly
+                               label="原部门"/>
+                    <van-field v-model="newdeptinfo"
+                               required
+                               readonly
+                               label="现部门"
+                               placeholder="请选择部门">
+                        <van-button slot="button"
+                                    @click="opendeptdlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="movemodel.oldsavesite"
+                               required
+                               readonly
+                               label="原位置"/>
+                    <van-field v-model="movemodel.newsavesite"
+                               required
+                               clearable
+                               label="现位置"
+                               placeholder="请输入现位置"/>
+                    <van-field v-model="movemodel.oldsaveman"
+                               required
+                               readonly
+                               label="原保管人"/>
+                    <van-field v-model="movemodel.newsaveman"
+                               required
+                               clearable
+                               label="现保管人"
+                               placeholder="请输入现保管人"/>
+                    <van-field v-model="movemodel.movedate"
+                               required
+                               readonly
+                               label="转移日期"
+                               placeholder="请选择转移日期">
+                        <van-button slot="button"
+                                    @click="opendateldlg"
+                                    size="small"
+                                    type="primary">选择
+                        </van-button>
+                    </van-field>
+                    <van-field v-model="movemodel.movename"
+                               required
+                               clearable
+                               label="转移人"
+                               placeholder="请输入转移人"/>
+                    <van-field v-model="movemodel.comment"
+                               clearable
+                               label="备注"
+                               placeholder="请输入备注"/>
+                    <van-field v-model="loginuserallname"
+                               label="添加人"
+                               placeholder="请输入添加人"
+                               readonly/>
+                </van-cell-group>
+                <br>
+                <van-button size="large"
+                            @click="AddClick"
+                            type="primary"
+                            color="#7232dd"
+                            plain
+                            round
+                            loading-type="spinner"
+                            loading-text="保存中..."
+                            :loading="buttonobj.isloading">保 存
                 </van-button>
-            </van-field>
-            <van-field v-model="olddeptinfo"
-                       required
-                       readonly
-                       label="原部门"/>
-            <van-field v-model="newdeptinfo"
-                       required
-                       readonly
-                       label="现部门"
-                       placeholder="请选择部门">
-                <van-button slot="button"
-                            @click="opendeptdlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model="movemodel.oldsavesite"
-                       required
-                       readonly
-                       label="原位置"/>
-            <van-field v-model="movemodel.newsavesite"
-                       required
-                       clearable
-                       label="现位置"
-                       placeholder="请输入现位置"/>
-            <van-field v-model="movemodel.oldsaveman"
-                       required
-                       readonly
-                       label="原保管人"/>
-            <van-field v-model="movemodel.newsaveman"
-                       required
-                       clearable
-                       label="现保管人"
-                       placeholder="请输入现保管人"/>
-            <van-field v-model="movemodel.movedate"
-                       required
-                       readonly
-                       label="转移日期"
-                       placeholder="请选择转移日期">
-                <van-button slot="button"
-                            @click="opendateldlg"
-                            size="small"
-                            type="primary">选择
-                </van-button>
-            </van-field>
-            <van-field v-model="movemodel.movename"
-                       required
-                       clearable
-                       label="转移人"
-                       placeholder="请输入转移人"/>
-            <van-field v-model="movemodel.comment"
-                       clearable
-                       label="备注"
-                       placeholder="请输入备注"/>
-            <van-field v-model="loginuserallname"
-                       label="添加人"
-                       placeholder="请输入添加人"
-                       readonly/>
-        </van-cell-group>
-        <br>
-        <van-button size="large"
-                    @click="AddClick"
-                    type="primary"
-                    color="#7232dd"
-                    plain
-                    round
-                    loading-type="spinner"
-                    loading-text="保存中..."
-                    :loading="buttonobj.isloading">保 存
-        </van-button>
 
-
-        <!--        选择资产的弹窗
+                <!--        选择资产的弹窗
 -->
-        <selectcapital @selectcapital="selectcapital"
-                       :diaObj="CapitalDlgObj"></selectcapital>
-        <!--        选择日期的弹窗
--->
-        <selectdate @dateresult="dateresult"
-                    :diaObj="DateDlgObj"></selectdate>
-
-        <!--        选择部门的弹窗
+                <selectcapital @selectcapital="selectcapital"
+                               :diaObj="CapitalDlgObj"></selectcapital>
+                <!--        选择日期的弹窗
         -->
-        <UserSelectDept :diaObj="DeptDlgObj"
-                        @deptselectresult="deptselectresult"></UserSelectDept>
+                <selectdate @dateresult="dateresult"
+                            :diaObj="DateDlgObj"></selectdate>
+
+                <!--        选择部门的弹窗
+                -->
+                <UserSelectDept :diaObj="DeptDlgObj"
+                                @deptselectresult="deptselectresult"></UserSelectDept>
+
+            </van-tab>
+            <van-tab title="查询">
+                <addmovequery></addmovequery>
+            </van-tab>
+        </van-tabs>
 
     </div>
 
@@ -130,6 +137,7 @@ Time: 16:56
     import selectcapital from '@/components/selectcapital.vue'
     import selectdate from '@/components/selectdate.vue'
     import UserSelectDept from '@/components/UserSelectDept.vue'
+    import addmovequery from '@/components/addmovequery.vue'
 
     import * as util from '@/common/util/util.js'
 
@@ -143,7 +151,8 @@ Time: 16:56
 
             selectcapital ,
             selectdate ,
-            UserSelectDept
+            UserSelectDept ,
+            addmovequery
 
         } ,
         //导入混入对象 可以是多个,数组
@@ -155,6 +164,7 @@ Time: 16:56
         //数据模型
         data () {
             return {
+                tabactive : 0 ,
                 /**
                  * 单据的前缀
                  */
