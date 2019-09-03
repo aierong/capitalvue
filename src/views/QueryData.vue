@@ -52,34 +52,62 @@ Time: 14:53
                 </template>
             </van-cell>
         </van-cell-group>
-        <br>
-        <br>
-        <van-divider v-if="!loadobj.isover">
-            <template slot="default">
-                <van-button :loading="loadobj.isloading"
-                            @click="loaddata"
-                            size="small"
-                            icon="replay"
-                            color="#7232dd"
-                            plain
-                            round
-                            loading-type="spinner"
-                            loading-text="加载中...">点我加载更多
-                </van-button>
-            </template>
-        </van-divider>
-        <van-divider dashed
-                     v-if="loadobj.isshowdivider">我是有底线的
-        </van-divider>
-
-        <van-action-sheet style="height: 86%"
-                          v-model="diaObj.isshow"
-                          title="资产信息">
-            <detaildata :diaObj="DlgObj"></detaildata>
-        </van-action-sheet>
+        <!--        <br>-->
+        <!--        <br>-->
+        <!--        -->
+        <div style="text-align: center;">
+            <van-button v-show="!loadobj.isover"
+                        :loading="loadobj.isloading"
+                        @click="loaddata"
+                        size="small"
+                        icon="replay"
+                        color="#7232dd"
+                        plain
+                        round
+                        loading-type="spinner"
+                        loading-text="加载中...">点我加载更多
+            </van-button>
+            <van-divider v-show="loadobj.isshowdivider"
+                         dashed>我是有底线的
+            </van-divider>
+        </div>
+<!--        <div>-->
+<!--            <van-divider v-if="!loadobj.isover">-->
+<!--                <template slot="default">-->
+<!--                    <van-button :loading="loadobj.isloading"-->
+<!--                                @click="loaddata"-->
+<!--                                size="small"-->
+<!--                                icon="replay"-->
+<!--                                color="#7232dd"-->
+<!--                                plain-->
+<!--                                round-->
+<!--                                loading-type="spinner"-->
+<!--                                loading-text="加载中...">点我加载更多-->
+<!--                    </van-button>-->
+<!--                </template>-->
+<!--            </van-divider>-->
+<!--            &lt;!&ndash;        <br>&ndash;&gt;-->
+<!--            <van-divider v-if="loadobj.isshowdivider"-->
+<!--                         dashed>我是有底线的-->
+<!--            </van-divider>-->
+<!--        </div>-->
+<!--        <van-action-sheet style="height: 86%"-->
+<!--                          v-model="diaObj.isshow"-->
+<!--                          title="资产信息">-->
+<!--            <detaildata :diaObj="DlgObj"></detaildata>-->
+<!--        </van-action-sheet>-->
 
         <!--        tab-->
         <mytabbar></mytabbar>
+<!--        <van-tabbar-->
+<!--               -->
+
+<!--                    active-color="#07c160">-->
+<!--            <van-tabbar-item icon="home-o">资产</van-tabbar-item>-->
+<!--            <van-tabbar-item icon="shrink">操作</van-tabbar-item>-->
+<!--            <van-tabbar-item icon="label-o">查询</van-tabbar-item>-->
+<!--            <van-tabbar-item icon="setting-o">设置</van-tabbar-item>-->
+<!--        </van-tabbar>-->
     </div>
 
 </template>
@@ -216,7 +244,7 @@ Time: 14:53
                 this.initlist();
             } ,
             async loaddata () {
-                let counts = 5;
+                let counts = 3;
 
                 this.loadobj.isloading = true;
 
@@ -255,8 +283,9 @@ Time: 14:53
                 } , 2000 );
 
             } ,
+
             async initlist () {
-                let initcount = 10;
+                let initcount = 6;
 
                 let list = await dlapi.querybyminid( 0 ,
                     initcount ,

@@ -7,16 +7,22 @@ Time: 22:44
 
 <!-- html代码片段 -->
 <template>
+    <div>
+        <!--        style="z-index: 1999; position: fixed "
+        style="z-index: 1999;position: fixed;"
+        :fixed="fixed"
+        -->
+        <van-tabbar
 
-
-    <van-tabbar v-model="active"
-                @change="onchange"
-                active-color="#07c160">
-        <van-tabbar-item icon="home-o">资产</van-tabbar-item>
-        <van-tabbar-item icon="shrink">操作</van-tabbar-item>
-        <van-tabbar-item icon="label-o">查询</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
-    </van-tabbar>
+                    v-model="active"
+                    @change="onchange"
+                    active-color="#07c160">
+            <van-tabbar-item icon="home-o">资产</van-tabbar-item>
+            <van-tabbar-item icon="shrink">操作</van-tabbar-item>
+            <van-tabbar-item icon="label-o">查询</van-tabbar-item>
+            <van-tabbar-item icon="setting-o">设置</van-tabbar-item>
+        </van-tabbar>
+    </div>
 </template>
 
 <!-- js脚本代码片段 -->
@@ -28,6 +34,8 @@ Time: 22:44
         //数据模型
         data () {
             return {
+
+                fixed : true ,
 
                 active : 0 ,
 
