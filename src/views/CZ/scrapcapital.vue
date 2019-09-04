@@ -17,15 +17,25 @@ Time: 8:12
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
+                    <!--                    :error-message="errors.first('nos')"-->
                     <van-field v-model="scrapmodel.nos"
                                required
                                readonly
-                               label="报废单号"/>
+                               label="报废单号"
+
+                               :error="errors.has('nos')"
+                               data-vv-name="nos"
+                               v-validate="'required'"/>
+                    <!--                    :error-message="errors.first('capitalallname')"-->
                     <van-field v-model="capitalallname"
                                required
                                readonly
                                label="资产"
-                               placeholder="请选择资产">
+                               placeholder="请选择资产"
+
+                               :error="errors.has('capitalallname')"
+                               data-vv-name="capitalallname"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -36,12 +46,22 @@ Time: 8:12
                                required
                                clearable
                                label="报废人"
-                               placeholder="请输入报废人"/>
+                               placeholder="请输入报废人"
+
+                               :error-message="errors.first('scrapname')"
+                               :error="errors.has('scrapname')"
+                               data-vv-name="scrapname"
+                               v-validate="'required|min:2'"/>
+                    <!--                    :error-message="errors.first('scrapdate')"-->
                     <van-field v-model="scrapmodel.scrapdate"
                                required
                                readonly
                                label="报废日期"
-                               placeholder="请选择报废日期">
+                               placeholder="请选择报废日期"
+
+                               :error="errors.has('scrapdate')"
+                               data-vv-name="scrapdate"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
@@ -53,7 +73,12 @@ Time: 8:12
                                clearable
                                type="number"
                                label="报废金额"
-                               placeholder="请输入报废金额"/>
+                               placeholder="请输入报废金额"
+
+                               :error-message="errors.first('scrapmoney')"
+                               :error="errors.has('scrapmoney')"
+                               data-vv-name="scrapmoney"
+                               v-validate="'required|min:2'"/>
                     <van-field v-model="scrapmodel.scrapreason"
                                clearable
                                label="报废原因"
@@ -115,6 +140,32 @@ Time: 8:12
 
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as scrapapi from '@/common/bmobapi/scrap.js'
+
+    const validate = {
+        custom : {
+            // nos : {
+            //     required : () => '单号不可为空' , //写法1
+            //
+            //
+            // } ,
+            // capitalallname : {
+            //     required : () => '请选择资产' ,
+            // } ,
+            scrapname : {
+                required : () => '报废人不可为空' ,
+                min : ( fiield , params ) => {
+                    // console.log( 'fiield,params' , fiield , params )
+
+                    return `报废人不得小于${ params[ 0 ] }个字符`
+                } ,
+
+            } ,
+            // scrapdate : {
+            //     required : () => '请选择报废日期' ,
+            // } ,
+
+        } ,
+    };
 
     export default {
         name : "scrapcapital" ,
@@ -226,36 +277,44 @@ Time: 8:12
 
             } ,
             AddClick () {
-                if ( !this.scrapmodel.nos ) {
-                    this.$toast( "报废单号为空" )
+                // if ( !this.scrapmodel.nos ) {
+                //     this.$toast( "报废单号为空" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
+                // if ( !this.scrapmodel.capitalcode ) {
+                //     this.$toast( "请选择资产" )
+                //
+                //     return;
+                // }
 
-                if ( !this.scrapmodel.capitalcode ) {
-                    this.$toast( "请选择资产" )
+                // if ( !this.scrapmodel.scrapname ) {
+                //     this.$toast( "请输入报废人" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
-
-                if ( !this.scrapmodel.scrapname ) {
-                    this.$toast( "请输入报废人" )
-
-                    return;
-                }
-
-                if ( !this.scrapmodel.scrapdate ) {
-                    this.$toast( "请选择报废日期" )
-
-                    return;
-                }
-
-                //把插入时间补上
-                this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.scrapmodel.userid = this.loginusermobile;
-                this.scrapmodel.username = this.loginusername;
+                // if ( !this.scrapmodel.scrapdate ) {
+                //     this.$toast( "请选择报废日期" )
+                //
+                //     return;
+                // }
 
                 ( async () => {
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        // this.$toast( "验证失败" )
+
+                        return;
+                    }
+
+                    //把插入时间补上
+                    this.scrapmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                    this.scrapmodel.userid = this.loginusermobile;
+                    this.scrapmodel.username = this.loginusername;
+
                     let isexistsnos = await scrapapi.isexistsnos( this.scrapmodel.nos );
 
                     if ( isexistsnos != null && isexistsnos.isexists ) {
@@ -288,7 +347,7 @@ Time: 8:12
                     // let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
                     let arr = await Promise.all( [
                         util.runlongtims( 2000 ) ,
-                        scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId )
+                        //scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId )
                     ] );
 
                     this.buttonobj.isloading = false;
@@ -345,15 +404,16 @@ Time: 8:12
                     return '';
                 }
 
-                return `(${ this.scrapmodel.capitalcode })${ this.scrapmodel.capitalname }`
+                return `(${ this.scrapmodel.capitalcode } )${ this.scrapmodel.capitalname }`
             } ,
             loginuserallname () {
-                return `(${ this.loginusermobile })${ this.loginusername }`
+                return `(${ this.loginusermobile } )${ this.loginusername }`
             } ,
         } ,
         //生命周期(mounted)
         mounted () {
             // console.log( 'scrapcapital mounted' )
+            this.$validator.localize( 'zh_CN' , validate );
 
             this.setupscrapmodel();
         } ,
