@@ -40,6 +40,11 @@ Object.keys( components ).forEach( ( key ) => {
 // //挂靠在原型链上
 // Vue.prototype.$bus = vue;
 
+// //引用 vee-validate
+import VeeValidate from 'vee-validate';
+
+Vue.use( VeeValidate );
+
 Vue.config.productionTip = false
 
 new Vue( {
