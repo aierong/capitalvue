@@ -9,10 +9,14 @@ Time: 11:17
 <template>
 
     <div>
-        <van-nav-bar title="资产"
-                     left-text="返回"
-                     left-arrow
-                     @click-left="onClickLeft"/>
+
+        <mynavbar title="资产"
+                  lefttext="返回"
+                  @ClickRight="onClickRight"
+                  @ClickLeft="onClickLeft"
+                  righttext="主页"
+                  righticon="shop"></mynavbar>
+
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
@@ -154,6 +158,7 @@ Time: 11:17
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+    import { mixmethods } from '@/mixin/mixmethods.js'
 
     import * as RandomUtil from '@/common/util/RandomUtil.js'
     import * as util from '@/common/util/util.js'
@@ -188,6 +193,7 @@ Time: 11:17
         mixins : [
 
             loginuserdatamix ,
+            mixmethods
 
         ] ,
         watch : {
@@ -249,6 +255,14 @@ Time: 11:17
                 this.$router.push( "/cz" )
 
                 return;
+            } ,
+            onClickRight () {
+                // 页面跳转
+
+
+                this.GoToMainPage();
+
+                return
             } ,
             typeselectresult ( val ) {
 
@@ -337,8 +351,6 @@ Time: 11:17
                 //
                 //     return;
                 // }
-
-
 
                 ( async () => {
 

@@ -9,11 +9,18 @@ Time: 16:56
 <template>
 
     <div>
-        <van-nav-bar title="登记转移资产"
-                     left-text="返回"
-                     left-arrow
-                     @click-left="onClickLeft"/>
+        <!--        <van-nav-bar title="登记转移资产"-->
+        <!--                     left-text="返回"-->
+        <!--                     left-arrow-->
+        <!--                     @click-left="onClickLeft"/>-->
         <!--        <br>-->
+        <mynavbar title="转移资产"
+                  lefttext="返回"
+                  @ClickRight="onClickRight"
+                  @ClickLeft="onClickLeft"
+                  righttext="主页"
+                  righticon="shop"></mynavbar>
+
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
@@ -161,6 +168,8 @@ Time: 16:56
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+    import { mixmethods } from '@/mixin/mixmethods.js'
+
     import * as RandomUtil from '@/common/util/RandomUtil.js'
 
     import selectcapital from '@/components/selectcapital.vue'
@@ -188,6 +197,7 @@ Time: 16:56
         mixins : [
 
             loginuserdatamix ,
+            mixmethods
 
         ] ,
         //数据模型
@@ -258,6 +268,13 @@ Time: 16:56
                 this.$router.push( "/cz" )
 
                 return;
+            } ,
+            onClickRight () {
+                // 页面跳转
+
+                this.GoToMainPage();
+
+                return
             } ,
             setupscrapmodel () {
                 //给一些变量赋初始化值
