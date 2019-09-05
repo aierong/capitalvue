@@ -20,12 +20,21 @@ Time: 16:56
                     <van-field v-model="movemodel.nos"
                                required
                                readonly
-                               label="转移单号"/>
+                               label="转移单号"
+                               placeholder="转移单号"
+
+                               :error="errors.has('nos')"
+                               data-vv-name="nos"
+                               v-validate="'required'"/>
                     <van-field v-model="capitalallname"
                                required
                                readonly
                                label="资产"
-                               placeholder="请选择资产">
+                               placeholder="请选择资产"
+
+                               :error="errors.has('capitalallname')"
+                               data-vv-name="capitalallname"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -40,7 +49,11 @@ Time: 16:56
                                required
                                readonly
                                label="现部门"
-                               placeholder="请选择部门">
+                               placeholder="请选择部门"
+
+                               :error="errors.has('newdeptinfo')"
+                               data-vv-name="newdeptinfo"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendeptdlg"
                                     size="small"
@@ -55,7 +68,11 @@ Time: 16:56
                                required
                                clearable
                                label="现位置"
-                               placeholder="请输入现位置"/>
+                               placeholder="请输入现位置"
+
+                               :error="errors.has('newsavesite')"
+                               data-vv-name="newsavesite"
+                               v-validate="'required'"/>
                     <van-field v-model="movemodel.oldsaveman"
                                required
                                readonly
@@ -64,12 +81,20 @@ Time: 16:56
                                required
                                clearable
                                label="现保管人"
-                               placeholder="请输入现保管人"/>
+                               placeholder="请输入现保管人"
+
+                               :error="errors.has('newsaveman')"
+                               data-vv-name="newsaveman"
+                               v-validate="'required'"/>
                     <van-field v-model="movemodel.movedate"
                                required
                                readonly
                                label="转移日期"
-                               placeholder="请选择转移日期">
+                               placeholder="请选择转移日期"
+
+                               :error="errors.has('movedate')"
+                               data-vv-name="movedate"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
@@ -80,7 +105,11 @@ Time: 16:56
                                required
                                clearable
                                label="转移人"
-                               placeholder="请输入转移人"/>
+                               placeholder="请输入转移人"
+
+                               :error="errors.has('movename')"
+                               data-vv-name="movename"
+                               v-validate="'required'"/>
                     <van-field v-model="movemodel.comment"
                                clearable
                                label="备注"
