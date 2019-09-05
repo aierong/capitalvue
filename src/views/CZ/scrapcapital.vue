@@ -181,6 +181,7 @@ Time: 8:12
         //数据模型
         data () {
             return {
+                frompage : '' ,
                 tabactive : 0 ,
                 /**
                  * 单据的前缀
