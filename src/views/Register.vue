@@ -25,7 +25,7 @@
                        :error-message="errors.first('mobile')"
                        :error="errors.has('mobile')"
                        name="mobile"
-                       v-validate="'required|IsMobile'"/>
+                       v-validate="'required|IsMobile|IsExistsMobile'"/>
             <van-field v-model="userinfo.name"
                        required
                        clearable
@@ -313,6 +313,46 @@
                     // console.log( 'value,args' , value , args )
 
                     return /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test( value )
+                }
+            } );
+
+            this.$validator.extend( 'IsExistsMobile' , {
+                getMessage : ( field , args , data ) => {
+                    // console.log( 'field , args ,data ' , field , args ,data  )
+
+                    return data;
+                } ,
+                validate : ( value , args ) => {
+                    // console.log( 'value,args' , value , args )
+                    return new Promise( ( resolve , reject ) => {
+                        let lens = value.length;
+
+                        if ( lens == 11 ) {
+                            commonmethod.isexistsmobile( value ).then( ( res ) => {
+                                if ( res.isexists ) {
+
+                                    resolve( {
+                                        valid : false ,
+                                        data : '手机号存在'
+                                    } );
+                                }
+                                else {
+                                    resolve( {
+                                        valid : true ,
+                                        data : ''
+                                    } );
+                                }
+                            } );
+                        }
+                        else {
+                            resolve( {
+                                valid : true ,
+                                data : ''
+                            } );
+                        }
+                    } );
+
+                    // return /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test( value )
                 }
             } )
         } ,
