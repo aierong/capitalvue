@@ -51,7 +51,7 @@ Time: 8:12
                                :error-message="errors.first('scrapname')"
                                :error="errors.has('scrapname')"
                                data-vv-name="scrapname"
-                               v-validate="'required|min:2'"/>
+                               v-validate="'required'"/>
                     <!--                    :error-message="errors.first('scrapdate')"-->
                     <van-field v-model="scrapmodel.scrapdate"
                                required
@@ -78,7 +78,7 @@ Time: 8:12
                                :error-message="errors.first('scrapmoney')"
                                :error="errors.has('scrapmoney')"
                                data-vv-name="scrapmoney"
-                               v-validate="'required|min:2'"/>
+                               v-validate="'required|min_value:0'"/>
                     <van-field v-model="scrapmodel.scrapreason"
                                clearable
                                label="报废原因"
@@ -143,26 +143,15 @@ Time: 8:12
 
     const validate = {
         custom : {
-            // nos : {
-            //     required : () => '单号不可为空' , //写法1
-            //
-            //
-            // } ,
-            // capitalallname : {
-            //     required : () => '请选择资产' ,
-            // } ,
-            scrapname : {
-                required : () => '报废人不可为空' ,
-                min : ( fiield , params ) => {
-                    // console.log( 'fiield,params' , fiield , params )
 
-                    return `报废人不得小于${ params[ 0 ] }个字符`
+            scrapmoney : {
+                required : () => '请输入报废金额' ,
+                min_value : ( fiield , params ) => {
+
+                    return `报废金额请大于等于${ params[ 0 ] }`
                 } ,
 
             } ,
-            // scrapdate : {
-            //     required : () => '请选择报废日期' ,
-            // } ,
 
         } ,
     };
@@ -413,6 +402,7 @@ Time: 8:12
         //生命周期(mounted)
         mounted () {
             // console.log( 'scrapcapital mounted' )
+
             this.$validator.localize( 'zh_CN' , validate );
 
             this.setupscrapmodel();
