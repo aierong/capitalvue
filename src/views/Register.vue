@@ -117,7 +117,6 @@
             email : {
                 required : () => '请输入邮箱' ,
                 email : ( fiield , params ) => {
-                    // console.log( 'fiield,params' , fiield , params )
 
                     return `请输入合法邮箱`
                 } ,
@@ -223,38 +222,45 @@
                 //     return;
                 // }
 
-                if ( this.userinfo.email ) {
-                    var reg = /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+                // if ( this.userinfo.email ) {
+                //     var reg = /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+                //
+                //     if ( !reg.test( this.userinfo.email ) ) {
+                //
+                //         this.$toast( "请输入合法的邮箱地址" )
+                //
+                //         return;
+                //     }
+                //
+                // }
 
-                    if ( !reg.test( this.userinfo.email ) ) {
+                // if ( !this.userinfo.password ) {
+                //     this.$toast( "请输入密码" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.userinfo.password2 ) {
+                //     this.$toast( "请再次输入密码" )
+                //
+                //     return;
+                // }
 
-                        this.$toast( "请输入合法的邮箱地址" )
+                // if ( this.userinfo.password != this.userinfo.password2 ) {
+                //
+                //     this.$toast( "两次密码不一致" )
+                //
+                //     return;
+                // }
 
+                ( async () => {
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        //验证失败 退出
                         return;
                     }
 
-                }
-
-                if ( !this.userinfo.password ) {
-                    this.$toast( "请输入密码" )
-
-                    return;
-                }
-
-                if ( !this.userinfo.password2 ) {
-                    this.$toast( "请再次输入密码" )
-
-                    return;
-                }
-
-                if ( this.userinfo.password != this.userinfo.password2 ) {
-
-                    this.$toast( "两次密码不一致" )
-
-                    return;
-                }
-
-                ( async () => {
                     let result = await commonmethod.isexistsmobile( this.userinfo.mobile );
 
                     if ( result.isexists ) {
