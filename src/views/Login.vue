@@ -115,7 +115,7 @@
 
                     let result = await commonmethod.login( _mobile , this.userinfo.password )
 
-                    console.log( result )
+                    // console.log( result )
 
                     if ( result.isok ) {
 
