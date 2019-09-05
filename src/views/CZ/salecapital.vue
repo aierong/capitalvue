@@ -9,10 +9,13 @@ Time: 22:00
 <template>
 
     <div>
-        <van-nav-bar title="登记出售资产"
-                     left-text="返回"
-                     left-arrow
-                     @click-left="onClickLeft"/>
+        <mynavbar title="出售资产"
+                  lefttext="返回"
+                  @ClickRight="onClickRight"
+                  @ClickLeft="onClickLeft"
+                  righttext="主页"
+                  righticon="shop"></mynavbar>
+
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>

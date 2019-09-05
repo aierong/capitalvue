@@ -9,11 +9,7 @@ Time: 16:56
 <template>
 
     <div>
-        <!--        <van-nav-bar title="登记转移资产"-->
-        <!--                     left-text="返回"-->
-        <!--                     left-arrow-->
-        <!--                     @click-left="onClickLeft"/>-->
-        <!--        <br>-->
+
         <mynavbar title="转移资产"
                   lefttext="返回"
                   @ClickRight="onClickRight"
