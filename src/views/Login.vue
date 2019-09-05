@@ -30,7 +30,6 @@
                        placeholder="请输入密码"
                        required
 
-
                        :error="errors.has('password')"
                        name="password"
                        v-validate="'required'"/>
@@ -75,6 +74,11 @@
         } ,
         //方法
         methods : {
+            ...mapMutations( [
+
+                'updateloginuser'
+
+            ] ) ,
             //登录
             loginClick () {
 
@@ -141,11 +145,7 @@
 
                 return;
             } ,
-            ...mapMutations( [
 
-                'updateloginuser'
-
-            ] ) ,
         } ,
         //计算属性
         computed : {
