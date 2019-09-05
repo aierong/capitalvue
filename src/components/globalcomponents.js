@@ -7,11 +7,13 @@
 
 //引入公共组件
 import mytabbar from '@/components/mytabbar.vue'
+import mynavbar from '@/components/mynavbar.vue'
 
 // 导出
 export default {
 
-    mytabbar
+    mytabbar ,
+    mynavbar
 
 }
 

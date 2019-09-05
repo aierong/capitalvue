@@ -8,9 +8,10 @@
 -->
 <template>
     <div>
-        <van-nav-bar right-text="注册账号"
-                     title="用户登录"
-                     @click-right="onClickRight"/>
+
+        <mynavbar title="用户登录"
+                  lefttext="注册账号"
+                  @ClickLeft="onClickLeft"></mynavbar>
         <br>
 
         <van-cell-group>
@@ -79,6 +80,12 @@
                 'updateloginuser'
 
             ] ) ,
+            //注册
+            onClickLeft () {
+                this.$router.push( '/register' )
+
+                return;
+            } ,
             //登录
             loginClick () {
 
@@ -138,12 +145,6 @@
                     }
                 } )()
 
-            } ,
-            //注册
-            onClickRight () {
-                this.$router.push( '/register' )
-
-                return;
             } ,
 
         } ,

@@ -8,12 +8,13 @@
  -->
 <template>
     <div>
-        <van-nav-bar title="注册新用户"
-                     left-text="返回"
-                     right-text="说明"
-                     left-arrow
-                     @click-left="onClickLeft"
-                     @click-right="onClickRight"/>
+
+        <mynavbar title="注册新用户"
+                  lefttext="返回"
+                  @ClickRight="onClickRight"
+                  @ClickLeft="onClickLeft"
+                  righttext="说明"
+                  righticon="label-o"></mynavbar>
         <br>
         <van-cell-group>
             <van-field v-model="userinfo.mobile"
@@ -198,11 +199,14 @@
             onClickLeft () {
 
                 this.$router.push( '/login' )
+
+                return;
             } ,
             onClickRight () {
 
                 this.$toast( "这里可以注册一个新帐号" )
 
+                return;
             } ,
             regClick () {
 
