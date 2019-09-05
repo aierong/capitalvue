@@ -20,26 +20,51 @@
                        required
                        clearable
                        label="手机号码"
-                       placeholder="请输入手机号码"/>
+                       placeholder="请输入手机号码"
+
+                       :error-message="errors.first('mobile')"
+                       :error="errors.has('mobile')"
+                       name="mobile"
+                       v-validate="'required|IsMobile'"/>
             <van-field v-model="userinfo.name"
                        required
                        clearable
                        label="用户名"
-                       placeholder="请输入用户名"/>
+                       placeholder="请输入用户名"
+
+                       :error="errors.has('name')"
+                       name="name"
+                       v-validate="'required'"/>
             <van-field v-model="userinfo.email"
                        clearable
                        label="邮箱"
-                       placeholder="请输入邮箱"/>
+                       placeholder="请输入邮箱"
+
+                       :error-message="errors.first('email')"
+                       :error="errors.has('email')"
+                       name="email"
+                       v-validate="'required|email'"/>
             <van-field v-model="userinfo.password"
                        type="password"
                        label="密码"
                        placeholder="请输入密码"
-                       required/>
+                       required
+
+                       :error-message="errors.first('password')"
+                       :error="errors.has('password')"
+                       name="password"
+                       ref="pwd1"
+                       v-validate="'required|min:3|alpha_dash'"/>
             <van-field v-model="userinfo.password2"
                        type="password"
                        label="再次密码"
                        placeholder="请输入密码"
-                       required/>
+                       required
+
+                       :error-message="errors.first('password2')"
+                       :error="errors.has('password2')"
+                       name="password2"
+                       v-validate="'required|min:3|alpha_dash|confirmed:pwd1'"/>
 
         </van-cell-group>
         <br>
@@ -85,6 +110,41 @@
 
     //导入组件
     import userselectavatar from '@/components/userselectavatar.vue'
+
+    const validate = {
+        custom : {
+
+            email : {
+                required : () => '请输入邮箱' ,
+                email : ( fiield , params ) => {
+                    // console.log( 'fiield,params' , fiield , params )
+
+                    return `请输入合法邮箱`
+                } ,
+
+            } ,
+            password : {
+                required : () => '请输入密码' ,
+                min : ( fiield , params ) => {
+                    return `密码不得小于${ params[ 0 ] }个字符`
+                } ,
+                alpha_dash : () => {
+                    return '密码只可包含英文,数字,下划线,破折号'
+                } ,
+            } ,
+            password2 : {
+                required : () => '请输入再次密码' ,
+                min : ( fiield , params ) => {
+                    return `再次密码不得小于${ params[ 0 ] }个字符`
+                } ,
+                alpha_dash : () => {
+                    return '再次密码只可包含英文,数字,下划线,破折号'
+                } ,
+                confirmed : () => '2次密码不一致'
+            } ,
+
+        } ,
+    };
 
     export default {
         name : "Register" ,
@@ -145,23 +205,23 @@
             } ,
             regClick () {
 
-                if ( !this.userinfo.mobile ) {
-                    this.$toast( "请输入手机号码" )
+                // if ( !this.userinfo.mobile ) {
+                //     this.$toast( "请输入手机号码" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !Number.isFinite( this.userinfo.mobile ) && this.userinfo.mobile.length != 11 ) {
+                //     this.$toast( "请输入合法手机号码" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
-
-                if ( !Number.isFinite( this.userinfo.mobile ) && this.userinfo.mobile.length != 11 ) {
-                    this.$toast( "请输入合法手机号码" )
-
-                    return;
-                }
-
-                if ( !this.userinfo.name ) {
-                    this.$toast( "请输入用户名" )
-
-                    return;
-                }
+                // if ( !this.userinfo.name ) {
+                //     this.$toast( "请输入用户名" )
+                //
+                //     return;
+                // }
 
                 if ( this.userinfo.email ) {
                     var reg = /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
@@ -230,7 +290,23 @@
         } ,
         //生命周期(mounted)
         mounted () {
+            this.$validator.localize( 'zh_CN' , validate );
 
+            /**
+             *  mobileRule 这个是自定义的验证规则
+             */
+            this.$validator.extend( 'IsMobile' , {
+                getMessage : ( field , args ) => {
+                    // console.log( 'field , args' , field , args )
+
+                    return '请输入合法手机号码(11位)'
+                } ,
+                validate : ( value , args ) => {
+                    // console.log( 'value,args' , value , args )
+
+                    return /^((13|14|15|17|18)[0-9]{1}\d{8})$/.test( value )
+                }
+            } )
         } ,
     }
 </script>
