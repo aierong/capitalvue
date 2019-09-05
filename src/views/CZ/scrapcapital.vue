@@ -22,6 +22,7 @@ Time: 8:12
                                required
                                readonly
                                label="报废单号"
+                               placeholder="报废单号"
 
                                :error="errors.has('nos')"
                                data-vv-name="nos"
@@ -48,7 +49,6 @@ Time: 8:12
                                label="报废人"
                                placeholder="请输入报废人"
 
-                               :error-message="errors.first('scrapname')"
                                :error="errors.has('scrapname')"
                                data-vv-name="scrapname"
                                v-validate="'required'"/>

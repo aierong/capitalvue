@@ -19,12 +19,21 @@ Time: 22:00
                     <van-field v-model="salemodel.nos"
                                required
                                readonly
-                               label="出售单号"/>
+                               label="出售单号"
+                               placeholder="出售单号"
+
+                               :error="errors.has('nos')"
+                               data-vv-name="nos"
+                               v-validate="'required'"/>
                     <van-field v-model="capitalallname"
                                required
                                readonly
                                label="资产"
-                               placeholder="请选择资产">
+                               placeholder="请选择资产"
+
+                               :error="errors.has('capitalallname')"
+                               data-vv-name="capitalallname"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -35,12 +44,20 @@ Time: 22:00
                                required
                                clearable
                                label="出售人"
-                               placeholder="请输入出售人"/>
+                               placeholder="请输入出售人"
+
+                               :error="errors.has('salename')"
+                               data-vv-name="salename"
+                               v-validate="'required'"/>
                     <van-field v-model="salemodel.saledate"
                                required
                                readonly
                                label="出售日期"
-                               placeholder="请选择出售日期">
+                               placeholder="请选择出售日期"
+
+                               :error="errors.has('saledate')"
+                               data-vv-name="saledate"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
@@ -52,12 +69,21 @@ Time: 22:00
                                clearable
                                type="number"
                                label="出售金额"
-                               placeholder="请输入出售金额"/>
+                               placeholder="请输入出售金额"
+
+                               :error-message="errors.first('salemoney')"
+                               :error="errors.has('salemoney')"
+                               data-vv-name="salemoney"
+                               v-validate="'required|min_value:0'"/>
                     <van-field v-model="salemodel.saleto"
                                clearable
                                label="出售对象"
                                required
-                               placeholder="请输入出售对象"/>
+                               placeholder="请输入出售对象"
+
+                               :error="errors.has('saleto')"
+                               data-vv-name="saleto"
+                               v-validate="'required'"/>
                     <van-field v-model="salemodel.comment"
                                clearable
                                label="备注"
@@ -113,6 +139,21 @@ Time: 22:00
 
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as saleapi from '@/common/bmobapi/sale.js'
+
+    const validate = {
+        custom : {
+
+            salemoney : {
+                required : () => '请输入报废金额' ,
+                min_value : ( fiield , params ) => {
+
+                    return `报废金额请大于等于${ params[ 0 ] }`
+                } ,
+
+            } ,
+
+        } ,
+    };
 
     export default {
         name : "salecapital" ,
@@ -226,42 +267,50 @@ Time: 22:00
 
             } ,
             AddClick () {
-                if ( !this.salemodel.nos ) {
-                    this.$toast( "出售单号为空" )
+                // if ( !this.salemodel.nos ) {
+                //     this.$toast( "出售单号为空" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.salemodel.capitalcode ) {
+                //     this.$toast( "请选择资产" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.salemodel.salename ) {
+                //     this.$toast( "请输入出售人" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
-
-                if ( !this.salemodel.capitalcode ) {
-                    this.$toast( "请选择资产" )
-
-                    return;
-                }
-
-                if ( !this.salemodel.salename ) {
-                    this.$toast( "请输入出售人" )
-
-                    return;
-                }
-
-                if ( !this.salemodel.saledate ) {
-                    this.$toast( "请选择出售日期" )
-
-                    return;
-                }
-
-                if ( !this.salemodel.saleto ) {
-                    this.$toast( "请输入出售对象" )
-
-                    return;
-                }
-
-                //把插入时间补上
-                this.salemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.salemodel.userid = this.loginusermobile;
-                this.salemodel.username = this.loginusername;
+                // if ( !this.salemodel.saledate ) {
+                //     this.$toast( "请选择出售日期" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.salemodel.saleto ) {
+                //     this.$toast( "请输入出售对象" )
+                //
+                //     return;
+                // }
 
                 ( async () => {
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        // this.$toast( "验证失败" )
+
+                        return;
+                    }
+
+                    //把插入时间补上
+                    this.salemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                    this.salemodel.userid = this.loginusermobile;
+                    this.salemodel.username = this.loginusername;
+
                     let isexistsnos = await saleapi.isexistsnos( this.salemodel.nos );
 
                     if ( isexistsnos != null && isexistsnos.isexists ) {
@@ -360,6 +409,8 @@ Time: 22:00
         //生命周期(mounted)
         mounted () {
             // console.log( 'salecapital mounted' )
+
+            this.$validator.localize( 'zh_CN' , validate );
 
             this.setupscrapmodel();
         } ,
