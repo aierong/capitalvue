@@ -113,7 +113,9 @@
 
     const validate = {
         custom : {
-
+            mobile : {
+                required : () => '请输入手机号码' ,
+            } ,
             email : {
                 required : () => '请输入邮箱' ,
                 email : ( fiield , params ) => {
