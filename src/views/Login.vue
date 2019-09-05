@@ -17,14 +17,23 @@
             <van-field v-model="userinfo.mobile"
                        required
                        clearable
-                       label="手机"
-                       placeholder="请输入手机"/>
+                       label="手机号码"
+                       placeholder="请输入手机"
+
+                       :error="errors.has('mobile')"
+                       name="mobile"
+                       v-validate="'required'"/>
             <van-field v-model="userinfo.password"
                        type="password"
                        clearable
-                       label="密码"
+                       label="登录密码"
                        placeholder="请输入密码"
-                       required/>
+                       required
+
+
+                       :error="errors.has('password')"
+                       name="password"
+                       v-validate="'required'"/>
         </van-cell-group>
         <br>
         <div class="mytxt">{{ '保持登录状态'+days+ '天'}}</div>
@@ -69,19 +78,26 @@
             //登录
             loginClick () {
 
-                if ( !this.userinfo.mobile ) {
-                    this.$toast( "请输入手机号码" )
+                // if ( !this.userinfo.mobile ) {
+                //     this.$toast( "请输入手机号码" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
-
-                if ( !this.userinfo.password ) {
-                    this.$toast( "请输入密码" )
-
-                    return;
-                }
+                // if ( !this.userinfo.password ) {
+                //     this.$toast( "请输入密码" )
+                //
+                //     return;
+                // }
 
                 ( async () => {
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        //验证失败 退出
+                        return;
+                    }
+
                     let _mobile = this.userinfo.mobile;
 
                     let valid = await commonmethod.isexistsmobile( _mobile )
@@ -92,8 +108,6 @@
 
                         return
                     }
-
-                    //this.$toast( "手机ok" )
 
                     let result = await commonmethod.login( _mobile , this.userinfo.password )
 
