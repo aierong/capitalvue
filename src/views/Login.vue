@@ -95,9 +95,9 @@
                 // }
 
                 ( async () => {
-                    let valid = await this.$validator.validate();
+                    let _valid = await this.$validator.validate();
 
-                    if ( !valid ) {
+                    if ( !_valid ) {
                         //验证失败 退出
                         return;
                     }
