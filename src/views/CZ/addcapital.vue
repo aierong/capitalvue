@@ -20,23 +20,41 @@ Time: 11:17
                                required
                                clearable
                                label="资产代号"
-                               placeholder="请输入资产代号"/>
+                               placeholder="请输入资产代号"
+
+
+                               :error="errors.has('capitalcode')"
+                               data-vv-name="capitalcode"
+                               v-validate="'required'"/>
                     <van-field v-model="capitalmodel.capitalname"
                                required
                                clearable
                                label="资产名称"
-                               placeholder="请输入资产名称"/>
+                               placeholder="请输入资产名称"
+
+                               :error="errors.has('capitalname')"
+                               data-vv-name="capitalname"
+                               v-validate="'required'"/>
                     <van-field v-model.number="capitalmodel.money"
                                required
                                clearable
                                type="number"
                                label="资产金额"
-                               placeholder="请输入资产金额"/>
+                               placeholder="请输入资产金额"
+
+                               :error-message="errors.first('money')"
+                               :error="errors.has('money')"
+                               data-vv-name="money"
+                               v-validate="'required|min_value:0'"/>
                     <van-field v-model="capitalmodel.typename"
                                require
                                label="资产类型"
                                placeholder="请选择资产类型"
-                               readonly>
+                               readonly
+
+                               :error="errors.has('typename')"
+                               data-vv-name="typename"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opentypedlg"
                                     size="small"
@@ -47,12 +65,20 @@ Time: 11:17
                                required
                                clearable
                                label="资产单位"
-                               placeholder="请输入资产单位"/>
+                               placeholder="请输入资产单位"
+
+                               :error="errors.has('unit')"
+                               data-vv-name="unit"
+                               v-validate="'required'"/>
                     <van-field v-model="deptinfo"
                                required
                                label="保管部门"
                                placeholder="请选择保管部门"
-                               readonly>
+                               readonly
+
+                               :error="errors.has('deptinfo')"
+                               data-vv-name="deptinfo"
+                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendeptdlg"
                                     size="small"
@@ -63,12 +89,20 @@ Time: 11:17
                                required
                                clearable
                                label="保管位置"
-                               placeholder="请输入保管位置"/>
+                               placeholder="请输入保管位置"
+
+                               :error="errors.has('savesite')"
+                               data-vv-name="savesite"
+                               v-validate="'required'"/>
                     <van-field v-model="capitalmodel.saveman"
                                required
                                clearable
                                label="保管人"
-                               placeholder="请输入保管人"/>
+                               placeholder="请输入保管人"
+
+                               :error="errors.has('saveman')"
+                               data-vv-name="saveman"
+                               v-validate="'required'"/>
 
                     <van-field v-model="capitalmodel.comment"
                                clearable
@@ -125,6 +159,21 @@ Time: 11:17
     import * as util from '@/common/util/util.js'
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
+
+    const validate = {
+        custom : {
+
+            money : {
+                required : () => '请输入资产金额' ,
+                min_value : ( fiield , params ) => {
+
+                    return `资产金额请大于等于${ params[ 0 ] }`
+                } ,
+
+            } ,
+
+        } ,
+    };
 
     export default {
         name : "addcapital" ,
@@ -247,54 +296,65 @@ Time: 11:17
              * @constructor
              */
             AddClick () {
-                if ( !this.capitalmodel.capitalcode ) {
-                    this.$toast( "请输入资产代号" )
+                // if ( !this.capitalmodel.capitalcode ) {
+                //     this.$toast( "请输入资产代号" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.capitalmodel.capitalname ) {
+                //     this.$toast( "请输入资产名称" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
+                // if ( !this.capitalmodel.typename ) {
+                //     this.$toast( "请选择资产类型" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.capitalmodel.unit ) {
+                //     this.$toast( "请输入资产单位" )
+                //
+                //     return;
+                // }
 
-                if ( !this.capitalmodel.capitalname ) {
-                    this.$toast( "请输入资产名称" )
+                // if ( !this.capitalmodel.deptno ) {
+                //     this.$toast( "请选择保管部门" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.capitalmodel.savesite ) {
+                //     this.$toast( "请输入保管位置" )
+                //
+                //     return;
+                // }
+                //
+                // if ( !this.capitalmodel.saveman ) {
+                //     this.$toast( "请输入保管人" )
+                //
+                //     return;
+                // }
 
-                    return;
-                }
 
-                if ( !this.capitalmodel.typename ) {
-                    this.$toast( "请选择资产类型" )
-
-                    return;
-                }
-
-                if ( !this.capitalmodel.unit ) {
-                    this.$toast( "请输入资产单位" )
-
-                    return;
-                }
-
-                if ( !this.capitalmodel.deptno ) {
-                    this.$toast( "请选择保管部门" )
-
-                    return;
-                }
-
-                if ( !this.capitalmodel.savesite ) {
-                    this.$toast( "请输入保管位置" )
-
-                    return;
-                }
-
-                if ( !this.capitalmodel.saveman ) {
-                    this.$toast( "请输入保管人" )
-
-                    return;
-                }
-
-                //把插入时间补上
-                this.capitalmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.capitalmodel.userid = this.loginusermobile;
-                this.capitalmodel.username = this.loginusername;
 
                 ( async () => {
+
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        // this.$toast( "验证失败" )
+
+                        return;
+                    }
+
+                    //把插入时间补上
+                    this.capitalmodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                    this.capitalmodel.userid = this.loginusermobile;
+                    this.capitalmodel.username = this.loginusername;
+
                     let checkresult = await dlapi.isexistscapital( this.capitalmodel.capitalcode );
 
                     if ( checkresult != null && checkresult.isexists ) {
@@ -380,7 +440,8 @@ Time: 11:17
         } ,
         //生命周期(mounted)
         mounted () {
-            console.log( 'addcapital mounted' )
+            // console.log( 'addcapital mounted' )
+            this.$validator.localize( 'zh_CN' , validate );
 
             this.setupcapitalmodel();
         } ,
