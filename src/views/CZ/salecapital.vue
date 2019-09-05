@@ -132,6 +132,8 @@ Time: 22:00
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
+    import { mixmethods } from '@/mixin/mixmethods.js'
+
     import * as RandomUtil from '@/common/util/RandomUtil.js'
 
     import selectcapital from '@/components/selectcapital.vue'
@@ -172,6 +174,7 @@ Time: 22:00
         mixins : [
 
             loginuserdatamix ,
+            mixmethods
 
         ] ,
         //数据模型
@@ -228,6 +231,13 @@ Time: 22:00
                 this.$router.push( "/cz" )
 
                 return;
+            } ,
+            onClickRight () {
+                // 页面跳转
+
+                this.GoToMainPage();
+
+                return
             } ,
             setupscrapmodel () {
                 //给一些变量赋初始化值
