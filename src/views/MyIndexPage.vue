@@ -99,9 +99,14 @@ Time: 14:42
 
     Vue.use( Lazyload );
 
-    import VCharts from 'v-charts'
+    // import VCharts from 'v-charts'
+    //
+    // Vue.use( VCharts )
 
-    Vue.use( VCharts )
+    //按需加载
+    import VeBar from 'v-charts/lib/bar.common'
+
+    Vue.component( VeBar.name , VeBar )
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
