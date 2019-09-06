@@ -309,29 +309,6 @@ Time: 8:12
 
             } ,
             AddClick () {
-                // if ( !this.scrapmodel.nos ) {
-                //     this.$toast( "报废单号为空" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.scrapmodel.capitalcode ) {
-                //     this.$toast( "请选择资产" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.scrapmodel.scrapname ) {
-                //     this.$toast( "请输入报废人" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.scrapmodel.scrapdate ) {
-                //     this.$toast( "请选择报废日期" )
-                //
-                //     return;
-                // }
 
                 ( async () => {
                     let valid = await this.$validator.validate();
@@ -376,10 +353,9 @@ Time: 8:12
 
                     this.buttonobj.isloading = true;
 
-                    // let newno = await scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId );
                     let arr = await Promise.all( [
                         util.runlongtims( 2000 ) ,
-                        //scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId )
+                        scrapapi.addscrap( this.scrapmodel , this.UserSelectCapitalObjectId )
                     ] );
 
                     this.buttonobj.isloading = false;

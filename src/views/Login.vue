@@ -89,18 +89,6 @@
             //登录
             loginClick () {
 
-                // if ( !this.userinfo.mobile ) {
-                //     this.$toast( "请输入手机号码" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.userinfo.password ) {
-                //     this.$toast( "请输入密码" )
-                //
-                //     return;
-                // }
-
                 ( async () => {
                     let _valid = await this.$validator.validate();
 

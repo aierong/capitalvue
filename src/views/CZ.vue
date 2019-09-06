@@ -109,7 +109,9 @@ Time: 0:23
         data () {
             return {
                 chartData : {
-                    columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
+                    columns : [
+                        '数量' , '资产' , '正常' , '出售' , '报废'
+                    ] ,
                     rows : []
                 } ,
                 chartEmptyData : false

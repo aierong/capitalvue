@@ -10,8 +10,7 @@ Time: 14:53
 
     <div class="mypage">
         <van-dropdown-menu>
-            <!--            value	当前选中项对应的 value -->
-            <!--            options	选项数组	Array	 -->
+
             <van-dropdown-item v-model="CapitalTypeItemVal"
                                :options="optionitemCapitalType"/>
             <van-dropdown-item v-model="MyItemVal"
@@ -52,27 +51,8 @@ Time: 14:53
                 </template>
             </van-cell>
         </van-cell-group>
-        <!--        <br>-->
-        <!--        <br>-->
-        <!--        -->
-        <!--        <div style="text-align: center;">-->
-        <!--            <van-button v-show="!loadobj.isover"-->
-        <!--                        :loading="loadobj.isloading"-->
-        <!--                        @click="loaddata"-->
-        <!--                        size="small"-->
-        <!--                        icon="replay"-->
-        <!--                        color="#7232dd"-->
-        <!--                        plain-->
-        <!--                        round-->
-        <!--                        loading-type="spinner"-->
-        <!--                        loading-text="加载中...">点我加载更多-->
-        <!--            </van-button>-->
-        <!--            <van-divider v-show="loadobj.isshowdivider"-->
-        <!--                         dashed>我是有底线的-->
-        <!--            </van-divider>-->
-        <!--        </div>-->
 
-        <!--        <div>-->
+
         <van-divider v-if="!loadobj.isover">
             <template slot="default">
                 <van-button :loading="loadobj.isloading"
@@ -87,11 +67,10 @@ Time: 14:53
                 </van-button>
             </template>
         </van-divider>
-        <!--        <br>-->
+
         <van-divider v-if="loadobj.isshowdivider"
                      dashed>我是有底线的
         </van-divider>
-        <!--        </div>-->
 
         <van-action-sheet style="height: 86%"
                           v-model="diaObj.isshow"
@@ -99,7 +78,7 @@ Time: 14:53
             <detaildata :diaObj="DlgObj"></detaildata>
         </van-action-sheet>
 
-        <!--        tab-->
+
         <mytabbar></mytabbar>
 
     </div>
@@ -195,16 +174,6 @@ Time: 14:53
                 return false;
             } ,
             gotodetaildata ( item ) {
-                // console.log( item )
-                // this.$toast.success( "成功" );
-
-                // console.log( 'this.$refs.c1' , this.$refs.c1 )
-                // console.log( 'c1 er' , this.$refs.c1.$children )
-                // console.log( 'er' , this.$children )
-                // this.$refs.c1.$children[ 0 ].initmodel();
-
-                //
-                // this.$bus.$emit( "initdetaildata" , 'qq' );
 
                 this.diaObj.isshow = true;
 
