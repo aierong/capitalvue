@@ -6,6 +6,8 @@ Time: 9:20
 -->
 
 <!-- html代码片段 -->
+
+<!-- 报废单详情 -->
 <template>
     <div>
         <div v-if="modeldata!=null">
