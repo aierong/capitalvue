@@ -6,11 +6,13 @@ Time: 14:57
 -->
 
 <!-- html代码片段 -->
+
+<!-- 设置页面
+ -->
 <template>
 
     <div>
-
-        <!--这里整个头像-->
+        <!-- 头像,可以修改的 -->
         <van-cell size="large"
                   @click="SetupAvatarClick">
             <template slot="title">
@@ -20,7 +22,6 @@ Time: 14:57
                     <use v-bind:xlink:href="loginuseravatar | iconallname"></use>
                 </svg>
                 <span class="cellspantitleclass">{{ loginusername +'('  + loginusermobile + ')' }}</span>
-
             </template>
         </van-cell>
         <van-cell is-link

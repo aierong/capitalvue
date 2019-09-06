@@ -4,7 +4,7 @@
 -->
 
 <!--
-用户注册
+用户注册页面
  -->
 <template>
     <div>
@@ -112,6 +112,7 @@
     //导入组件
     import userselectavatar from '@/components/userselectavatar.vue'
 
+    //验证
     const validate = {
         custom : {
             mobile : {
@@ -151,7 +152,9 @@
     export default {
         name : "Register" ,
         //导入混入对象 可以是多个,数组
-        mixins : [ mix ] ,
+        mixins : [
+            mix
+        ] ,
         //注册组件
         components : {
             userselectavatar
@@ -210,55 +213,6 @@
             } ,
             regClick () {
 
-                // if ( !this.userinfo.mobile ) {
-                //     this.$toast( "请输入手机号码" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !Number.isFinite( this.userinfo.mobile ) && this.userinfo.mobile.length != 11 ) {
-                //     this.$toast( "请输入合法手机号码" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.userinfo.name ) {
-                //     this.$toast( "请输入用户名" )
-                //
-                //     return;
-                // }
-
-                // if ( this.userinfo.email ) {
-                //     var reg = /^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
-                //
-                //     if ( !reg.test( this.userinfo.email ) ) {
-                //
-                //         this.$toast( "请输入合法的邮箱地址" )
-                //
-                //         return;
-                //     }
-                //
-                // }
-
-                // if ( !this.userinfo.password ) {
-                //     this.$toast( "请输入密码" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.userinfo.password2 ) {
-                //     this.$toast( "请再次输入密码" )
-                //
-                //     return;
-                // }
-
-                // if ( this.userinfo.password != this.userinfo.password2 ) {
-                //
-                //     this.$toast( "两次密码不一致" )
-                //
-                //     return;
-                // }
-
                 ( async () => {
                     let valid = await this.$validator.validate();
 
@@ -275,8 +229,6 @@
 
                         return;
                     }
-
-                    // this.$toast( "ok" )
 
                     let newuser = await commonmethod.adduser( this.userinfo );
 
