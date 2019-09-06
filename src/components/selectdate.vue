@@ -6,12 +6,12 @@ Time: 16:35
 -->
 
 <!-- html代码片段 -->
+<!-- 选择日期 -->
 <template>
 
     <div>
         <van-popup position="bottom"
                    v-model="diaObj.isshow">
-
             <van-datetime-picker :formatter="formatterdatestring"
                                  @cancel="oncancel"
                                  @confirm="onconfirm"

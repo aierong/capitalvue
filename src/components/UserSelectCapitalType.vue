@@ -6,10 +6,11 @@ Time: 12:27
 -->
 
 <!-- html代码片段 -->
+<!-- 选择资产类型 -->
 <template>
 
     <div>
-        <!--        show-cancel-button-->
+
         <van-dialog :before-close="beforeClose"
                     v-model="diaObj.isshowdialog">
             <van-radio-group v-model="diaObj.typename">

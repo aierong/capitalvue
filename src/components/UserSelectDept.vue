@@ -6,10 +6,12 @@ Time: 17:55
 -->
 
 <!-- html代码片段 -->
+
+<!-- 选择部门 -->
 <template>
 
     <div>
-        <!--        show-cancel-button-->
+
         <van-dialog :before-close="beforeClose"
                     v-model="diaObj.isshowdialog">
             <van-radio-group v-model="diaObj.deptno">

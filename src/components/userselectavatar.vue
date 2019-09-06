@@ -9,7 +9,7 @@
 <template>
 
     <div>
-        <!--        show-cancel-button-->
+
         <van-dialog :before-close="beforeClose"
                     v-model="diaObj.showdialog">
 
