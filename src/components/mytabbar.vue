@@ -6,12 +6,11 @@ Time: 22:44
 -->
 
 <!-- html代码片段 -->
+
+<!-- 页面底部工具栏 -->
 <template>
     <div>
-        <!--        style="z-index: 1999; position: fixed "
-        style="z-index: 1999;position: fixed;"
-        :fixed="fixed"
-        -->
+
         <van-tabbar v-model="active"
                     @change="onchange"
                     active-color="#07c160">

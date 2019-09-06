@@ -6,6 +6,8 @@ Time: 14:53
 -->
 
 <!-- html代码片段 -->
+
+<!-- 选择资产 -->
 <template>
 
     <div>
@@ -13,8 +15,7 @@ Time: 14:53
                           v-model="diaObj.isshow"
                           title="选择正常状态资产">
             <van-dropdown-menu>
-                <!--            value	当前选中项对应的 value -->
-                <!--            options	选项数组	Array	 -->
+
                 <van-dropdown-item v-model="CapitalTypeItemVal"
                                    :options="optionitemCapitalType"/>
                 <van-dropdown-item v-model="MyItemVal"
