@@ -25,6 +25,11 @@ Vue.use( Vant );
 // import VCharts from 'v-charts'
 // Vue.use( VCharts )
 
+//按需加载
+import VeBar from 'v-charts/lib/bar.common'
+
+Vue.component( VeBar.name , VeBar )
+
 // //注册全局组件
 import components from '@/components/globalcomponents.js'
 //循环注册全局组件

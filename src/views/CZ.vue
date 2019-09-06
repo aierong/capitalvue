@@ -91,10 +91,10 @@ Time: 0:23
     //
     // Vue.use( VCharts )
 
-    //按需加载
-    import VeBar from 'v-charts/lib/bar.common'
-
-    Vue.component( VeBar.name , VeBar )
+    // //按需加载
+    // import VeBar from 'v-charts/lib/bar.common'
+    //
+    // Vue.component( VeBar.name , VeBar )
 
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
