@@ -311,35 +311,6 @@ Time: 22:00
 
             } ,
             AddClick () {
-                // if ( !this.salemodel.nos ) {
-                //     this.$toast( "出售单号为空" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.salemodel.capitalcode ) {
-                //     this.$toast( "请选择资产" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.salemodel.salename ) {
-                //     this.$toast( "请输入出售人" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.salemodel.saledate ) {
-                //     this.$toast( "请选择出售日期" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.salemodel.saleto ) {
-                //     this.$toast( "请输入出售对象" )
-                //
-                //     return;
-                // }
 
                 ( async () => {
                     let valid = await this.$validator.validate();
@@ -384,7 +355,6 @@ Time: 22:00
 
                     this.buttonobj.isloading = true;
 
-                    // let newno = await saleapi.addsale( this.salemodel , this.UserSelectCapitalObjectId );
                     let arr = await Promise.all( [
                         util.runlongtims( 2000 ) ,
                         saleapi.addsale( this.salemodel , this.UserSelectCapitalObjectId )

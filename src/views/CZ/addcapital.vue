@@ -339,47 +339,6 @@ Time: 11:17
              * @constructor
              */
             AddClick () {
-                // if ( !this.capitalmodel.capitalcode ) {
-                //     this.$toast( "请输入资产代号" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.capitalmodel.capitalname ) {
-                //     this.$toast( "请输入资产名称" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.capitalmodel.typename ) {
-                //     this.$toast( "请选择资产类型" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.capitalmodel.unit ) {
-                //     this.$toast( "请输入资产单位" )
-                //
-                //     return;
-                // }
-
-                // if ( !this.capitalmodel.deptno ) {
-                //     this.$toast( "请选择保管部门" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.capitalmodel.savesite ) {
-                //     this.$toast( "请输入保管位置" )
-                //
-                //     return;
-                // }
-                //
-                // if ( !this.capitalmodel.saveman ) {
-                //     this.$toast( "请输入保管人" )
-                //
-                //     return;
-                // }
 
                 ( async () => {
 
@@ -406,7 +365,6 @@ Time: 11:17
 
                     this.buttonobj.isloading = true;
 
-                    // let newcapital = await dlapi.adddl( this.capitalmodel );
                     let arr = await Promise.all( [
                         util.runlongtims( 2000 ) ,
                         dlapi.adddl( this.capitalmodel )

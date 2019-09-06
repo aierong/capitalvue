@@ -378,29 +378,6 @@ Time: 16:56
                 return;
             } ,
             AddClick () {
-                if ( !this.movemodel.nos ) {
-                    this.$toast( "转移单号为空" )
-
-                    return;
-                }
-
-                if ( !this.movemodel.capitalcode ) {
-                    this.$toast( "请选择资产" )
-
-                    return;
-                }
-
-                if ( !this.movemodel.movename ) {
-                    this.$toast( "请输入转移人" )
-
-                    return;
-                }
-
-                if ( !this.movemodel.movedate ) {
-                    this.$toast( "请选择转移日期" )
-
-                    return;
-                }
 
                 if ( this.olddeptinfo == this.newdeptinfo
                     && this.movemodel.oldsaveman == this.movemodel.newsaveman
@@ -411,12 +388,20 @@ Time: 16:56
                     return;
                 }
 
-                //把插入时间补上
-                this.movemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
-                this.movemodel.userid = this.loginusermobile;
-                this.movemodel.username = this.loginusername;
-
                 ( async () => {
+                    let valid = await this.$validator.validate();
+
+                    if ( !valid ) {
+                        // this.$toast( "验证失败" )
+
+                        return;
+                    }
+
+                    //把插入时间补上
+                    this.movemodel.inputdate = dayjs().format( 'YYYY-MM-DD HH:mm:ss' );
+                    this.movemodel.userid = this.loginusermobile;
+                    this.movemodel.username = this.loginusername;
+
                     let isexistsnos = await moveapi.isexistsnos( this.movemodel.nos );
 
                     if ( isexistsnos != null && isexistsnos.isexists ) {
@@ -445,8 +430,6 @@ Time: 16:56
                     }
 
                     this.buttonobj.isloading = true;
-
-                    // let newno = await moveapi.addmove( this.movemodel , this.UserSelectCapitalObjectId );
 
                     let arr = await Promise.all( [
                         util.runlongtims( 2000 ) ,
