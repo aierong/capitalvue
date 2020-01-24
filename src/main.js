@@ -43,6 +43,10 @@ import VeeValidate from 'vee-validate';
 
 Vue.use( VeeValidate );
 
+import Vuelidate from 'vuelidate'
+
+Vue.use( Vuelidate )
+
 Vue.config.productionTip = false
 
 new Vue( {
