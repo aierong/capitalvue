@@ -14,22 +14,18 @@
         <br>
         <van-cell-group>
             <van-field v-model="userinfo.mobile"
+                       :error-message="MobileErrorInfo"
                        required
                        clearable
                        label="手机号码"
-                       placeholder="请输入手机"
-                       :error="errors.has('mobile')"
-                       name="mobile"
-                       v-validate="'required'"/>
+                       placeholder="请输入手机"/>
             <van-field v-model="userinfo.password"
+                       :error-message="PwdErrorInfo"
                        type="password"
+                       required
                        clearable
                        label="登录密码"
-                       placeholder="请输入密码"
-                       required
-                       :error="errors.has('password')"
-                       name="password"
-                       v-validate="'required'"/>
+                       placeholder="请输入密码"/>
         </van-cell-group>
         <br>
         <div class="mytxt">{{ '保持登录状态'+days+ '天'}}</div>
@@ -53,6 +49,9 @@
     //导入
     import { mix } from "@/mixin/index.js"
 
+    //验证器
+    import { required } from 'vuelidate/lib/validators'
+
     export default {
         name : "Login" ,
         //导入混入对象 可以是多个,数组
@@ -67,6 +66,18 @@
                 } ,
                 days : constant.CookieExpires
             }
+        } ,
+        //每个要验证的值，必须在validations选项内部创建一个键
+        validations : {
+            userinfo : {
+                mobile : {
+                    required ,
+                } ,
+                password : {
+                    required ,
+                } ,
+            } ,
+
         } ,
         //方法
         methods : {
@@ -85,11 +96,13 @@
             loginClick () {
 
                 ( async () => {
-                    let _valid = await this.$validator.validate();
+                    //let _valid = await this.$validator.validate();
+                    let _valid = this.$v.$invalid;
 
-                    if ( !_valid ) {
+                    // if ( !_valid ) {
+                    if ( _valid ) {
                         //验证失败 退出
-                        this.$toast( "请输入" )
+                        this.$toast( "请输入帐号或者密码" )
 
                         return;
                     }
@@ -133,10 +146,19 @@
         } ,
         //计算属性
         computed : {
-            //name() {
-            //代码搞这里
-            //return this.data;
-            //}
+            MobileErrorInfo () {
+                if ( !this.$v.userinfo.mobile.required ) {
+                    return "手机号码不允许空";
+                }
+                return "";
+            } ,
+            PwdErrorInfo () {
+                if ( !this.$v.userinfo.password.required ) {
+                    return "登录密码不允许空";
+                }
+                return "";
+            } ,
+
         } ,
         //生命周期(mounted)
         mounted () {
