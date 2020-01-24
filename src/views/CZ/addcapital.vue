@@ -15,8 +15,8 @@ Time: 11:17
                   @ClickRight="onClickRight"
                   @ClickLeft="onClickLeft"
                   righttext="主页"
-                  righticon="shop"></mynavbar>
-
+                  righticon="shop">
+        </mynavbar>
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
@@ -128,11 +128,13 @@ Time: 11:17
                             loading-text="保存中..."
                             :loading="buttonobj.isloading">保 存
                 </van-button>
-                <!--        选择类型的弹窗
+                <!--
+                选择类型的弹窗
                 -->
                 <UserSelectCapitalType @typeselectresult="typeselectresult"
                                        :diaObj="TypeDlgObj"></UserSelectCapitalType>
-                <!--        选择部门的弹窗
+                <!--
+                选择部门的弹窗
                 -->
                 <UserSelectDept :diaObj="DeptDlgObj"
                                 @deptselectresult="deptselectresult"></UserSelectDept>
