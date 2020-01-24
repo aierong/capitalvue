@@ -8,19 +8,16 @@
 -->
 <template>
     <div>
-
         <mynavbar title="用户登录"
                   lefttext="注册账号"
                   @ClickLeft="onClickLeft"></mynavbar>
         <br>
-
         <van-cell-group>
             <van-field v-model="userinfo.mobile"
                        required
                        clearable
                        label="手机号码"
                        placeholder="请输入手机"
-
                        :error="errors.has('mobile')"
                        name="mobile"
                        v-validate="'required'"/>
@@ -30,7 +27,6 @@
                        label="登录密码"
                        placeholder="请输入密码"
                        required
-
                        :error="errors.has('password')"
                        name="password"
                        v-validate="'required'"/>
@@ -44,9 +40,7 @@
         <br>
         <br>
         <br>
-
     </div>
-
 </template>
 
 <!-- js脚本代码片段 -->
@@ -54,6 +48,7 @@
     import { mapMutations } from 'vuex'
 
     import * as commonmethod from '@/common/bmobapi/users.js'
+
     import * as constant from '@/common/constant.js'
     //导入
     import { mix } from "@/mixin/index.js"
@@ -109,8 +104,6 @@
                     }
 
                     let result = await commonmethod.login( _mobile , this.userinfo.password )
-
-                    // console.log( result )
 
                     if ( result.isok ) {
 
