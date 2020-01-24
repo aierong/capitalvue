@@ -24,15 +24,6 @@ import 'vant/lib/index.css';
 
 Vue.use( Vant );
 
-//不用全局加载了,在具体页面加载
-//懒加载需要单独引入
-// import { Lazyload } from "vant";
-// Vue.use( Lazyload );
-
-//不用全局加载了,在具体页面加载
-// import VCharts from 'v-charts'
-// Vue.use( VCharts )
-
 //按需加载
 import VeBar from 'v-charts/lib/bar.common'
 
@@ -48,12 +39,6 @@ Object.keys( components ).forEach( ( key ) => {
 
 } )
 
-// //注册 一个 新的总线
-// let vue = new Vue();
-// //挂靠在原型链上
-// Vue.prototype.$bus = vue;
-
-// //引用 vee-validate
 import VeeValidate from 'vee-validate';
 
 Vue.use( VeeValidate );
