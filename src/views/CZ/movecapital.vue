@@ -29,6 +29,7 @@ Time: 16:56
                                :error="errors.has('nos')"
                                data-vv-name="nos"
                                v-validate="'required'"/>
+
                     <van-field v-model="capitalallname"
                                required
                                readonly
@@ -44,6 +45,7 @@ Time: 16:56
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model="olddeptinfo"
                                required
                                readonly
@@ -63,6 +65,7 @@ Time: 16:56
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model="movemodel.oldsavesite"
                                required
                                readonly
@@ -76,10 +79,12 @@ Time: 16:56
                                :error="errors.has('newsavesite')"
                                data-vv-name="newsavesite"
                                v-validate="'required'"/>
+
                     <van-field v-model="movemodel.oldsaveman"
                                required
                                readonly
                                label="原保管人"/>
+
                     <van-field v-model="movemodel.newsaveman"
                                required
                                clearable
@@ -89,6 +94,7 @@ Time: 16:56
                                :error="errors.has('newsaveman')"
                                data-vv-name="newsaveman"
                                v-validate="'required'"/>
+
                     <van-field v-model="movemodel.movedate"
                                required
                                readonly
@@ -98,12 +104,14 @@ Time: 16:56
                                :error="errors.has('movedate')"
                                data-vv-name="movedate"
                                v-validate="'required'">
+
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model="movemodel.movename"
                                required
                                clearable
@@ -113,14 +121,17 @@ Time: 16:56
                                :error="errors.has('movename')"
                                data-vv-name="movename"
                                v-validate="'required'"/>
+
                     <van-field v-model="movemodel.comment"
                                clearable
                                label="备注"
                                placeholder="请输入备注"/>
+
                     <van-field v-model="loginuserallname"
                                label="添加人"
                                placeholder="请输入添加人"
                                readonly/>
+
                 </van-cell-group>
                 <br>
                 <van-button size="large"
