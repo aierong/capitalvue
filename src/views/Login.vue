@@ -19,6 +19,7 @@
                        clearable
                        label="手机号码"
                        placeholder="请输入手机"/>
+
             <van-field v-model="$v.userinfo.password.$model"
                        :error-message="PwdErrorInfo"
                        type="password"
@@ -26,6 +27,7 @@
                        clearable
                        label="登录密码"
                        placeholder="请输入密码"/>
+
         </van-cell-group>
         <br>
         <div class="mytxt">{{ '保持登录状态'+days+ '天'}}</div>

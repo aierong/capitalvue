@@ -26,7 +26,6 @@ Time: 11:17
                                clearable
                                label="资产代号"
                                placeholder="请输入资产代号"
-
                                :error-message="CapitalCodeErrorInfo"/>
 
                     <van-field v-model="$v.capitalmodel.capitalname.$model"
@@ -34,7 +33,6 @@ Time: 11:17
                                clearable
                                label="资产名称"
                                placeholder="请输入资产名称"
-
                                :error-message="CapitalNameErrorInfo"/>
 
                     <van-field v-model.number="$v.capitalmodel.money.$model"
@@ -43,7 +41,6 @@ Time: 11:17
                                type="number"
                                label="资产金额"
                                placeholder="请输入资产金额"
-
                                :error-message="MoneyErrorInfo"/>
 
                     <van-field v-model="$v.capitalmodel.typename.$model"
@@ -65,7 +62,6 @@ Time: 11:17
                                clearable
                                label="资产单位"
                                placeholder="请输入资产单位"
-
                                :error-message="UnitErrorInfo"/>
 
                     <van-field v-model="deptinfo"
@@ -73,7 +69,6 @@ Time: 11:17
                                label="保管部门"
                                placeholder="请选择保管部门"
                                readonly
-
                                :error-message="DeptErrorInfo">
                         <van-button slot="button"
                                     @click="opendeptdlg"
@@ -87,7 +82,6 @@ Time: 11:17
                                clearable
                                label="保管位置"
                                placeholder="请输入保管位置"
-
                                :error-message="SaveSiteErrorInfo"/>
 
                     <van-field v-model="$v.capitalmodel.saveman.$model"
@@ -95,7 +89,6 @@ Time: 11:17
                                clearable
                                label="保管人"
                                placeholder="请输入保管人"
-
                                :error-message="SaveManErrorInfo"/>
 
                     <van-field v-model="capitalmodel.comment"
