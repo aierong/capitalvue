@@ -145,16 +145,19 @@ Time: 16:56
                             :loading="buttonobj.isloading">保 存
                 </van-button>
 
-                <!--        选择资产的弹窗
--->
+                <!--
+                选择资产的弹窗
+                -->
                 <selectcapital @selectcapital="selectcapital"
                                :diaObj="CapitalDlgObj"></selectcapital>
-                <!--        选择日期的弹窗
-        -->
+                <!--
+                选择日期的弹窗
+                 -->
                 <selectdate @dateresult="dateresult"
                             :diaObj="DateDlgObj"></selectdate>
 
-                <!--        选择部门的弹窗
+                <!--
+                选择部门的弹窗
                 -->
                 <UserSelectDept :diaObj="DeptDlgObj"
                                 @deptselectresult="deptselectresult"></UserSelectDept>
