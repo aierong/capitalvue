@@ -28,6 +28,7 @@ Time: 22:00
                                :error="errors.has('nos')"
                                data-vv-name="nos"
                                v-validate="'required'"/>
+
                     <van-field v-model="capitalallname"
                                required
                                readonly
@@ -43,6 +44,7 @@ Time: 22:00
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model="salemodel.salename"
                                required
                                clearable
@@ -52,6 +54,7 @@ Time: 22:00
                                :error="errors.has('salename')"
                                data-vv-name="salename"
                                v-validate="'required'"/>
+
                     <van-field v-model="salemodel.saledate"
                                required
                                readonly
@@ -67,6 +70,7 @@ Time: 22:00
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model.number="salemodel.salemoney"
                                required
                                clearable
@@ -78,6 +82,7 @@ Time: 22:00
                                :error="errors.has('salemoney')"
                                data-vv-name="salemoney"
                                v-validate="'required|min_value:0'"/>
+
                     <van-field v-model="salemodel.saleto"
                                clearable
                                label="出售对象"
@@ -87,10 +92,12 @@ Time: 22:00
                                :error="errors.has('saleto')"
                                data-vv-name="saleto"
                                v-validate="'required'"/>
+
                     <van-field v-model="salemodel.comment"
                                clearable
                                label="备注"
                                placeholder="请输入备注"/>
+
                     <van-field v-model="loginuserallname"
                                label="添加人"
                                placeholder="请输入添加人"
@@ -108,12 +115,14 @@ Time: 22:00
                             :loading="buttonobj.isloading">保 存
                 </van-button>
 
-                <!--        选择资产的弹窗
-        -->
+                <!--
+                        选择资产的弹窗
+                -->
                 <selectcapital @selectcapital="selectcapital"
                                :diaObj="CapitalDlgObj"></selectcapital>
-                <!--        选择日期的弹窗
-        -->
+                <!--
+                        选择日期的弹窗
+                -->
                 <selectdate @dateresult="dateresult"
                             :diaObj="DateDlgObj"></selectdate>
             </van-tab>

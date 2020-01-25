@@ -20,7 +20,7 @@ Time: 8:12
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
-                    <!--                    :error-message="errors.first('nos')"-->
+
                     <van-field v-model="scrapmodel.nos"
                                required
                                readonly
@@ -30,7 +30,7 @@ Time: 8:12
                                :error="errors.has('nos')"
                                data-vv-name="nos"
                                v-validate="'required'"/>
-                    <!--                    :error-message="errors.first('capitalallname')"-->
+
                     <van-field v-model="capitalallname"
                                required
                                readonly
@@ -46,6 +46,7 @@ Time: 8:12
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model="scrapmodel.scrapname"
                                required
                                clearable
@@ -55,7 +56,7 @@ Time: 8:12
                                :error="errors.has('scrapname')"
                                data-vv-name="scrapname"
                                v-validate="'required'"/>
-                    <!--                    :error-message="errors.first('scrapdate')"-->
+
                     <van-field v-model="scrapmodel.scrapdate"
                                required
                                readonly
@@ -71,6 +72,7 @@ Time: 8:12
                                     type="primary">选择
                         </van-button>
                     </van-field>
+
                     <van-field v-model.number="scrapmodel.scrapmoney"
                                required
                                clearable
@@ -82,14 +84,17 @@ Time: 8:12
                                :error="errors.has('scrapmoney')"
                                data-vv-name="scrapmoney"
                                v-validate="'required|min_value:0'"/>
+
                     <van-field v-model="scrapmodel.scrapreason"
                                clearable
                                label="报废原因"
                                placeholder="请输入报废原因"/>
+
                     <van-field v-model="scrapmodel.comment"
                                clearable
                                label="备注"
                                placeholder="请输入备注"/>
+
                     <van-field v-model="loginuserallname"
                                label="添加人"
                                placeholder="请输入添加人"
@@ -107,12 +112,14 @@ Time: 8:12
                             :loading="buttonobj.isloading">保 存
                 </van-button>
 
-                <!--        选择资产的弹窗
-        -->
+                <!--
+                           选择资产的弹窗
+                  -->
                 <selectcapital @selectcapital="selectcapital"
                                :diaObj="CapitalDlgObj"></selectcapital>
-                <!--        选择日期的弹窗
-        -->
+                <!--
+                选择日期的弹窗
+                -->
                 <selectdate @dateresult="dateresult"
                             :diaObj="DateDlgObj"></selectdate>
 
