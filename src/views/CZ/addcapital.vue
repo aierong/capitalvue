@@ -354,6 +354,8 @@ Time: 11:17
 
                 ( async () => {
 
+                    this.$v.$touch();
+
                     // let valid = await this.$validator.validate();
                     let _valid = this.$v.$invalid;
 
@@ -476,9 +478,12 @@ Time: 11:17
                 return "";
             } ,
             CapitalNameErrorInfo () {
-                if ( !this.$v.capitalmodel.capitalname.required ) {
-                    return "资产名称不允许空";
+                if ( this.$v.capitalmodel.capitalname.$error ) {
+                    if ( !this.$v.capitalmodel.capitalname.required ) {
+                        return "资产名称不允许空";
+                    }
                 }
+
                 return "";
             } ,
             CapitalCodeErrorInfo () {
