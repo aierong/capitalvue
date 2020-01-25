@@ -20,98 +20,89 @@ Time: 11:17
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
-                    <van-field v-model="capitalmodel.capitalcode"
+
+                    <van-field v-model="$v.capitalmodel.capitalcode.$model"
                                required
                                clearable
                                label="资产代号"
                                placeholder="请输入资产代号"
 
+                               :error-message="CapitalCodeErrorInfo"/>
 
-                               :error="errors.has('capitalcode')"
-                               data-vv-name="capitalcode"
-                               v-validate="'required'"/>
-                    <van-field v-model="capitalmodel.capitalname"
+                    <van-field v-model="$v.capitalmodel.capitalname.$model"
                                required
                                clearable
                                label="资产名称"
                                placeholder="请输入资产名称"
 
-                               :error="errors.has('capitalname')"
-                               data-vv-name="capitalname"
-                               v-validate="'required'"/>
-                    <van-field v-model.number="capitalmodel.money"
+                               :error-message="CapitalNameErrorInfo"/>
+
+                    <van-field v-model.number="$v.capitalmodel.money.$model"
                                required
                                clearable
                                type="number"
                                label="资产金额"
                                placeholder="请输入资产金额"
 
-                               :error-message="errors.first('money')"
-                               :error="errors.has('money')"
-                               data-vv-name="money"
-                               v-validate="'required|min_value:0'"/>
-                    <van-field v-model="capitalmodel.typename"
+                               :error-message="MoneyErrorInfo"/>
+
+                    <van-field v-model="$v.capitalmodel.typename.$model"
                                require
                                label="资产类型"
                                placeholder="请选择资产类型"
                                readonly
+                               :error-message="TypeNameErrorInfo">
 
-                               :error="errors.has('typename')"
-                               data-vv-name="typename"
-                               v-validate="'required'">
                         <van-button slot="button"
                                     @click="opentypedlg"
                                     size="small"
                                     type="primary">选择
                         </van-button>
                     </van-field>
-                    <van-field v-model="capitalmodel.unit"
+
+                    <van-field v-model="$v.capitalmodel.unit.$model"
                                required
                                clearable
                                label="资产单位"
                                placeholder="请输入资产单位"
 
-                               :error="errors.has('unit')"
-                               data-vv-name="unit"
-                               v-validate="'required'"/>
+                               :error-message="UnitErrorInfo"/>
+
                     <van-field v-model="deptinfo"
                                required
                                label="保管部门"
                                placeholder="请选择保管部门"
                                readonly
 
-                               :error="errors.has('deptinfo')"
-                               data-vv-name="deptinfo"
-                               v-validate="'required'">
+                               :error-message="DeptErrorInfo">
                         <van-button slot="button"
                                     @click="opendeptdlg"
                                     size="small"
                                     type="primary">选择
                         </van-button>
                     </van-field>
-                    <van-field v-model="capitalmodel.savesite"
+
+                    <van-field v-model="$v.capitalmodel.savesite.$model"
                                required
                                clearable
                                label="保管位置"
                                placeholder="请输入保管位置"
 
-                               :error="errors.has('savesite')"
-                               data-vv-name="savesite"
-                               v-validate="'required'"/>
-                    <van-field v-model="capitalmodel.saveman"
+                               :error-message="SaveSiteErrorInfo"/>
+
+                    <van-field v-model="$v.capitalmodel.saveman.$model"
                                required
                                clearable
                                label="保管人"
                                placeholder="请输入保管人"
 
-                               :error="errors.has('saveman')"
-                               data-vv-name="saveman"
-                               v-validate="'required'"/>
+                               :error-message="SaveManErrorInfo"/>
 
                     <van-field v-model="capitalmodel.comment"
                                clearable
                                label="备注"
                                placeholder="请输入备注"/>
+
                     <van-field v-model="loginuserallname"
                                label="添加人"
                                placeholder="请输入添加人"
@@ -153,6 +144,12 @@ Time: 11:17
 <script>
     import dayjs from 'dayjs'
 
+    //验证器
+    import {
+        required ,
+        minValue
+    } from 'vuelidate/lib/validators'
+
     import * as globalconstant from '@/common/constant.js'
     import UserSelectCapitalType from '@/components/UserSelectCapitalType.vue'
     import UserSelectDept from '@/components/UserSelectDept.vue'
@@ -167,20 +164,20 @@ Time: 11:17
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
-    const validate = {
-        custom : {
-
-            money : {
-                required : () => '请输入资产金额' ,
-                min_value : ( fiield , params ) => {
-
-                    return `资产金额请大于等于${ params[ 0 ] }`
-                } ,
-
-            } ,
-
-        } ,
-    };
+    // const validate = {
+    //     custom : {
+    //
+    //         money : {
+    //             required : () => '请输入资产金额' ,
+    //             min_value : ( fiield , params ) => {
+    //
+    //                 return `资产金额请大于等于${ params[ 0 ] }`
+    //             } ,
+    //
+    //         } ,
+    //
+    //     } ,
+    // };
 
     export default {
         name : "addcapital" ,
@@ -233,6 +230,41 @@ Time: 11:17
                 immediate : true ,
 
             }
+        } ,
+        //每个要验证的值，必须在validations选项内部创建一个键
+        validations : {
+            capitalmodel : {
+                capitalcode : {
+                    required ,
+                } ,
+                capitalname : {
+                    required ,
+                } ,
+                money : {
+                    required ,
+                    minValue : minValue( 0 )
+                } ,
+                typename : {
+                    required ,
+                } ,
+                unit : {
+                    required ,
+                } ,
+                savesite : {
+                    required ,
+                } ,
+                saveman : {
+                    required ,
+                } ,
+                deptno : {
+                    required ,
+                } ,
+                deptname : {
+                    required ,
+                } ,
+
+            } ,
+
         } ,
         //数据模型
         data () {
@@ -344,9 +376,12 @@ Time: 11:17
 
                 ( async () => {
 
-                    let valid = await this.$validator.validate();
+                    // let valid = await this.$validator.validate();
+                    let _valid = this.$v.$invalid;
 
-                    if ( !valid ) {
+                    if ( _valid ) {
+                        //验证失败 退出
+                        // 不用提示
                         // this.$toast( "验证失败" )
 
                         return;
@@ -428,6 +463,63 @@ Time: 11:17
         } ,
         //计算属性
         computed : {
+            DeptErrorInfo () {
+                if ( !this.$v.capitalmodel.deptno.required ) {
+                    return "请选择保管部门";
+                }
+                if ( !this.$v.capitalmodel.deptname.required ) {
+                    return "请选择保管部门";
+                }
+
+                return "";
+            } ,
+            SaveManErrorInfo () {
+                if ( !this.$v.capitalmodel.saveman.required ) {
+                    return "请输入保管人";
+                }
+                return "";
+            } ,
+            SaveSiteErrorInfo () {
+                if ( !this.$v.capitalmodel.savesite.required ) {
+                    return "请输入保管位置";
+                }
+                return "";
+            } ,
+            UnitErrorInfo () {
+                if ( !this.$v.capitalmodel.unit.required ) {
+                    return "请输入资产单位";
+                }
+                return "";
+            } ,
+            TypeNameErrorInfo () {
+                if ( !this.$v.capitalmodel.typename.required ) {
+                    return "请选择资产类型";
+                }
+                return "";
+            } ,
+            CapitalNameErrorInfo () {
+                if ( !this.$v.capitalmodel.capitalname.required ) {
+                    return "资产名称不允许空";
+                }
+                return "";
+            } ,
+            CapitalCodeErrorInfo () {
+                if ( !this.$v.capitalmodel.capitalcode.required ) {
+                    return "资产代号不允许空";
+                }
+                return "";
+            } ,
+            MoneyErrorInfo () {
+                if ( !this.$v.capitalmodel.money.required ) {
+                    return "资产金额不允许空";
+                }
+
+                if ( !this.$v.capitalmodel.money.minValue ) {
+                    return "资产金额请大于等于" + this.$v.capitalmodel.money.$params.minValue.min;
+                }
+
+                return "";
+            } ,
             deptinfo () {
                 if ( !this.capitalmodel.deptno || !this.capitalmodel.deptname ) {
                     return '';
@@ -442,7 +534,7 @@ Time: 11:17
         //生命周期(mounted)
         mounted () {
             // console.log( 'addcapital mounted' )
-            this.$validator.localize( 'zh_CN' , validate );
+            // this.$validator.localize( 'zh_CN' , validate );
 
             this.setupcapitalmodel();
         } ,
