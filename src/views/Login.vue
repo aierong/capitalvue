@@ -13,13 +13,13 @@
                   @ClickLeft="onClickLeft"></mynavbar>
         <br>
         <van-cell-group>
-            <van-field v-model="userinfo.mobile"
+            <van-field v-model="$v.userinfo.mobile.$model"
                        :error-message="MobileErrorInfo"
                        required
                        clearable
                        label="手机号码"
                        placeholder="请输入手机"/>
-            <van-field v-model="userinfo.password"
+            <van-field v-model="$v.userinfo.password.$model"
                        :error-message="PwdErrorInfo"
                        type="password"
                        required
