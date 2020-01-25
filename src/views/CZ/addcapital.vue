@@ -164,21 +164,6 @@ Time: 11:17
 
     import * as  dlapi from '@/common/bmobapi/dl.js'
 
-    // const validate = {
-    //     custom : {
-    //
-    //         money : {
-    //             required : () => '请输入资产金额' ,
-    //             min_value : ( fiield , params ) => {
-    //
-    //                 return `资产金额请大于等于${ params[ 0 ] }`
-    //             } ,
-    //
-    //         } ,
-    //
-    //     } ,
-    // };
-
     export default {
         name : "addcapital" ,
         beforeRouteEnter ( to , from , next ) {
@@ -533,8 +518,6 @@ Time: 11:17
         } ,
         //生命周期(mounted)
         mounted () {
-            // console.log( 'addcapital mounted' )
-            // this.$validator.localize( 'zh_CN' , validate );
 
             this.setupcapitalmodel();
         } ,
