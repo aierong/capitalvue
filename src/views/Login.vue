@@ -102,7 +102,8 @@
                     // if ( !_valid ) {
                     if ( _valid ) {
                         //验证失败 退出
-                        this.$toast( "请输入帐号或者密码" )
+                        // 不用提示
+                        // this.$toast( "请输入帐号或者密码" )
 
                         return;
                     }
