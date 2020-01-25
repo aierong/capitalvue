@@ -20,15 +20,12 @@ Time: 16:56
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
-                    <van-field v-model="movemodel.nos"
+                    <van-field v-model="$v.movemodel.nos.$model"
                                required
                                readonly
                                label="转移单号"
                                placeholder="转移单号"
-
-                               :error="errors.has('nos')"
-                               data-vv-name="nos"
-                               v-validate="'required'"/>
+                               :error-message="NosErrorInfo"/>
 
                     <van-field v-model="capitalallname"
                                required
@@ -36,9 +33,7 @@ Time: 16:56
                                label="资产"
                                placeholder="请选择资产"
 
-                               :error="errors.has('capitalallname')"
-                               data-vv-name="capitalallname"
-                               v-validate="'required'">
+                               :error-message="CapitalErrorInfo">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -54,11 +49,9 @@ Time: 16:56
                                required
                                readonly
                                label="现部门"
-                               placeholder="请选择部门"
+                               placeholder="请选择现部门"
 
-                               :error="errors.has('newdeptinfo')"
-                               data-vv-name="newdeptinfo"
-                               v-validate="'required'">
+                               :error-message="NewDeptErrorInfo">
                         <van-button slot="button"
                                     @click="opendeptdlg"
                                     size="small"
@@ -70,40 +63,33 @@ Time: 16:56
                                required
                                readonly
                                label="原位置"/>
-                    <van-field v-model="movemodel.newsavesite"
+
+                    <van-field v-model="$v.movemodel.newsavesite.$model"
                                required
                                clearable
                                label="现位置"
                                placeholder="请输入现位置"
 
-                               :error="errors.has('newsavesite')"
-                               data-vv-name="newsavesite"
-                               v-validate="'required'"/>
+                               :error-message="NewSaveSiteErrorInfo"/>
 
                     <van-field v-model="movemodel.oldsaveman"
                                required
                                readonly
                                label="原保管人"/>
 
-                    <van-field v-model="movemodel.newsaveman"
+                    <van-field v-model="$v.movemodel.newsaveman.$model"
                                required
                                clearable
                                label="现保管人"
                                placeholder="请输入现保管人"
+                               :error-message="NewSaveManErrorInfo"/>
 
-                               :error="errors.has('newsaveman')"
-                               data-vv-name="newsaveman"
-                               v-validate="'required'"/>
-
-                    <van-field v-model="movemodel.movedate"
+                    <van-field v-model="$v.movemodel.movedate.$model"
                                required
                                readonly
                                label="转移日期"
                                placeholder="请选择转移日期"
-
-                               :error="errors.has('movedate')"
-                               data-vv-name="movedate"
-                               v-validate="'required'">
+                               :error-message="MoveDateErrorInfo">
 
                         <van-button slot="button"
                                     @click="opendateldlg"
@@ -112,15 +98,12 @@ Time: 16:56
                         </van-button>
                     </van-field>
 
-                    <van-field v-model="movemodel.movename"
+                    <van-field v-model="$v.movemodel.movename.$model"
                                required
                                clearable
                                label="转移人"
                                placeholder="请输入转移人"
-
-                               :error="errors.has('movename')"
-                               data-vv-name="movename"
-                               v-validate="'required'"/>
+                               :error-message="MoveNameErrorInfo"/>
 
                     <van-field v-model="movemodel.comment"
                                clearable
@@ -175,6 +158,12 @@ Time: 16:56
 <!-- js脚本代码片段 -->
 <script>
     import dayjs from 'dayjs'
+
+    //验证器
+    import {
+        minValue ,
+        required
+    } from 'vuelidate/lib/validators'
 
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
@@ -233,6 +222,38 @@ Time: 16:56
             mixmethods
 
         ] ,
+        //每个要验证的值，必须在validations选项内部创建一个键
+        validations : {
+            movemodel : {
+                nos : {
+                    required ,
+                } ,
+                capitalcode : {
+                    required ,
+                } ,
+                capitalname : {
+                    required ,
+                } ,
+                newdeptno : {
+                    required ,
+                } ,
+                newdeptname : {
+                    required ,
+                } ,
+                newsavesite : {
+                    required ,
+                } ,
+                newsaveman : {
+                    required ,
+                } ,
+                movedate : {
+                    required ,
+                } ,
+                movename : {
+                    required ,
+                } ,
+            } ,
+        } ,
         //数据模型
         data () {
             return {
@@ -269,6 +290,7 @@ Time: 16:56
 
                     //默认今天
                     movedate : dayjs().format( 'YYYY-MM-DD' ) ,
+                    //转移人
                     movename : '' ,
                     comment : '' ,
 
@@ -403,9 +425,13 @@ Time: 16:56
                 }
 
                 ( async () => {
-                    let valid = await this.$validator.validate();
+                    //let valid = await this.$validator.validate();
 
-                    if ( !valid ) {
+                    let _valid = this.$v.$invalid;
+
+                    if ( _valid ) {
+                        //验证失败 退出
+                        // 不用提示
                         // this.$toast( "验证失败" )
 
                         return;
@@ -508,6 +534,58 @@ Time: 16:56
         } ,
         //计算属性
         computed : {
+            NosErrorInfo () {
+                if ( !this.$v.movemodel.nos.required ) {
+                    return "转移单号不可以为空";
+                }
+                return "";
+            } ,
+            MoveNameErrorInfo () {
+                if ( !this.$v.movemodel.movename.required ) {
+                    return "请输入转移人";
+                }
+                return "";
+            } ,
+            NewSaveSiteErrorInfo () {
+                if ( !this.$v.movemodel.newsavesite.required ) {
+                    return "请输入现位置";
+                }
+                return "";
+            } ,
+            MoveDateErrorInfo () {
+                if ( !this.$v.movemodel.movedate.required ) {
+                    return "请选择转移日期";
+                }
+                return "";
+            } ,
+            NewSaveManErrorInfo () {
+                if ( !this.$v.movemodel.newsaveman.required ) {
+                    return "请输入现保管人";
+                }
+                return "";
+            } ,
+            CapitalErrorInfo () {
+                if ( !this.$v.movemodel.capitalcode.required ) {
+                    return "请选择资产";
+                }
+
+                if ( !this.$v.movemodel.capitalname.required ) {
+                    return "请选择资产";
+                }
+
+                return "";
+            } ,
+            NewDeptErrorInfo () {
+                if ( !this.$v.movemodel.newdeptno.required ) {
+                    return "请选择现部门";
+                }
+
+                if ( !this.$v.movemodel.newdeptname.required ) {
+                    return "请选择现部门";
+                }
+
+                return "";
+            } ,
             capitalallname () {
                 if ( !this.movemodel.capitalcode || !this.movemodel.capitalname ) {
                     return '';
@@ -526,6 +604,7 @@ Time: 16:56
                 if ( !this.movemodel.olddeptno || !this.movemodel.olddeptname ) {
                     return '';
                 }
+
                 return `(${ this.movemodel.olddeptno })${ this.movemodel.olddeptname }`
             } ,
             /**
