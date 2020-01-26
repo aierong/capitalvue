@@ -79,6 +79,7 @@
                   size="large"
                   @click="SetupAvatarClick">
             <template slot="title">
+
                 <svg class="icon"
                      aria-hidden="true"
                      style="font-size:58px;">
@@ -97,7 +98,6 @@
         头像选择弹窗组件
         -->
         <userselectavatar @selectavatar="selectavatar"
-
                           :diaObj="diaObj"></userselectavatar>
     </div>
 
