@@ -578,7 +578,7 @@ Time: 16:56
                 return "";
             } ,
             CapitalErrorInfo () {
-                if ( this.$v.movemodel.newsaveman.$error ) {
+                if ( this.$v.movemodel.capitalcode.$error ) {
                     if ( !this.$v.movemodel.capitalcode.required ) {
                         return "请选择资产";
                     }
