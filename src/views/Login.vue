@@ -98,6 +98,8 @@
             loginClick () {
 
                 ( async () => {
+                    this.$v.$touch();
+
                     //let _valid = await this.$validator.validate();
                     let _valid = this.$v.$invalid;
 
@@ -150,15 +152,21 @@
         //计算属性
         computed : {
             MobileErrorInfo () {
-                if ( !this.$v.userinfo.mobile.required ) {
-                    return "手机号码不允许空";
+                if ( this.$v.userinfo.mobile.$error ) {
+                    if ( !this.$v.userinfo.mobile.required ) {
+                        return "手机号码不允许空";
+                    }
                 }
+
                 return "";
             } ,
             PwdErrorInfo () {
-                if ( !this.$v.userinfo.password.required ) {
-                    return "登录密码不允许空";
+                if ( this.$v.userinfo.password.$error ) {
+                    if ( !this.$v.userinfo.password.required ) {
+                        return "登录密码不允许空";
+                    }
                 }
+
                 return "";
             } ,
 
