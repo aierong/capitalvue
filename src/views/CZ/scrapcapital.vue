@@ -21,23 +21,19 @@ Time: 8:12
             <van-tab title="登记">
                 <van-cell-group>
 
-                    <van-field v-model="scrapmodel.nos"
+                    <van-field v-model="$v.scrapmodel.nos.$model"
                                required
                                readonly
                                label="报废单号"
                                placeholder="报废单号"
-
-
-                               v-validate="'required'"/>
+                               :error-message="NosErrorInfo"/>
 
                     <van-field v-model="capitalallname"
                                required
                                readonly
                                label="资产"
                                placeholder="请选择资产"
-
-
-                               v-validate="'required'">
+                               :error-message="CapitalErrorInfo">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -45,23 +41,19 @@ Time: 8:12
                         </van-button>
                     </van-field>
 
-                    <van-field v-model="scrapmodel.scrapname"
+                    <van-field v-model="$v.scrapmodel.scrapname.$model"
                                required
                                clearable
                                label="报废人"
                                placeholder="请输入报废人"
+                               :error-message="ScrapNameErrorInfo"/>
 
-
-                               v-validate="'required'"/>
-
-                    <van-field v-model="scrapmodel.scrapdate"
+                    <van-field v-model="$v.scrapmodel.scrapdate.$model"
                                required
                                readonly
                                label="报废日期"
                                placeholder="请选择报废日期"
-
-
-                               v-validate="'required'">
+                               :error-message="ScrapDateErrorInfo">
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
@@ -75,9 +67,7 @@ Time: 8:12
                                type="number"
                                label="报废金额"
                                placeholder="请输入报废金额"
-
-
-                               v-validate="'required|min_value:0'"/>
+                               :error-message="ScrapMoneyErrorInfo"/>
 
                     <van-field v-model="scrapmodel.scrapreason"
                                clearable
@@ -208,6 +198,32 @@ Time: 8:12
             mixmethods
 
         ] ,
+        //每个要验证的值，必须在validations选项内部创建一个键
+        validations : {
+            scrapmodel : {
+                nos : {
+                    required ,
+                } ,
+                capitalcode : {
+                    required ,
+                } ,
+                scrapname : {
+                    required ,
+                } ,
+                scrapdate : {
+                    required ,
+                } ,
+                scrapmoney : {
+                    required ,
+                    minValue : minValue( 0 )
+                } ,
+                // saleto : {
+                //     required ,
+                // } ,
+
+            } ,
+
+        } ,
         //数据模型
         data () {
             return {
@@ -414,6 +430,55 @@ Time: 8:12
         } ,
         //计算属性
         computed : {
+            ScrapMoneyErrorInfo () {
+                if ( this.$v.scrapmodel.scrapmoney.$error ) {
+                    if ( !this.$v.scrapmodel.scrapmoney.required ) {
+                        return "报废金额不可以为空";
+                    }
+
+                    if ( !this.$v.scrapmodel.scrapmoney.minValue ) {
+                        return `报废金额请大于等于${ this.$v.scrapmodel.scrapmoney.$params.minValue.min }`;
+                    }
+                }
+
+                return "";
+            } ,
+            NosErrorInfo () {
+                if ( this.$v.scrapmodel.nos.$error ) {
+                    if ( !this.$v.scrapmodel.nos.required ) {
+                        return "报废单号不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            ScrapDateErrorInfo () {
+                if ( this.$v.scrapmodel.scrapdate.$error ) {
+                    if ( !this.$v.scrapmodel.scrapdate.required ) {
+                        return "报废日期不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            ScrapNameErrorInfo () {
+                if ( this.$v.scrapmodel.scrapname.$error ) {
+                    if ( !this.$v.scrapmodel.scrapname.required ) {
+                        return "报废人不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            CapitalErrorInfo () {
+                if ( this.$v.scrapmodel.capitalcode.$error ) {
+                    if ( !this.$v.scrapmodel.capitalcode.required ) {
+                        return "请选择资产";
+                    }
+                }
+
+                return "";
+            } ,
             capitalallname () {
                 if ( !this.scrapmodel.capitalcode || !this.scrapmodel.capitalname ) {
                     return '';
