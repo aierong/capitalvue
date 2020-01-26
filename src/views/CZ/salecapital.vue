@@ -433,7 +433,7 @@ Time: 22:00
                     }
 
                     if ( !this.$v.salemodel.salemoney.minValue ) {
-                        return `出售金额请大于等于${ this.$v.salemodel.money.$params.minValue.min }`;
+                        return `出售金额请大于等于${ this.$v.salemodel.salemoney.$params.minValue.min }`;
                     }
                 }
 
