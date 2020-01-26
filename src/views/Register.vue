@@ -93,7 +93,9 @@
                     type="primary">注 册
         </van-button>
         <br><br><br>
-        <!--头像选择弹窗组件-->
+        <!--
+        头像选择弹窗组件
+        -->
         <userselectavatar @selectavatar="selectavatar"
 
                           :diaObj="diaObj"></userselectavatar>
