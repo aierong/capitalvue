@@ -27,8 +27,7 @@ Time: 8:12
                                label="报废单号"
                                placeholder="报废单号"
 
-                               :error="errors.has('nos')"
-                               data-vv-name="nos"
+
                                v-validate="'required'"/>
 
                     <van-field v-model="capitalallname"
@@ -37,8 +36,7 @@ Time: 8:12
                                label="资产"
                                placeholder="请选择资产"
 
-                               :error="errors.has('capitalallname')"
-                               data-vv-name="capitalallname"
+
                                v-validate="'required'">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
@@ -53,8 +51,7 @@ Time: 8:12
                                label="报废人"
                                placeholder="请输入报废人"
 
-                               :error="errors.has('scrapname')"
-                               data-vv-name="scrapname"
+
                                v-validate="'required'"/>
 
                     <van-field v-model="scrapmodel.scrapdate"
@@ -63,8 +60,7 @@ Time: 8:12
                                label="报废日期"
                                placeholder="请选择报废日期"
 
-                               :error="errors.has('scrapdate')"
-                               data-vv-name="scrapdate"
+
                                v-validate="'required'">
                         <van-button slot="button"
                                     @click="opendateldlg"
@@ -80,9 +76,7 @@ Time: 8:12
                                label="报废金额"
                                placeholder="请输入报废金额"
 
-                               :error-message="errors.first('scrapmoney')"
-                               :error="errors.has('scrapmoney')"
-                               data-vv-name="scrapmoney"
+
                                v-validate="'required|min_value:0'"/>
 
                     <van-field v-model="scrapmodel.scrapreason"
@@ -138,6 +132,12 @@ Time: 8:12
 <script>
     import dayjs from 'dayjs'
 
+    //验证器
+    import {
+        required ,
+        minValue
+    } from 'vuelidate/lib/validators'
+
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
     import { mixmethods } from '@/mixin/mixmethods.js'
@@ -153,20 +153,20 @@ Time: 8:12
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as scrapapi from '@/common/bmobapi/scrap.js'
 
-    const validate = {
-        custom : {
-
-            scrapmoney : {
-                required : () => '请输入报废金额' ,
-                min_value : ( fiield , params ) => {
-
-                    return `报废金额请大于等于${ params[ 0 ] }`
-                } ,
-
-            } ,
-
-        } ,
-    };
+    // const validate = {
+    //     custom : {
+    //
+    //         scrapmoney : {
+    //             required : () => '请输入报废金额' ,
+    //             min_value : ( fiield , params ) => {
+    //
+    //                 return `报废金额请大于等于${ params[ 0 ] }`
+    //             } ,
+    //
+    //         } ,
+    //
+    //     } ,
+    // };
 
     export default {
         name : "scrapcapital" ,
@@ -428,8 +428,6 @@ Time: 8:12
         //生命周期(mounted)
         mounted () {
             // console.log( 'scrapcapital mounted' )
-
-            this.$validator.localize( 'zh_CN' , validate );
 
             this.setupscrapmodel();
         } ,
