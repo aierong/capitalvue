@@ -40,6 +40,7 @@
 
             <van-field v-model="userinfo.email"
                        clearable
+                       required
                        label="邮箱"
                        placeholder="请输入邮箱"
 
