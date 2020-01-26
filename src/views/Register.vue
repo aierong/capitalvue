@@ -80,13 +80,11 @@
                   size="large"
                   @click="SetupAvatarClick">
             <template slot="title">
-
                 <svg class="icon"
                      aria-hidden="true"
                      style="font-size:58px;">
                     <use v-bind:xlink:href="userinfo.avatar | iconallname"></use>
                 </svg>
-
             </template>
         </van-cell>
         <br><br>
