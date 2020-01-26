@@ -27,6 +27,7 @@
                        :error="errors.has('mobile')"
                        name="mobile"
                        v-validate="'required|IsMobile|IsExistsMobile'"/>
+
             <van-field v-model="userinfo.name"
                        required
                        clearable
@@ -36,6 +37,7 @@
                        :error="errors.has('name')"
                        name="name"
                        v-validate="'required'"/>
+
             <van-field v-model="userinfo.email"
                        clearable
                        label="邮箱"
@@ -45,6 +47,7 @@
                        :error="errors.has('email')"
                        name="email"
                        v-validate="'required|email'"/>
+
             <van-field v-model="userinfo.password"
                        type="password"
                        label="密码"
@@ -56,6 +59,7 @@
                        name="password"
                        ref="pwd1"
                        v-validate="'required|min:3|alpha_dash'"/>
+
             <van-field v-model="userinfo.password2"
                        type="password"
                        label="再次密码"
