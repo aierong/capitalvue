@@ -32,7 +32,6 @@ Time: 16:56
                                readonly
                                label="资产"
                                placeholder="请选择资产"
-
                                :error-message="CapitalErrorInfo">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
@@ -50,7 +49,6 @@ Time: 16:56
                                readonly
                                label="现部门"
                                placeholder="请选择现部门"
-
                                :error-message="NewDeptErrorInfo">
                         <van-button slot="button"
                                     @click="opendeptdlg"
@@ -69,7 +67,6 @@ Time: 16:56
                                clearable
                                label="现位置"
                                placeholder="请输入现位置"
-
                                :error-message="NewSaveSiteErrorInfo"/>
 
                     <van-field v-model="movemodel.oldsaveman"
