@@ -237,9 +237,9 @@ Time: 11:17
                 deptno : {
                     required ,
                 } ,
-                deptname : {
-                    required ,
-                } ,
+                // deptname : {
+                //     required ,
+                // } ,
 
             } ,
 
@@ -444,37 +444,49 @@ Time: 11:17
         //计算属性
         computed : {
             DeptErrorInfo () {
-                if ( !this.$v.capitalmodel.deptno.required ) {
-                    return "请选择保管部门";
-                }
-                if ( !this.$v.capitalmodel.deptname.required ) {
-                    return "请选择保管部门";
+                if ( this.$v.capitalmodel.deptno.$error ) {
+                    if ( !this.$v.capitalmodel.deptno.required ) {
+                        return "请选择保管部门";
+                    }
+
                 }
 
                 return "";
             } ,
             SaveManErrorInfo () {
-                if ( !this.$v.capitalmodel.saveman.required ) {
-                    return "请输入保管人";
+                if ( this.$v.capitalmodel.saveman.$error ) {
+                    if ( !this.$v.capitalmodel.saveman.required ) {
+                        return "请输入保管人";
+                    }
                 }
+
                 return "";
             } ,
             SaveSiteErrorInfo () {
-                if ( !this.$v.capitalmodel.savesite.required ) {
-                    return "请输入保管位置";
+                if ( this.$v.capitalmodel.savesite.$error ) {
+                    if ( !this.$v.capitalmodel.savesite.required ) {
+                        return "请输入保管位置";
+                    }
                 }
+
                 return "";
             } ,
             UnitErrorInfo () {
-                if ( !this.$v.capitalmodel.unit.required ) {
-                    return "请输入资产单位";
+                if ( this.$v.capitalmodel.unit.$error ) {
+                    if ( !this.$v.capitalmodel.unit.required ) {
+                        return "请输入资产单位";
+                    }
                 }
+
                 return "";
             } ,
             TypeNameErrorInfo () {
-                if ( !this.$v.capitalmodel.typename.required ) {
-                    return "请选择资产类型";
+                if ( this.$v.capitalmodel.typename.$error ) {
+                    if ( !this.$v.capitalmodel.typename.required ) {
+                        return "请选择资产类型";
+                    }
                 }
+
                 return "";
             } ,
             CapitalNameErrorInfo () {
@@ -487,18 +499,23 @@ Time: 11:17
                 return "";
             } ,
             CapitalCodeErrorInfo () {
-                if ( !this.$v.capitalmodel.capitalcode.required ) {
-                    return "资产代号不允许空";
+                if ( this.$v.capitalmodel.capitalcode.$error ) {
+                    if ( !this.$v.capitalmodel.capitalcode.required ) {
+                        return "资产代号不允许空";
+                    }
                 }
+
                 return "";
             } ,
             MoneyErrorInfo () {
-                if ( !this.$v.capitalmodel.money.required ) {
-                    return "资产金额不允许空";
-                }
+                if ( this.$v.capitalmodel.money.$error ) {
+                    if ( !this.$v.capitalmodel.money.required ) {
+                        return "资产金额不允许空";
+                    }
 
-                if ( !this.$v.capitalmodel.money.minValue ) {
-                    return "资产金额请大于等于" + this.$v.capitalmodel.money.$params.minValue.min;
+                    if ( !this.$v.capitalmodel.money.minValue ) {
+                        return `资产金额请大于等于${ this.$v.capitalmodel.money.$params.minValue.min }`;
+                    }
                 }
 
                 return "";
