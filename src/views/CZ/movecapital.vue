@@ -228,15 +228,15 @@ Time: 16:56
                 capitalcode : {
                     required ,
                 } ,
-                capitalname : {
-                    required ,
-                } ,
+                // capitalname : {
+                //     required ,
+                // } ,
                 newdeptno : {
                     required ,
                 } ,
-                newdeptname : {
-                    required ,
-                } ,
+                // newdeptname : {
+                //     required ,
+                // } ,
                 newsavesite : {
                     required ,
                 } ,
@@ -412,17 +412,10 @@ Time: 16:56
             } ,
             AddClick () {
 
-                if ( this.olddeptinfo == this.newdeptinfo
-                    && this.movemodel.oldsaveman == this.movemodel.newsaveman
-                    && this.movemodel.oldsavesite == this.movemodel.newsavesite
-                ) {
-                    this.$toast( "信息没有变化,不用转移" )
-
-                    return;
-                }
-
                 ( async () => {
                     //let valid = await this.$validator.validate();
+
+                    this.$v.$touch();
 
                     let _valid = this.$v.$invalid;
 
@@ -430,6 +423,14 @@ Time: 16:56
                         //验证失败 退出
                         // 不用提示
                         // this.$toast( "验证失败" )
+
+                        return;
+                    }
+
+                    if ( this.olddeptinfo == this.newdeptinfo
+                        && this.movemodel.oldsaveman == this.movemodel.newsaveman
+                        && this.movemodel.oldsavesite == this.movemodel.newsavesite ) {
+                        this.$toast( "信息没有变化,不用转移" )
 
                         return;
                     }
@@ -532,53 +533,64 @@ Time: 16:56
         //计算属性
         computed : {
             NosErrorInfo () {
-                if ( !this.$v.movemodel.nos.required ) {
-                    return "转移单号不可以为空";
+                if ( this.$v.movemodel.nos.$error ) {
+                    if ( !this.$v.movemodel.nos.required ) {
+                        return "转移单号不可以为空";
+                    }
                 }
+
                 return "";
             } ,
             MoveNameErrorInfo () {
-                if ( !this.$v.movemodel.movename.required ) {
-                    return "请输入转移人";
+                if ( this.$v.movemodel.movename.$error ) {
+                    if ( !this.$v.movemodel.movename.required ) {
+                        return "请输入转移人";
+                    }
                 }
+
                 return "";
             } ,
             NewSaveSiteErrorInfo () {
-                if ( !this.$v.movemodel.newsavesite.required ) {
-                    return "请输入现位置";
+                if ( this.$v.movemodel.newsavesite.$error ) {
+                    if ( !this.$v.movemodel.newsavesite.required ) {
+                        return "请输入现位置";
+                    }
                 }
+
                 return "";
             } ,
             MoveDateErrorInfo () {
-                if ( !this.$v.movemodel.movedate.required ) {
-                    return "请选择转移日期";
+                if ( this.$v.movemodel.movedate.$error ) {
+                    if ( !this.$v.movemodel.movedate.required ) {
+                        return "请选择转移日期";
+                    }
                 }
+
                 return "";
             } ,
             NewSaveManErrorInfo () {
-                if ( !this.$v.movemodel.newsaveman.required ) {
-                    return "请输入现保管人";
+                if ( this.$v.movemodel.newsaveman.$error ) {
+                    if ( !this.$v.movemodel.newsaveman.required ) {
+                        return "请输入现保管人";
+                    }
                 }
+
                 return "";
             } ,
             CapitalErrorInfo () {
-                if ( !this.$v.movemodel.capitalcode.required ) {
-                    return "请选择资产";
-                }
-
-                if ( !this.$v.movemodel.capitalname.required ) {
-                    return "请选择资产";
+                if ( this.$v.movemodel.newsaveman.$error ) {
+                    if ( !this.$v.movemodel.capitalcode.required ) {
+                        return "请选择资产";
+                    }
                 }
 
                 return "";
             } ,
             NewDeptErrorInfo () {
-                if ( !this.$v.movemodel.newdeptno.required ) {
-                    return "请选择现部门";
-                }
-
-                if ( !this.$v.movemodel.newdeptname.required ) {
-                    return "请选择现部门";
+                if ( this.$v.movemodel.newdeptno.$error ) {
+                    if ( !this.$v.movemodel.newdeptno.required ) {
+                        return "请选择现部门";
+                    }
                 }
 
                 return "";
