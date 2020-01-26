@@ -60,25 +60,20 @@ Time: 22:00
                         </van-button>
                     </van-field>
 
-                    <van-field v-model.number="salemodel.salemoney"
+                    <van-field v-model.number="$v.salemodel.salemoney.$model"
                                required
                                clearable
                                type="number"
                                label="出售金额"
                                placeholder="请输入出售金额"
+                               :error-message="SaleMoneyErrorInfo"/>
 
-
-                               v-validate="'required|min_value:0'"/>
-
-                    <van-field v-model="salemodel.saleto"
+                    <van-field v-model="$v.salemodel.saleto.$model"
                                clearable
                                label="出售对象"
                                required
                                placeholder="请输入出售对象"
-
-                               :error="errors.has('saleto')"
-                               data-vv-name="saleto"
-                               v-validate="'required'"/>
+                               :error-message="SaleToErrorInfo"/>
 
                     <van-field v-model="salemodel.comment"
                                clearable
@@ -147,20 +142,7 @@ Time: 22:00
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as saleapi from '@/common/bmobapi/sale.js'
 
-    // const validate = {
-    //     custom : {
-    //
-    //         salemoney : {
-    //             required : () => '请输入报废金额' ,
-    //             min_value : ( fiield , params ) => {
-    //
-    //                 return `报废金额请大于等于${ params[ 0 ] }`
-    //             } ,
-    //
-    //         } ,
-    //
-    //     } ,
-    // };
+
 
     export default {
         name : "salecapital" ,
@@ -269,10 +251,9 @@ Time: 22:00
                     required ,
                     minValue : minValue( 0 )
                 } ,
-
-                // deptname : {
-                //     required ,
-                // } ,
+                saleto : {
+                    required ,
+                } ,
 
             } ,
 
@@ -342,9 +323,16 @@ Time: 22:00
             AddClick () {
 
                 ( async () => {
-                    let valid = await this.$validator.validate();
+                    // let valid = await this.$validator.validate();
 
-                    if ( !valid ) {
+
+                    this.$v.$touch();
+
+                    let _valid = this.$v.$invalid;
+
+                    if ( _valid ) {
+                        //验证失败 退出
+                        // 不用提示
                         // this.$toast( "验证失败" )
 
                         return;
@@ -451,7 +439,15 @@ Time: 22:00
 
                 return "";
             } ,
+            SaleToErrorInfo () {
+                if ( this.$v.salemodel.saleto.$error ) {
+                    if ( !this.$v.salemodel.saleto.required ) {
+                        return "出售对象不可以为空";
+                    }
+                }
 
+                return "";
+            } ,
             NosErrorInfo () {
                 if ( this.$v.salemodel.nos.$error ) {
                     if ( !this.$v.salemodel.nos.required ) {
