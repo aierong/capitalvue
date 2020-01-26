@@ -19,25 +19,19 @@ Time: 22:00
         <van-tabs v-model="tabactive">
             <van-tab title="登记">
                 <van-cell-group>
-                    <van-field v-model="salemodel.nos"
+                    <van-field v-model="$v.salemodel.nos.$model"
                                required
                                readonly
                                label="出售单号"
                                placeholder="出售单号"
-
-                               :error="errors.has('nos')"
-                               data-vv-name="nos"
-                               v-validate="'required'"/>
+                               :error-message="NosErrorInfo"/>
 
                     <van-field v-model="capitalallname"
                                required
                                readonly
                                label="资产"
                                placeholder="请选择资产"
-
-                               :error="errors.has('capitalallname')"
-                               data-vv-name="capitalallname"
-                               v-validate="'required'">
+                               :error-message="CapitalErrorInfo">
                         <van-button slot="button"
                                     @click="opencapitaldlg"
                                     size="small"
@@ -45,25 +39,20 @@ Time: 22:00
                         </van-button>
                     </van-field>
 
-                    <van-field v-model="salemodel.salename"
+                    <van-field v-model="$v.salemodel.salename.$model"
                                required
                                clearable
                                label="出售人"
                                placeholder="请输入出售人"
+                               :error-message="SaleNameErrorInfo"/>
 
-                               :error="errors.has('salename')"
-                               data-vv-name="salename"
-                               v-validate="'required'"/>
-
-                    <van-field v-model="salemodel.saledate"
+                    <van-field v-model="$v.salemodel.saledate.$model"
                                required
                                readonly
                                label="出售日期"
                                placeholder="请选择出售日期"
 
-                               :error="errors.has('saledate')"
-                               data-vv-name="saledate"
-                               v-validate="'required'">
+                               :error-message="SaleDateErrorInfo">
                         <van-button slot="button"
                                     @click="opendateldlg"
                                     size="small"
@@ -78,9 +67,7 @@ Time: 22:00
                                label="出售金额"
                                placeholder="请输入出售金额"
 
-                               :error-message="errors.first('salemoney')"
-                               :error="errors.has('salemoney')"
-                               data-vv-name="salemoney"
+
                                v-validate="'required|min_value:0'"/>
 
                     <van-field v-model="salemodel.saleto"
@@ -139,6 +126,12 @@ Time: 22:00
 <script>
     import dayjs from 'dayjs'
 
+    //验证器
+    import {
+        required ,
+        minValue
+    } from 'vuelidate/lib/validators'
+
     // 导入
     import { loginuserdatamix } from "@/mixin/loginuserdata.js"
     import { mixmethods } from '@/mixin/mixmethods.js'
@@ -154,20 +147,20 @@ Time: 22:00
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as saleapi from '@/common/bmobapi/sale.js'
 
-    const validate = {
-        custom : {
-
-            salemoney : {
-                required : () => '请输入报废金额' ,
-                min_value : ( fiield , params ) => {
-
-                    return `报废金额请大于等于${ params[ 0 ] }`
-                } ,
-
-            } ,
-
-        } ,
-    };
+    // const validate = {
+    //     custom : {
+    //
+    //         salemoney : {
+    //             required : () => '请输入报废金额' ,
+    //             min_value : ( fiield , params ) => {
+    //
+    //                 return `报废金额请大于等于${ params[ 0 ] }`
+    //             } ,
+    //
+    //         } ,
+    //
+    //     } ,
+    // };
 
     export default {
         name : "salecapital" ,
@@ -256,6 +249,33 @@ Time: 22:00
                     date : dayjs().format( 'YYYY-MM-DD' )
                 } ,
             }
+        } ,
+        //每个要验证的值，必须在validations选项内部创建一个键
+        validations : {
+            salemodel : {
+                nos : {
+                    required ,
+                } ,
+                capitalcode : {
+                    required ,
+                } ,
+                salename : {
+                    required ,
+                } ,
+                saledate : {
+                    required ,
+                } ,
+                salemoney : {
+                    required ,
+                    minValue : minValue( 0 )
+                } ,
+
+                // deptname : {
+                //     required ,
+                // } ,
+
+            } ,
+
         } ,
         //方法
         methods : {
@@ -418,6 +438,56 @@ Time: 22:00
         } ,
         //计算属性
         computed : {
+            SaleMoneyErrorInfo () {
+                if ( this.$v.salemodel.salemoney.$error ) {
+                    if ( !this.$v.salemodel.salemoney.required ) {
+                        return "出售金额不可以为空";
+                    }
+
+                    if ( !this.$v.salemodel.salemoney.minValue ) {
+                        return `出售金额请大于等于${ this.$v.salemodel.money.$params.minValue.min }`;
+                    }
+                }
+
+                return "";
+            } ,
+
+            NosErrorInfo () {
+                if ( this.$v.salemodel.nos.$error ) {
+                    if ( !this.$v.salemodel.nos.required ) {
+                        return "出售单号不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            SaleNameErrorInfo () {
+                if ( this.$v.salemodel.salename.$error ) {
+                    if ( !this.$v.salemodel.salename.required ) {
+                        return "出售人不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            SaleDateErrorInfo () {
+                if ( this.$v.salemodel.saledate.$error ) {
+                    if ( !this.$v.salemodel.saledate.required ) {
+                        return "出售日期不可以为空";
+                    }
+                }
+
+                return "";
+            } ,
+            CapitalErrorInfo () {
+                if ( this.$v.salemodel.capitalcode.$error ) {
+                    if ( !this.$v.salemodel.capitalcode.required ) {
+                        return "请选择资产";
+                    }
+                }
+
+                return "";
+            } ,
             capitalallname () {
                 if ( !this.salemodel.capitalcode || !this.salemodel.capitalname ) {
                     return '';
@@ -432,8 +502,6 @@ Time: 22:00
         //生命周期(mounted)
         mounted () {
             // console.log( 'salecapital mounted' )
-
-            this.$validator.localize( 'zh_CN' , validate );
 
             this.setupscrapmodel();
         } ,
