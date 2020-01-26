@@ -61,7 +61,7 @@ Time: 8:12
                         </van-button>
                     </van-field>
 
-                    <van-field v-model.number="scrapmodel.scrapmoney"
+                    <van-field v-model.number="$v.scrapmodel.scrapmoney.$model"
                                required
                                clearable
                                type="number"
@@ -142,21 +142,6 @@ Time: 8:12
 
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as scrapapi from '@/common/bmobapi/scrap.js'
-
-    // const validate = {
-    //     custom : {
-    //
-    //         scrapmoney : {
-    //             required : () => '请输入报废金额' ,
-    //             min_value : ( fiield , params ) => {
-    //
-    //                 return `报废金额请大于等于${ params[ 0 ] }`
-    //             } ,
-    //
-    //         } ,
-    //
-    //     } ,
-    // };
 
     export default {
         name : "scrapcapital" ,
@@ -334,9 +319,16 @@ Time: 8:12
             AddClick () {
 
                 ( async () => {
-                    let valid = await this.$validator.validate();
 
-                    if ( !valid ) {
+                    this.$v.$touch();
+
+                    // let valid = await this.$validator.validate();
+
+                    let _valid = this.$v.$invalid;
+
+                    if ( _valid ) {
+                        //验证失败 退出
+                        // 不用提示
                         // this.$toast( "验证失败" )
 
                         return;
