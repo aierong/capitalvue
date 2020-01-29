@@ -413,7 +413,6 @@ Time: 16:56
             AddClick () {
 
                 ( async () => {
-                    //let valid = await this.$validator.validate();
 
                     this.$v.$touch();
 

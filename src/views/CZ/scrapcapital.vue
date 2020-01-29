@@ -322,8 +322,6 @@ Time: 8:12
 
                     this.$v.$touch();
 
-                    // let valid = await this.$validator.validate();
-
                     let _valid = this.$v.$invalid;
 
                     if ( _valid ) {
