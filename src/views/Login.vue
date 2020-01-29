@@ -100,10 +100,8 @@
                 ( async () => {
                     this.$v.$touch();
 
-                    //let _valid = await this.$validator.validate();
                     let _valid = this.$v.$invalid;
 
-                    // if ( !_valid ) {
                     if ( _valid ) {
                         //验证失败 退出
                         // 不用提示
