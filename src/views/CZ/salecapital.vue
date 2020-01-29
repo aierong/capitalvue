@@ -142,8 +142,6 @@ Time: 22:00
     import * as dlapi from '@/common/bmobapi/dl.js'
     import * as saleapi from '@/common/bmobapi/sale.js'
 
-
-
     export default {
         name : "salecapital" ,
         beforeRouteEnter ( to , from , next ) {
@@ -323,8 +321,6 @@ Time: 22:00
             AddClick () {
 
                 ( async () => {
-                    // let valid = await this.$validator.validate();
-
 
                     this.$v.$touch();
 
