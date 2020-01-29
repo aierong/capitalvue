@@ -39,10 +39,6 @@ Object.keys( components ).forEach( ( key ) => {
 
 } )
 
-import VeeValidate from 'vee-validate';
-
-Vue.use( VeeValidate );
-
 import Vuelidate from 'vuelidate'
 
 Vue.use( Vuelidate )
