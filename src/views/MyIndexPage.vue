@@ -99,15 +99,6 @@ Time: 14:42
 
     Vue.use( Lazyload );
 
-    // import VCharts from 'v-charts'
-    //
-    // Vue.use( VCharts )
-
-    // //按需加载
-    // import VeBar from 'v-charts/lib/bar.common'
-    //
-    // Vue.component( VeBar.name , VeBar )
-
     // 引入阿里图标js
     import "@/assets/ali/iconfont/iconfont.js"
 
@@ -137,17 +128,17 @@ Time: 14:42
                  * 轮播图的图片列表
                  */
                 swipeimagelist : [
-                    require( `@/assets/capitalswipeimage/ji1.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/ji1.jpg` ) ,
 
-                    require( `@/assets/capitalswipeimage/car4.jpg` ) ,
-                    require( `@/assets/capitalswipeimage/car6.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/car4.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/car6.jpg` ) ,
 
-                    require( `@/assets/capitalswipeimage/dianzi.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/dianzi.jpg` ) ,
 
-                    require( `@/assets/capitalswipeimage/fangwu1.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/fangwu1.jpg` ) ,
 
-                    require( `@/assets/capitalswipeimage/chart.jpg` ) ,
-                    require( `@/assets/capitalswipeimage/capital.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/chart.jpg` ) ,
+                    require( `../../public/imgs/capitalswipeimage/capital.jpg` ) ,
                 ] ,
                 chartData : {
                     columns : [ '数量' , '资产' , '正常' , '出售' , '报废' ] ,
