@@ -91,12 +91,7 @@ Time: 14:57
     export default {
         name : "SetupData" ,
         //导入混入对象 可以是多个,数组
-        mixins : [
-
-            loginuserdatamix ,
-            mix
-
-        ] ,
+        mixins : [ loginuserdatamix , mix ] ,
         //注册组件
         components : {
             userselectavatar
