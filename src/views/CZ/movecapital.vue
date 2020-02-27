@@ -18,7 +18,7 @@ Time: 16:56
                   righticon="shop"></mynavbar>
 
         <van-tabs v-model="tabactive">
-            <van-tab title="出售">
+            <van-tab title="转移">
                 <van-cell-group>
                     <van-field v-model="$v.movemodel.nos.$model"
                                required
