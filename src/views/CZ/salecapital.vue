@@ -17,7 +17,7 @@ Time: 22:00
                   righticon="shop"></mynavbar>
 
         <van-tabs v-model="tabactive">
-            <van-tab title="登记">
+            <van-tab title="出售">
                 <van-cell-group>
                     <van-field v-model="$v.salemodel.nos.$model"
                                required

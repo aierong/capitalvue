@@ -18,9 +18,8 @@ Time: 8:12
                   righticon="shop"></mynavbar>
 
         <van-tabs v-model="tabactive">
-            <van-tab title="登记">
+            <van-tab title="报废">
                 <van-cell-group>
-
                     <van-field v-model="$v.scrapmodel.nos.$model"
                                required
                                readonly
