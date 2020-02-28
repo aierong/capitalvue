@@ -137,10 +137,10 @@ export function IsNormal ( _CapitalStatus ) {
  * @returns {Array}
  * @constructor
  */
-export function GetCapitalTypeList ( isincludeall ) {
+export function GetCapitalTypeList ( isIncludeAll ) {
     let arr = [];
 
-    if ( isincludeall ) {
+    if ( isIncludeAll ) {
         arr.push( {
             text : '全部' ,
             value : ''
