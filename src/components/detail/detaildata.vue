@@ -15,7 +15,8 @@ Time: 18:09
                 <van-divider class="mydivider"
                              content-position="left"
                              dashed>
-                    <span>{{ `${diaObj.capitalcode}资产详情` }}</span><span v-if="capitalstatus">{{ `(状态:${capitalstatus})`   }}</span>
+                    <span>{{ `${diaObj.capitalcode}资产详情` }}</span><span v-bind:class="[StstusClassName]"
+                                                                        v-if="capitalstatus">{{ `(状态:${capitalstatus})`   }}</span>
                 </van-divider>
 
                 <capitaldata @getstatus="setstatus"
@@ -120,7 +121,10 @@ js脚本代码片段
 
                 notype : '' ,
 
-                capitalstatus : ''
+                // 资产状态
+                capitalstatus : '' ,
+
+                activeClass : ''
             }
         } ,
         //方法
@@ -152,6 +156,14 @@ js脚本代码片段
         } ,
         //计算属性
         computed : {
+            StstusClassName () {
+                if ( this.IsNormalStstus ) {
+                    return 'NormalColor';
+                }
+                else {
+                    return 'OtherColor';
+                }
+            } ,
             IsNormalStstus () {
                 return util.IsNormal( this.capitalstatus );
             } ,
