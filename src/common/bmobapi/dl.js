@@ -209,6 +209,16 @@ export function getnormalcapitallistbyminid ( minid , loadcounts , typename , us
 
 }
 
+/**
+ *
+ * @param 最小id
+ * @param 加载数量
+ * @param 类型
+ * @param 用户id
+ * @param 资产状态
+ * @param 搜索条件
+ * @returns {Promise<unknown>}
+ */
 export function getaddquerylistbyminid ( minid , loadcounts , typename , userid , CapitalStatus , searchkey ) {
 
     return new Promise( ( resolve , reject ) => {

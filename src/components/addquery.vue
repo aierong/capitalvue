@@ -126,6 +126,9 @@ Time: 12:19
         //数据模型
         data () {
             return {
+                // 每次显示数量 5个
+                displaycounts : 2 ,
+
                 //资产列表
                 capitallist : [] ,
                 //资产类型
@@ -301,7 +304,7 @@ Time: 12:19
                 } );
             } ,
             async initlist () {
-                let initcount = 10;
+                let initcount = this.displaycounts;
 
                 let list = await dlapi.getaddquerylistbyminid( 0 ,
                     initcount ,
@@ -310,7 +313,8 @@ Time: 12:19
                     this.CapitalStatusVal ,
                     this.searchval );
 
-                // console.log( list );
+                // console.log( 'list' , list );
+
                 let lens = 0;
                 if ( list != null && list.length > 0 ) {
                     lens = list.length;
