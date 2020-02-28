@@ -81,11 +81,15 @@ Time: 16:15
                 if ( this.code ) {
                     dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
                         if ( res != null ) {
+                            //console.log( '模型' , res )
+
                             this.modeldata = res;
                         }
                         else {
                             this.modeldata = null;
                         }
+
+
                     } );
 
                 }
