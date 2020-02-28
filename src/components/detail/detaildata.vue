@@ -14,9 +14,12 @@ Time: 18:09
             <van-tab title="资产信息">
                 <van-divider class="mydivider"
                              content-position="left"
-                             dashed><span>{{ `${diaObj.capitalcode}资产详情` }}</span>
+                             dashed>
+                    <span>{{ `${diaObj.capitalcode}资产详情` }}</span><span v-if="capitalstatus">{{ `(状态:${capitalstatus})`   }}</span>
                 </van-divider>
-                <capitaldata :code="diaObj.capitalcode"></capitaldata>
+
+                <capitaldata @getstatus="setstatus"
+                             :code="diaObj.capitalcode"></capitaldata>
 
                 <van-divider class="mydivider"
                              content-position="left"
@@ -41,7 +44,9 @@ Time: 18:09
 
 </template>
 
-<!-- js脚本代码片段  capitaldetaildata -->
+<!--
+js脚本代码片段
+-->
 <script>
     import capitaldata from '@/components/detail/capitaldata.vue'
     import nosstep from '@/components/detail/nosstep.vue'
@@ -51,6 +56,7 @@ Time: 18:09
     import scrapdetaildata from '@/components/detail/scrapdetaildata.vue'
 
     import * as globalconstant from '@/common/constant.js'
+    import * as util from '@/common/util/util.js'
 
     export default {
         name : "detaildata" ,
@@ -112,7 +118,9 @@ Time: 18:09
 
                 selectnos : '' ,
 
-                notype : ''
+                notype : '' ,
+
+                capitalstatus : ''
             }
         } ,
         //方法
@@ -135,9 +143,18 @@ Time: 18:09
 
                 this.tabactive = 0;
             } ,
+
+            setstatus ( status ) {
+
+                this.capitalstatus = status;
+
+            } ,
         } ,
         //计算属性
         computed : {
+            IsNormalStstus () {
+                return util.IsNormal( this.capitalstatus );
+            } ,
             ismove () {
                 if ( this.notype == globalconstant.notype.move ) {
                     return true;

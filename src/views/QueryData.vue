@@ -168,10 +168,12 @@ Time: 14:53
         //方法
         methods : {
             IsNormal ( capitalstatus ) {
-                if ( capitalstatus ) {
-                    return capitalstatus == globalconstant.CapitalStatus.normal;
-                }
-                return false;
+                // if ( capitalstatus ) {
+                //     return capitalstatus == globalconstant.CapitalStatus.normal;
+                // }
+                // return false;
+
+                return util.IsNormal( capitalstatus );
             } ,
             gotodetaildata ( item ) {
 

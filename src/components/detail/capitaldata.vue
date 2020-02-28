@@ -80,16 +80,23 @@ Time: 16:15
 
                 if ( this.code ) {
                     dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
+                        let status = '';
+
                         if ( res != null ) {
                             //console.log( '模型' , res )
 
                             this.modeldata = res;
+
+                            status = res.capitalstatus;
                         }
                         else {
                             this.modeldata = null;
+
+                            status = '';
                         }
 
-
+                        //给父组件传递值
+                        this.$emit( "getstatus" , status );
                     } );
 
                 }
