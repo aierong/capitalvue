@@ -98,9 +98,10 @@ Time: 22:00
                 </van-button>
 
                 <!--
-                        选择资产的弹窗
+                        选择资产的弹窗     给子组件搞一个名字
                 -->
-                <selectcapital @selectcapital="selectcapital"
+                <selectcapital ref='myselectcapital'
+                               @selectcapital="selectcapital"
                                :diaObj="CapitalDlgObj"></selectcapital>
                 <!--
                         选择日期的弹窗
@@ -228,6 +229,8 @@ Time: 22:00
                     //先默认一个 ，后面会重新赋值
                     date : dayjs().format( 'YYYY-MM-DD' )
                 } ,
+                // 是否需要重置 资产选择弹窗
+                IsResetSelectCapital : false
             }
         } ,
         //每个要验证的值，必须在validations选项内部创建一个键
@@ -290,8 +293,18 @@ Time: 22:00
 
                 this.salemodel.salename = RandomUtil.getcname();
             } ,
+            /**
+             * 选择资产弹窗
+             */
             opencapitaldlg () {
                 this.CapitalDlgObj.isshow = true;
+
+                //出售 或者 报废成功后，不重置，还会选择上之前的资产
+                if ( this.IsResetSelectCapital ) {
+                    this.$refs.myselectcapital.resetdata();
+
+                    this.IsResetSelectCapital = false;      //把重置标志，归位一下
+                }
             } ,
             selectcapital ( item ) {
                 this.salemodel.capitalcode = item.capitalcode;
@@ -380,6 +393,8 @@ Time: 22:00
                         this.$toast.success( "成功" );
                         //重新初始化一下
                         this.initmodel();
+
+                        this.IsResetSelectCapital = true;   // 成功了 标记一下，要重置 资产选择弹窗
 
                         return;
                     }
