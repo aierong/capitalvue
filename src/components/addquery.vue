@@ -126,8 +126,6 @@ Time: 12:19
         //数据模型
         data () {
             return {
-                // 每次显示数量 5个
-                displaycounts : 2 ,
 
                 //资产列表
                 capitallist : [] ,
@@ -201,6 +199,12 @@ Time: 12:19
 
                 // this.optionitemCapitalStatus = util.GetCapitalStatus( true );
                 this.optionitemCapitalStatus = [
+                    // text : '' ,
+                    // value : ''
+                    {
+                        text : '全部' ,
+                        value : ''
+                    } ,
                     {
                         text : '正常' ,
                         value : '正常'
@@ -258,7 +262,7 @@ Time: 12:19
                         this.loadobj.isover = false;
                         this.loadobj.isshowdivider = false;
                     }
-                } , 2000 );
+                } , 1000 );
 
             } ,
             itemdelclick ( item , _index ) {
@@ -304,7 +308,7 @@ Time: 12:19
                 } );
             } ,
             async initlist () {
-                let initcount = this.displaycounts;
+                let initcount = 5;
 
                 let list = await dlapi.getaddquerylistbyminid( 0 ,
                     initcount ,
