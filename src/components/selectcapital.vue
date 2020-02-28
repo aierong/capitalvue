@@ -172,6 +172,7 @@ Time: 14:53
                 return;
             } ,
             async initlist () {
+                //初始化 先搞4个
                 let initcount = 4;
 
                 let list = await dlapi.getnormalcapitallistbyminid( 0 ,
@@ -204,6 +205,7 @@ Time: 14:53
 
             } ,
             async loaddata () {
+                // 每次搞2个
                 let counts = 2;
 
                 this.loadobj.isloading = true;
