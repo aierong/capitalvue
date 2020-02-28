@@ -141,13 +141,25 @@ Time: 14:53
         } ,
         //方法
         methods : {
+            /** 重置数据       出售 或者 报废成功后，不重置，还会选择上之前的资产
+             */
+            resetdata () {
+                // console.log( 'resetdata' , '重置窗体搞起' )
+
+                // 2个下拉框 和搜索框 都重置一下
+                this.MyItemVal = '';
+                this.CapitalTypeItemVal = '';
+                this.searchval = '';
+                this.capitallist = [];      //列表也清空一下，后面有加载
+
+                this.initlist();  //重新搞一下列表
+            } ,
             ismy ( userid ) {
                 if ( userid ) {
                     return userid == this.loginusermobile;
                 }
                 return false;
             } ,
-
             createoptionitem () {
 
                 this.optionitemCapitalType = util.GetCapitalTypeList( true );
