@@ -17,30 +17,24 @@ Time: 16:15
             </van-cell>
             <van-cell>
                 <van-row>
-
                     <van-col span="12">{{ '资产类型:' + modeldata.typename }}</van-col>
                     <van-col span="12">{{ '金额:' + modeldata.money }}</van-col>
                 </van-row>
             </van-cell>
             <van-cell>
                 <van-row>
-
                     <van-col span="12">{{ '单位:' + modeldata.unit }}</van-col>
                     <van-col span="12">{{ '保管部门:' + modeldata.deptname }}</van-col>
                 </van-row>
             </van-cell>
             <van-cell>
                 <van-row>
-
                     <van-col span="24">{{ '保管位置:' + modeldata.savesite }}</van-col>
-
                 </van-row>
             </van-cell>
             <van-cell>
                 <van-row>
-
                     <van-col span="24">{{ `备注:${modeldata.comment}` }}</van-col>
-
                 </van-row>
             </van-cell>
             <van-cell>
@@ -68,10 +62,10 @@ Time: 16:15
                 handler ( newName , oldName ) {
                     // console.log( 'capitaldata changed' , newName );
 
-                    this.getcapitalmodel()
+                    this.GetCapitalModel()
+
                 } ,
                 immediate : true ,
-
             } ,
         } ,
         //数据模型
@@ -82,7 +76,7 @@ Time: 16:15
         } ,
         //方法
         methods : {
-            getcapitalmodel () {
+            GetCapitalModel () {
 
                 if ( this.code ) {
                     dlapi.GetCapitalByCapitalCode( this.code ).then( ( res ) => {
