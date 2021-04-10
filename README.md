@@ -1,4 +1,4 @@
- 
+
 ```
 
 
@@ -16,3 +16,22 @@
 https://capitalvue.netlify.com  
 
 ```
+
+
+
+
+
+# 功能预览：
+
+![](mdresourcefile/11.png) 
+
+
+
+![](mdresourcefile/22.png) 
+
+![](mdresourcefile/33.png) 
+
+
+
+![](mdresourcefile/44.png) 
+
